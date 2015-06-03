@@ -1,0 +1,38 @@
+\hypertarget{trickle-timer_8c}{}\section{/home/user/contiki\+U\+T/contiki/core/lib/trickle-\/timer.c File Reference}
+\label{trickle-timer_8c}\index{/home/user/contiki\+U\+T/contiki/core/lib/trickle-\/timer.\+c@{/home/user/contiki\+U\+T/contiki/core/lib/trickle-\/timer.\+c}}
+{\ttfamily \#include \char`\"{}contiki-\/conf.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lib/trickle-\/timer.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}sys/ctimer.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}sys/cc.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lib/random.\+h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__trickle-timer_gad72dbcf6d0153db1b8d8a58001feed83}{}\#define {\bfseries D\+E\+B\+U\+G}~0\label{group__trickle-timer_gad72dbcf6d0153db1b8d8a58001feed83}
+
+\item 
+\hypertarget{group__trickle-timer_ga1f464e950a4fa11e8821b5c725921a15}{}\#define {\bfseries P\+R\+I\+N\+T\+F}(...)\label{group__trickle-timer_ga1f464e950a4fa11e8821b5c725921a15}
+
+\item 
+\hypertarget{group__trickle-timer_gaf612a348c64f66b8d578b190dc7e87ed}{}\#define \hyperlink{group__trickle-timer_gaf612a348c64f66b8d578b190dc7e87ed}{tt\+\_\+rand}()~random\+\_\+rand()\label{group__trickle-timer_gaf612a348c64f66b8d578b190dc7e87ed}
+
+\begin{DoxyCompactList}\small\item\em Wide randoms for platforms using a 4-\/byte wide clock (see \hyperlink{group__trickle-timer_ga2b3b9fd1a895243db18b35b7600bac15}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+W\+I\+D\+E\+\_\+\+R\+A\+N\+D}) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{Indent}{\bf Trickle Timer Library\+: Functions called by protocol implementations}\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__trickle-timer_gaf7df1a3da4f9be5e2f17c3b77668eb6e}{trickle\+\_\+timer\+\_\+consistency} (struct \hyperlink{structtrickle__timer}{trickle\+\_\+timer} $\ast$tt)
+\begin{DoxyCompactList}\small\item\em To be called by the protocol when it hears a consistent transmission. \end{DoxyCompactList}\item 
+void \hyperlink{group__trickle-timer_gae401435f40030c5c4f0f49e813fd9afc}{trickle\+\_\+timer\+\_\+inconsistency} (struct \hyperlink{structtrickle__timer}{trickle\+\_\+timer} $\ast$tt)
+\begin{DoxyCompactList}\small\item\em To be called by the protocol when it hears an inconsistent transmission. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{group__trickle-timer_ga4b21d9fbed3c0c903fa1687b812a7f9c}{trickle\+\_\+timer\+\_\+config} (struct \hyperlink{structtrickle__timer}{trickle\+\_\+timer} $\ast$tt, clock\+\_\+time\+\_\+t i\+\_\+min, uint8\+\_\+t i\+\_\+max, uint8\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em Configure a trickle timer. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{group__trickle-timer_ga57b03043f109c0b2adb1dc92637ee8b4}{trickle\+\_\+timer\+\_\+set} (struct \hyperlink{structtrickle__timer}{trickle\+\_\+timer} $\ast$tt, \hyperlink{group__trickle-timer_ga243193848d28e6373682b8bd2e25850a}{trickle\+\_\+timer\+\_\+cb\+\_\+t} proto\+\_\+cb, void $\ast$ptr)
+\begin{DoxyCompactList}\small\item\em Start a previously configured trickle timer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+Trickle timer library implementation. \begin{DoxyAuthor}{Author}
+George Oikonomou -\/ \href{mailto:oikonomou@users.sourceforge.net}{\tt oikonomou@users.\+sourceforge.\+net} 
+\end{DoxyAuthor}

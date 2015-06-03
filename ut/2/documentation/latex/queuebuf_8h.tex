@@ -1,0 +1,63 @@
+\hypertarget{queuebuf_8h}{}\section{/home/user/contiki\+U\+T/contiki/core/net/queuebuf.h File Reference}
+\label{queuebuf_8h}\index{/home/user/contiki\+U\+T/contiki/core/net/queuebuf.\+h@{/home/user/contiki\+U\+T/contiki/core/net/queuebuf.\+h}}
+{\ttfamily \#include \char`\"{}net/packetbuf.\+h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__rimequeuebuf_ga8694cf2673912ad458fb765575c1b388}{}\#define {\bfseries Q\+U\+E\+U\+E\+B\+U\+F\+\_\+\+N\+U\+M}~8\label{group__rimequeuebuf_ga8694cf2673912ad458fb765575c1b388}
+
+\item 
+\hypertarget{group__rimequeuebuf_gab5dafcb5f705f18d60dcc75e09d3e934}{}\#define {\bfseries Q\+U\+E\+U\+E\+B\+U\+F\+R\+A\+M\+\_\+\+N\+U\+M}~Q\+U\+E\+U\+E\+B\+U\+F\+\_\+\+N\+U\+M\label{group__rimequeuebuf_gab5dafcb5f705f18d60dcc75e09d3e934}
+
+\item 
+\hypertarget{group__rimequeuebuf_ga22b8ed0f3d32e87348d7f7a45a91155f}{}\#define {\bfseries W\+I\+T\+H\+\_\+\+S\+W\+A\+P}~0\label{group__rimequeuebuf_ga22b8ed0f3d32e87348d7f7a45a91155f}
+
+\item 
+\hypertarget{group__rimequeuebuf_ga1e7eae42ff3220a5ae85bc0f3afd8920}{}\#define {\bfseries Q\+U\+E\+U\+E\+B\+U\+F\+\_\+\+D\+E\+B\+U\+G}~0\label{group__rimequeuebuf_ga1e7eae42ff3220a5ae85bc0f3afd8920}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__rimequeuebuf_ga12bfe2347ba1ee1bdb5f826259c91448}{}void {\bfseries queuebuf\+\_\+init} (void)\label{group__rimequeuebuf_ga12bfe2347ba1ee1bdb5f826259c91448}
+
+\item 
+\hypertarget{group__rimequeuebuf_ga1bffbaed6a4196167b9435bb6240a20d}{}struct \hyperlink{structqueuebuf}{queuebuf} $\ast$ {\bfseries queuebuf\+\_\+new\+\_\+from\+\_\+packetbuf} (void)\label{group__rimequeuebuf_ga1bffbaed6a4196167b9435bb6240a20d}
+
+\item 
+\hypertarget{group__rimequeuebuf_ga6cd637fe23486526bbae9ee6517901c4}{}void {\bfseries queuebuf\+\_\+update\+\_\+attr\+\_\+from\+\_\+packetbuf} (struct \hyperlink{structqueuebuf}{queuebuf} $\ast$buf)\label{group__rimequeuebuf_ga6cd637fe23486526bbae9ee6517901c4}
+
+\item 
+\hypertarget{group__rimequeuebuf_gaa44690862cb3ba1145b25ad8671d29a9}{}void {\bfseries queuebuf\+\_\+update\+\_\+from\+\_\+packetbuf} (struct \hyperlink{structqueuebuf}{queuebuf} $\ast$buf)\label{group__rimequeuebuf_gaa44690862cb3ba1145b25ad8671d29a9}
+
+\item 
+\hypertarget{group__rimequeuebuf_gaa65ae304c4a2187e9deab68433ba0d54}{}void {\bfseries queuebuf\+\_\+to\+\_\+packetbuf} (struct \hyperlink{structqueuebuf}{queuebuf} $\ast$b)\label{group__rimequeuebuf_gaa65ae304c4a2187e9deab68433ba0d54}
+
+\item 
+\hypertarget{group__rimequeuebuf_ga5cdc28a49daaef0e7d3d4106214dd645}{}void {\bfseries queuebuf\+\_\+free} (struct \hyperlink{structqueuebuf}{queuebuf} $\ast$buf)\label{group__rimequeuebuf_ga5cdc28a49daaef0e7d3d4106214dd645}
+
+\item 
+\hypertarget{group__rimequeuebuf_ga2b1e06ef2586847dafa003dde1747181}{}void $\ast$ {\bfseries queuebuf\+\_\+dataptr} (struct \hyperlink{structqueuebuf}{queuebuf} $\ast$b)\label{group__rimequeuebuf_ga2b1e06ef2586847dafa003dde1747181}
+
+\item 
+\hypertarget{group__rimequeuebuf_gad560b364f76dc202e0ae5b8e0390334c}{}int {\bfseries queuebuf\+\_\+datalen} (struct \hyperlink{structqueuebuf}{queuebuf} $\ast$b)\label{group__rimequeuebuf_gad560b364f76dc202e0ae5b8e0390334c}
+
+\item 
+\hypertarget{group__rimequeuebuf_ga6d24a5d32a06fa201a2c2e6a2b6303ad}{}\hyperlink{unionlinkaddr__t}{linkaddr\+\_\+t} $\ast$ {\bfseries queuebuf\+\_\+addr} (struct \hyperlink{structqueuebuf}{queuebuf} $\ast$b, uint8\+\_\+t type)\label{group__rimequeuebuf_ga6d24a5d32a06fa201a2c2e6a2b6303ad}
+
+\item 
+\hypertarget{group__rimequeuebuf_ga38e39840c02aa09fcdae97d7e80536a8}{}packetbuf\+\_\+attr\+\_\+t {\bfseries queuebuf\+\_\+attr} (struct \hyperlink{structqueuebuf}{queuebuf} $\ast$b, uint8\+\_\+t type)\label{group__rimequeuebuf_ga38e39840c02aa09fcdae97d7e80536a8}
+
+\item 
+\hypertarget{group__rimequeuebuf_ga6d8d29696760a6654e704625da1a2597}{}void {\bfseries queuebuf\+\_\+debug\+\_\+print} (void)\label{group__rimequeuebuf_ga6d8d29696760a6654e704625da1a2597}
+
+\item 
+\hypertarget{group__rimequeuebuf_ga95288daee79a9a5af245c5e2060d7e8f}{}int {\bfseries queuebuf\+\_\+numfree} (void)\label{group__rimequeuebuf_ga95288daee79a9a5af245c5e2060d7e8f}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Header file for the Rime queue buffer management \begin{DoxyAuthor}{Author}
+Adam Dunkels \href{mailto:adam@sics.se}{\tt adam@sics.\+se} 
+\end{DoxyAuthor}

@@ -1,0 +1,223 @@
+\hypertarget{cfs-coffee_8c}{}\section{/home/user/contiki\+U\+T/contiki/core/cfs/cfs-\/coffee.c File Reference}
+\label{cfs-coffee_8c}\index{/home/user/contiki\+U\+T/contiki/core/cfs/cfs-\/coffee.\+c@{/home/user/contiki\+U\+T/contiki/core/cfs/cfs-\/coffee.\+c}}
+{\ttfamily \#include $<$limits.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}contiki-\/conf.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}cfs/cfs.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}cfs-\/coffee-\/arch.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}cfs/cfs-\/coffee.\+h\char`\"{}}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structsector__status}{sector\+\_\+status}
+\item 
+struct \hyperlink{structfile}{file}
+\item 
+struct \hyperlink{structfile__desc}{file\+\_\+desc}
+\item 
+struct \hyperlink{structfile__header}{file\+\_\+header}
+\item 
+struct \hyperlink{structlog__param}{log\+\_\+param}
+\item 
+struct {\bfseries protected\+\_\+mem\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{cfs-coffee_8c_ad72dbcf6d0153db1b8d8a58001feed83}{}\#define {\bfseries D\+E\+B\+U\+G}~0\label{cfs-coffee_8c_ad72dbcf6d0153db1b8d8a58001feed83}
+
+\item 
+\hypertarget{cfs-coffee_8c_a1f464e950a4fa11e8821b5c725921a15}{}\#define {\bfseries P\+R\+I\+N\+T\+F}(...)\label{cfs-coffee_8c_a1f464e950a4fa11e8821b5c725921a15}
+
+\item 
+\hypertarget{cfs-coffee_8c_a9a9ac032176f4171d26a559027176d5d}{}\#define {\bfseries C\+O\+F\+F\+E\+E\+\_\+\+M\+I\+C\+R\+O\+\_\+\+L\+O\+G\+S}~1\label{cfs-coffee_8c_a9a9ac032176f4171d26a559027176d5d}
+
+\item 
+\hypertarget{cfs-coffee_8c_ad950ccb1be281496b1267f328d989ae8}{}\#define {\bfseries C\+O\+F\+F\+E\+E\+\_\+\+A\+P\+P\+E\+N\+D\+\_\+\+O\+N\+L\+Y}~0\label{cfs-coffee_8c_ad950ccb1be281496b1267f328d989ae8}
+
+\item 
+\hypertarget{cfs-coffee_8c_a211105bfa45286e171dc99fccc987cd4}{}\#define {\bfseries C\+O\+F\+F\+E\+E\+\_\+\+I\+O\+\_\+\+S\+E\+M\+A\+N\+T\+I\+C\+S}~0\label{cfs-coffee_8c_a211105bfa45286e171dc99fccc987cd4}
+
+\item 
+\hypertarget{cfs-coffee_8c_acdb963eb29c3a7302257462270d1bd40}{}\#define {\bfseries C\+O\+F\+F\+E\+E\+\_\+\+E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+W\+E\+A\+R\+\_\+\+L\+E\+V\+E\+L\+L\+I\+N\+G}~1\label{cfs-coffee_8c_acdb963eb29c3a7302257462270d1bd40}
+
+\item 
+\hypertarget{cfs-coffee_8c_a1d17d47089c08259c03b3fc02095d044}{}\#define {\bfseries C\+O\+F\+F\+E\+E\+\_\+\+F\+D\+\_\+\+F\+R\+E\+E}~0x0\label{cfs-coffee_8c_a1d17d47089c08259c03b3fc02095d044}
+
+\item 
+\hypertarget{cfs-coffee_8c_a64f2b4d0c0ffca22fbb3de3484d64615}{}\#define {\bfseries C\+O\+F\+F\+E\+E\+\_\+\+F\+D\+\_\+\+R\+E\+A\+D}~0x1\label{cfs-coffee_8c_a64f2b4d0c0ffca22fbb3de3484d64615}
+
+\item 
+\hypertarget{cfs-coffee_8c_a3125d424b442d57a104841e251617add}{}\#define {\bfseries C\+O\+F\+F\+E\+E\+\_\+\+F\+D\+\_\+\+W\+R\+I\+T\+E}~0x2\label{cfs-coffee_8c_a3125d424b442d57a104841e251617add}
+
+\item 
+\hypertarget{cfs-coffee_8c_a3ad45d569645035363c7c57572714a04}{}\#define {\bfseries C\+O\+F\+F\+E\+E\+\_\+\+F\+D\+\_\+\+A\+P\+P\+E\+N\+D}~0x4\label{cfs-coffee_8c_a3ad45d569645035363c7c57572714a04}
+
+\item 
+\hypertarget{cfs-coffee_8c_a00d7fa71bbf8d3b07dce20e268fb69c4}{}\#define {\bfseries C\+O\+F\+F\+E\+E\+\_\+\+F\+I\+L\+E\+\_\+\+M\+O\+D\+I\+F\+I\+E\+D}~0x1\label{cfs-coffee_8c_a00d7fa71bbf8d3b07dce20e268fb69c4}
+
+\item 
+\hypertarget{cfs-coffee_8c_a3c288eb66f2e35c181f744b6642b92e2}{}\#define {\bfseries I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+G\+E}~((coffee\+\_\+page\+\_\+t)-\/1)\label{cfs-coffee_8c_a3c288eb66f2e35c181f744b6642b92e2}
+
+\item 
+\hypertarget{cfs-coffee_8c_a1c286b9b8a32c3f440c107e563e378d8}{}\#define {\bfseries U\+N\+K\+N\+O\+W\+N\+\_\+\+O\+F\+F\+S\+E\+T}~((cfs\+\_\+offset\+\_\+t)-\/1)\label{cfs-coffee_8c_a1c286b9b8a32c3f440c107e563e378d8}
+
+\item 
+\hypertarget{cfs-coffee_8c_aa9d5d044838d261946d072ff91b2f976}{}\#define {\bfseries R\+E\+M\+O\+V\+E\+\_\+\+L\+O\+G}~1\label{cfs-coffee_8c_aa9d5d044838d261946d072ff91b2f976}
+
+\item 
+\hypertarget{cfs-coffee_8c_ad554314d31354d3ab586a56b8aa1bd21}{}\#define {\bfseries C\+L\+O\+S\+E\+\_\+\+F\+D\+S}~1\label{cfs-coffee_8c_ad554314d31354d3ab586a56b8aa1bd21}
+
+\item 
+\hypertarget{cfs-coffee_8c_a1ab74924434d6a3e12bf26e4ca243eda}{}\#define {\bfseries A\+L\+L\+O\+W\+\_\+\+G\+C}~1\label{cfs-coffee_8c_a1ab74924434d6a3e12bf26e4ca243eda}
+
+\item 
+\hypertarget{cfs-coffee_8c_a9be2f76ee0cffd54416e8b2af0f5e2c2}{}\#define {\bfseries G\+C\+\_\+\+G\+R\+E\+E\+D\+Y}~0\label{cfs-coffee_8c_a9be2f76ee0cffd54416e8b2af0f5e2c2}
+
+\item 
+\hypertarget{cfs-coffee_8c_a2fb8f74a9cd7bfb8359c60070438992f}{}\#define {\bfseries G\+C\+\_\+\+R\+E\+L\+U\+C\+T\+A\+N\+T}~1\label{cfs-coffee_8c_a2fb8f74a9cd7bfb8359c60070438992f}
+
+\item 
+\#define {\bfseries F\+D\+\_\+\+V\+A\+L\+I\+D}(fd)
+\item 
+\hypertarget{cfs-coffee_8c_afa87a83f44ec6c5939e4487b0970b899}{}\#define {\bfseries F\+D\+\_\+\+R\+E\+A\+D\+A\+B\+L\+E}(fd)~(coffee\+\_\+fd\+\_\+set\mbox{[}(fd)\mbox{]}.flags \& \hyperlink{group__cfs_ga00fed0156dbcbd1214203c7f2507e376}{C\+F\+S\+\_\+\+R\+E\+A\+D})\label{cfs-coffee_8c_afa87a83f44ec6c5939e4487b0970b899}
+
+\item 
+\hypertarget{cfs-coffee_8c_a79709d15b94b762a4b9ea6f5717be08f}{}\#define {\bfseries F\+D\+\_\+\+W\+R\+I\+T\+A\+B\+L\+E}(fd)~(coffee\+\_\+fd\+\_\+set\mbox{[}(fd)\mbox{]}.flags \& \hyperlink{group__cfs_ga798793edf50f38e3e41364f0f6f71201}{C\+F\+S\+\_\+\+W\+R\+I\+T\+E})\label{cfs-coffee_8c_a79709d15b94b762a4b9ea6f5717be08f}
+
+\item 
+\hypertarget{cfs-coffee_8c_a70b88c0c34f68524d35d16656a4cf39a}{}\#define {\bfseries F\+D\+\_\+\+A\+P\+P\+E\+N\+D\+A\+B\+L\+E}(fd)~(coffee\+\_\+fd\+\_\+set\mbox{[}(fd)\mbox{]}.flags \& \hyperlink{group__cfs_ga2b402228c26a3590f1d4bf44df0b2b82}{C\+F\+S\+\_\+\+A\+P\+P\+E\+N\+D})\label{cfs-coffee_8c_a70b88c0c34f68524d35d16656a4cf39a}
+
+\item 
+\hypertarget{cfs-coffee_8c_aa66cf9bb1e6c681411cde5e1268ae034}{}\#define {\bfseries F\+I\+L\+E\+\_\+\+M\+O\+D\+I\+F\+I\+E\+D}(\hyperlink{structfile}{file})~((\hyperlink{structfile}{file})-\/$>$flags \& C\+O\+F\+F\+E\+E\+\_\+\+F\+I\+L\+E\+\_\+\+M\+O\+D\+I\+F\+I\+E\+D)\label{cfs-coffee_8c_aa66cf9bb1e6c681411cde5e1268ae034}
+
+\item 
+\hypertarget{cfs-coffee_8c_adab7cb75804aa1920de6cebc85ecf422}{}\#define {\bfseries F\+I\+L\+E\+\_\+\+F\+R\+E\+E}(\hyperlink{structfile}{file})~((\hyperlink{structfile}{file})-\/$>$max\+\_\+pages == 0)\label{cfs-coffee_8c_adab7cb75804aa1920de6cebc85ecf422}
+
+\item 
+\hypertarget{cfs-coffee_8c_af357f256eac66cf6364c32ea9a4bfd51}{}\#define {\bfseries F\+I\+L\+E\+\_\+\+U\+N\+R\+E\+F\+E\+R\+E\+N\+C\+E\+D}(\hyperlink{structfile}{file})~((\hyperlink{structfile}{file})-\/$>$references == 0)\label{cfs-coffee_8c_af357f256eac66cf6364c32ea9a4bfd51}
+
+\item 
+\hypertarget{cfs-coffee_8c_a8352254ac7fbcdd273fcdcd7c2a16ead}{}\#define {\bfseries H\+D\+R\+\_\+\+F\+L\+A\+G\+\_\+\+V\+A\+L\+I\+D}~0x1	/$\ast$ Completely written header. $\ast$/\label{cfs-coffee_8c_a8352254ac7fbcdd273fcdcd7c2a16ead}
+
+\item 
+\hypertarget{cfs-coffee_8c_ab0cdbd1d4a6f82e48c5bd61caee11e6b}{}\#define {\bfseries H\+D\+R\+\_\+\+F\+L\+A\+G\+\_\+\+A\+L\+L\+O\+C\+A\+T\+E\+D}~0x2	/$\ast$ Allocated file. $\ast$/\label{cfs-coffee_8c_ab0cdbd1d4a6f82e48c5bd61caee11e6b}
+
+\item 
+\hypertarget{cfs-coffee_8c_a65ff9b7bf6557e2e731b293087d185a4}{}\#define {\bfseries H\+D\+R\+\_\+\+F\+L\+A\+G\+\_\+\+O\+B\+S\+O\+L\+E\+T\+E}~0x4	/$\ast$ File marked for G\+C. $\ast$/\label{cfs-coffee_8c_a65ff9b7bf6557e2e731b293087d185a4}
+
+\item 
+\hypertarget{cfs-coffee_8c_ae92ff2dc70c3c4542c3f5bd1e11f6f88}{}\#define {\bfseries H\+D\+R\+\_\+\+F\+L\+A\+G\+\_\+\+M\+O\+D\+I\+F\+I\+E\+D}~0x8	/$\ast$ Modified file, log exists. $\ast$/\label{cfs-coffee_8c_ae92ff2dc70c3c4542c3f5bd1e11f6f88}
+
+\item 
+\hypertarget{cfs-coffee_8c_ab87e56f9bfa42530168810de9b29d787}{}\#define {\bfseries H\+D\+R\+\_\+\+F\+L\+A\+G\+\_\+\+L\+O\+G}~0x10	/$\ast$ Log file. $\ast$/\label{cfs-coffee_8c_ab87e56f9bfa42530168810de9b29d787}
+
+\item 
+\hypertarget{cfs-coffee_8c_a1ebe5362ba2682888f8817ccb8575660}{}\#define {\bfseries H\+D\+R\+\_\+\+F\+L\+A\+G\+\_\+\+I\+S\+O\+L\+A\+T\+E\+D}~0x20	/$\ast$ Isolated page. $\ast$/\label{cfs-coffee_8c_a1ebe5362ba2682888f8817ccb8575660}
+
+\item 
+\hypertarget{cfs-coffee_8c_ad27405398c5f34e84ce881378a205123}{}\#define {\bfseries C\+H\+E\+C\+K\+\_\+\+F\+L\+A\+G}(hdr,  flag)~((hdr).flags \& (flag))\label{cfs-coffee_8c_ad27405398c5f34e84ce881378a205123}
+
+\item 
+\hypertarget{cfs-coffee_8c_a38c59f2a6d0c9a71030291a8c51a1628}{}\#define {\bfseries H\+D\+R\+\_\+\+V\+A\+L\+I\+D}(hdr)~C\+H\+E\+C\+K\+\_\+\+F\+L\+A\+G(hdr, H\+D\+R\+\_\+\+F\+L\+A\+G\+\_\+\+V\+A\+L\+I\+D)\label{cfs-coffee_8c_a38c59f2a6d0c9a71030291a8c51a1628}
+
+\item 
+\hypertarget{cfs-coffee_8c_a26e47fae4678f80f5bff65335ab9ce09}{}\#define {\bfseries H\+D\+R\+\_\+\+A\+L\+L\+O\+C\+A\+T\+E\+D}(hdr)~C\+H\+E\+C\+K\+\_\+\+F\+L\+A\+G(hdr, H\+D\+R\+\_\+\+F\+L\+A\+G\+\_\+\+A\+L\+L\+O\+C\+A\+T\+E\+D)\label{cfs-coffee_8c_a26e47fae4678f80f5bff65335ab9ce09}
+
+\item 
+\hypertarget{cfs-coffee_8c_a3f1297abb1939622f594e93ae4e47ad2}{}\#define {\bfseries H\+D\+R\+\_\+\+F\+R\+E\+E}(hdr)~!H\+D\+R\+\_\+\+A\+L\+L\+O\+C\+A\+T\+E\+D(hdr)\label{cfs-coffee_8c_a3f1297abb1939622f594e93ae4e47ad2}
+
+\item 
+\hypertarget{cfs-coffee_8c_a517fc5af67d929cfdf2911abf0d8d097}{}\#define {\bfseries H\+D\+R\+\_\+\+L\+O\+G}(hdr)~C\+H\+E\+C\+K\+\_\+\+F\+L\+A\+G(hdr, H\+D\+R\+\_\+\+F\+L\+A\+G\+\_\+\+L\+O\+G)\label{cfs-coffee_8c_a517fc5af67d929cfdf2911abf0d8d097}
+
+\item 
+\hypertarget{cfs-coffee_8c_a2bdeb8732c61cb693a29c496d20579af}{}\#define {\bfseries H\+D\+R\+\_\+\+M\+O\+D\+I\+F\+I\+E\+D}(hdr)~C\+H\+E\+C\+K\+\_\+\+F\+L\+A\+G(hdr, H\+D\+R\+\_\+\+F\+L\+A\+G\+\_\+\+M\+O\+D\+I\+F\+I\+E\+D)\label{cfs-coffee_8c_a2bdeb8732c61cb693a29c496d20579af}
+
+\item 
+\hypertarget{cfs-coffee_8c_a431fb8d4993e02fad46a5c790fbab63e}{}\#define {\bfseries H\+D\+R\+\_\+\+I\+S\+O\+L\+A\+T\+E\+D}(hdr)~C\+H\+E\+C\+K\+\_\+\+F\+L\+A\+G(hdr, H\+D\+R\+\_\+\+F\+L\+A\+G\+\_\+\+I\+S\+O\+L\+A\+T\+E\+D)\label{cfs-coffee_8c_a431fb8d4993e02fad46a5c790fbab63e}
+
+\item 
+\hypertarget{cfs-coffee_8c_a9039e95dea9c7d61300788188e97b827}{}\#define {\bfseries H\+D\+R\+\_\+\+O\+B\+S\+O\+L\+E\+T\+E}(hdr)~C\+H\+E\+C\+K\+\_\+\+F\+L\+A\+G(hdr, H\+D\+R\+\_\+\+F\+L\+A\+G\+\_\+\+O\+B\+S\+O\+L\+E\+T\+E)\label{cfs-coffee_8c_a9039e95dea9c7d61300788188e97b827}
+
+\item 
+\#define {\bfseries H\+D\+R\+\_\+\+A\+C\+T\+I\+V\+E}(hdr)
+\item 
+\hypertarget{cfs-coffee_8c_afa349df40fcdf75ba5ca9518c2904474}{}\#define {\bfseries C\+O\+F\+F\+E\+E\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+C\+O\+U\+N\+T}~(unsigned)(C\+O\+F\+F\+E\+E\+\_\+\+S\+I\+Z\+E / C\+O\+F\+F\+E\+E\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+S\+I\+Z\+E)\label{cfs-coffee_8c_afa349df40fcdf75ba5ca9518c2904474}
+
+\item 
+\hypertarget{cfs-coffee_8c_a6b4e1dcafdb1a482979600ee54a0b811}{}\#define {\bfseries C\+O\+F\+F\+E\+E\+\_\+\+P\+A\+G\+E\+\_\+\+C\+O\+U\+N\+T}~((coffee\+\_\+page\+\_\+t)(C\+O\+F\+F\+E\+E\+\_\+\+S\+I\+Z\+E / C\+O\+F\+F\+E\+E\+\_\+\+P\+A\+G\+E\+\_\+\+S\+I\+Z\+E))\label{cfs-coffee_8c_a6b4e1dcafdb1a482979600ee54a0b811}
+
+\item 
+\hypertarget{cfs-coffee_8c_a7ad75c388cab3f599b6c7d6b908979f9}{}\#define {\bfseries C\+O\+F\+F\+E\+E\+\_\+\+P\+A\+G\+E\+S\+\_\+\+P\+E\+R\+\_\+\+S\+E\+C\+T\+O\+R}~((coffee\+\_\+page\+\_\+t)(C\+O\+F\+F\+E\+E\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+S\+I\+Z\+E / C\+O\+F\+F\+E\+E\+\_\+\+P\+A\+G\+E\+\_\+\+S\+I\+Z\+E))\label{cfs-coffee_8c_a7ad75c388cab3f599b6c7d6b908979f9}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{group__cfs_gadc1727a1a27a40a8483135425a42c5de}{cfs\+\_\+open} (const char $\ast$name, int flags)
+\begin{DoxyCompactList}\small\item\em Open a file. \end{DoxyCompactList}\item 
+void \hyperlink{group__cfs_gadc3991eb5ac0e1cb6fd5e162049785b4}{cfs\+\_\+close} (int fd)
+\begin{DoxyCompactList}\small\item\em Close an open file. \end{DoxyCompactList}\item 
+cfs\+\_\+offset\+\_\+t \hyperlink{group__cfs_ga116cdc7036a99707477b50bd496fa1c1}{cfs\+\_\+seek} (int fd, cfs\+\_\+offset\+\_\+t offset, int whence)
+\begin{DoxyCompactList}\small\item\em Seek to a specified position in an open file. \end{DoxyCompactList}\item 
+int \hyperlink{group__cfs_gacad1f14239db1a889ccf9804040e0d20}{cfs\+\_\+remove} (const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Remove a file. \end{DoxyCompactList}\item 
+\hypertarget{cfs-coffee_8c_a22629bff6e0188e67310f6348d3a17f8}{}int {\bfseries cfs\+\_\+read} (int fd, void $\ast$buf, unsigned size)\label{cfs-coffee_8c_a22629bff6e0188e67310f6348d3a17f8}
+
+\item 
+\hypertarget{cfs-coffee_8c_ab2c315c65456a6d5c73b8ed11a9d96ff}{}int {\bfseries cfs\+\_\+write} (int fd, const void $\ast$buf, unsigned size)\label{cfs-coffee_8c_ab2c315c65456a6d5c73b8ed11a9d96ff}
+
+\item 
+int \hyperlink{group__cfs_gab4df33476a46ca00caf8de9cbb3e8f05}{cfs\+\_\+opendir} (struct \hyperlink{structcfs__dir}{cfs\+\_\+dir} $\ast$dir, const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Open a directory for reading directory entries. \end{DoxyCompactList}\item 
+int \hyperlink{group__cfs_ga6367d2b762784fabea2ad1f533aa4bf4}{cfs\+\_\+readdir} (struct \hyperlink{structcfs__dir}{cfs\+\_\+dir} $\ast$dir, struct \hyperlink{structcfs__dirent}{cfs\+\_\+dirent} $\ast$record)
+\begin{DoxyCompactList}\small\item\em Read a directory entry. \end{DoxyCompactList}\item 
+void \hyperlink{group__cfs_gaef17820cc7daaeac661e401ca7b3054b}{cfs\+\_\+closedir} (struct \hyperlink{structcfs__dir}{cfs\+\_\+dir} $\ast$dir)
+\begin{DoxyCompactList}\small\item\em Close a directory opened with \hyperlink{group__cfs_gab4df33476a46ca00caf8de9cbb3e8f05}{cfs\+\_\+opendir()}. \end{DoxyCompactList}\item 
+int \hyperlink{group__cfs_ga2586fe834b8b6e943c5e116919edb357}{cfs\+\_\+coffee\+\_\+reserve} (const char $\ast$name, cfs\+\_\+offset\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Reserve space for a file. \end{DoxyCompactList}\item 
+int \hyperlink{group__cfs_ga00f5e8bad702aa74e5c14fc6f60064c8}{cfs\+\_\+coffee\+\_\+configure\+\_\+log} (const char $\ast$filename, unsigned log\+\_\+size, unsigned log\+\_\+record\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Configure the on-\/demand log file. \end{DoxyCompactList}\item 
+int \hyperlink{group__cfs_ga20f73caab6f11eebc05378fe9d4606b3}{cfs\+\_\+coffee\+\_\+format} (void)
+\begin{DoxyCompactList}\small\item\em Format the storage area assigned to Coffee. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group__cfs_gae4e97787746c7040c54f5adf60d4709b}{cfs\+\_\+coffee\+\_\+get\+\_\+protected\+\_\+mem} (unsigned $\ast$size)
+\begin{DoxyCompactList}\small\item\em Points out a memory region that may not be altered during checkpointing operations that use the file system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Coffee\+: A file system for a variety of storage types in memory-\/constrained devices.
+
+For further information, see \char`\"{}\+Enabling Large-\/\+Scale Storage in 
+     Sensor Networks with the Coffee File System\char`\"{} in the proceedings of A\+C\+M/\+I\+E\+E\+E I\+P\+S\+N 2009.
+
+\begin{DoxyAuthor}{Author}
+Nicolas Tsiftes \href{mailto:nvt@sics.se}{\tt nvt@sics.\+se} 
+\end{DoxyAuthor}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{cfs-coffee_8c_a1a3d659f43f6eeab8de2a5e240a2f8e0}{}\index{cfs-\/coffee.\+c@{cfs-\/coffee.\+c}!F\+D\+\_\+\+V\+A\+L\+I\+D@{F\+D\+\_\+\+V\+A\+L\+I\+D}}
+\index{F\+D\+\_\+\+V\+A\+L\+I\+D@{F\+D\+\_\+\+V\+A\+L\+I\+D}!cfs-\/coffee.\+c@{cfs-\/coffee.\+c}}
+\subsubsection[{F\+D\+\_\+\+V\+A\+L\+I\+D}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+D\+\_\+\+V\+A\+L\+I\+D(
+\begin{DoxyParamCaption}
+\item[{}]{fd}
+\end{DoxyParamCaption}
+)}\label{cfs-coffee_8c_a1a3d659f43f6eeab8de2a5e240a2f8e0}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+((fd) >= 0 && (fd) < COFFEE\_FD\_SET\_SIZE &&  \(\backslash\)
+    coffee\_fd\_set[(fd)].flags != COFFEE\_FD\_FREE)
+\end{DoxyCode}
+\hypertarget{cfs-coffee_8c_aa4078e2615e4fb09412e6ba73e4f62f4}{}\index{cfs-\/coffee.\+c@{cfs-\/coffee.\+c}!H\+D\+R\+\_\+\+A\+C\+T\+I\+V\+E@{H\+D\+R\+\_\+\+A\+C\+T\+I\+V\+E}}
+\index{H\+D\+R\+\_\+\+A\+C\+T\+I\+V\+E@{H\+D\+R\+\_\+\+A\+C\+T\+I\+V\+E}!cfs-\/coffee.\+c@{cfs-\/coffee.\+c}}
+\subsubsection[{H\+D\+R\+\_\+\+A\+C\+T\+I\+V\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\+D\+R\+\_\+\+A\+C\+T\+I\+V\+E(
+\begin{DoxyParamCaption}
+\item[{}]{hdr}
+\end{DoxyParamCaption}
+)}\label{cfs-coffee_8c_aa4078e2615e4fb09412e6ba73e4f62f4}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+(HDR\_ALLOCATED(hdr) && \(\backslash\)
+                !HDR\_OBSOLETE(hdr)  && \(\backslash\)
+                !HDR\_ISOLATED(hdr))
+\end{DoxyCode}

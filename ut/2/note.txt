@@ -1,0 +1,10 @@
+1:
+    /home/user/contikiUT/contiki/core/net/rpl/rpl-mrhof.c 
+    best_parent delete 
+
+2:
+    --fpermissive
+    delete unrelated compiler error
+
+3:
+    error not be remembered

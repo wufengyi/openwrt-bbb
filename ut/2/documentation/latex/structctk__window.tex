@@ -1,0 +1,83 @@
+\hypertarget{structctk__window}{}\section{ctk\+\_\+window Struct Reference}
+\label{structctk__window}\index{ctk\+\_\+window@{ctk\+\_\+window}}
+
+
+{\ttfamily \#include $<$ctk.\+h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structctk__window}{ctk\+\_\+window} $\ast$ \hyperlink{structctk__window_a92e81d0f1ffd6a52ce0fa29caedaca3c}{next}
+\item 
+struct \hyperlink{structctk__window}{ctk\+\_\+window} $\ast$ \hyperlink{structctk__window_a5c2fbd8367afa325aaf22c6bbf3c634f}{prev}
+\item 
+struct \hyperlink{structctk__desktop}{ctk\+\_\+desktop} $\ast$ \hyperlink{structctk__window_a7764e1224f692ae285ef706eb361991f}{desktop}
+\item 
+struct process $\ast$ \hyperlink{structctk__window_aa0a9f81cb95a7f999c2618ee2c19afe6}{owner}
+\item 
+char $\ast$ \hyperlink{structctk__window_a88d87bdebfbac969714162a150325eb9}{title}
+\item 
+unsigned char \hyperlink{structctk__window_a286ad62dacbe17e4a1becf8d1e2d8dc4}{titlelen}
+\item 
+\hypertarget{structctk__window_a005b5d9391461b5273fc45fe0ad08503}{}struct \hyperlink{structctk__label}{ctk\+\_\+label} {\bfseries closebutton}\label{structctk__window_a005b5d9391461b5273fc45fe0ad08503}
+
+\item 
+\hypertarget{structctk__window_a14887224b34c589fa49662b45ba9f6cb}{}struct \hyperlink{structctk__label}{ctk\+\_\+label} {\bfseries titlebutton}\label{structctk__window_a14887224b34c589fa49662b45ba9f6cb}
+
+\item 
+unsigned char \hyperlink{structctk__window_ae28cceb9e11fde55afc3abe1c29688b8}{w}
+\item 
+unsigned char \hyperlink{structctk__window_ae2d4a4d04e07beaf18e7581f42d317dc}{h}
+\item 
+struct \hyperlink{structctk__widget}{ctk\+\_\+widget} $\ast$ \hyperlink{structctk__window_ab37295c4d4a76d30daef3c05e4c14bc4}{inactive}
+\item 
+struct \hyperlink{structctk__widget}{ctk\+\_\+widget} $\ast$ \hyperlink{structctk__window_ad5cf5ddb025397eb66da6753ce8492a4}{active}
+\item 
+struct \hyperlink{structctk__widget}{ctk\+\_\+widget} $\ast$ \hyperlink{structctk__window_aace937271af9c37837634f8dedcb0cf1}{focused}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Representation of a C\+T\+K window.
+
+For the C\+T\+K, each window is repessented by a \hyperlink{structctk__window}{ctk\+\_\+window} structure. All open windows are kept on a doubly linked list, linked by the next and prev fields in the \hyperlink{structctk__window}{ctk\+\_\+window} struct. The window structure holds all widgets that is contained in the window as well as a pointer to the currently selected widget. 
+
+\subsection{Member Data Documentation}
+\hypertarget{structctk__window_ad5cf5ddb025397eb66da6753ce8492a4}{}\index{ctk\+\_\+window@{ctk\+\_\+window}!active@{active}}
+\index{active@{active}!ctk\+\_\+window@{ctk\+\_\+window}}
+\subsubsection[{active}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf ctk\+\_\+widget}$\ast$ ctk\+\_\+window\+::active}\label{structctk__window_ad5cf5ddb025397eb66da6753ce8492a4}
+The list of widgets that can be selected by the user. Buttons, hyperlinks, text entry fields, etc., are placed on this list. \hypertarget{structctk__window_a7764e1224f692ae285ef706eb361991f}{}\index{ctk\+\_\+window@{ctk\+\_\+window}!desktop@{desktop}}
+\index{desktop@{desktop}!ctk\+\_\+window@{ctk\+\_\+window}}
+\subsubsection[{desktop}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf ctk\+\_\+desktop}$\ast$ ctk\+\_\+window\+::desktop}\label{structctk__window_a7764e1224f692ae285ef706eb361991f}
+The desktop on which this window is open. \hypertarget{structctk__window_aace937271af9c37837634f8dedcb0cf1}{}\index{ctk\+\_\+window@{ctk\+\_\+window}!focused@{focused}}
+\index{focused@{focused}!ctk\+\_\+window@{ctk\+\_\+window}}
+\subsubsection[{focused}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf ctk\+\_\+widget}$\ast$ ctk\+\_\+window\+::focused}\label{structctk__window_aace937271af9c37837634f8dedcb0cf1}
+A pointer to the widget on the active list that is currently selected, or N\+U\+L\+L if no widget is selected. \hypertarget{structctk__window_ae2d4a4d04e07beaf18e7581f42d317dc}{}\index{ctk\+\_\+window@{ctk\+\_\+window}!h@{h}}
+\index{h@{h}!ctk\+\_\+window@{ctk\+\_\+window}}
+\subsubsection[{h}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char ctk\+\_\+window\+::h}\label{structctk__window_ae2d4a4d04e07beaf18e7581f42d317dc}
+The height of the window, excluding window borders. \hypertarget{structctk__window_ab37295c4d4a76d30daef3c05e4c14bc4}{}\index{ctk\+\_\+window@{ctk\+\_\+window}!inactive@{inactive}}
+\index{inactive@{inactive}!ctk\+\_\+window@{ctk\+\_\+window}}
+\subsubsection[{inactive}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf ctk\+\_\+widget}$\ast$ ctk\+\_\+window\+::inactive}\label{structctk__window_ab37295c4d4a76d30daef3c05e4c14bc4}
+The list if widgets that cannot be selected by the user. Labels and separator widgets are placed on this list. \hypertarget{structctk__window_a92e81d0f1ffd6a52ce0fa29caedaca3c}{}\index{ctk\+\_\+window@{ctk\+\_\+window}!next@{next}}
+\index{next@{next}!ctk\+\_\+window@{ctk\+\_\+window}}
+\subsubsection[{next}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf ctk\+\_\+window}$\ast$ ctk\+\_\+window\+::next}\label{structctk__window_a92e81d0f1ffd6a52ce0fa29caedaca3c}
+The next window in the doubly linked list of open windows. \hypertarget{structctk__window_aa0a9f81cb95a7f999c2618ee2c19afe6}{}\index{ctk\+\_\+window@{ctk\+\_\+window}!owner@{owner}}
+\index{owner@{owner}!ctk\+\_\+window@{ctk\+\_\+window}}
+\subsubsection[{owner}]{\setlength{\rightskip}{0pt plus 5cm}struct process$\ast$ ctk\+\_\+window\+::owner}\label{structctk__window_aa0a9f81cb95a7f999c2618ee2c19afe6}
+The process that owns the window. This process will be the receiver of all C\+T\+K signals that pertain to this window. \hypertarget{structctk__window_a5c2fbd8367afa325aaf22c6bbf3c634f}{}\index{ctk\+\_\+window@{ctk\+\_\+window}!prev@{prev}}
+\index{prev@{prev}!ctk\+\_\+window@{ctk\+\_\+window}}
+\subsubsection[{prev}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf ctk\+\_\+window} $\ast$ ctk\+\_\+window\+::prev}\label{structctk__window_a5c2fbd8367afa325aaf22c6bbf3c634f}
+The previous window in the doubly linked list of open windows. \hypertarget{structctk__window_a88d87bdebfbac969714162a150325eb9}{}\index{ctk\+\_\+window@{ctk\+\_\+window}!title@{title}}
+\index{title@{title}!ctk\+\_\+window@{ctk\+\_\+window}}
+\subsubsection[{title}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ ctk\+\_\+window\+::title}\label{structctk__window_a88d87bdebfbac969714162a150325eb9}
+The title of the window. Used for constructing the \char`\"{}\+Dekstop\char`\"{} menu. \hypertarget{structctk__window_a286ad62dacbe17e4a1becf8d1e2d8dc4}{}\index{ctk\+\_\+window@{ctk\+\_\+window}!titlelen@{titlelen}}
+\index{titlelen@{titlelen}!ctk\+\_\+window@{ctk\+\_\+window}}
+\subsubsection[{titlelen}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char ctk\+\_\+window\+::titlelen}\label{structctk__window_a286ad62dacbe17e4a1becf8d1e2d8dc4}
+The length of the title, cached for speed reasons. \hypertarget{structctk__window_ae28cceb9e11fde55afc3abe1c29688b8}{}\index{ctk\+\_\+window@{ctk\+\_\+window}!w@{w}}
+\index{w@{w}!ctk\+\_\+window@{ctk\+\_\+window}}
+\subsubsection[{w}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char ctk\+\_\+window\+::w}\label{structctk__window_ae28cceb9e11fde55afc3abe1c29688b8}
+The width of the window, excluding window borders. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/contiki\+U\+T/contiki/core/ctk/\hyperlink{ctk_8h}{ctk.\+h}\end{DoxyCompactItemize}

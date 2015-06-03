@@ -1,0 +1,404 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - coverage.info - core/net/rpl/rpl.c</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">core/net/rpl</a> - rpl.c<span style="font-size: 80%;"> (source / <a href="rpl.c.func.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">81</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2014-12-23</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">9</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">46</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">           Branch data     Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>                :            : /*</a>
+<span class="lineNum">       2 </span>                :            :  * Copyright (c) 2009, Swedish Institute of Computer Science.
+<span class="lineNum">       3 </span>                :            :  * All rights reserved.
+<span class="lineNum">       4 </span>                :            :  *
+<span class="lineNum">       5 </span>                :            :  * Redistribution and use in source and binary forms, with or without
+<span class="lineNum">       6 </span>                :            :  * modification, are permitted provided that the following conditions
+<span class="lineNum">       7 </span>                :            :  * are met:
+<span class="lineNum">       8 </span>                :            :  * 1. Redistributions of source code must retain the above copyright
+<span class="lineNum">       9 </span>                :            :  *    notice, this list of conditions and the following disclaimer.
+<span class="lineNum">      10 </span>                :            :  * 2. Redistributions in binary form must reproduce the above copyright
+<span class="lineNum">      11 </span>                :            :  *    notice, this list of conditions and the following disclaimer in the
+<span class="lineNum">      12 </span>                :            :  *    documentation and/or other materials provided with the distribution.
+<span class="lineNum">      13 </span>                :            :  * 3. Neither the name of the Institute nor the names of its contributors
+<span class="lineNum">      14 </span>                :            :  *    may be used to endorse or promote products derived from this software
+<span class="lineNum">      15 </span>                :            :  *    without specific prior written permission.
+<span class="lineNum">      16 </span>                :            :  *
+<span class="lineNum">      17 </span>                :            :  * THIS SOFTWARE IS PROVIDED BY THE INSTITUTE AND CONTRIBUTORS ``AS IS'' AND
+<span class="lineNum">      18 </span>                :            :  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+<span class="lineNum">      19 </span>                :            :  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+<span class="lineNum">      20 </span>                :            :  * ARE DISCLAIMED.  IN NO EVENT SHALL THE INSTITUTE OR CONTRIBUTORS BE LIABLE
+<span class="lineNum">      21 </span>                :            :  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+<span class="lineNum">      22 </span>                :            :  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+<span class="lineNum">      23 </span>                :            :  * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+<span class="lineNum">      24 </span>                :            :  * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+<span class="lineNum">      25 </span>                :            :  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+<span class="lineNum">      26 </span>                :            :  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+<span class="lineNum">      27 </span>                :            :  * SUCH DAMAGE.
+<span class="lineNum">      28 </span>                :            :  *
+<span class="lineNum">      29 </span>                :            :  * This file is part of the Contiki operating system.
+<span class="lineNum">      30 </span>                :            :  */
+<span class="lineNum">      31 </span>                :            : 
+<span class="lineNum">      32 </span>                :            : /**
+<span class="lineNum">      33 </span>                :            :  * \file
+<span class="lineNum">      34 </span>                :            :  *         ContikiRPL, an implementation of RPL: IPv6 Routing Protocol
+<span class="lineNum">      35 </span>                :            :  *         for Low-Power and Lossy Networks (IETF RFC 6550)
+<span class="lineNum">      36 </span>                :            :  *
+<span class="lineNum">      37 </span>                :            :  * \author Joakim Eriksson &lt;joakime@sics.se&gt;, Nicolas Tsiftes &lt;nvt@sics.se&gt;
+<span class="lineNum">      38 </span>                :            :  */
+<span class="lineNum">      39 </span>                :            : 
+<span class="lineNum">      40 </span>                :            : /**
+<span class="lineNum">      41 </span>                :            :  * \addtogroup uip6
+<span class="lineNum">      42 </span>                :            :  * @{
+<span class="lineNum">      43 </span>                :            :  */
+<span class="lineNum">      44 </span>                :            : 
+<span class="lineNum">      45 </span>                :            : #include &quot;net/ip/uip.h&quot;
+<span class="lineNum">      46 </span>                :            : #include &quot;net/ip/tcpip.h&quot;
+<span class="lineNum">      47 </span>                :            : #include &quot;net/ipv6/uip-ds6.h&quot;
+<span class="lineNum">      48 </span>                :            : #include &quot;net/ipv6/uip-icmp6.h&quot;
+<span class="lineNum">      49 </span>                :            : #include &quot;net/rpl/rpl-private.h&quot;
+<span class="lineNum">      50 </span>                :            : #include &quot;net/ipv6/multicast/uip-mcast6.h&quot;
+<span class="lineNum">      51 </span>                :            : 
+<span class="lineNum">      52 </span>                :            : #define DEBUG DEBUG_NONE
+<span class="lineNum">      53 </span>                :            : #include &quot;net/ip/uip-debug.h&quot;
+<span class="lineNum">      54 </span>                :            : 
+<span class="lineNum">      55 </span>                :            : #include &lt;limits.h&gt;
+<span class="lineNum">      56 </span>                :            : #include &lt;string.h&gt;
+<span class="lineNum">      57 </span>                :            : 
+<span class="lineNum">      58 </span>                :            : #if RPL_CONF_STATS
+<span class="lineNum">      59 </span>                :            : rpl_stats_t rpl_stats;
+<span class="lineNum">      60 </span>                :            : #endif
+<span class="lineNum">      61 </span>                :            : 
+<span class="lineNum">      62 </span>                :            : static enum rpl_mode mode = RPL_MODE_MESH;
+<a name="63"><span class="lineNum">      63 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">      64 </span>                :            : enum rpl_mode
+<span class="lineNum">      65 </span>                :<span class="lineNoCov">          0 : rpl_get_mode(void)</span>
+<span class="lineNum">      66 </span>                :            : {
+<span class="lineNum">      67 </span>                :<span class="lineNoCov">          0 :   return mode;</span>
+<span class="lineNum">      68 </span>                :            : }
+<a name="69"><span class="lineNum">      69 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">      70 </span>                :            : enum rpl_mode
+<span class="lineNum">      71 </span>                :<span class="lineNoCov">          0 : rpl_set_mode(enum rpl_mode m)</span>
+<span class="lineNum">      72 </span>                :            : {
+<span class="lineNum">      73 </span>                :<span class="lineNoCov">          0 :   enum rpl_mode oldmode = mode;</span>
+<span class="lineNum">      74 </span>                :            : 
+<span class="lineNum">      75 </span>                :            :   /* We need to do different things depending on what mode we are
+<span class="lineNum">      76 </span>                :            :      switching to. */
+<span class="lineNum">      77 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(m == RPL_MODE_MESH) {</span>
+<span class="lineNum">      78 </span>                :            : 
+<span class="lineNum">      79 </span>                :            :     /* If we switcht to mesh mode, we should send out a DAO message to
+<span class="lineNum">      80 </span>                :            :        inform our parent that we now are reachable. Before we do this,
+<span class="lineNum">      81 </span>                :            :        we must set the mode variable, since DAOs will not be send if
+<span class="lineNum">      82 </span>                :            :        we are in feather mode. */
+<span class="lineNum">      83 </span>                :            :     PRINTF(&quot;RPL: switching to mesh mode\n&quot;);
+<span class="lineNum">      84 </span>                :<span class="lineNoCov">          0 :     mode = m;</span>
+<span class="lineNum">      85 </span>                :            : 
+<span class="lineNum">      86 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(default_instance != NULL) {</span>
+<span class="lineNum">      87 </span>                :<span class="lineNoCov">          0 :       rpl_schedule_dao_immediately(default_instance);</span>
+<span class="lineNum">      88 </span>                :            :     }
+<span class="lineNum">      89 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   } else if(m == RPL_MODE_FEATHER) {</span>
+<span class="lineNum">      90 </span>                :            : 
+<span class="lineNum">      91 </span>                :            :     PRINTF(&quot;RPL: switching to feather mode\n&quot;);
+<span class="lineNum">      92 </span>                :<span class="lineNoCov">          0 :     mode = m;</span>
+<span class="lineNum">      93 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(default_instance != NULL) {</span>
+<span class="lineNum">      94 </span>                :<span class="lineNoCov">          0 :       rpl_cancel_dao(default_instance);</span>
+<span class="lineNum">      95 </span>                :            :     }
+<span class="lineNum">      96 </span>                :            : 
+<span class="lineNum">      97 </span>                :            :   } else {
+<span class="lineNum">      98 </span>                :<span class="lineNoCov">          0 :     mode = m;</span>
+<span class="lineNum">      99 </span>                :            :   }
+<span class="lineNum">     100 </span>                :            : 
+<span class="lineNum">     101 </span>                :<span class="lineNoCov">          0 :   return oldmode;</span>
+<span class="lineNum">     102 </span>                :            : }
+<a name="103"><span class="lineNum">     103 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     104 </span>                :            : void
+<span class="lineNum">     105 </span>                :<span class="lineNoCov">          0 : rpl_purge_routes(void)</span>
+<span class="lineNum">     106 </span>                :            : {
+<span class="lineNum">     107 </span>                :            :   uip_ds6_route_t *r;
+<span class="lineNum">     108 </span>                :            :   uip_ipaddr_t prefix;
+<span class="lineNum">     109 </span>                :            :   rpl_dag_t *dag;
+<span class="lineNum">     110 </span>                :            : #if RPL_CONF_MULTICAST
+<span class="lineNum">     111 </span>                :            :   uip_mcast6_route_t *mcast_route;
+<span class="lineNum">     112 </span>                :            : #endif
+<span class="lineNum">     113 </span>                :            : 
+<span class="lineNum">     114 </span>                :            :   /* First pass, decrement lifetime */
+<span class="lineNum">     115 </span>                :<span class="lineNoCov">          0 :   r = uip_ds6_route_head();</span>
+<span class="lineNum">     116 </span>                :            : 
+<span class="lineNum">     117 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   while(r != NULL) {</span>
+<span class="lineNum">     118 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(r-&gt;state.lifetime &gt;= 1) {</span>
+<span class="lineNum">     119 </span>                :            :       /*
+<span class="lineNum">     120 </span>                :            :        * If a route is at lifetime == 1, set it to 0, scheduling it for
+<span class="lineNum">     121 </span>                :            :        * immediate removal below. This achieves the same as the original code,
+<span class="lineNum">     122 </span>                :            :        * which would delete lifetime &lt;= 1
+<span class="lineNum">     123 </span>                :            :        */
+<span class="lineNum">     124 </span>                :<span class="lineNoCov">          0 :       r-&gt;state.lifetime--;</span>
+<span class="lineNum">     125 </span>                :            :     }
+<span class="lineNum">     126 </span>                :<span class="lineNoCov">          0 :     r = uip_ds6_route_next(r);</span>
+<span class="lineNum">     127 </span>                :            :   }
+<span class="lineNum">     128 </span>                :            : 
+<span class="lineNum">     129 </span>                :            :   /* Second pass, remove dead routes */
+<span class="lineNum">     130 </span>                :<span class="lineNoCov">          0 :   r = uip_ds6_route_head();</span>
+<span class="lineNum">     131 </span>                :            : 
+<span class="lineNum">     132 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   while(r != NULL) {</span>
+<span class="lineNum">     133 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(r-&gt;state.lifetime &lt; 1) {</span>
+<span class="lineNum">     134 </span>                :            :       /* Routes with lifetime == 1 have only just been decremented from 2 to 1,
+<span class="lineNum">     135 </span>                :            :        * thus we want to keep them. Hence &lt; and not &lt;= */
+<span class="lineNum">     136 </span>                :<span class="lineNoCov">          0 :       uip_ipaddr_copy(&amp;prefix, &amp;r-&gt;ipaddr);</span>
+<span class="lineNum">     137 </span>                :<span class="lineNoCov">          0 :       uip_ds6_route_rm(r);</span>
+<span class="lineNum">     138 </span>                :<span class="lineNoCov">          0 :       r = uip_ds6_route_head();</span>
+<span class="lineNum">     139 </span>                :            :       PRINTF(&quot;No more routes to &quot;);
+<span class="lineNum">     140 </span>                :            :       PRINT6ADDR(&amp;prefix);
+<span class="lineNum">     141 </span>                :<span class="lineNoCov">          0 :       dag = default_instance-&gt;current_dag;</span>
+<span class="lineNum">     142 </span>                :            :       /* Propagate this information with a No-Path DAO to preferred parent if we are not a RPL Root */
+<span class="lineNum">     143 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       if(dag-&gt;rank != ROOT_RANK(default_instance)) {</span>
+<span class="lineNum">     144 </span>                :            :         PRINTF(&quot; -&gt; generate No-Path DAO\n&quot;);
+<span class="lineNum">     145 </span>                :<span class="lineNoCov">          0 :         dao_output_target(dag-&gt;preferred_parent, &amp;prefix, RPL_ZERO_LIFETIME);</span>
+<span class="lineNum">     146 </span>                :            :         /* Don't schedule more than 1 No-Path DAO, let next iteration handle that */
+<span class="lineNum">     147 </span>                :<span class="lineNoCov">          0 :         return;</span>
+<span class="lineNum">     148 </span>                :            :       }
+<span class="lineNum">     149 </span>                :            :       PRINTF(&quot;\n&quot;);
+<span class="lineNum">     150 </span>                :            :     } else {
+<span class="lineNum">     151 </span>                :<span class="lineNoCov">          0 :       r = uip_ds6_route_next(r);</span>
+<span class="lineNum">     152 </span>                :            :     }
+<span class="lineNum">     153 </span>                :            :   }
+<span class="lineNum">     154 </span>                :            : 
+<span class="lineNum">     155 </span>                :            : #if RPL_CONF_MULTICAST
+<span class="lineNum">     156 </span>                :            :   mcast_route = uip_mcast6_route_list_head();
+<span class="lineNum">     157 </span>                :            : 
+<span class="lineNum">     158 </span>                :            :   while(mcast_route != NULL) {
+<span class="lineNum">     159 </span>                :            :     if(mcast_route-&gt;lifetime &lt;= 1) {
+<span class="lineNum">     160 </span>                :            :       uip_mcast6_route_rm(mcast_route);
+<span class="lineNum">     161 </span>                :            :       mcast_route = uip_mcast6_route_list_head();
+<span class="lineNum">     162 </span>                :            :     } else {
+<span class="lineNum">     163 </span>                :            :       mcast_route-&gt;lifetime--;
+<span class="lineNum">     164 </span>                :            :       mcast_route = list_item_next(mcast_route);
+<span class="lineNum">     165 </span>                :            :     }
+<span class="lineNum">     166 </span>                :            :   }
+<span class="lineNum">     167 </span>                :            : #endif
+<span class="lineNum">     168 </span>                :            : }
+<a name="169"><span class="lineNum">     169 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     170 </span>                :            : void
+<span class="lineNum">     171 </span>                :<span class="lineNoCov">          0 : rpl_remove_routes(rpl_dag_t *dag)</span>
+<span class="lineNum">     172 </span>                :            : {
+<span class="lineNum">     173 </span>                :            :   uip_ds6_route_t *r;
+<span class="lineNum">     174 </span>                :            : #if RPL_CONF_MULTICAST
+<span class="lineNum">     175 </span>                :            :   uip_mcast6_route_t *mcast_route;
+<span class="lineNum">     176 </span>                :            : #endif
+<span class="lineNum">     177 </span>                :            : 
+<span class="lineNum">     178 </span>                :<span class="lineNoCov">          0 :   r = uip_ds6_route_head();</span>
+<span class="lineNum">     179 </span>                :            : 
+<span class="lineNum">     180 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   while(r != NULL) {</span>
+<span class="lineNum">     181 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(r-&gt;state.dag == dag) {</span>
+<span class="lineNum">     182 </span>                :<span class="lineNoCov">          0 :       uip_ds6_route_rm(r);</span>
+<span class="lineNum">     183 </span>                :<span class="lineNoCov">          0 :       r = uip_ds6_route_head();</span>
+<span class="lineNum">     184 </span>                :            :     } else {
+<span class="lineNum">     185 </span>                :<span class="lineNoCov">          0 :       r = uip_ds6_route_next(r);</span>
+<span class="lineNum">     186 </span>                :            :     }
+<span class="lineNum">     187 </span>                :            :   }
+<span class="lineNum">     188 </span>                :            : 
+<span class="lineNum">     189 </span>                :            : #if RPL_CONF_MULTICAST
+<span class="lineNum">     190 </span>                :            :   mcast_route = uip_mcast6_route_list_head();
+<span class="lineNum">     191 </span>                :            : 
+<span class="lineNum">     192 </span>                :            :   while(mcast_route != NULL) {
+<span class="lineNum">     193 </span>                :            :     if(mcast_route-&gt;dag == dag) {
+<span class="lineNum">     194 </span>                :            :       uip_mcast6_route_rm(mcast_route);
+<span class="lineNum">     195 </span>                :            :       mcast_route = uip_mcast6_route_list_head();
+<span class="lineNum">     196 </span>                :            :     } else {
+<span class="lineNum">     197 </span>                :            :       mcast_route = list_item_next(mcast_route);
+<span class="lineNum">     198 </span>                :            :     }
+<span class="lineNum">     199 </span>                :            :   }
+<span class="lineNum">     200 </span>                :            : #endif
+<span class="lineNum">     201 </span>                :<span class="lineNoCov">          0 : }</span>
+<a name="202"><span class="lineNum">     202 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     203 </span>                :            : void
+<span class="lineNum">     204 </span>                :<span class="lineNoCov">          0 : rpl_remove_routes_by_nexthop(uip_ipaddr_t *nexthop, rpl_dag_t *dag)</span>
+<span class="lineNum">     205 </span>                :            : {
+<span class="lineNum">     206 </span>                :            :   uip_ds6_route_t *r;
+<span class="lineNum">     207 </span>                :            : 
+<span class="lineNum">     208 </span>                :<span class="lineNoCov">          0 :   r = uip_ds6_route_head();</span>
+<span class="lineNum">     209 </span>                :            : 
+<span class="lineNum">     210 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   while(r != NULL) {</span>
+<span class="lineNum">     211 </span>[<span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span>][<span class="branchNoExec" title="Branch 3 was not executed"> # </span><span class="branchNoExec" title="Branch 4 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(uip_ipaddr_cmp(uip_ds6_route_nexthop(r), nexthop) &amp;&amp;</span>
+<span class="lineNum">         </span>        [<span class="branchNoExec" title="Branch 5 was not executed"> # </span><span class="branchNoExec" title="Branch 6 was not executed"> # </span>]
+<span class="lineNum">     212 </span>                :            :        r-&gt;state.dag == dag) {
+<span class="lineNum">     213 </span>                :<span class="lineNoCov">          0 :       uip_ds6_route_rm(r);</span>
+<span class="lineNum">     214 </span>                :<span class="lineNoCov">          0 :       r = uip_ds6_route_head();</span>
+<span class="lineNum">     215 </span>                :            :     } else {
+<span class="lineNum">     216 </span>                :<span class="lineNoCov">          0 :       r = uip_ds6_route_next(r);</span>
+<span class="lineNum">     217 </span>                :            :     }
+<span class="lineNum">     218 </span>                :            :   }
+<span class="lineNum">     219 </span>                :            :   ANNOTATE(&quot;#L %u 0\n&quot;, nexthop-&gt;u8[sizeof(uip_ipaddr_t) - 1]);
+<span class="lineNum">     220 </span>                :<span class="lineNoCov">          0 : }</span>
+<a name="221"><span class="lineNum">     221 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     222 </span>                :            : uip_ds6_route_t *
+<span class="lineNum">     223 </span>                :<span class="lineNoCov">          0 : rpl_add_route(rpl_dag_t *dag, uip_ipaddr_t *prefix, int prefix_len,</span>
+<span class="lineNum">     224 </span>                :            :               uip_ipaddr_t *next_hop)
+<span class="lineNum">     225 </span>                :            : {
+<span class="lineNum">     226 </span>                :            :   uip_ds6_route_t *rep;
+<span class="lineNum">     227 </span>                :            : 
+<span class="lineNum">     228 </span>        [<span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if((rep = uip_ds6_route_add(prefix, prefix_len, next_hop)) == NULL) {</span>
+<span class="lineNum">     229 </span>                :            :     PRINTF(&quot;RPL: No space for more route entries\n&quot;);
+<span class="lineNum">     230 </span>                :            :     return NULL;
+<span class="lineNum">     231 </span>                :            :   }
+<span class="lineNum">     232 </span>                :            : 
+<span class="lineNum">     233 </span>                :<span class="lineNoCov">          0 :   rep-&gt;state.dag = dag;</span>
+<span class="lineNum">     234 </span>                :<span class="lineNoCov">          0 :   rep-&gt;state.lifetime = RPL_LIFETIME(dag-&gt;instance, dag-&gt;instance-&gt;default_lifetime);</span>
+<span class="lineNum">     235 </span>                :<span class="lineNoCov">          0 :   rep-&gt;state.learned_from = RPL_ROUTE_FROM_INTERNAL;</span>
+<span class="lineNum">     236 </span>                :            : 
+<span class="lineNum">     237 </span>                :            :   PRINTF(&quot;RPL: Added a route to &quot;);
+<span class="lineNum">     238 </span>                :            :   PRINT6ADDR(prefix);
+<span class="lineNum">     239 </span>                :            :   PRINTF(&quot;/%d via &quot;, prefix_len);
+<span class="lineNum">     240 </span>                :            :   PRINT6ADDR(next_hop);
+<span class="lineNum">     241 </span>                :            :   PRINTF(&quot;\n&quot;);
+<span class="lineNum">     242 </span>                :            : 
+<span class="lineNum">     243 </span>                :<span class="lineNoCov">          0 :   return rep;</span>
+<span class="lineNum">     244 </span>                :            : }
+<a name="245"><span class="lineNum">     245 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     246 </span>                :            : void
+<span class="lineNum">     247 </span>                :<span class="lineNoCov">          0 : rpl_link_neighbor_callback(const linkaddr_t *addr, int status, int numtx)</span>
+<span class="lineNum">     248 </span>                :            : {
+<span class="lineNum">     249 </span>                :            :   uip_ipaddr_t ipaddr;
+<span class="lineNum">     250 </span>                :            :   rpl_parent_t *parent;
+<span class="lineNum">     251 </span>                :            :   rpl_instance_t *instance;
+<span class="lineNum">     252 </span>                :            :   rpl_instance_t *end;
+<span class="lineNum">     253 </span>                :            : 
+<span class="lineNum">     254 </span>                :<span class="lineNoCov">          0 :   uip_ip6addr(&amp;ipaddr, 0xfe80, 0, 0, 0, 0, 0, 0, 0);</span>
+<span class="lineNum">     255 </span>                :<span class="lineNoCov">          0 :   uip_ds6_set_addr_iid(&amp;ipaddr, (uip_lladdr_t *)addr);</span>
+<span class="lineNum">     256 </span>                :            : 
+<span class="lineNum">     257 </span>        [<span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span>]:<span class="lineNoCov">          0 :   for(instance = &amp;instance_table[0], end = instance + RPL_MAX_INSTANCES; instance &lt; end; ++instance) {</span>
+<span class="lineNum">     258 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(instance-&gt;used == 1 ) {</span>
+<span class="lineNum">     259 </span>                :<span class="lineNoCov">          0 :       parent = rpl_find_parent_any_dag(instance, &amp;ipaddr);</span>
+<span class="lineNum">     260 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       if(parent != NULL) {</span>
+<span class="lineNum">     261 </span>                :            :         /* Trigger DAG rank recalculation. */
+<span class="lineNum">     262 </span>                :            :         PRINTF(&quot;RPL: rpl_link_neighbor_callback triggering update\n&quot;);
+<span class="lineNum">     263 </span>                :<span class="lineNoCov">          0 :         parent-&gt;flags |= RPL_PARENT_FLAG_UPDATED;</span>
+<span class="lineNum">     264 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :         if(instance-&gt;of-&gt;neighbor_link_callback != NULL) {</span>
+<span class="lineNum">     265 </span>                :<span class="lineNoCov">          0 :           instance-&gt;of-&gt;neighbor_link_callback(parent, status, numtx);</span>
+<span class="lineNum">     266 </span>                :            :         }
+<span class="lineNum">     267 </span>                :            :       }
+<span class="lineNum">     268 </span>                :            :     }
+<span class="lineNum">     269 </span>                :            :   }
+<span class="lineNum">     270 </span>                :<span class="lineNoCov">          0 : }</span>
+<a name="271"><span class="lineNum">     271 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     272 </span>                :            : void
+<span class="lineNum">     273 </span>                :<span class="lineNoCov">          0 : rpl_ipv6_neighbor_callback(uip_ds6_nbr_t *nbr)</span>
+<span class="lineNum">     274 </span>                :            : {
+<span class="lineNum">     275 </span>                :            :   rpl_parent_t *p;
+<span class="lineNum">     276 </span>                :            :   rpl_instance_t *instance;
+<span class="lineNum">     277 </span>                :            :   rpl_instance_t *end;
+<span class="lineNum">     278 </span>                :            : 
+<span class="lineNum">     279 </span>                :            :   PRINTF(&quot;RPL: Removing neighbor &quot;);
+<span class="lineNum">     280 </span>                :            :   PRINT6ADDR(&amp;nbr-&gt;ipaddr);
+<span class="lineNum">     281 </span>                :            :   PRINTF(&quot;\n&quot;);
+<span class="lineNum">     282 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   for(instance = &amp;instance_table[0], end = instance + RPL_MAX_INSTANCES; instance &lt; end; ++instance) {</span>
+<span class="lineNum">     283 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(instance-&gt;used == 1 ) {</span>
+<span class="lineNum">     284 </span>                :<span class="lineNoCov">          0 :       p = rpl_find_parent_any_dag(instance, &amp;nbr-&gt;ipaddr);</span>
+<span class="lineNum">     285 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       if(p != NULL) {</span>
+<span class="lineNum">     286 </span>                :<span class="lineNoCov">          0 :         p-&gt;rank = INFINITE_RANK;</span>
+<span class="lineNum">     287 </span>                :            :         /* Trigger DAG rank recalculation. */
+<span class="lineNum">     288 </span>                :            :         PRINTF(&quot;RPL: rpl_ipv6_neighbor_callback infinite rank\n&quot;);
+<span class="lineNum">     289 </span>                :<span class="lineNoCov">          0 :         p-&gt;flags |= RPL_PARENT_FLAG_UPDATED;</span>
+<span class="lineNum">     290 </span>                :            :       }
+<span class="lineNum">     291 </span>                :            :     }
+<span class="lineNum">     292 </span>                :            :   }
+<span class="lineNum">     293 </span>                :<span class="lineNoCov">          0 : }</span>
+<a name="294"><span class="lineNum">     294 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     295 </span>                :            : void
+<span class="lineNum">     296 </span>                :<span class="lineNoCov">          0 : rpl_init(void)</span>
+<span class="lineNum">     297 </span>                :            : {
+<span class="lineNum">     298 </span>                :            :   uip_ipaddr_t rplmaddr;
+<span class="lineNum">     299 </span>                :            :   PRINTF(&quot;RPL started\n&quot;);
+<span class="lineNum">     300 </span>                :<span class="lineNoCov">          0 :   default_instance = NULL;</span>
+<span class="lineNum">     301 </span>                :            : 
+<span class="lineNum">     302 </span>                :<span class="lineNoCov">          0 :   rpl_dag_init();</span>
+<span class="lineNum">     303 </span>                :<span class="lineNoCov">          0 :   rpl_reset_periodic_timer();</span>
+<span class="lineNum">     304 </span>                :<span class="lineNoCov">          0 :   rpl_icmp6_register_handlers();</span>
+<span class="lineNum">     305 </span>                :            : 
+<span class="lineNum">     306 </span>                :            :   /* add rpl multicast address */
+<span class="lineNum">     307 </span>                :<span class="lineNoCov">          0 :   uip_create_linklocal_rplnodes_mcast(&amp;rplmaddr);</span>
+<span class="lineNum">     308 </span>                :<span class="lineNoCov">          0 :   uip_ds6_maddr_add(&amp;rplmaddr);</span>
+<span class="lineNum">     309 </span>                :            : 
+<span class="lineNum">     310 </span>                :            : #if RPL_CONF_STATS
+<span class="lineNum">     311 </span>                :            :   memset(&amp;rpl_stats, 0, sizeof(rpl_stats));
+<span class="lineNum">     312 </span>                :            : #endif
+<span class="lineNum">     313 </span>                :            : 
+<span class="lineNum">     314 </span>                :<span class="lineNoCov">          0 :   RPL_OF.reset(NULL);</span>
+<span class="lineNum">     315 </span>                :<span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     316 </span>                :            : /*---------------------------------------------------------------------------*/
+<span class="lineNum">     317 </span>                :            : 
+<span class="lineNum">     318 </span>                :            : /** @}*/
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.9</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

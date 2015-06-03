@@ -1,0 +1,75 @@
+\hypertarget{radio_8h}{}\section{/home/user/contiki\+U\+T/contiki/core/dev/radio.h File Reference}
+\label{radio_8h}\index{/home/user/contiki\+U\+T/contiki/core/dev/radio.\+h@{/home/user/contiki\+U\+T/contiki/core/dev/radio.\+h}}
+{\ttfamily \#include $<$stddef.\+h$>$}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structradio__driver}{radio\+\_\+driver}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__radio_ga1c0277e7786bb04a0e0cf7cc80ad35a2}{R\+A\+D\+I\+O\+\_\+\+R\+X\+\_\+\+M\+O\+D\+E\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+F\+I\+L\+T\+E\+R}~(1 $<$$<$ 0)
+\item 
+\hypertarget{group__radio_gae0e96ad8f363c7b493d6ac46ca88f2a9}{}\#define {\bfseries R\+A\+D\+I\+O\+\_\+\+R\+X\+\_\+\+M\+O\+D\+E\+\_\+\+A\+U\+T\+O\+A\+C\+K}~(1 $<$$<$ 1)\label{group__radio_gae0e96ad8f363c7b493d6ac46ca88f2a9}
+
+\item 
+\#define \hyperlink{group__radio_ga5f5b62a16d559e006cc34139fc59393b}{R\+A\+D\+I\+O\+\_\+\+T\+X\+\_\+\+M\+O\+D\+E\+\_\+\+S\+E\+N\+D\+\_\+\+O\+N\+\_\+\+C\+C\+A}~(1 $<$$<$ 0)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef int \hyperlink{group__radio_gad8766f1c2c2c55ac53079fe58750967a}{radio\+\_\+value\+\_\+t}
+\item 
+\hypertarget{group__radio_ga701dabbed331abea5284556ad604c4dc}{}typedef unsigned {\bfseries radio\+\_\+param\+\_\+t}\label{group__radio_ga701dabbed331abea5284556ad604c4dc}
+
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__radio_gadf764cbdea00d65edcd07bb9953ad2b7}{}enum \{ \\*
+{\bfseries R\+A\+D\+I\+O\+\_\+\+P\+A\+R\+A\+M\+\_\+\+P\+O\+W\+E\+R\+\_\+\+M\+O\+D\+E}, 
+{\bfseries R\+A\+D\+I\+O\+\_\+\+P\+A\+R\+A\+M\+\_\+\+C\+H\+A\+N\+N\+E\+L}, 
+{\bfseries R\+A\+D\+I\+O\+\_\+\+P\+A\+R\+A\+M\+\_\+\+P\+A\+N\+\_\+\+I\+D}, 
+{\bfseries R\+A\+D\+I\+O\+\_\+\+P\+A\+R\+A\+M\+\_\+16\+B\+I\+T\+\_\+\+A\+D\+D\+R}, 
+\\*
+{\bfseries R\+A\+D\+I\+O\+\_\+\+P\+A\+R\+A\+M\+\_\+\+R\+X\+\_\+\+M\+O\+D\+E}, 
+{\bfseries R\+A\+D\+I\+O\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+X\+\_\+\+M\+O\+D\+E}, 
+{\bfseries R\+A\+D\+I\+O\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+X\+P\+O\+W\+E\+R}, 
+{\bfseries R\+A\+D\+I\+O\+\_\+\+P\+A\+R\+A\+M\+\_\+\+C\+C\+A\+\_\+\+T\+H\+R\+E\+S\+H\+O\+L\+D}, 
+\\*
+{\bfseries R\+A\+D\+I\+O\+\_\+\+P\+A\+R\+A\+M\+\_\+\+R\+S\+S\+I}, 
+{\bfseries R\+A\+D\+I\+O\+\_\+\+P\+A\+R\+A\+M\+\_\+64\+B\+I\+T\+\_\+\+A\+D\+D\+R}, 
+{\bfseries R\+A\+D\+I\+O\+\_\+\+C\+O\+N\+S\+T\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+\+M\+I\+N}, 
+{\bfseries R\+A\+D\+I\+O\+\_\+\+C\+O\+N\+S\+T\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+\+M\+A\+X}, 
+\\*
+{\bfseries R\+A\+D\+I\+O\+\_\+\+C\+O\+N\+S\+T\+\_\+\+T\+X\+P\+O\+W\+E\+R\+\_\+\+M\+I\+N}, 
+{\bfseries R\+A\+D\+I\+O\+\_\+\+C\+O\+N\+S\+T\+\_\+\+T\+X\+P\+O\+W\+E\+R\+\_\+\+M\+A\+X}
+ \}\label{group__radio_gadf764cbdea00d65edcd07bb9953ad2b7}
+
+\item 
+\hypertarget{group__radio_ga99fb83031ce9923c84392b4e92f956b5}{}enum \{ {\bfseries R\+A\+D\+I\+O\+\_\+\+P\+O\+W\+E\+R\+\_\+\+M\+O\+D\+E\+\_\+\+O\+F\+F}, 
+{\bfseries R\+A\+D\+I\+O\+\_\+\+P\+O\+W\+E\+R\+\_\+\+M\+O\+D\+E\+\_\+\+O\+N}
+ \}\label{group__radio_ga99fb83031ce9923c84392b4e92f956b5}
+
+\item 
+\hypertarget{group__radio_ga3d3ff7a38f834c52d6c2e865857f3031}{}enum {\bfseries radio\+\_\+result\+\_\+t} \{ {\bfseries R\+A\+D\+I\+O\+\_\+\+R\+E\+S\+U\+L\+T\+\_\+\+O\+K}, 
+{\bfseries R\+A\+D\+I\+O\+\_\+\+R\+E\+S\+U\+L\+T\+\_\+\+N\+O\+T\+\_\+\+S\+U\+P\+P\+O\+R\+T\+E\+D}, 
+{\bfseries R\+A\+D\+I\+O\+\_\+\+R\+E\+S\+U\+L\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+V\+A\+L\+U\+E}, 
+{\bfseries R\+A\+D\+I\+O\+\_\+\+R\+E\+S\+U\+L\+T\+\_\+\+E\+R\+R\+O\+R}
+ \}\label{group__radio_ga3d3ff7a38f834c52d6c2e865857f3031}
+
+\item 
+\hypertarget{group__radio_gabc6126af1d45847bc59afa0aa3216b04}{}enum \{ {\bfseries R\+A\+D\+I\+O\+\_\+\+T\+X\+\_\+\+O\+K}, 
+{\bfseries R\+A\+D\+I\+O\+\_\+\+T\+X\+\_\+\+E\+R\+R}, 
+{\bfseries R\+A\+D\+I\+O\+\_\+\+T\+X\+\_\+\+C\+O\+L\+L\+I\+S\+I\+O\+N}, 
+{\bfseries R\+A\+D\+I\+O\+\_\+\+T\+X\+\_\+\+N\+O\+A\+C\+K}
+ \}\label{group__radio_gabc6126af1d45847bc59afa0aa3216b04}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Header file for the radio A\+P\+I \begin{DoxyAuthor}{Author}
+Adam Dunkels \href{mailto:adam@sics.se}{\tt adam@sics.\+se} Joakim Eriksson \href{mailto:joakime@sics.se}{\tt joakime@sics.\+se} Niclas Finne \href{mailto:nfi@sics.se}{\tt nfi@sics.\+se} Nicolas Tsiftes \href{mailto:nvt@sics.se}{\tt nvt@sics.\+se} 
+\end{DoxyAuthor}

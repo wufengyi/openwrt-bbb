@@ -1,0 +1,88 @@
+\hypertarget{structradio__driver}{}\section{radio\+\_\+driver Struct Reference}
+\label{structradio__driver}\index{radio\+\_\+driver@{radio\+\_\+driver}}
+
+
+{\ttfamily \#include $<$radio.\+h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structradio__driver_a2cbd88d29724af727d0cfe82fff332d0}{}int($\ast$ {\bfseries init} )(void)\label{structradio__driver_a2cbd88d29724af727d0cfe82fff332d0}
+
+\item 
+int($\ast$ \hyperlink{structradio__driver_a917063e157b641491318c3811a41b564}{prepare} )(const void $\ast$payload, unsigned short payload\+\_\+len)
+\item 
+int($\ast$ \hyperlink{structradio__driver_a5e0e87a4384c32182b9047f4f65d24e1}{transmit} )(unsigned short transmit\+\_\+len)
+\item 
+int($\ast$ \hyperlink{structradio__driver_a30e7b635e51b106d36b8aae3a3ffd4d9}{send} )(const void $\ast$payload, unsigned short payload\+\_\+len)
+\item 
+int($\ast$ \hyperlink{structradio__driver_a838d67a29dd557b6c7669af2443109fe}{read} )(void $\ast$buf, unsigned short buf\+\_\+len)
+\item 
+int($\ast$ \hyperlink{structradio__driver_a7c8c8b833955461003d18b41ffc24e4c}{channel\+\_\+clear} )(void)
+\item 
+int($\ast$ \hyperlink{structradio__driver_a69caf76a3322491ff93e1d36ec0b5480}{receiving\+\_\+packet} )(void)
+\item 
+int($\ast$ \hyperlink{structradio__driver_a35fcb90c278a662e42d9cf5c767fded2}{pending\+\_\+packet} )(void)
+\item 
+int($\ast$ \hyperlink{structradio__driver_adbdd3a3ba35f7b3dc80ec80ffab44fe6}{on} )(void)
+\item 
+int($\ast$ \hyperlink{structradio__driver_a109dee491698150e7431e70ebd727a41}{off} )(void)
+\item 
+radio\+\_\+result\+\_\+t($\ast$ \hyperlink{structradio__driver_a825eba300cda915050282bfec75787bd}{get\+\_\+value} )(radio\+\_\+param\+\_\+t param, \hyperlink{group__radio_gad8766f1c2c2c55ac53079fe58750967a}{radio\+\_\+value\+\_\+t} $\ast$value)
+\item 
+radio\+\_\+result\+\_\+t($\ast$ \hyperlink{structradio__driver_af809fe7735fa3951f22c8ab54c1c4917}{set\+\_\+value} )(radio\+\_\+param\+\_\+t param, \hyperlink{group__radio_gad8766f1c2c2c55ac53079fe58750967a}{radio\+\_\+value\+\_\+t} value)
+\item 
+radio\+\_\+result\+\_\+t($\ast$ \hyperlink{structradio__driver_a74a0e490531928dd4195f0d962bd4681}{get\+\_\+object} )(radio\+\_\+param\+\_\+t param, void $\ast$dest, size\+\_\+t size)
+\item 
+radio\+\_\+result\+\_\+t($\ast$ \hyperlink{structradio__driver_a03992b1e627d7be6bd9cfaf98ee8c8f9}{set\+\_\+object} )(radio\+\_\+param\+\_\+t param, const void $\ast$src, size\+\_\+t size)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The structure of a device driver for a radio in Contiki. 
+
+\subsection{Member Data Documentation}
+\hypertarget{structradio__driver_a7c8c8b833955461003d18b41ffc24e4c}{}\index{radio\+\_\+driver@{radio\+\_\+driver}!channel\+\_\+clear@{channel\+\_\+clear}}
+\index{channel\+\_\+clear@{channel\+\_\+clear}!radio\+\_\+driver@{radio\+\_\+driver}}
+\subsubsection[{channel\+\_\+clear}]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$  radio\+\_\+driver\+::channel\+\_\+clear) (void)}\label{structradio__driver_a7c8c8b833955461003d18b41ffc24e4c}
+Perform a Clear-\/\+Channel Assessment (C\+C\+A) to find out if there is a packet in the air or not. \hypertarget{structradio__driver_a74a0e490531928dd4195f0d962bd4681}{}\index{radio\+\_\+driver@{radio\+\_\+driver}!get\+\_\+object@{get\+\_\+object}}
+\index{get\+\_\+object@{get\+\_\+object}!radio\+\_\+driver@{radio\+\_\+driver}}
+\subsubsection[{get\+\_\+object}]{\setlength{\rightskip}{0pt plus 5cm}radio\+\_\+result\+\_\+t($\ast$  radio\+\_\+driver\+::get\+\_\+object) (radio\+\_\+param\+\_\+t param, void $\ast$dest, size\+\_\+t size)}\label{structradio__driver_a74a0e490531928dd4195f0d962bd4681}
+Get a radio parameter object. The argument \textquotesingle{}dest\textquotesingle{} must point to a memory area of at least \textquotesingle{}size\textquotesingle{} bytes, and this memory area will contain the parameter object if the function succeeds. \hypertarget{structradio__driver_a825eba300cda915050282bfec75787bd}{}\index{radio\+\_\+driver@{radio\+\_\+driver}!get\+\_\+value@{get\+\_\+value}}
+\index{get\+\_\+value@{get\+\_\+value}!radio\+\_\+driver@{radio\+\_\+driver}}
+\subsubsection[{get\+\_\+value}]{\setlength{\rightskip}{0pt plus 5cm}radio\+\_\+result\+\_\+t($\ast$  radio\+\_\+driver\+::get\+\_\+value) (radio\+\_\+param\+\_\+t param, {\bf radio\+\_\+value\+\_\+t} $\ast$value)}\label{structradio__driver_a825eba300cda915050282bfec75787bd}
+Get a radio parameter value. \hypertarget{structradio__driver_a109dee491698150e7431e70ebd727a41}{}\index{radio\+\_\+driver@{radio\+\_\+driver}!off@{off}}
+\index{off@{off}!radio\+\_\+driver@{radio\+\_\+driver}}
+\subsubsection[{off}]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$  radio\+\_\+driver\+::off) (void)}\label{structradio__driver_a109dee491698150e7431e70ebd727a41}
+Turn the radio off. \hypertarget{structradio__driver_adbdd3a3ba35f7b3dc80ec80ffab44fe6}{}\index{radio\+\_\+driver@{radio\+\_\+driver}!on@{on}}
+\index{on@{on}!radio\+\_\+driver@{radio\+\_\+driver}}
+\subsubsection[{on}]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$  radio\+\_\+driver\+::on) (void)}\label{structradio__driver_adbdd3a3ba35f7b3dc80ec80ffab44fe6}
+Turn the radio on. \hypertarget{structradio__driver_a35fcb90c278a662e42d9cf5c767fded2}{}\index{radio\+\_\+driver@{radio\+\_\+driver}!pending\+\_\+packet@{pending\+\_\+packet}}
+\index{pending\+\_\+packet@{pending\+\_\+packet}!radio\+\_\+driver@{radio\+\_\+driver}}
+\subsubsection[{pending\+\_\+packet}]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$  radio\+\_\+driver\+::pending\+\_\+packet) (void)}\label{structradio__driver_a35fcb90c278a662e42d9cf5c767fded2}
+Check if the radio driver has just received a packet \hypertarget{structradio__driver_a917063e157b641491318c3811a41b564}{}\index{radio\+\_\+driver@{radio\+\_\+driver}!prepare@{prepare}}
+\index{prepare@{prepare}!radio\+\_\+driver@{radio\+\_\+driver}}
+\subsubsection[{prepare}]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$  radio\+\_\+driver\+::prepare) (const void $\ast$payload, unsigned short payload\+\_\+len)}\label{structradio__driver_a917063e157b641491318c3811a41b564}
+Prepare the radio with a packet to be sent. \hypertarget{structradio__driver_a838d67a29dd557b6c7669af2443109fe}{}\index{radio\+\_\+driver@{radio\+\_\+driver}!read@{read}}
+\index{read@{read}!radio\+\_\+driver@{radio\+\_\+driver}}
+\subsubsection[{read}]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$  radio\+\_\+driver\+::read) (void $\ast$buf, unsigned short buf\+\_\+len)}\label{structradio__driver_a838d67a29dd557b6c7669af2443109fe}
+Read a received packet into a buffer. \hypertarget{structradio__driver_a69caf76a3322491ff93e1d36ec0b5480}{}\index{radio\+\_\+driver@{radio\+\_\+driver}!receiving\+\_\+packet@{receiving\+\_\+packet}}
+\index{receiving\+\_\+packet@{receiving\+\_\+packet}!radio\+\_\+driver@{radio\+\_\+driver}}
+\subsubsection[{receiving\+\_\+packet}]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$  radio\+\_\+driver\+::receiving\+\_\+packet) (void)}\label{structradio__driver_a69caf76a3322491ff93e1d36ec0b5480}
+Check if the radio driver is currently receiving a packet \hypertarget{structradio__driver_a30e7b635e51b106d36b8aae3a3ffd4d9}{}\index{radio\+\_\+driver@{radio\+\_\+driver}!send@{send}}
+\index{send@{send}!radio\+\_\+driver@{radio\+\_\+driver}}
+\subsubsection[{send}]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$  radio\+\_\+driver\+::send) (const void $\ast$payload, unsigned short payload\+\_\+len)}\label{structradio__driver_a30e7b635e51b106d36b8aae3a3ffd4d9}
+Prepare \& transmit a packet. \hypertarget{structradio__driver_a03992b1e627d7be6bd9cfaf98ee8c8f9}{}\index{radio\+\_\+driver@{radio\+\_\+driver}!set\+\_\+object@{set\+\_\+object}}
+\index{set\+\_\+object@{set\+\_\+object}!radio\+\_\+driver@{radio\+\_\+driver}}
+\subsubsection[{set\+\_\+object}]{\setlength{\rightskip}{0pt plus 5cm}radio\+\_\+result\+\_\+t($\ast$  radio\+\_\+driver\+::set\+\_\+object) (radio\+\_\+param\+\_\+t param, const void $\ast$src, size\+\_\+t size)}\label{structradio__driver_a03992b1e627d7be6bd9cfaf98ee8c8f9}
+Set a radio parameter object. The memory area referred to by the argument \textquotesingle{}src\textquotesingle{} will not be accessed after the function returns. \hypertarget{structradio__driver_af809fe7735fa3951f22c8ab54c1c4917}{}\index{radio\+\_\+driver@{radio\+\_\+driver}!set\+\_\+value@{set\+\_\+value}}
+\index{set\+\_\+value@{set\+\_\+value}!radio\+\_\+driver@{radio\+\_\+driver}}
+\subsubsection[{set\+\_\+value}]{\setlength{\rightskip}{0pt plus 5cm}radio\+\_\+result\+\_\+t($\ast$  radio\+\_\+driver\+::set\+\_\+value) (radio\+\_\+param\+\_\+t param, {\bf radio\+\_\+value\+\_\+t} value)}\label{structradio__driver_af809fe7735fa3951f22c8ab54c1c4917}
+Set a radio parameter value. \hypertarget{structradio__driver_a5e0e87a4384c32182b9047f4f65d24e1}{}\index{radio\+\_\+driver@{radio\+\_\+driver}!transmit@{transmit}}
+\index{transmit@{transmit}!radio\+\_\+driver@{radio\+\_\+driver}}
+\subsubsection[{transmit}]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$  radio\+\_\+driver\+::transmit) (unsigned short transmit\+\_\+len)}\label{structradio__driver_a5e0e87a4384c32182b9047f4f65d24e1}
+Send the packet that has previously been prepared. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/contiki\+U\+T/contiki/core/dev/\hyperlink{radio_8h}{radio.\+h}\end{DoxyCompactItemize}

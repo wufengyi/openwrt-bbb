@@ -1,0 +1,124 @@
+\hypertarget{ctk_8c}{}\section{/home/user/contiki\+U\+T/contiki/core/ctk/ctk.c File Reference}
+\label{ctk_8c}\index{/home/user/contiki\+U\+T/contiki/core/ctk/ctk.\+c@{/home/user/contiki\+U\+T/contiki/core/ctk/ctk.\+c}}
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}contiki.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}ctk/ctk.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}ctk/ctk-\/draw.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}ctk/ctk-\/mouse.\+h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__ctk_ga070d2ce7b6bb7e5c05602aa8c308d0c4}{}\#define {\bfseries N\+U\+L\+L}~(void $\ast$)0\label{group__ctk_ga070d2ce7b6bb7e5c05602aa8c308d0c4}
+
+\item 
+\hypertarget{group__ctk_gaeef8a9ef1434bead376702c12ffad214}{}\#define {\bfseries R\+E\+D\+R\+A\+W\+\_\+\+N\+O\+N\+E}~0\label{group__ctk_gaeef8a9ef1434bead376702c12ffad214}
+
+\item 
+\hypertarget{group__ctk_ga30c9342babbf6d8bf629cbccdcc9d784}{}\#define {\bfseries R\+E\+D\+R\+A\+W\+\_\+\+A\+L\+L}~1\label{group__ctk_ga30c9342babbf6d8bf629cbccdcc9d784}
+
+\item 
+\hypertarget{group__ctk_ga4549b68e463359047f74e14e7d8ef279}{}\#define {\bfseries R\+E\+D\+R\+A\+W\+\_\+\+F\+O\+C\+U\+S}~2\label{group__ctk_ga4549b68e463359047f74e14e7d8ef279}
+
+\item 
+\hypertarget{group__ctk_gaddc03e9e45e266b1aa2f65064cdbf990}{}\#define {\bfseries R\+E\+D\+R\+A\+W\+\_\+\+W\+I\+D\+G\+E\+T\+S}~4\label{group__ctk_gaddc03e9e45e266b1aa2f65064cdbf990}
+
+\item 
+\hypertarget{group__ctk_ga2ec34d503308faede33e60f95d184ad2}{}\#define {\bfseries R\+E\+D\+R\+A\+W\+\_\+\+M\+E\+N\+U\+S}~8\label{group__ctk_ga2ec34d503308faede33e60f95d184ad2}
+
+\item 
+\hypertarget{group__ctk_ga35d6e7efebdb4c1faa1bb7adcf86baa3}{}\#define {\bfseries R\+E\+D\+R\+A\+W\+\_\+\+M\+E\+N\+U\+P\+A\+R\+T}~16\label{group__ctk_ga35d6e7efebdb4c1faa1bb7adcf86baa3}
+
+\item 
+\hypertarget{group__ctk_ga8cfa9d06f0cef08467d3563580bc6506}{}\#define {\bfseries M\+A\+X\+\_\+\+R\+E\+D\+R\+A\+W\+W\+I\+D\+G\+E\+T\+S}~4\label{group__ctk_ga8cfa9d06f0cef08467d3563580bc6506}
+
+\item 
+\hypertarget{group__ctkappfunc_ga1965eaca47dbf3f87acdafc2208f04eb}{}\#define {\bfseries U\+P}~0\label{group__ctkappfunc_ga1965eaca47dbf3f87acdafc2208f04eb}
+
+\item 
+\hypertarget{group__ctkappfunc_ga4193cd1c8c2e6ebd0e056fa2364a663f}{}\#define {\bfseries D\+O\+W\+N}~1\label{group__ctkappfunc_ga4193cd1c8c2e6ebd0e056fa2364a663f}
+
+\item 
+\hypertarget{group__ctkappfunc_ga437ef08681e7210d6678427030446a54}{}\#define {\bfseries L\+E\+F\+T}~2\label{group__ctkappfunc_ga437ef08681e7210d6678427030446a54}
+
+\item 
+\hypertarget{group__ctkappfunc_ga80fb826a684cf3f0d306b22aa100ddac}{}\#define {\bfseries R\+I\+G\+H\+T}~3\label{group__ctkappfunc_ga80fb826a684cf3f0d306b22aa100ddac}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+unsigned char \hyperlink{group__ctkdraw_ga273c1f39eb29f14b9ca5f0a7d8db9d42}{ctk\+\_\+arch\+\_\+keyavail} (void)
+\item 
+\hyperlink{group__ctkdraw_gaa6eb41324497b3d828d208c0efa6fa90}{ctk\+\_\+arch\+\_\+key\+\_\+t} \hyperlink{group__ctkdraw_ga30c8437f37694ec49bd8bfef7ba0f6a0}{ctk\+\_\+arch\+\_\+getkey} (void)
+\item 
+\hypertarget{group__ctk_ga81ac3d26813202ec06b6bc96d7d6167c}{}unsigned char {\bfseries ctk\+\_\+arch\+\_\+isprint} (\hyperlink{group__ctkdraw_gaa6eb41324497b3d828d208c0efa6fa90}{ctk\+\_\+arch\+\_\+key\+\_\+t} key)\label{group__ctk_ga81ac3d26813202ec06b6bc96d7d6167c}
+
+\item 
+\hypertarget{group__ctk_ga6cb631c335ff8e78106fd0bc57c379e0}{}{\bfseries P\+R\+O\+C\+E\+S\+S} (ctk\+\_\+process,\char`\"{}C\+T\+K Contiki G\+U\+I\char`\"{})\label{group__ctk_ga6cb631c335ff8e78106fd0bc57c379e0}
+
+\item 
+\hypertarget{group__ctk_ga265bac2d644dc564d7e887514b452d3f}{}void {\bfseries ctk\+\_\+restore} (void)\label{group__ctk_ga265bac2d644dc564d7e887514b452d3f}
+
+\item 
+void \hyperlink{group__ctkappfunc_ga3ccdff3684bb5a499cafd4baa184a10e}{ctk\+\_\+mode\+\_\+set} (unsigned char m)
+\item 
+unsigned char \hyperlink{group__ctkappfunc_ga26d7427d7f920ce4e3293f1a8dd959f3}{ctk\+\_\+mode\+\_\+get} (void)
+\item 
+void \hyperlink{group__ctkappfunc_gafd7f717de0f57e23d03c13497b41efe4}{ctk\+\_\+icon\+\_\+add} (C\+C\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+A\+R\+G struct \hyperlink{structctk__widget}{ctk\+\_\+widget} $\ast$icon, struct process $\ast$p)
+\item 
+void \hyperlink{group__ctkappfunc_ga2e85117f2716017f1ceaa83af221740d}{ctk\+\_\+window\+\_\+open} (C\+C\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+A\+R\+G struct \hyperlink{structctk__window}{ctk\+\_\+window} $\ast$w)
+\item 
+void \hyperlink{group__ctkappfunc_ga6c19434a7d375ada9e59646f0fce3223}{ctk\+\_\+window\+\_\+close} (struct \hyperlink{structctk__window}{ctk\+\_\+window} $\ast$w)
+\item 
+void \hyperlink{group__ctkappfunc_ga610f37e797b2de0346cc731cdd7f6968}{ctk\+\_\+window\+\_\+clear} (struct \hyperlink{structctk__window}{ctk\+\_\+window} $\ast$w)
+\item 
+void \hyperlink{group__ctkappfunc_gab4f0dacbb8e4e5c7a54de9596c7df09f}{ctk\+\_\+menu\+\_\+add} (struct \hyperlink{structctk__menu}{ctk\+\_\+menu} $\ast$menu)
+\item 
+void \hyperlink{group__ctkappfunc_ga19d90b1b3233fdbc0530e268948cfa8e}{ctk\+\_\+menu\+\_\+remove} (struct \hyperlink{structctk__menu}{ctk\+\_\+menu} $\ast$menu)
+\item 
+void \hyperlink{group__ctkappfunc_gad1e0db0ea03dfb71ecc1f7a4f0d75674}{ctk\+\_\+window\+\_\+redraw} (struct \hyperlink{structctk__window}{ctk\+\_\+window} $\ast$w)
+\item 
+void \hyperlink{group__ctkappfunc_ga461fb81e49e0ffdb1d4eeab952a60e35}{ctk\+\_\+window\+\_\+new} (struct \hyperlink{structctk__window}{ctk\+\_\+window} $\ast$window, unsigned char w, unsigned char h, char $\ast$title)
+\item 
+void \hyperlink{group__ctkappfunc_ga7bd342f9787259933396efd7505c2a02}{ctk\+\_\+menu\+\_\+new} (C\+C\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+A\+R\+G struct \hyperlink{structctk__menu}{ctk\+\_\+menu} $\ast$menu, char $\ast$title)
+\item 
+unsigned char \hyperlink{group__ctkappfunc_gaaa8b54ce437af6b62eea13012ef6b83c}{ctk\+\_\+menuitem\+\_\+add} (C\+C\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+A\+R\+G struct \hyperlink{structctk__menu}{ctk\+\_\+menu} $\ast$menu, char $\ast$name)
+\item 
+void \hyperlink{group__ctkappfunc_gaa01cba13f4c9a7719ea02876c779a02a}{ctk\+\_\+widget\+\_\+redraw} (struct \hyperlink{structctk__widget}{ctk\+\_\+widget} $\ast$widget)
+\item 
+void C\+C\+\_\+\+F\+A\+S\+T\+C\+A\+L\+L \hyperlink{group__ctkappfunc_gafdd6e4493fc97e7051d39ea806ee280f}{ctk\+\_\+widget\+\_\+add} (C\+C\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+A\+R\+G struct \hyperlink{structctk__window}{ctk\+\_\+window} $\ast$window, C\+C\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+A\+R\+G struct \hyperlink{structctk__widget}{ctk\+\_\+widget} $\ast$widget)
+\item 
+unsigned char \hyperlink{group__ctkappfunc_ga1c6cf638e8b8b09c5c8170d1392d5596}{ctk\+\_\+desktop\+\_\+width} (struct \hyperlink{structctk__desktop}{ctk\+\_\+desktop} $\ast$d)
+\item 
+unsigned char \hyperlink{group__ctkappfunc_ga2dc8829552117ddc7dc9d5d1780e5fd7}{ctk\+\_\+desktop\+\_\+height} (struct \hyperlink{structctk__desktop}{ctk\+\_\+desktop} $\ast$d)
+\item 
+\hypertarget{group__ctkappfunc_ga9566b07f64bff4c7697e3925680589a4}{}{\bfseries P\+R\+O\+C\+E\+S\+S\+\_\+\+T\+H\+R\+E\+A\+D} (ctk\+\_\+process, ev, data)\label{group__ctkappfunc_ga9566b07f64bff4c7697e3925680589a4}
+
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+process\+\_\+event\+\_\+t \hyperlink{group__ctkevents_ga516fdcf33758900be278d0e448635b9d}{ctk\+\_\+signal\+\_\+keypress}
+\item 
+process\+\_\+event\+\_\+t \hyperlink{group__ctkevents_gaf2f104ce01e5e229f9eba8e2f367c591}{ctk\+\_\+signal\+\_\+widget\+\_\+activate}
+\item 
+process\+\_\+event\+\_\+t \hyperlink{group__ctkevents_ga73b4f7cc9f9fd72c23ea9b24b3492e01}{ctk\+\_\+signal\+\_\+button\+\_\+activate}
+\item 
+process\+\_\+event\+\_\+t \hyperlink{group__ctkevents_ga84a8111d8df809f10e8ad81bc47edc3a}{ctk\+\_\+signal\+\_\+widget\+\_\+select}
+\item 
+process\+\_\+event\+\_\+t \hyperlink{group__ctkevents_ga18b0bcdb7d4ba13f8f692ffd8d54a690}{ctk\+\_\+signal\+\_\+button\+\_\+hover}
+\item 
+process\+\_\+event\+\_\+t \hyperlink{group__ctkevents_gab927db233b2469345094ba7b9e1c769a}{ctk\+\_\+signal\+\_\+hyperlink\+\_\+activate}
+\item 
+process\+\_\+event\+\_\+t \hyperlink{group__ctkevents_ga9e08a17ead01c3ae4ac4e96b40cae885}{ctk\+\_\+signal\+\_\+hyperlink\+\_\+hover}
+\item 
+process\+\_\+event\+\_\+t \hyperlink{group__ctkevents_gaa56be046241082d23581812190f2bef5}{ctk\+\_\+signal\+\_\+menu\+\_\+activate}
+\item 
+process\+\_\+event\+\_\+t \hyperlink{group__ctkevents_gab92e76646299dbab7216ab1f9dcef9e5}{ctk\+\_\+signal\+\_\+window\+\_\+close}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The Contiki Toolkit C\+T\+K, the Contiki G\+U\+I. \begin{DoxyAuthor}{Author}
+Adam Dunkels \href{mailto:adam@dunkels.com}{\tt adam@dunkels.\+com} 
+\end{DoxyAuthor}

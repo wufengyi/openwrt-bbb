@@ -1,0 +1,1138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - coverage.info - core/net/ipv6/uip-nd6.c</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">core/net/ipv6</a> - uip-nd6.c<span style="font-size: 80%;"> (source / <a href="uip-nd6.c.func.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">155</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2014-12-23</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">5</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">142</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">           Branch data     Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>                :            : /*</a>
+<span class="lineNum">       2 </span>                :            :  * Copyright (C) 1995, 1996, 1997, and 1998 WIDE Project.
+<span class="lineNum">       3 </span>                :            :  * All rights reserved.
+<span class="lineNum">       4 </span>                :            :  *
+<span class="lineNum">       5 </span>                :            :  * Redistribution and use in source and binary forms, with or without
+<span class="lineNum">       6 </span>                :            :  * modification, are permitted provided that the following conditions
+<span class="lineNum">       7 </span>                :            :  * are met:
+<span class="lineNum">       8 </span>                :            :  * 1. Redistributions of source code must retain the above copyright
+<span class="lineNum">       9 </span>                :            :  *    notice, this list of conditions and the following disclaimer.
+<span class="lineNum">      10 </span>                :            :  * 2. Redistributions in binary form must reproduce the above copyright
+<span class="lineNum">      11 </span>                :            :  *    notice, this list of conditions and the following disclaimer in the
+<span class="lineNum">      12 </span>                :            :  *    documentation and/or other materials provided with the distribution.
+<span class="lineNum">      13 </span>                :            :  * 3. Neither the name of the project nor the names of its contributors
+<span class="lineNum">      14 </span>                :            :  *    may be used to endorse or promote products derived from this software
+<span class="lineNum">      15 </span>                :            :  *    without specific prior written permission.
+<span class="lineNum">      16 </span>                :            :  *
+<span class="lineNum">      17 </span>                :            :  * THIS SOFTWARE IS PROVIDED BY THE PROJECT AND CONTRIBUTORS ``AS IS'' AND
+<span class="lineNum">      18 </span>                :            :  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+<span class="lineNum">      19 </span>                :            :  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+<span class="lineNum">      20 </span>                :            :  * ARE DISCLAIMED.  IN NO EVENT SHALL THE PROJECT OR CONTRIBUTORS BE LIABLE
+<span class="lineNum">      21 </span>                :            :  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+<span class="lineNum">      22 </span>                :            :  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+<span class="lineNum">      23 </span>                :            :  * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+<span class="lineNum">      24 </span>                :            :  * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+<span class="lineNum">      25 </span>                :            :  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+<span class="lineNum">      26 </span>                :            :  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+<span class="lineNum">      27 </span>                :            :  * SUCH DAMAGE.
+<span class="lineNum">      28 </span>                :            :  */
+<span class="lineNum">      29 </span>                :            : /*
+<span class="lineNum">      30 </span>                :            :  * Copyright (c) 2006, Swedish Institute of Computer Science.
+<span class="lineNum">      31 </span>                :            :  * All rights reserved.
+<span class="lineNum">      32 </span>                :            :  *
+<span class="lineNum">      33 </span>                :            :  * Redistribution and use in source and binary forms, with or without
+<span class="lineNum">      34 </span>                :            :  * modification, are permitted provided that the following conditions
+<span class="lineNum">      35 </span>                :            :  * are met:
+<span class="lineNum">      36 </span>                :            :  * 1. Redistributions of source code must retain the above copyright
+<span class="lineNum">      37 </span>                :            :  *   notice, this list of conditions and the following disclaimer.
+<span class="lineNum">      38 </span>                :            :  * 2. Redistributions in binary form must reproduce the above copyright
+<span class="lineNum">      39 </span>                :            :  *   notice, this list of conditions and the following disclaimer in the
+<span class="lineNum">      40 </span>                :            :  *   documentation and/or other materials provided with the distribution.
+<span class="lineNum">      41 </span>                :            :  * 3. Neither the name of the Institute nor the names of its contributors
+<span class="lineNum">      42 </span>                :            :  *   may be used to endorse or promote products derived from this software
+<span class="lineNum">      43 </span>                :            :  *   without specific prior written permission.
+<span class="lineNum">      44 </span>                :            :  *
+<span class="lineNum">      45 </span>                :            :  * THIS SOFTWARE IS PROVIDED BY THE INSTITUTE AND CONTRIBUTORS ``AS IS'' AND
+<span class="lineNum">      46 </span>                :            :  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+<span class="lineNum">      47 </span>                :            :  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+<span class="lineNum">      48 </span>                :            :  * ARE DISCLAIMED.  IN NO EVENT SHALL THE INSTITUTE OR CONTRIBUTORS BE LIABLE
+<span class="lineNum">      49 </span>                :            :  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+<span class="lineNum">      50 </span>                :            :  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+<span class="lineNum">      51 </span>                :            :  * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+<span class="lineNum">      52 </span>                :            :  * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+<span class="lineNum">      53 </span>                :            :  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+<span class="lineNum">      54 </span>                :            :  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+<span class="lineNum">      55 </span>                :            :  * SUCH DAMAGE.
+<span class="lineNum">      56 </span>                :            :  *
+<span class="lineNum">      57 </span>                :            :  */
+<span class="lineNum">      58 </span>                :            : 
+<span class="lineNum">      59 </span>                :            : /**
+<span class="lineNum">      60 </span>                :            :  * \file
+<span class="lineNum">      61 </span>                :            :  *         Neighbor discovery (RFC 4861)
+<span class="lineNum">      62 </span>                :            :  * \author Mathilde Durvy &lt;mdurvy@cisco.com&gt;
+<span class="lineNum">      63 </span>                :            :  * \author Julien Abeille &lt;jabeille@cisco.com&gt;
+<span class="lineNum">      64 </span>                :            :  */
+<span class="lineNum">      65 </span>                :            : 
+<span class="lineNum">      66 </span>                :            : /**
+<span class="lineNum">      67 </span>                :            :  * \addtogroup uip6
+<span class="lineNum">      68 </span>                :            :  * @{
+<span class="lineNum">      69 </span>                :            :  */
+<span class="lineNum">      70 </span>                :            : 
+<span class="lineNum">      71 </span>                :            : #include &lt;string.h&gt;
+<span class="lineNum">      72 </span>                :            : #include &quot;net/ipv6/uip-icmp6.h&quot;
+<span class="lineNum">      73 </span>                :            : #include &quot;net/ipv6/uip-nd6.h&quot;
+<span class="lineNum">      74 </span>                :            : #include &quot;net/ipv6/uip-ds6.h&quot;
+<span class="lineNum">      75 </span>                :            : #include &quot;lib/random.h&quot;
+<span class="lineNum">      76 </span>                :            : 
+<span class="lineNum">      77 </span>                :            : /*------------------------------------------------------------------*/
+<span class="lineNum">      78 </span>                :            : #define DEBUG 0
+<span class="lineNum">      79 </span>                :            : #include &quot;net/ip/uip-debug.h&quot;
+<span class="lineNum">      80 </span>                :            : 
+<span class="lineNum">      81 </span>                :            : #if UIP_LOGGING
+<span class="lineNum">      82 </span>                :            : #include &lt;stdio.h&gt;
+<span class="lineNum">      83 </span>                :            : void uip_log(char *msg);
+<span class="lineNum">      84 </span>                :            : 
+<span class="lineNum">      85 </span>                :            : #define UIP_LOG(m) uip_log(m)
+<span class="lineNum">      86 </span>                :            : #else
+<span class="lineNum">      87 </span>                :            : #define UIP_LOG(m)
+<span class="lineNum">      88 </span>                :            : #endif /* UIP_LOGGING == 1 */
+<span class="lineNum">      89 </span>                :            : 
+<span class="lineNum">      90 </span>                :            : /*------------------------------------------------------------------*/
+<span class="lineNum">      91 </span>                :            : /** @{ */
+<span class="lineNum">      92 </span>                :            : /** \name Pointers to the header structures.
+<span class="lineNum">      93 </span>                :            :  *  All pointers except UIP_IP_BUF depend on uip_ext_len, which at
+<span class="lineNum">      94 </span>                :            :  *  packet reception, is the total length of the extension headers.
+<span class="lineNum">      95 </span>                :            :  *  
+<span class="lineNum">      96 </span>                :            :  *  The pointer to ND6 options header also depends on nd6_opt_offset,
+<span class="lineNum">      97 </span>                :            :  *  which we set in each function.
+<span class="lineNum">      98 </span>                :            :  *
+<span class="lineNum">      99 </span>                :            :  *  Care should be taken when manipulating these buffers about the
+<span class="lineNum">     100 </span>                :            :  *  value of these length variables
+<span class="lineNum">     101 </span>                :            :  */
+<span class="lineNum">     102 </span>                :            : 
+<span class="lineNum">     103 </span>                :            : #define UIP_IP_BUF                ((struct uip_ip_hdr *)&amp;uip_buf[UIP_LLH_LEN])  /**&lt; Pointer to IP header */
+<span class="lineNum">     104 </span>                :            : #define UIP_ICMP_BUF            ((struct uip_icmp_hdr *)&amp;uip_buf[uip_l2_l3_hdr_len])  /**&lt; Pointer to ICMP header*/
+<span class="lineNum">     105 </span>                :            : /**@{  Pointers to messages just after icmp header */
+<span class="lineNum">     106 </span>                :            : #define UIP_ND6_RS_BUF            ((uip_nd6_rs *)&amp;uip_buf[uip_l2_l3_icmp_hdr_len])
+<span class="lineNum">     107 </span>                :            : #define UIP_ND6_RA_BUF            ((uip_nd6_ra *)&amp;uip_buf[uip_l2_l3_icmp_hdr_len])
+<span class="lineNum">     108 </span>                :            : #define UIP_ND6_NS_BUF            ((uip_nd6_ns *)&amp;uip_buf[uip_l2_l3_icmp_hdr_len])
+<span class="lineNum">     109 </span>                :            : #define UIP_ND6_NA_BUF            ((uip_nd6_na *)&amp;uip_buf[uip_l2_l3_icmp_hdr_len])
+<span class="lineNum">     110 </span>                :            : /** @} */
+<span class="lineNum">     111 </span>                :            : /** Pointer to ND option */
+<span class="lineNum">     112 </span>                :            : #define UIP_ND6_OPT_HDR_BUF  ((uip_nd6_opt_hdr *)&amp;uip_buf[uip_l2_l3_icmp_hdr_len + nd6_opt_offset])
+<span class="lineNum">     113 </span>                :            : #define UIP_ND6_OPT_PREFIX_BUF ((uip_nd6_opt_prefix_info *)&amp;uip_buf[uip_l2_l3_icmp_hdr_len + nd6_opt_offset])
+<span class="lineNum">     114 </span>                :            : #define UIP_ND6_OPT_MTU_BUF ((uip_nd6_opt_mtu *)&amp;uip_buf[uip_l2_l3_icmp_hdr_len + nd6_opt_offset])
+<span class="lineNum">     115 </span>                :            : /** @} */
+<span class="lineNum">     116 </span>                :            : 
+<span class="lineNum">     117 </span>                :            : static uint8_t nd6_opt_offset;                     /** Offset from the end of the icmpv6 header to the option in uip_buf*/
+<span class="lineNum">     118 </span>                :            : static uint8_t *nd6_opt_llao;   /**  Pointer to llao option in uip_buf */
+<span class="lineNum">     119 </span>                :            : 
+<span class="lineNum">     120 </span>                :            : #if !UIP_CONF_ROUTER            // TBD see if we move it to ra_input
+<span class="lineNum">     121 </span>                :            : static uip_nd6_opt_prefix_info *nd6_opt_prefix_info; /**  Pointer to prefix information option in uip_buf */
+<span class="lineNum">     122 </span>                :            : static uip_ipaddr_t ipaddr;
+<span class="lineNum">     123 </span>                :            : static uip_ds6_prefix_t *prefix; /**  Pointer to a prefix list entry */
+<span class="lineNum">     124 </span>                :            : #endif
+<span class="lineNum">     125 </span>                :            : static uip_ds6_nbr_t *nbr; /**  Pointer to a nbr cache entry*/
+<span class="lineNum">     126 </span>                :            : static uip_ds6_defrt_t *defrt; /**  Pointer to a router list entry */
+<span class="lineNum">     127 </span>                :            : static uip_ds6_addr_t *addr; /**  Pointer to an interface address */
+<span class="lineNum">     128 </span>                :            : /*------------------------------------------------------------------*/
+<a name="129"><span class="lineNum">     129 </span>                :            : /* create a llao */ </a>
+<span class="lineNum">     130 </span>                :            : static void
+<span class="lineNum">     131 </span>                :<span class="lineNoCov">          0 : create_llao(uint8_t *llao, uint8_t type) {</span>
+<span class="lineNum">     132 </span>                :<span class="lineNoCov">          0 :   llao[UIP_ND6_OPT_TYPE_OFFSET] = type;</span>
+<span class="lineNum">     133 </span>                :<span class="lineNoCov">          0 :   llao[UIP_ND6_OPT_LEN_OFFSET] = UIP_ND6_OPT_LLAO_LEN &gt;&gt; 3;</span>
+<span class="lineNum">     134 </span>                :<span class="lineNoCov">          0 :   memcpy(&amp;llao[UIP_ND6_OPT_DATA_OFFSET], &amp;uip_lladdr, UIP_LLADDR_LEN);</span>
+<span class="lineNum">     135 </span>                :            :   /* padding on some */
+<span class="lineNum">     136 </span>                :<span class="lineNoCov">          0 :   memset(&amp;llao[UIP_ND6_OPT_DATA_OFFSET + UIP_LLADDR_LEN], 0,</span>
+<span class="lineNum">     137 </span>                :            :          UIP_ND6_OPT_LLAO_LEN - 2 - UIP_LLADDR_LEN);
+<span class="lineNum">     138 </span>                :<span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     139 </span>                :            : 
+<span class="lineNum">     140 </span>                :            : /*------------------------------------------------------------------*/
+<span class="lineNum">     141 </span>                :            : 
+<a name="142"><span class="lineNum">     142 </span>                :            : </a>
+<span class="lineNum">     143 </span>                :            : static void
+<span class="lineNum">     144 </span>                :<span class="lineNoCov">          0 : ns_input(void)</span>
+<span class="lineNum">     145 </span>                :            : {
+<span class="lineNum">     146 </span>                :            :   uint8_t flags;
+<span class="lineNum">     147 </span>                :            :   PRINTF(&quot;Received NS from &quot;);
+<span class="lineNum">     148 </span>                :            :   PRINT6ADDR(&amp;UIP_IP_BUF-&gt;srcipaddr);
+<span class="lineNum">     149 </span>                :            :   PRINTF(&quot; to &quot;);
+<span class="lineNum">     150 </span>                :            :   PRINT6ADDR(&amp;UIP_IP_BUF-&gt;destipaddr);
+<span class="lineNum">     151 </span>                :            :   PRINTF(&quot; with target address&quot;);
+<span class="lineNum">     152 </span>                :            :   PRINT6ADDR((uip_ipaddr_t *) (&amp;UIP_ND6_NS_BUF-&gt;tgtipaddr));
+<span class="lineNum">     153 </span>                :            :   PRINTF(&quot;\n&quot;);
+<span class="lineNum">     154 </span>                :            :   UIP_STAT(++uip_stat.nd6.recv);
+<span class="lineNum">     155 </span>                :            : 
+<span class="lineNum">     156 </span>                :            : #if UIP_CONF_IPV6_CHECKS
+<span class="lineNum">     157 </span>[<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>][<span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if((UIP_IP_BUF-&gt;ttl != UIP_ND6_HOP_LIMIT) ||</span>
+<span class="lineNum">         </span>        [<span class="branchNoExec" title="Branch 4 was not executed"> # </span><span class="branchNoExec" title="Branch 5 was not executed"> # </span>]
+<span class="lineNum">     158 </span>                :<span class="lineNoCov">          0 :      (uip_is_addr_mcast(&amp;UIP_ND6_NS_BUF-&gt;tgtipaddr)) ||</span>
+<span class="lineNum">     159 </span>                :<span class="lineNoCov">          0 :      (UIP_ICMP_BUF-&gt;icode != 0)) {</span>
+<span class="lineNum">     160 </span>                :            :     PRINTF(&quot;NS received is bad\n&quot;);
+<span class="lineNum">     161 </span>                :            :     goto discard;
+<span class="lineNum">     162 </span>                :            :   }
+<span class="lineNum">     163 </span>                :            : #endif /* UIP_CONF_IPV6_CHECKS */
+<span class="lineNum">     164 </span>                :            : 
+<span class="lineNum">     165 </span>                :            :   /* Options processing */
+<span class="lineNum">     166 </span>                :<span class="lineNoCov">          0 :   nd6_opt_llao = NULL;</span>
+<span class="lineNum">     167 </span>                :<span class="lineNoCov">          0 :   nd6_opt_offset = UIP_ND6_NS_LEN;</span>
+<span class="lineNum">     168 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   while(uip_l3_icmp_hdr_len + nd6_opt_offset &lt; uip_len) {</span>
+<span class="lineNum">     169 </span>                :            : #if UIP_CONF_IPV6_CHECKS
+<span class="lineNum">     170 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(UIP_ND6_OPT_HDR_BUF-&gt;len == 0) {</span>
+<span class="lineNum">     171 </span>                :            :       PRINTF(&quot;NS received is bad\n&quot;);
+<span class="lineNum">     172 </span>                :            :       goto discard;
+<span class="lineNum">     173 </span>                :            :     }
+<span class="lineNum">     174 </span>                :            : #endif /* UIP_CONF_IPV6_CHECKS */
+<span class="lineNum">     175 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     switch (UIP_ND6_OPT_HDR_BUF-&gt;type) {</span>
+<span class="lineNum">     176 </span>                :            :     case UIP_ND6_OPT_SLLAO:
+<span class="lineNum">     177 </span>                :<span class="lineNoCov">          0 :       nd6_opt_llao = &amp;uip_buf[uip_l2_l3_icmp_hdr_len + nd6_opt_offset];</span>
+<span class="lineNum">     178 </span>                :            : #if UIP_CONF_IPV6_CHECKS
+<span class="lineNum">     179 </span>                :            :       /* There must be NO option in a DAD NS */
+<span class="lineNum">     180 </span>[<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>][<span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :       if(uip_is_addr_unspecified(&amp;UIP_IP_BUF-&gt;srcipaddr)) {</span>
+<span class="lineNum">         </span>[<span class="branchNoExec" title="Branch 4 was not executed"> # </span><span class="branchNoExec" title="Branch 5 was not executed"> # </span>][<span class="branchNoExec" title="Branch 6 was not executed"> # </span><span class="branchNoExec" title="Branch 7 was not executed"> # </span>]
+<span class="lineNum">         </span>[<span class="branchNoExec" title="Branch 8 was not executed"> # </span><span class="branchNoExec" title="Branch 9 was not executed"> # </span>][<span class="branchNoExec" title="Branch 10 was not executed"> # </span><span class="branchNoExec" title="Branch 11 was not executed"> # </span>]
+<span class="lineNum">         </span>[<span class="branchNoExec" title="Branch 12 was not executed"> # </span><span class="branchNoExec" title="Branch 13 was not executed"> # </span>][<span class="branchNoExec" title="Branch 14 was not executed"> # </span><span class="branchNoExec" title="Branch 15 was not executed"> # </span>]
+<span class="lineNum">     181 </span>                :            :         PRINTF(&quot;NS received is bad\n&quot;);
+<span class="lineNum">     182 </span>                :            :         goto discard;
+<span class="lineNum">     183 </span>                :            :       } else {
+<span class="lineNum">     184 </span>                :            : #endif /*UIP_CONF_IPV6_CHECKS */
+<span class="lineNum">     185 </span>                :<span class="lineNoCov">          0 :         nbr = uip_ds6_nbr_lookup(&amp;UIP_IP_BUF-&gt;srcipaddr);</span>
+<span class="lineNum">     186 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :         if(nbr == NULL) {</span>
+<span class="lineNum">     187 </span>                :            :           uip_ds6_nbr_add(&amp;UIP_IP_BUF-&gt;srcipaddr,
+<span class="lineNum">     188 </span>                :            :                           (uip_lladdr_t *)&amp;nd6_opt_llao[UIP_ND6_OPT_DATA_OFFSET],
+<span class="lineNum">     189 </span>                :<span class="lineNoCov">          0 :                           0, NBR_STALE);</span>
+<span class="lineNum">     190 </span>                :            :         } else {
+<span class="lineNum">     191 </span>                :<span class="lineNoCov">          0 :           uip_lladdr_t *lladdr = (uip_lladdr_t *)uip_ds6_nbr_get_ll(nbr);</span>
+<span class="lineNum">     192 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :           if(memcmp(&amp;nd6_opt_llao[UIP_ND6_OPT_DATA_OFFSET],</span>
+<span class="lineNum">     193 </span>                :<span class="lineNoCov">          0 :                     lladdr, UIP_LLADDR_LEN) != 0) {</span>
+<span class="lineNum">     194 </span>                :            :             memcpy(lladdr, &amp;nd6_opt_llao[UIP_ND6_OPT_DATA_OFFSET],
+<span class="lineNum">     195 </span>                :<span class="lineNoCov">          0 :                    UIP_LLADDR_LEN);</span>
+<span class="lineNum">     196 </span>                :<span class="lineNoCov">          0 :             nbr-&gt;state = NBR_STALE;</span>
+<span class="lineNum">     197 </span>                :            :           } else {
+<span class="lineNum">     198 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :             if(nbr-&gt;state == NBR_INCOMPLETE) {</span>
+<span class="lineNum">     199 </span>                :<span class="lineNoCov">          0 :               nbr-&gt;state = NBR_STALE;</span>
+<span class="lineNum">     200 </span>                :            :             }
+<span class="lineNum">     201 </span>                :            :           }
+<span class="lineNum">     202 </span>                :            :         }
+<span class="lineNum">     203 </span>                :            : #if UIP_CONF_IPV6_CHECKS
+<span class="lineNum">     204 </span>                :            :       }
+<span class="lineNum">     205 </span>                :            : #endif /*UIP_CONF_IPV6_CHECKS */
+<span class="lineNum">     206 </span>                :            :       break;
+<span class="lineNum">     207 </span>                :            :     default:
+<span class="lineNum">     208 </span>                :            :       PRINTF(&quot;ND option not supported in NS&quot;);
+<span class="lineNum">     209 </span>                :            :       break;
+<span class="lineNum">     210 </span>                :            :     }
+<span class="lineNum">     211 </span>                :<span class="lineNoCov">          0 :     nd6_opt_offset += (UIP_ND6_OPT_HDR_BUF-&gt;len &lt;&lt; 3);</span>
+<span class="lineNum">     212 </span>                :            :   }
+<span class="lineNum">     213 </span>                :            : 
+<span class="lineNum">     214 </span>                :<span class="lineNoCov">          0 :   addr = uip_ds6_addr_lookup(&amp;UIP_ND6_NS_BUF-&gt;tgtipaddr);</span>
+<span class="lineNum">     215 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(addr != NULL) {</span>
+<span class="lineNum">     216 </span>                :            : #if UIP_ND6_DEF_MAXDADNS &gt; 0
+<span class="lineNum">     217 </span>                :            :     if(uip_is_addr_unspecified(&amp;UIP_IP_BUF-&gt;srcipaddr)) {
+<span class="lineNum">     218 </span>                :            :       /* DAD CASE */
+<span class="lineNum">     219 </span>                :            : #if UIP_CONF_IPV6_CHECKS
+<span class="lineNum">     220 </span>                :            :       if(!uip_is_addr_solicited_node(&amp;UIP_IP_BUF-&gt;destipaddr)) {
+<span class="lineNum">     221 </span>                :            :         PRINTF(&quot;NS received is bad\n&quot;);
+<span class="lineNum">     222 </span>                :            :         goto discard;
+<span class="lineNum">     223 </span>                :            :       }
+<span class="lineNum">     224 </span>                :            : #endif /* UIP_CONF_IPV6_CHECKS */
+<span class="lineNum">     225 </span>                :            :       if(addr-&gt;state != ADDR_TENTATIVE) {
+<span class="lineNum">     226 </span>                :            :         uip_create_linklocal_allnodes_mcast(&amp;UIP_IP_BUF-&gt;destipaddr);
+<span class="lineNum">     227 </span>                :            :         uip_ds6_select_src(&amp;UIP_IP_BUF-&gt;srcipaddr, &amp;UIP_IP_BUF-&gt;destipaddr);
+<span class="lineNum">     228 </span>                :            :         flags = UIP_ND6_NA_FLAG_OVERRIDE;
+<span class="lineNum">     229 </span>                :            :         goto create_na;
+<span class="lineNum">     230 </span>                :            :       } else {
+<span class="lineNum">     231 </span>                :            :           /** \todo if I sent a NS before him, I win */
+<span class="lineNum">     232 </span>                :            :         uip_ds6_dad_failed(addr);
+<span class="lineNum">     233 </span>                :            :         goto discard;
+<span class="lineNum">     234 </span>                :            :       }
+<span class="lineNum">     235 </span>                :            : #else /* UIP_ND6_DEF_MAXDADNS &gt; 0 */
+<span class="lineNum">     236 </span>[<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>][<span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(uip_is_addr_unspecified(&amp;UIP_IP_BUF-&gt;srcipaddr)) {</span>
+<span class="lineNum">         </span>[<span class="branchNoExec" title="Branch 4 was not executed"> # </span><span class="branchNoExec" title="Branch 5 was not executed"> # </span>][<span class="branchNoExec" title="Branch 6 was not executed"> # </span><span class="branchNoExec" title="Branch 7 was not executed"> # </span>]
+<span class="lineNum">         </span>[<span class="branchNoExec" title="Branch 8 was not executed"> # </span><span class="branchNoExec" title="Branch 9 was not executed"> # </span>][<span class="branchNoExec" title="Branch 10 was not executed"> # </span><span class="branchNoExec" title="Branch 11 was not executed"> # </span>]
+<span class="lineNum">         </span>[<span class="branchNoExec" title="Branch 12 was not executed"> # </span><span class="branchNoExec" title="Branch 13 was not executed"> # </span>][<span class="branchNoExec" title="Branch 14 was not executed"> # </span><span class="branchNoExec" title="Branch 15 was not executed"> # </span>]
+<span class="lineNum">     237 </span>                :            :       /* DAD CASE */
+<span class="lineNum">     238 </span>                :            :       goto discard;
+<span class="lineNum">     239 </span>                :            : #endif /* UIP_ND6_DEF_MAXDADNS &gt; 0 */
+<span class="lineNum">     240 </span>                :            :     }
+<span class="lineNum">     241 </span>                :            : #if UIP_CONF_IPV6_CHECKS
+<span class="lineNum">     242 </span>        [<span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(uip_ds6_is_my_addr(&amp;UIP_IP_BUF-&gt;srcipaddr)) {</span>
+<span class="lineNum">     243 </span>                :            :         /**
+<span class="lineNum">     244 </span>                :            :          * \NOTE do we do something here? we both are using the same address.
+<span class="lineNum">     245 </span>                :            :          * If we are doing dad, we could cancel it, though we should receive a
+<span class="lineNum">     246 </span>                :            :          * NA in response of DAD NS we sent, hence DAD will fail anyway. If we
+<span class="lineNum">     247 </span>                :            :          * were not doing DAD, it means there is a duplicate in the network!
+<span class="lineNum">     248 </span>                :            :          */
+<span class="lineNum">     249 </span>                :            :       PRINTF(&quot;NS received is bad\n&quot;);
+<span class="lineNum">     250 </span>                :            :       goto discard;
+<span class="lineNum">     251 </span>                :            :     }
+<span class="lineNum">     252 </span>                :            : #endif /*UIP_CONF_IPV6_CHECKS */
+<span class="lineNum">     253 </span>                :            : 
+<span class="lineNum">     254 </span>                :            :     /* Address resolution case */
+<span class="lineNum">     255 </span>[<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>][<span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(uip_is_addr_solicited_node(&amp;UIP_IP_BUF-&gt;destipaddr)) {</span>
+<span class="lineNum">         </span>[<span class="branchNoExec" title="Branch 4 was not executed"> # </span><span class="branchNoExec" title="Branch 5 was not executed"> # </span>][<span class="branchNoExec" title="Branch 6 was not executed"> # </span><span class="branchNoExec" title="Branch 7 was not executed"> # </span>]
+<span class="lineNum">         </span>[<span class="branchNoExec" title="Branch 8 was not executed"> # </span><span class="branchNoExec" title="Branch 9 was not executed"> # </span>][<span class="branchNoExec" title="Branch 10 was not executed"> # </span><span class="branchNoExec" title="Branch 11 was not executed"> # </span>]
+<span class="lineNum">         </span>        [<span class="branchNoExec" title="Branch 12 was not executed"> # </span><span class="branchNoExec" title="Branch 13 was not executed"> # </span>]
+<span class="lineNum">     256 </span>                :<span class="lineNoCov">          0 :       uip_ipaddr_copy(&amp;UIP_IP_BUF-&gt;destipaddr, &amp;UIP_IP_BUF-&gt;srcipaddr);</span>
+<span class="lineNum">     257 </span>                :<span class="lineNoCov">          0 :       uip_ipaddr_copy(&amp;UIP_IP_BUF-&gt;srcipaddr, &amp;UIP_ND6_NS_BUF-&gt;tgtipaddr);</span>
+<span class="lineNum">     258 </span>                :<span class="lineNoCov">          0 :       flags = UIP_ND6_NA_FLAG_SOLICITED | UIP_ND6_NA_FLAG_OVERRIDE;</span>
+<span class="lineNum">     259 </span>                :<span class="lineNoCov">          0 :       goto create_na;</span>
+<span class="lineNum">     260 </span>                :            :     }
+<span class="lineNum">     261 </span>                :            : 
+<span class="lineNum">     262 </span>                :            :     /* NUD CASE */
+<span class="lineNum">     263 </span>        [<span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(uip_ds6_addr_lookup(&amp;UIP_IP_BUF-&gt;destipaddr) == addr) {</span>
+<span class="lineNum">     264 </span>                :<span class="lineNoCov">          0 :       uip_ipaddr_copy(&amp;UIP_IP_BUF-&gt;destipaddr, &amp;UIP_IP_BUF-&gt;srcipaddr);</span>
+<span class="lineNum">     265 </span>                :<span class="lineNoCov">          0 :       uip_ipaddr_copy(&amp;UIP_IP_BUF-&gt;srcipaddr, &amp;UIP_ND6_NS_BUF-&gt;tgtipaddr);</span>
+<span class="lineNum">     266 </span>                :<span class="lineNoCov">          0 :       flags = UIP_ND6_NA_FLAG_SOLICITED | UIP_ND6_NA_FLAG_OVERRIDE;</span>
+<span class="lineNum">     267 </span>                :<span class="lineNoCov">          0 :       goto create_na;</span>
+<span class="lineNum">     268 </span>                :            :     } else {
+<span class="lineNum">     269 </span>                :            : #if UIP_CONF_IPV6_CHECKS
+<span class="lineNum">     270 </span>                :            :       PRINTF(&quot;NS received is bad\n&quot;);
+<span class="lineNum">     271 </span>                :            :       goto discard;
+<span class="lineNum">     272 </span>                :            : #endif /* UIP_CONF_IPV6_CHECKS */
+<span class="lineNum">     273 </span>                :            :     }
+<span class="lineNum">     274 </span>                :            :   } else {
+<span class="lineNum">     275 </span>                :            :     goto discard;
+<span class="lineNum">     276 </span>                :            :   }
+<span class="lineNum">     277 </span>                :            : 
+<span class="lineNum">     278 </span>                :            : 
+<span class="lineNum">     279 </span>                :            : create_na:
+<span class="lineNum">     280 </span>                :            :     /* If the node is a router it should set R flag in NAs */
+<span class="lineNum">     281 </span>                :            : #if UIP_CONF_ROUTER
+<span class="lineNum">     282 </span>                :<span class="lineNoCov">          0 :     flags = flags | UIP_ND6_NA_FLAG_ROUTER;</span>
+<span class="lineNum">     283 </span>                :            : #endif
+<span class="lineNum">     284 </span>                :<span class="lineNoCov">          0 :   uip_ext_len = 0;</span>
+<span class="lineNum">     285 </span>                :<span class="lineNoCov">          0 :   UIP_IP_BUF-&gt;vtc = 0x60;</span>
+<span class="lineNum">     286 </span>                :<span class="lineNoCov">          0 :   UIP_IP_BUF-&gt;tcflow = 0;</span>
+<span class="lineNum">     287 </span>                :<span class="lineNoCov">          0 :   UIP_IP_BUF-&gt;flow = 0;</span>
+<span class="lineNum">     288 </span>                :<span class="lineNoCov">          0 :   UIP_IP_BUF-&gt;len[0] = 0;       /* length will not be more than 255 */</span>
+<span class="lineNum">     289 </span>                :<span class="lineNoCov">          0 :   UIP_IP_BUF-&gt;len[1] = UIP_ICMPH_LEN + UIP_ND6_NA_LEN + UIP_ND6_OPT_LLAO_LEN;</span>
+<span class="lineNum">     290 </span>                :<span class="lineNoCov">          0 :   UIP_IP_BUF-&gt;proto = UIP_PROTO_ICMP6;</span>
+<span class="lineNum">     291 </span>                :<span class="lineNoCov">          0 :   UIP_IP_BUF-&gt;ttl = UIP_ND6_HOP_LIMIT;</span>
+<span class="lineNum">     292 </span>                :            : 
+<span class="lineNum">     293 </span>                :<span class="lineNoCov">          0 :   UIP_ICMP_BUF-&gt;type = ICMP6_NA;</span>
+<span class="lineNum">     294 </span>                :<span class="lineNoCov">          0 :   UIP_ICMP_BUF-&gt;icode = 0;</span>
+<span class="lineNum">     295 </span>                :            : 
+<span class="lineNum">     296 </span>                :<span class="lineNoCov">          0 :   UIP_ND6_NA_BUF-&gt;flagsreserved = flags;</span>
+<span class="lineNum">     297 </span>                :<span class="lineNoCov">          0 :   memcpy(&amp;UIP_ND6_NA_BUF-&gt;tgtipaddr, &amp;addr-&gt;ipaddr, sizeof(uip_ipaddr_t));</span>
+<span class="lineNum">     298 </span>                :            : 
+<span class="lineNum">     299 </span>                :<span class="lineNoCov">          0 :   create_llao(&amp;uip_buf[uip_l2_l3_icmp_hdr_len + UIP_ND6_NA_LEN],</span>
+<span class="lineNum">     300 </span>                :<span class="lineNoCov">          0 :               UIP_ND6_OPT_TLLAO);</span>
+<span class="lineNum">     301 </span>                :            : 
+<span class="lineNum">     302 </span>                :<span class="lineNoCov">          0 :   UIP_ICMP_BUF-&gt;icmpchksum = 0;</span>
+<span class="lineNum">     303 </span>                :<span class="lineNoCov">          0 :   UIP_ICMP_BUF-&gt;icmpchksum = ~uip_icmp6chksum();</span>
+<span class="lineNum">     304 </span>                :            : 
+<span class="lineNum">     305 </span>                :            :   uip_len =
+<span class="lineNum">     306 </span>                :<span class="lineNoCov">          0 :     UIP_IPH_LEN + UIP_ICMPH_LEN + UIP_ND6_NA_LEN + UIP_ND6_OPT_LLAO_LEN;</span>
+<span class="lineNum">     307 </span>                :            : 
+<span class="lineNum">     308 </span>                :            :   UIP_STAT(++uip_stat.nd6.sent);
+<span class="lineNum">     309 </span>                :            :   PRINTF(&quot;Sending NA to &quot;);
+<span class="lineNum">     310 </span>                :            :   PRINT6ADDR(&amp;UIP_IP_BUF-&gt;destipaddr);
+<span class="lineNum">     311 </span>                :            :   PRINTF(&quot; from &quot;);
+<span class="lineNum">     312 </span>                :            :   PRINT6ADDR(&amp;UIP_IP_BUF-&gt;srcipaddr);
+<span class="lineNum">     313 </span>                :            :   PRINTF(&quot; with target address &quot;);
+<span class="lineNum">     314 </span>                :            :   PRINT6ADDR(&amp;UIP_ND6_NA_BUF-&gt;tgtipaddr);
+<span class="lineNum">     315 </span>                :            :   PRINTF(&quot;\n&quot;);
+<span class="lineNum">     316 </span>                :<span class="lineNoCov">          0 :   return;</span>
+<span class="lineNum">     317 </span>                :            : 
+<span class="lineNum">     318 </span>                :            : discard:
+<span class="lineNum">     319 </span>                :<span class="lineNoCov">          0 :   uip_len = 0;</span>
+<span class="lineNum">     320 </span>                :<span class="lineNoCov">          0 :   return;</span>
+<span class="lineNum">     321 </span>                :            : }
+<span class="lineNum">     322 </span>                :            : 
+<span class="lineNum">     323 </span>                :            : 
+<span class="lineNum">     324 </span>                :            : 
+<a name="325"><span class="lineNum">     325 </span>                :            : /*------------------------------------------------------------------*/</a>
+<span class="lineNum">     326 </span>                :            : void
+<span class="lineNum">     327 </span>                :<span class="lineNoCov">          0 : uip_nd6_ns_output(uip_ipaddr_t * src, uip_ipaddr_t * dest, uip_ipaddr_t * tgt)</span>
+<span class="lineNum">     328 </span>                :            : {
+<span class="lineNum">     329 </span>                :<span class="lineNoCov">          0 :   uip_ext_len = 0;</span>
+<span class="lineNum">     330 </span>                :<span class="lineNoCov">          0 :   UIP_IP_BUF-&gt;vtc = 0x60;</span>
+<span class="lineNum">     331 </span>                :<span class="lineNoCov">          0 :   UIP_IP_BUF-&gt;tcflow = 0;</span>
+<span class="lineNum">     332 </span>                :<span class="lineNoCov">          0 :   UIP_IP_BUF-&gt;flow = 0;</span>
+<span class="lineNum">     333 </span>                :<span class="lineNoCov">          0 :   UIP_IP_BUF-&gt;proto = UIP_PROTO_ICMP6;</span>
+<span class="lineNum">     334 </span>                :<span class="lineNoCov">          0 :   UIP_IP_BUF-&gt;ttl = UIP_ND6_HOP_LIMIT;</span>
+<span class="lineNum">     335 </span>                :            : 
+<span class="lineNum">     336 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(dest == NULL) {</span>
+<span class="lineNum">     337 </span>                :<span class="lineNoCov">          0 :     uip_create_solicited_node(tgt, &amp;UIP_IP_BUF-&gt;destipaddr);</span>
+<span class="lineNum">     338 </span>                :            :   } else {
+<span class="lineNum">     339 </span>                :<span class="lineNoCov">          0 :     uip_ipaddr_copy(&amp;UIP_IP_BUF-&gt;destipaddr, dest);</span>
+<span class="lineNum">     340 </span>                :            :   }
+<span class="lineNum">     341 </span>                :<span class="lineNoCov">          0 :   UIP_ICMP_BUF-&gt;type = ICMP6_NS;</span>
+<span class="lineNum">     342 </span>                :<span class="lineNoCov">          0 :   UIP_ICMP_BUF-&gt;icode = 0;</span>
+<span class="lineNum">     343 </span>                :<span class="lineNoCov">          0 :   UIP_ND6_NS_BUF-&gt;reserved = 0;</span>
+<span class="lineNum">     344 </span>                :<span class="lineNoCov">          0 :   uip_ipaddr_copy((uip_ipaddr_t *) &amp;UIP_ND6_NS_BUF-&gt;tgtipaddr, tgt);</span>
+<span class="lineNum">     345 </span>                :<span class="lineNoCov">          0 :   UIP_IP_BUF-&gt;len[0] = 0;       /* length will not be more than 255 */</span>
+<span class="lineNum">     346 </span>                :            :   /*
+<span class="lineNum">     347 </span>                :            :    * check if we add a SLLAO option: for DAD, MUST NOT, for NUD, MAY
+<span class="lineNum">     348 </span>                :            :    * (here yes), for Address resolution , MUST 
+<span class="lineNum">     349 </span>                :            :    */
+<span class="lineNum">     350 </span>        [<span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(!(uip_ds6_is_my_addr(tgt))) {</span>
+<span class="lineNum">     351 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(src != NULL) {</span>
+<span class="lineNum">     352 </span>                :<span class="lineNoCov">          0 :       uip_ipaddr_copy(&amp;UIP_IP_BUF-&gt;srcipaddr, src);</span>
+<span class="lineNum">     353 </span>                :            :     } else {
+<span class="lineNum">     354 </span>                :<span class="lineNoCov">          0 :       uip_ds6_select_src(&amp;UIP_IP_BUF-&gt;srcipaddr, &amp;UIP_IP_BUF-&gt;destipaddr);</span>
+<span class="lineNum">     355 </span>                :            :     }
+<span class="lineNum">     356 </span>[<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>][<span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if (uip_is_addr_unspecified(&amp;UIP_IP_BUF-&gt;srcipaddr)) {</span>
+<span class="lineNum">         </span>[<span class="branchNoExec" title="Branch 4 was not executed"> # </span><span class="branchNoExec" title="Branch 5 was not executed"> # </span>][<span class="branchNoExec" title="Branch 6 was not executed"> # </span><span class="branchNoExec" title="Branch 7 was not executed"> # </span>]
+<span class="lineNum">         </span>[<span class="branchNoExec" title="Branch 8 was not executed"> # </span><span class="branchNoExec" title="Branch 9 was not executed"> # </span>][<span class="branchNoExec" title="Branch 10 was not executed"> # </span><span class="branchNoExec" title="Branch 11 was not executed"> # </span>]
+<span class="lineNum">         </span>[<span class="branchNoExec" title="Branch 12 was not executed"> # </span><span class="branchNoExec" title="Branch 13 was not executed"> # </span>][<span class="branchNoExec" title="Branch 14 was not executed"> # </span><span class="branchNoExec" title="Branch 15 was not executed"> # </span>]
+<span class="lineNum">     357 </span>                :            :       PRINTF(&quot;Dropping NS due to no suitable source address\n&quot;);
+<span class="lineNum">     358 </span>                :<span class="lineNoCov">          0 :       uip_len = 0;</span>
+<span class="lineNum">     359 </span>                :<span class="lineNoCov">          0 :       return;</span>
+<span class="lineNum">     360 </span>                :            :     }
+<span class="lineNum">     361 </span>                :            :     UIP_IP_BUF-&gt;len[1] =
+<span class="lineNum">     362 </span>                :<span class="lineNoCov">          0 :       UIP_ICMPH_LEN + UIP_ND6_NS_LEN + UIP_ND6_OPT_LLAO_LEN;</span>
+<span class="lineNum">     363 </span>                :            : 
+<span class="lineNum">     364 </span>                :<span class="lineNoCov">          0 :     create_llao(&amp;uip_buf[uip_l2_l3_icmp_hdr_len + UIP_ND6_NS_LEN],</span>
+<span class="lineNum">     365 </span>                :<span class="lineNoCov">          0 :                 UIP_ND6_OPT_SLLAO);</span>
+<span class="lineNum">     366 </span>                :            : 
+<span class="lineNum">     367 </span>                :            :     uip_len =
+<span class="lineNum">     368 </span>                :<span class="lineNoCov">          0 :       UIP_IPH_LEN + UIP_ICMPH_LEN + UIP_ND6_NS_LEN + UIP_ND6_OPT_LLAO_LEN;</span>
+<span class="lineNum">     369 </span>                :            :   } else {
+<span class="lineNum">     370 </span>                :<span class="lineNoCov">          0 :     uip_create_unspecified(&amp;UIP_IP_BUF-&gt;srcipaddr);</span>
+<span class="lineNum">     371 </span>                :<span class="lineNoCov">          0 :     UIP_IP_BUF-&gt;len[1] = UIP_ICMPH_LEN + UIP_ND6_NS_LEN;</span>
+<span class="lineNum">     372 </span>                :<span class="lineNoCov">          0 :     uip_len = UIP_IPH_LEN + UIP_ICMPH_LEN + UIP_ND6_NS_LEN;</span>
+<span class="lineNum">     373 </span>                :            :   }
+<span class="lineNum">     374 </span>                :            : 
+<span class="lineNum">     375 </span>                :<span class="lineNoCov">          0 :   UIP_ICMP_BUF-&gt;icmpchksum = 0;</span>
+<span class="lineNum">     376 </span>                :<span class="lineNoCov">          0 :   UIP_ICMP_BUF-&gt;icmpchksum = ~uip_icmp6chksum();</span>
+<span class="lineNum">     377 </span>                :            : 
+<span class="lineNum">     378 </span>                :            :   UIP_STAT(++uip_stat.nd6.sent);
+<span class="lineNum">     379 </span>                :            :   PRINTF(&quot;Sending NS to&quot;);
+<span class="lineNum">     380 </span>                :            :   PRINT6ADDR(&amp;UIP_IP_BUF-&gt;destipaddr);
+<span class="lineNum">     381 </span>                :            :   PRINTF(&quot;from&quot;);
+<span class="lineNum">     382 </span>                :            :   PRINT6ADDR(&amp;UIP_IP_BUF-&gt;srcipaddr);
+<span class="lineNum">     383 </span>                :            :   PRINTF(&quot;with target address&quot;);
+<span class="lineNum">     384 </span>                :            :   PRINT6ADDR(tgt);
+<span class="lineNum">     385 </span>                :            :   PRINTF(&quot;\n&quot;);
+<span class="lineNum">     386 </span>                :<span class="lineNoCov">          0 :   return;</span>
+<span class="lineNum">     387 </span>                :            : }
+<span class="lineNum">     388 </span>                :            : /*------------------------------------------------------------------*/
+<span class="lineNum">     389 </span>                :            : /**
+<span class="lineNum">     390 </span>                :            :  * Neighbor Advertisement Processing
+<span class="lineNum">     391 </span>                :            :  *
+<span class="lineNum">     392 </span>                :            :  * we might have to send a pkt that had been buffered while address
+<span class="lineNum">     393 </span>                :            :  * resolution was performed (if we support buffering, see UIP_CONF_QUEUE_PKT)
+<span class="lineNum">     394 </span>                :            :  *
+<span class="lineNum">     395 </span>                :            :  * As per RFC 4861, on link layer that have addresses, TLLAO options MUST be
+<span class="lineNum">     396 </span>                :            :  * included when responding to multicast solicitations, SHOULD be included in
+<span class="lineNum">     397 </span>                :            :  * response to unicast (here we assume it is for now)
+<span class="lineNum">     398 </span>                :            :  *
+<span class="lineNum">     399 </span>                :            :  * NA can be received after sending NS for DAD, Address resolution or NUD. Can
+<span class="lineNum">     400 </span>                :            :  * be unsolicited as well.
+<span class="lineNum">     401 </span>                :            :  * It can trigger update of the state of the neighbor in the neighbor cache,
+<span class="lineNum">     402 </span>                :            :  * router in the router list.
+<span class="lineNum">     403 </span>                :            :  * If the NS was for DAD, it means DAD failed
+<span class="lineNum">     404 </span>                :            :  *
+<a name="405"><span class="lineNum">     405 </span>                :            :  */</a>
+<span class="lineNum">     406 </span>                :            : static void
+<span class="lineNum">     407 </span>                :<span class="lineNoCov">          0 : na_input(void)</span>
+<span class="lineNum">     408 </span>                :            : {
+<span class="lineNum">     409 </span>                :            :   uint8_t is_llchange;
+<span class="lineNum">     410 </span>                :            :   uint8_t is_router;
+<span class="lineNum">     411 </span>                :            :   uint8_t is_solicited;
+<span class="lineNum">     412 </span>                :            :   uint8_t is_override;
+<span class="lineNum">     413 </span>                :            : 
+<span class="lineNum">     414 </span>                :            :   PRINTF(&quot;Received NA from&quot;);
+<span class="lineNum">     415 </span>                :            :   PRINT6ADDR(&amp;UIP_IP_BUF-&gt;srcipaddr);
+<span class="lineNum">     416 </span>                :            :   PRINTF(&quot;to&quot;);
+<span class="lineNum">     417 </span>                :            :   PRINT6ADDR(&amp;UIP_IP_BUF-&gt;destipaddr);
+<span class="lineNum">     418 </span>                :            :   PRINTF(&quot;with target address&quot;);
+<span class="lineNum">     419 </span>                :            :   PRINT6ADDR((uip_ipaddr_t *) (&amp;UIP_ND6_NA_BUF-&gt;tgtipaddr));
+<span class="lineNum">     420 </span>                :            :   PRINTF(&quot;\n&quot;);
+<span class="lineNum">     421 </span>                :            :   UIP_STAT(++uip_stat.nd6.recv);
+<span class="lineNum">     422 </span>                :            : 
+<span class="lineNum">     423 </span>                :            :   /* 
+<span class="lineNum">     424 </span>                :            :    * booleans. the three last one are not 0 or 1 but 0 or 0x80, 0x40, 0x20
+<span class="lineNum">     425 </span>                :            :    * but it works. Be careful though, do not use tests such as is_router == 1 
+<span class="lineNum">     426 </span>                :            :    */
+<span class="lineNum">     427 </span>                :<span class="lineNoCov">          0 :   is_llchange = 0;</span>
+<span class="lineNum">     428 </span>                :<span class="lineNoCov">          0 :   is_router = ((UIP_ND6_NA_BUF-&gt;flagsreserved &amp; UIP_ND6_NA_FLAG_ROUTER));</span>
+<span class="lineNum">     429 </span>                :            :   is_solicited =
+<span class="lineNum">     430 </span>                :<span class="lineNoCov">          0 :     ((UIP_ND6_NA_BUF-&gt;flagsreserved &amp; UIP_ND6_NA_FLAG_SOLICITED));</span>
+<span class="lineNum">     431 </span>                :            :   is_override =
+<span class="lineNum">     432 </span>                :<span class="lineNoCov">          0 :     ((UIP_ND6_NA_BUF-&gt;flagsreserved &amp; UIP_ND6_NA_FLAG_OVERRIDE));</span>
+<span class="lineNum">     433 </span>                :            : 
+<span class="lineNum">     434 </span>                :            : #if UIP_CONF_IPV6_CHECKS
+<span class="lineNum">     435 </span>[<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>][<span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if((UIP_IP_BUF-&gt;ttl != UIP_ND6_HOP_LIMIT) ||</span>
+<span class="lineNum">         </span>[<span class="branchNoExec" title="Branch 4 was not executed"> # </span><span class="branchNoExec" title="Branch 5 was not executed"> # </span>][<span class="branchNoExec" title="Branch 6 was not executed"> # </span><span class="branchNoExec" title="Branch 7 was not executed"> # </span>]
+<span class="lineNum">         </span>        [<span class="branchNoExec" title="Branch 8 was not executed"> # </span><span class="branchNoExec" title="Branch 9 was not executed"> # </span>]
+<span class="lineNum">     436 </span>                :<span class="lineNoCov">          0 :      (UIP_ICMP_BUF-&gt;icode != 0) ||</span>
+<span class="lineNum">     437 </span>                :<span class="lineNoCov">          0 :      (uip_is_addr_mcast(&amp;UIP_ND6_NA_BUF-&gt;tgtipaddr)) ||</span>
+<span class="lineNum">     438 </span>                :<span class="lineNoCov">          0 :      (is_solicited &amp;&amp; uip_is_addr_mcast(&amp;UIP_IP_BUF-&gt;destipaddr))) {</span>
+<span class="lineNum">     439 </span>                :            :     PRINTF(&quot;NA received is bad\n&quot;);
+<span class="lineNum">     440 </span>                :            :     goto discard;
+<span class="lineNum">     441 </span>                :            :   }
+<span class="lineNum">     442 </span>                :            : #endif /*UIP_CONF_IPV6_CHECKS */
+<span class="lineNum">     443 </span>                :            : 
+<span class="lineNum">     444 </span>                :            :   /* Options processing: we handle TLLAO, and must ignore others */
+<span class="lineNum">     445 </span>                :<span class="lineNoCov">          0 :   nd6_opt_offset = UIP_ND6_NA_LEN;</span>
+<span class="lineNum">     446 </span>                :<span class="lineNoCov">          0 :   nd6_opt_llao = NULL;</span>
+<span class="lineNum">     447 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   while(uip_l3_icmp_hdr_len + nd6_opt_offset &lt; uip_len) {</span>
+<span class="lineNum">     448 </span>                :            : #if UIP_CONF_IPV6_CHECKS
+<span class="lineNum">     449 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(UIP_ND6_OPT_HDR_BUF-&gt;len == 0) {</span>
+<span class="lineNum">     450 </span>                :            :       PRINTF(&quot;NA received is bad\n&quot;);
+<span class="lineNum">     451 </span>                :            :       goto discard;
+<span class="lineNum">     452 </span>                :            :     }
+<span class="lineNum">     453 </span>                :            : #endif /*UIP_CONF_IPV6_CHECKS */
+<span class="lineNum">     454 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     switch (UIP_ND6_OPT_HDR_BUF-&gt;type) {</span>
+<span class="lineNum">     455 </span>                :            :     case UIP_ND6_OPT_TLLAO:
+<span class="lineNum">     456 </span>                :<span class="lineNoCov">          0 :       nd6_opt_llao = (uint8_t *)UIP_ND6_OPT_HDR_BUF;</span>
+<span class="lineNum">     457 </span>                :<span class="lineNoCov">          0 :       break;</span>
+<span class="lineNum">     458 </span>                :            :     default:
+<span class="lineNum">     459 </span>                :            :       PRINTF(&quot;ND option not supported in NA\n&quot;);
+<span class="lineNum">     460 </span>                :            :       break;
+<span class="lineNum">     461 </span>                :            :     }
+<span class="lineNum">     462 </span>                :<span class="lineNoCov">          0 :     nd6_opt_offset += (UIP_ND6_OPT_HDR_BUF-&gt;len &lt;&lt; 3);</span>
+<span class="lineNum">     463 </span>                :            :   }
+<span class="lineNum">     464 </span>                :<span class="lineNoCov">          0 :   addr = uip_ds6_addr_lookup(&amp;UIP_ND6_NA_BUF-&gt;tgtipaddr);</span>
+<span class="lineNum">     465 </span>                :            :   /* Message processing, including TLLAO if any */
+<span class="lineNum">     466 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(addr != NULL) {</span>
+<span class="lineNum">     467 </span>                :            : #if UIP_ND6_DEF_MAXDADNS &gt; 0
+<span class="lineNum">     468 </span>                :            :     if(addr-&gt;state == ADDR_TENTATIVE) {
+<span class="lineNum">     469 </span>                :            :       uip_ds6_dad_failed(addr);
+<span class="lineNum">     470 </span>                :            :     }
+<span class="lineNum">     471 </span>                :            : #endif /*UIP_ND6_DEF_MAXDADNS &gt; 0 */
+<span class="lineNum">     472 </span>                :            :     PRINTF(&quot;NA received is bad\n&quot;);
+<span class="lineNum">     473 </span>                :            :     goto discard;
+<span class="lineNum">     474 </span>                :            :   } else {
+<span class="lineNum">     475 </span>                :            :     uip_lladdr_t *lladdr;
+<span class="lineNum">     476 </span>                :<span class="lineNoCov">          0 :     nbr = uip_ds6_nbr_lookup(&amp;UIP_ND6_NA_BUF-&gt;tgtipaddr);</span>
+<span class="lineNum">     477 </span>                :<span class="lineNoCov">          0 :     lladdr = (uip_lladdr_t *)uip_ds6_nbr_get_ll(nbr);</span>
+<span class="lineNum">     478 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(nbr == NULL) {</span>
+<span class="lineNum">     479 </span>                :            :       goto discard;
+<span class="lineNum">     480 </span>                :            :     }
+<span class="lineNum">     481 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(nd6_opt_llao != 0) {</span>
+<span class="lineNum">     482 </span>                :            :       is_llchange =
+<span class="lineNum">     483 </span>                :            :         memcmp(&amp;nd6_opt_llao[UIP_ND6_OPT_DATA_OFFSET], (void *)lladdr,
+<span class="lineNum">     484 </span>                :<span class="lineNoCov">          0 :                UIP_LLADDR_LEN);</span>
+<span class="lineNum">     485 </span>                :            :     }
+<span class="lineNum">     486 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(nbr-&gt;state == NBR_INCOMPLETE) {</span>
+<span class="lineNum">     487 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       if(nd6_opt_llao == NULL) {</span>
+<span class="lineNum">     488 </span>                :            :         goto discard;
+<span class="lineNum">     489 </span>                :            :       }
+<span class="lineNum">     490 </span>                :            :       memcpy(lladdr, &amp;nd6_opt_llao[UIP_ND6_OPT_DATA_OFFSET],
+<span class="lineNum">     491 </span>                :<span class="lineNoCov">          0 :              UIP_LLADDR_LEN);</span>
+<span class="lineNum">     492 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       if(is_solicited) {</span>
+<span class="lineNum">     493 </span>                :<span class="lineNoCov">          0 :         nbr-&gt;state = NBR_REACHABLE;</span>
+<span class="lineNum">     494 </span>                :<span class="lineNoCov">          0 :         nbr-&gt;nscount = 0;</span>
+<span class="lineNum">     495 </span>                :            : 
+<span class="lineNum">     496 </span>                :            :         /* reachable time is stored in ms */
+<span class="lineNum">     497 </span>                :<span class="lineNoCov">          0 :         stimer_set(&amp;(nbr-&gt;reachable), uip_ds6_if.reachable_time / 1000);</span>
+<span class="lineNum">     498 </span>                :            : 
+<span class="lineNum">     499 </span>                :            :       } else {
+<span class="lineNum">     500 </span>                :<span class="lineNoCov">          0 :         nbr-&gt;state = NBR_STALE;</span>
+<span class="lineNum">     501 </span>                :            :       }
+<span class="lineNum">     502 </span>                :<span class="lineNoCov">          0 :       nbr-&gt;isrouter = is_router;</span>
+<span class="lineNum">     503 </span>                :            :     } else {
+<span class="lineNum">     504 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       if(!is_override &amp;&amp; is_llchange) {</span>
+<span class="lineNum">     505 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :         if(nbr-&gt;state == NBR_REACHABLE) {</span>
+<span class="lineNum">     506 </span>                :<span class="lineNoCov">          0 :           nbr-&gt;state = NBR_STALE;</span>
+<span class="lineNum">     507 </span>                :            :         }
+<span class="lineNum">     508 </span>                :            :         goto discard;
+<span class="lineNum">     509 </span>                :            :       } else {
+<span class="lineNum">     510 </span>[<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>][<span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :         if(is_override || (!is_override &amp;&amp; nd6_opt_llao != 0 &amp;&amp; !is_llchange)</span>
+<span class="lineNum">         </span>        [<span class="branchNoExec" title="Branch 4 was not executed"> # </span><span class="branchNoExec" title="Branch 5 was not executed"> # </span>]
+<span class="lineNum">     511 </span>                :            :            || nd6_opt_llao == 0) {
+<span class="lineNum">     512 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :           if(nd6_opt_llao != 0) {</span>
+<span class="lineNum">     513 </span>                :            :             memcpy(lladdr, &amp;nd6_opt_llao[UIP_ND6_OPT_DATA_OFFSET],
+<span class="lineNum">     514 </span>                :<span class="lineNoCov">          0 :                    UIP_LLADDR_LEN);</span>
+<span class="lineNum">     515 </span>                :            :           }
+<span class="lineNum">     516 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :           if(is_solicited) {</span>
+<span class="lineNum">     517 </span>                :<span class="lineNoCov">          0 :             nbr-&gt;state = NBR_REACHABLE;</span>
+<span class="lineNum">     518 </span>                :            :             /* reachable time is stored in ms */
+<span class="lineNum">     519 </span>                :<span class="lineNoCov">          0 :             stimer_set(&amp;(nbr-&gt;reachable), uip_ds6_if.reachable_time / 1000);</span>
+<span class="lineNum">     520 </span>                :            :           } else {
+<span class="lineNum">     521 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :             if(nd6_opt_llao != 0 &amp;&amp; is_llchange) {</span>
+<span class="lineNum">     522 </span>                :<span class="lineNoCov">          0 :               nbr-&gt;state = NBR_STALE;</span>
+<span class="lineNum">     523 </span>                :            :             }
+<span class="lineNum">     524 </span>                :            :           }
+<span class="lineNum">     525 </span>                :            :         }
+<span class="lineNum">     526 </span>                :            :       }
+<span class="lineNum">     527 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       if(nbr-&gt;isrouter &amp;&amp; !is_router) {</span>
+<span class="lineNum">     528 </span>                :<span class="lineNoCov">          0 :         defrt = uip_ds6_defrt_lookup(&amp;UIP_IP_BUF-&gt;srcipaddr);</span>
+<span class="lineNum">     529 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :         if(defrt != NULL) {</span>
+<span class="lineNum">     530 </span>                :<span class="lineNoCov">          0 :           uip_ds6_defrt_rm(defrt);</span>
+<span class="lineNum">     531 </span>                :            :         }
+<span class="lineNum">     532 </span>                :            :       }
+<span class="lineNum">     533 </span>                :<span class="lineNoCov">          0 :       nbr-&gt;isrouter = is_router;</span>
+<span class="lineNum">     534 </span>                :            :     }
+<span class="lineNum">     535 </span>                :            :   }
+<span class="lineNum">     536 </span>                :            : #if UIP_CONF_IPV6_QUEUE_PKT
+<span class="lineNum">     537 </span>                :            :   /* The nbr is now reachable, check if we had buffered a pkt for it */
+<span class="lineNum">     538 </span>                :            :   /*if(nbr-&gt;queue_buf_len != 0) {
+<span class="lineNum">     539 </span>                :            :     uip_len = nbr-&gt;queue_buf_len;
+<span class="lineNum">     540 </span>                :            :     memcpy(UIP_IP_BUF, nbr-&gt;queue_buf, uip_len);
+<span class="lineNum">     541 </span>                :            :     nbr-&gt;queue_buf_len = 0;
+<span class="lineNum">     542 </span>                :            :     return;
+<span class="lineNum">     543 </span>                :            :     }*/
+<span class="lineNum">     544 </span>        [<span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(uip_packetqueue_buflen(&amp;nbr-&gt;packethandle) != 0) {</span>
+<span class="lineNum">     545 </span>                :<span class="lineNoCov">          0 :     uip_len = uip_packetqueue_buflen(&amp;nbr-&gt;packethandle);</span>
+<span class="lineNum">     546 </span>                :<span class="lineNoCov">          0 :     memcpy(UIP_IP_BUF, uip_packetqueue_buf(&amp;nbr-&gt;packethandle), uip_len);</span>
+<span class="lineNum">     547 </span>                :<span class="lineNoCov">          0 :     uip_packetqueue_free(&amp;nbr-&gt;packethandle);</span>
+<span class="lineNum">     548 </span>                :<span class="lineNoCov">          0 :     return;</span>
+<span class="lineNum">     549 </span>                :            :   }
+<span class="lineNum">     550 </span>                :            :   
+<span class="lineNum">     551 </span>                :            : #endif /*UIP_CONF_IPV6_QUEUE_PKT */
+<span class="lineNum">     552 </span>                :            : 
+<span class="lineNum">     553 </span>                :            : discard:
+<span class="lineNum">     554 </span>                :<span class="lineNoCov">          0 :   uip_len = 0;</span>
+<span class="lineNum">     555 </span>                :<span class="lineNoCov">          0 :   return;</span>
+<span class="lineNum">     556 </span>                :            : }
+<span class="lineNum">     557 </span>                :            : 
+<span class="lineNum">     558 </span>                :            : 
+<span class="lineNum">     559 </span>                :            : #if UIP_CONF_ROUTER
+<span class="lineNum">     560 </span>                :            : #if UIP_ND6_SEND_RA
+<span class="lineNum">     561 </span>                :            : /*---------------------------------------------------------------------------*/
+<span class="lineNum">     562 </span>                :            : static void
+<span class="lineNum">     563 </span>                :            : rs_input(void)
+<span class="lineNum">     564 </span>                :            : {
+<span class="lineNum">     565 </span>                :            : 
+<span class="lineNum">     566 </span>                :            :   PRINTF(&quot;Received RS from&quot;);
+<span class="lineNum">     567 </span>                :            :   PRINT6ADDR(&amp;UIP_IP_BUF-&gt;srcipaddr);
+<span class="lineNum">     568 </span>                :            :   PRINTF(&quot;to&quot;);
+<span class="lineNum">     569 </span>                :            :   PRINT6ADDR(&amp;UIP_IP_BUF-&gt;destipaddr);
+<span class="lineNum">     570 </span>                :            :   PRINTF(&quot;\n&quot;);
+<span class="lineNum">     571 </span>                :            :   UIP_STAT(++uip_stat.nd6.recv);
+<span class="lineNum">     572 </span>                :            : 
+<span class="lineNum">     573 </span>                :            : 
+<span class="lineNum">     574 </span>                :            : #if UIP_CONF_IPV6_CHECKS
+<span class="lineNum">     575 </span>                :            :   /*
+<span class="lineNum">     576 </span>                :            :    * Check hop limit / icmp code 
+<span class="lineNum">     577 </span>                :            :    * target address must not be multicast
+<span class="lineNum">     578 </span>                :            :    * if the NA is solicited, dest must not be multicast
+<span class="lineNum">     579 </span>                :            :    */
+<span class="lineNum">     580 </span>                :            :   if((UIP_IP_BUF-&gt;ttl != UIP_ND6_HOP_LIMIT) || (UIP_ICMP_BUF-&gt;icode != 0)) {
+<span class="lineNum">     581 </span>                :            :     PRINTF(&quot;RS received is bad\n&quot;);
+<span class="lineNum">     582 </span>                :            :     goto discard;
+<span class="lineNum">     583 </span>                :            :   }
+<span class="lineNum">     584 </span>                :            : #endif /*UIP_CONF_IPV6_CHECKS */
+<span class="lineNum">     585 </span>                :            : 
+<span class="lineNum">     586 </span>                :            :   /* Only valid option is Source Link-Layer Address option any thing
+<span class="lineNum">     587 </span>                :            :      else is discarded */
+<span class="lineNum">     588 </span>                :            :   nd6_opt_offset = UIP_ND6_RS_LEN;
+<span class="lineNum">     589 </span>                :            :   nd6_opt_llao = NULL;
+<span class="lineNum">     590 </span>                :            : 
+<span class="lineNum">     591 </span>                :            :   while(uip_l3_icmp_hdr_len + nd6_opt_offset &lt; uip_len) {
+<span class="lineNum">     592 </span>                :            : #if UIP_CONF_IPV6_CHECKS
+<span class="lineNum">     593 </span>                :            :     if(UIP_ND6_OPT_HDR_BUF-&gt;len == 0) {
+<span class="lineNum">     594 </span>                :            :       PRINTF(&quot;RS received is bad\n&quot;);
+<span class="lineNum">     595 </span>                :            :       goto discard;
+<span class="lineNum">     596 </span>                :            :     }
+<span class="lineNum">     597 </span>                :            : #endif /*UIP_CONF_IPV6_CHECKS */
+<span class="lineNum">     598 </span>                :            :     switch (UIP_ND6_OPT_HDR_BUF-&gt;type) {
+<span class="lineNum">     599 </span>                :            :     case UIP_ND6_OPT_SLLAO:
+<span class="lineNum">     600 </span>                :            :       nd6_opt_llao = (uint8_t *)UIP_ND6_OPT_HDR_BUF;
+<span class="lineNum">     601 </span>                :            :       break;
+<span class="lineNum">     602 </span>                :            :     default:
+<span class="lineNum">     603 </span>                :            :       PRINTF(&quot;ND option not supported in RS\n&quot;);
+<span class="lineNum">     604 </span>                :            :       break;
+<span class="lineNum">     605 </span>                :            :     }
+<span class="lineNum">     606 </span>                :            :     nd6_opt_offset += (UIP_ND6_OPT_HDR_BUF-&gt;len &lt;&lt; 3);
+<span class="lineNum">     607 </span>                :            :   }
+<span class="lineNum">     608 </span>                :            :   /* Options processing: only SLLAO */
+<span class="lineNum">     609 </span>                :            :   if(nd6_opt_llao != NULL) {
+<span class="lineNum">     610 </span>                :            : #if UIP_CONF_IPV6_CHECKS
+<span class="lineNum">     611 </span>                :            :     if(uip_is_addr_unspecified(&amp;UIP_IP_BUF-&gt;srcipaddr)) {
+<span class="lineNum">     612 </span>                :            :       PRINTF(&quot;RS received is bad\n&quot;);
+<span class="lineNum">     613 </span>                :            :       goto discard;
+<span class="lineNum">     614 </span>                :            :     } else {
+<span class="lineNum">     615 </span>                :            : #endif /*UIP_CONF_IPV6_CHECKS */
+<span class="lineNum">     616 </span>                :            :       if((nbr = uip_ds6_nbr_lookup(&amp;UIP_IP_BUF-&gt;srcipaddr)) == NULL) {
+<span class="lineNum">     617 </span>                :            :         /* we need to add the neighbor */
+<span class="lineNum">     618 </span>                :            :         uip_ds6_nbr_add(&amp;UIP_IP_BUF-&gt;srcipaddr,
+<span class="lineNum">     619 </span>                :            :                         (uip_lladdr_t *)&amp;nd6_opt_llao[UIP_ND6_OPT_DATA_OFFSET], 0, NBR_STALE);
+<span class="lineNum">     620 </span>                :            :       } else {
+<span class="lineNum">     621 </span>                :            :         /* If LL address changed, set neighbor state to stale */
+<span class="lineNum">     622 </span>                :            :         if(memcmp(&amp;nd6_opt_llao[UIP_ND6_OPT_DATA_OFFSET],
+<span class="lineNum">     623 </span>                :            :             uip_ds6_nbr_get_ll(nbr), UIP_LLADDR_LEN) != 0) {
+<span class="lineNum">     624 </span>                :            :           uip_ds6_nbr_t nbr_data = *nbr;
+<span class="lineNum">     625 </span>                :            :           uip_ds6_nbr_rm(nbr);
+<span class="lineNum">     626 </span>                :            :           nbr = uip_ds6_nbr_add(&amp;UIP_IP_BUF-&gt;srcipaddr,
+<span class="lineNum">     627 </span>                :            :                                 (uip_lladdr_t *)&amp;nd6_opt_llao[UIP_ND6_OPT_DATA_OFFSET], 0, NBR_STALE);
+<span class="lineNum">     628 </span>                :            :           nbr-&gt;reachable = nbr_data.reachable;
+<span class="lineNum">     629 </span>                :            :           nbr-&gt;sendns = nbr_data.sendns;
+<span class="lineNum">     630 </span>                :            :           nbr-&gt;nscount = nbr_data.nscount;
+<span class="lineNum">     631 </span>                :            :         }
+<span class="lineNum">     632 </span>                :            :         nbr-&gt;isrouter = 0;
+<span class="lineNum">     633 </span>                :            :       }
+<span class="lineNum">     634 </span>                :            : #if UIP_CONF_IPV6_CHECKS
+<span class="lineNum">     635 </span>                :            :     }
+<span class="lineNum">     636 </span>                :            : #endif /*UIP_CONF_IPV6_CHECKS */
+<span class="lineNum">     637 </span>                :            :   }
+<span class="lineNum">     638 </span>                :            : 
+<span class="lineNum">     639 </span>                :            :   /* Schedule a sollicited RA */
+<span class="lineNum">     640 </span>                :            :   uip_ds6_send_ra_sollicited();
+<span class="lineNum">     641 </span>                :            : 
+<span class="lineNum">     642 </span>                :            : discard:
+<span class="lineNum">     643 </span>                :            :   uip_len = 0;
+<span class="lineNum">     644 </span>                :            :   return;
+<span class="lineNum">     645 </span>                :            : }
+<span class="lineNum">     646 </span>                :            : 
+<span class="lineNum">     647 </span>                :            : /*---------------------------------------------------------------------------*/
+<span class="lineNum">     648 </span>                :            : void
+<span class="lineNum">     649 </span>                :            : uip_nd6_ra_output(uip_ipaddr_t * dest)
+<span class="lineNum">     650 </span>                :            : {
+<span class="lineNum">     651 </span>                :            : 
+<span class="lineNum">     652 </span>                :            :   UIP_IP_BUF-&gt;vtc = 0x60;
+<span class="lineNum">     653 </span>                :            :   UIP_IP_BUF-&gt;tcflow = 0;
+<span class="lineNum">     654 </span>                :            :   UIP_IP_BUF-&gt;flow = 0;
+<span class="lineNum">     655 </span>                :            :   UIP_IP_BUF-&gt;proto = UIP_PROTO_ICMP6;
+<span class="lineNum">     656 </span>                :            :   UIP_IP_BUF-&gt;ttl = UIP_ND6_HOP_LIMIT;
+<span class="lineNum">     657 </span>                :            : 
+<span class="lineNum">     658 </span>                :            :   if(dest == NULL) {
+<span class="lineNum">     659 </span>                :            :     uip_create_linklocal_allnodes_mcast(&amp;UIP_IP_BUF-&gt;destipaddr);
+<span class="lineNum">     660 </span>                :            :   } else {
+<span class="lineNum">     661 </span>                :            :     /* For sollicited RA */
+<span class="lineNum">     662 </span>                :            :     uip_ipaddr_copy(&amp;UIP_IP_BUF-&gt;destipaddr, dest);
+<span class="lineNum">     663 </span>                :            :   }
+<span class="lineNum">     664 </span>                :            :   uip_ds6_select_src(&amp;UIP_IP_BUF-&gt;srcipaddr, &amp;UIP_IP_BUF-&gt;destipaddr);
+<span class="lineNum">     665 </span>                :            : 
+<span class="lineNum">     666 </span>                :            :   UIP_ICMP_BUF-&gt;type = ICMP6_RA;
+<span class="lineNum">     667 </span>                :            :   UIP_ICMP_BUF-&gt;icode = 0;
+<span class="lineNum">     668 </span>                :            : 
+<span class="lineNum">     669 </span>                :            :   UIP_ND6_RA_BUF-&gt;cur_ttl = uip_ds6_if.cur_hop_limit;
+<span class="lineNum">     670 </span>                :            : 
+<span class="lineNum">     671 </span>                :            :   UIP_ND6_RA_BUF-&gt;flags_reserved =
+<span class="lineNum">     672 </span>                :            :     (UIP_ND6_M_FLAG &lt;&lt; 7) | (UIP_ND6_O_FLAG &lt;&lt; 6);
+<span class="lineNum">     673 </span>                :            : 
+<span class="lineNum">     674 </span>                :            :   UIP_ND6_RA_BUF-&gt;router_lifetime = uip_htons(UIP_ND6_ROUTER_LIFETIME);
+<span class="lineNum">     675 </span>                :            :   //UIP_ND6_RA_BUF-&gt;reachable_time = uip_htonl(uip_ds6_if.reachable_time);
+<span class="lineNum">     676 </span>                :            :   //UIP_ND6_RA_BUF-&gt;retrans_timer = uip_htonl(uip_ds6_if.retrans_timer);
+<span class="lineNum">     677 </span>                :            :   UIP_ND6_RA_BUF-&gt;reachable_time = 0;
+<span class="lineNum">     678 </span>                :            :   UIP_ND6_RA_BUF-&gt;retrans_timer = 0;
+<span class="lineNum">     679 </span>                :            : 
+<span class="lineNum">     680 </span>                :            :   uip_len = UIP_IPH_LEN + UIP_ICMPH_LEN + UIP_ND6_RA_LEN;
+<span class="lineNum">     681 </span>                :            :   nd6_opt_offset = UIP_ND6_RA_LEN;
+<span class="lineNum">     682 </span>                :            : 
+<span class="lineNum">     683 </span>                :            : 
+<span class="lineNum">     684 </span>                :            : #if !UIP_CONF_ROUTER
+<span class="lineNum">     685 </span>                :            :   /* Prefix list */
+<span class="lineNum">     686 </span>                :            :   for(prefix = uip_ds6_prefix_list;
+<span class="lineNum">     687 </span>                :            :       prefix &lt; uip_ds6_prefix_list + UIP_DS6_PREFIX_NB; prefix++) {
+<span class="lineNum">     688 </span>                :            :     if((prefix-&gt;isused) &amp;&amp; (prefix-&gt;advertise)) {
+<span class="lineNum">     689 </span>                :            :       UIP_ND6_OPT_PREFIX_BUF-&gt;type = UIP_ND6_OPT_PREFIX_INFO;
+<span class="lineNum">     690 </span>                :            :       UIP_ND6_OPT_PREFIX_BUF-&gt;len = UIP_ND6_OPT_PREFIX_INFO_LEN / 8;
+<span class="lineNum">     691 </span>                :            :       UIP_ND6_OPT_PREFIX_BUF-&gt;preflen = prefix-&gt;length;
+<span class="lineNum">     692 </span>                :            :       UIP_ND6_OPT_PREFIX_BUF-&gt;flagsreserved1 = prefix-&gt;l_a_reserved;
+<span class="lineNum">     693 </span>                :            :       UIP_ND6_OPT_PREFIX_BUF-&gt;validlt = uip_htonl(prefix-&gt;vlifetime);
+<span class="lineNum">     694 </span>                :            :       UIP_ND6_OPT_PREFIX_BUF-&gt;preferredlt = uip_htonl(prefix-&gt;plifetime);
+<span class="lineNum">     695 </span>                :            :       UIP_ND6_OPT_PREFIX_BUF-&gt;reserved2 = 0;
+<span class="lineNum">     696 </span>                :            :       uip_ipaddr_copy(&amp;(UIP_ND6_OPT_PREFIX_BUF-&gt;prefix), &amp;(prefix-&gt;ipaddr));
+<span class="lineNum">     697 </span>                :            :       nd6_opt_offset += UIP_ND6_OPT_PREFIX_INFO_LEN;
+<span class="lineNum">     698 </span>                :            :       uip_len += UIP_ND6_OPT_PREFIX_INFO_LEN;
+<span class="lineNum">     699 </span>                :            :     }
+<span class="lineNum">     700 </span>                :            :   }
+<span class="lineNum">     701 </span>                :            : #endif /* !UIP_CONF_ROUTER */
+<span class="lineNum">     702 </span>                :            : 
+<span class="lineNum">     703 </span>                :            :   /* Source link-layer option */
+<span class="lineNum">     704 </span>                :            :   create_llao((uint8_t *)UIP_ND6_OPT_HDR_BUF, UIP_ND6_OPT_SLLAO);
+<span class="lineNum">     705 </span>                :            : 
+<span class="lineNum">     706 </span>                :            :   uip_len += UIP_ND6_OPT_LLAO_LEN;
+<span class="lineNum">     707 </span>                :            :   nd6_opt_offset += UIP_ND6_OPT_LLAO_LEN;
+<span class="lineNum">     708 </span>                :            : 
+<span class="lineNum">     709 </span>                :            :   /* MTU */
+<span class="lineNum">     710 </span>                :            :   UIP_ND6_OPT_MTU_BUF-&gt;type = UIP_ND6_OPT_MTU;
+<span class="lineNum">     711 </span>                :            :   UIP_ND6_OPT_MTU_BUF-&gt;len = UIP_ND6_OPT_MTU_LEN &gt;&gt; 3;
+<span class="lineNum">     712 </span>                :            :   UIP_ND6_OPT_MTU_BUF-&gt;reserved = 0;
+<span class="lineNum">     713 </span>                :            :   //UIP_ND6_OPT_MTU_BUF-&gt;mtu = uip_htonl(uip_ds6_if.link_mtu);
+<span class="lineNum">     714 </span>                :            :   UIP_ND6_OPT_MTU_BUF-&gt;mtu = uip_htonl(1500);
+<span class="lineNum">     715 </span>                :            : 
+<span class="lineNum">     716 </span>                :            :   uip_len += UIP_ND6_OPT_MTU_LEN;
+<span class="lineNum">     717 </span>                :            :   nd6_opt_offset += UIP_ND6_OPT_MTU_LEN;
+<span class="lineNum">     718 </span>                :            :   UIP_IP_BUF-&gt;len[0] = ((uip_len - UIP_IPH_LEN) &gt;&gt; 8);
+<span class="lineNum">     719 </span>                :            :   UIP_IP_BUF-&gt;len[1] = ((uip_len - UIP_IPH_LEN) &amp; 0xff);
+<span class="lineNum">     720 </span>                :            : 
+<span class="lineNum">     721 </span>                :            :   /*ICMP checksum */
+<span class="lineNum">     722 </span>                :            :   UIP_ICMP_BUF-&gt;icmpchksum = 0;
+<span class="lineNum">     723 </span>                :            :   UIP_ICMP_BUF-&gt;icmpchksum = ~uip_icmp6chksum();
+<span class="lineNum">     724 </span>                :            : 
+<span class="lineNum">     725 </span>                :            :   UIP_STAT(++uip_stat.nd6.sent);
+<span class="lineNum">     726 </span>                :            :   PRINTF(&quot;Sending RA to&quot;);
+<span class="lineNum">     727 </span>                :            :   PRINT6ADDR(&amp;UIP_IP_BUF-&gt;destipaddr);
+<span class="lineNum">     728 </span>                :            :   PRINTF(&quot;from&quot;);
+<span class="lineNum">     729 </span>                :            :   PRINT6ADDR(&amp;UIP_IP_BUF-&gt;srcipaddr);
+<span class="lineNum">     730 </span>                :            :   PRINTF(&quot;\n&quot;);
+<span class="lineNum">     731 </span>                :            :   return;
+<span class="lineNum">     732 </span>                :            : }
+<span class="lineNum">     733 </span>                :            : #endif /* UIP_ND6_SEND_RA */
+<span class="lineNum">     734 </span>                :            : #endif /* UIP_CONF_ROUTER */
+<span class="lineNum">     735 </span>                :            : 
+<span class="lineNum">     736 </span>                :            : #if !UIP_CONF_ROUTER
+<span class="lineNum">     737 </span>                :            : /*---------------------------------------------------------------------------*/
+<span class="lineNum">     738 </span>                :            : void
+<span class="lineNum">     739 </span>                :            : uip_nd6_rs_output(void)
+<span class="lineNum">     740 </span>                :            : {
+<span class="lineNum">     741 </span>                :            :   UIP_IP_BUF-&gt;vtc = 0x60;
+<span class="lineNum">     742 </span>                :            :   UIP_IP_BUF-&gt;tcflow = 0;
+<span class="lineNum">     743 </span>                :            :   UIP_IP_BUF-&gt;flow = 0;
+<span class="lineNum">     744 </span>                :            :   UIP_IP_BUF-&gt;proto = UIP_PROTO_ICMP6;
+<span class="lineNum">     745 </span>                :            :   UIP_IP_BUF-&gt;ttl = UIP_ND6_HOP_LIMIT;
+<span class="lineNum">     746 </span>                :            :   uip_create_linklocal_allrouters_mcast(&amp;UIP_IP_BUF-&gt;destipaddr);
+<span class="lineNum">     747 </span>                :            :   uip_ds6_select_src(&amp;UIP_IP_BUF-&gt;srcipaddr, &amp;UIP_IP_BUF-&gt;destipaddr);
+<span class="lineNum">     748 </span>                :            :   UIP_ICMP_BUF-&gt;type = ICMP6_RS;
+<span class="lineNum">     749 </span>                :            :   UIP_ICMP_BUF-&gt;icode = 0;
+<span class="lineNum">     750 </span>                :            :   UIP_IP_BUF-&gt;len[0] = 0;       /* length will not be more than 255 */
+<span class="lineNum">     751 </span>                :            : 
+<span class="lineNum">     752 </span>                :            :   if(uip_is_addr_unspecified(&amp;UIP_IP_BUF-&gt;srcipaddr)) {
+<span class="lineNum">     753 </span>                :            :     UIP_IP_BUF-&gt;len[1] = UIP_ICMPH_LEN + UIP_ND6_RS_LEN;
+<span class="lineNum">     754 </span>                :            :     uip_len = uip_l3_icmp_hdr_len + UIP_ND6_RS_LEN;
+<span class="lineNum">     755 </span>                :            :   } else {
+<span class="lineNum">     756 </span>                :            :     uip_len = uip_l3_icmp_hdr_len + UIP_ND6_RS_LEN + UIP_ND6_OPT_LLAO_LEN;
+<span class="lineNum">     757 </span>                :            :     UIP_IP_BUF-&gt;len[1] =
+<span class="lineNum">     758 </span>                :            :       UIP_ICMPH_LEN + UIP_ND6_RS_LEN + UIP_ND6_OPT_LLAO_LEN;
+<span class="lineNum">     759 </span>                :            : 
+<span class="lineNum">     760 </span>                :            :     create_llao(&amp;uip_buf[uip_l2_l3_icmp_hdr_len + UIP_ND6_RS_LEN],
+<span class="lineNum">     761 </span>                :            :                 UIP_ND6_OPT_SLLAO);
+<span class="lineNum">     762 </span>                :            :   }
+<span class="lineNum">     763 </span>                :            : 
+<span class="lineNum">     764 </span>                :            :   UIP_ICMP_BUF-&gt;icmpchksum = 0;
+<span class="lineNum">     765 </span>                :            :   UIP_ICMP_BUF-&gt;icmpchksum = ~uip_icmp6chksum();
+<span class="lineNum">     766 </span>                :            : 
+<span class="lineNum">     767 </span>                :            :   UIP_STAT(++uip_stat.nd6.sent);
+<span class="lineNum">     768 </span>                :            :   PRINTF(&quot;Sendin RS to&quot;);
+<span class="lineNum">     769 </span>                :            :   PRINT6ADDR(&amp;UIP_IP_BUF-&gt;destipaddr);
+<span class="lineNum">     770 </span>                :            :   PRINTF(&quot;from&quot;);
+<span class="lineNum">     771 </span>                :            :   PRINT6ADDR(&amp;UIP_IP_BUF-&gt;srcipaddr);
+<span class="lineNum">     772 </span>                :            :   PRINTF(&quot;\n&quot;);
+<span class="lineNum">     773 </span>                :            :   return;
+<span class="lineNum">     774 </span>                :            : }
+<span class="lineNum">     775 </span>                :            : /*---------------------------------------------------------------------------*/
+<span class="lineNum">     776 </span>                :            : /*
+<span class="lineNum">     777 </span>                :            :  * Process a Router Advertisement
+<span class="lineNum">     778 </span>                :            :  *
+<span class="lineNum">     779 </span>                :            :  * - Possible actions when receiving a RA: add router to router list,
+<span class="lineNum">     780 </span>                :            :  *   recalculate reachable time, update link hop limit, update retrans timer.
+<span class="lineNum">     781 </span>                :            :  * - If MTU option: update MTU.
+<span class="lineNum">     782 </span>                :            :  * - If SLLAO option: update entry in neighbor cache
+<span class="lineNum">     783 </span>                :            :  * - If prefix option: start autoconf, add prefix to prefix list
+<span class="lineNum">     784 </span>                :            :  */
+<span class="lineNum">     785 </span>                :            : void
+<span class="lineNum">     786 </span>                :            : ra_input(void)
+<span class="lineNum">     787 </span>                :            : {
+<span class="lineNum">     788 </span>                :            :   PRINTF(&quot;Received RA from&quot;);
+<span class="lineNum">     789 </span>                :            :   PRINT6ADDR(&amp;UIP_IP_BUF-&gt;srcipaddr);
+<span class="lineNum">     790 </span>                :            :   PRINTF(&quot;to&quot;);
+<span class="lineNum">     791 </span>                :            :   PRINT6ADDR(&amp;UIP_IP_BUF-&gt;destipaddr);
+<span class="lineNum">     792 </span>                :            :   PRINTF(&quot;\n&quot;);
+<span class="lineNum">     793 </span>                :            :   UIP_STAT(++uip_stat.nd6.recv);
+<span class="lineNum">     794 </span>                :            : 
+<span class="lineNum">     795 </span>                :            : #if UIP_CONF_IPV6_CHECKS
+<span class="lineNum">     796 </span>                :            :   if((UIP_IP_BUF-&gt;ttl != UIP_ND6_HOP_LIMIT) ||
+<span class="lineNum">     797 </span>                :            :      (!uip_is_addr_link_local(&amp;UIP_IP_BUF-&gt;srcipaddr)) ||
+<span class="lineNum">     798 </span>                :            :      (UIP_ICMP_BUF-&gt;icode != 0)) {
+<span class="lineNum">     799 </span>                :            :     PRINTF(&quot;RA received is bad&quot;);
+<span class="lineNum">     800 </span>                :            :     goto discard;
+<span class="lineNum">     801 </span>                :            :   }
+<span class="lineNum">     802 </span>                :            : #endif /*UIP_CONF_IPV6_CHECKS */
+<span class="lineNum">     803 </span>                :            : 
+<span class="lineNum">     804 </span>                :            :   if(UIP_ND6_RA_BUF-&gt;cur_ttl != 0) {
+<span class="lineNum">     805 </span>                :            :     uip_ds6_if.cur_hop_limit = UIP_ND6_RA_BUF-&gt;cur_ttl;
+<span class="lineNum">     806 </span>                :            :     PRINTF(&quot;uip_ds6_if.cur_hop_limit %u\n&quot;, uip_ds6_if.cur_hop_limit);
+<span class="lineNum">     807 </span>                :            :   }
+<span class="lineNum">     808 </span>                :            : 
+<span class="lineNum">     809 </span>                :            :   if(UIP_ND6_RA_BUF-&gt;reachable_time != 0) {
+<span class="lineNum">     810 </span>                :            :     if(uip_ds6_if.base_reachable_time !=
+<span class="lineNum">     811 </span>                :            :        uip_ntohl(UIP_ND6_RA_BUF-&gt;reachable_time)) {
+<span class="lineNum">     812 </span>                :            :       uip_ds6_if.base_reachable_time = uip_ntohl(UIP_ND6_RA_BUF-&gt;reachable_time);
+<span class="lineNum">     813 </span>                :            :       uip_ds6_if.reachable_time = uip_ds6_compute_reachable_time();
+<span class="lineNum">     814 </span>                :            :     }
+<span class="lineNum">     815 </span>                :            :   }
+<span class="lineNum">     816 </span>                :            :   if(UIP_ND6_RA_BUF-&gt;retrans_timer != 0) {
+<span class="lineNum">     817 </span>                :            :     uip_ds6_if.retrans_timer = uip_ntohl(UIP_ND6_RA_BUF-&gt;retrans_timer);
+<span class="lineNum">     818 </span>                :            :   }
+<span class="lineNum">     819 </span>                :            : 
+<span class="lineNum">     820 </span>                :            :   /* Options processing */
+<span class="lineNum">     821 </span>                :            :   nd6_opt_offset = UIP_ND6_RA_LEN;
+<span class="lineNum">     822 </span>                :            :   while(uip_l3_icmp_hdr_len + nd6_opt_offset &lt; uip_len) {
+<span class="lineNum">     823 </span>                :            :     if(UIP_ND6_OPT_HDR_BUF-&gt;len == 0) {
+<span class="lineNum">     824 </span>                :            :       PRINTF(&quot;RA received is bad&quot;);
+<span class="lineNum">     825 </span>                :            :       goto discard;
+<span class="lineNum">     826 </span>                :            :     }
+<span class="lineNum">     827 </span>                :            :     switch (UIP_ND6_OPT_HDR_BUF-&gt;type) {
+<span class="lineNum">     828 </span>                :            :     case UIP_ND6_OPT_SLLAO:
+<span class="lineNum">     829 </span>                :            :       PRINTF(&quot;Processing SLLAO option in RA\n&quot;);
+<span class="lineNum">     830 </span>                :            :       nd6_opt_llao = (uint8_t *) UIP_ND6_OPT_HDR_BUF;
+<span class="lineNum">     831 </span>                :            :       nbr = uip_ds6_nbr_lookup(&amp;UIP_IP_BUF-&gt;srcipaddr);
+<span class="lineNum">     832 </span>                :            :       if(nbr == NULL) {
+<span class="lineNum">     833 </span>                :            :         nbr = uip_ds6_nbr_add(&amp;UIP_IP_BUF-&gt;srcipaddr,
+<span class="lineNum">     834 </span>                :            :                               (uip_lladdr_t *)&amp;nd6_opt_llao[UIP_ND6_OPT_DATA_OFFSET],
+<span class="lineNum">     835 </span>                :            :                               1, NBR_STALE);
+<span class="lineNum">     836 </span>                :            :       } else {
+<span class="lineNum">     837 </span>                :            :         uip_lladdr_t *lladdr = uip_ds6_nbr_get_ll(nbr);
+<span class="lineNum">     838 </span>                :            :         if(nbr-&gt;state == NBR_INCOMPLETE) {
+<span class="lineNum">     839 </span>                :            :           nbr-&gt;state = NBR_STALE;
+<span class="lineNum">     840 </span>                :            :         }
+<span class="lineNum">     841 </span>                :            :         if(memcmp(&amp;nd6_opt_llao[UIP_ND6_OPT_DATA_OFFSET],
+<span class="lineNum">     842 </span>                :            :                   lladdr, UIP_LLADDR_LEN) != 0) {
+<span class="lineNum">     843 </span>                :            :           memcpy(lladdr, &amp;nd6_opt_llao[UIP_ND6_OPT_DATA_OFFSET],
+<span class="lineNum">     844 </span>                :            :                  UIP_LLADDR_LEN);
+<span class="lineNum">     845 </span>                :            :           nbr-&gt;state = NBR_STALE;
+<span class="lineNum">     846 </span>                :            :         }
+<span class="lineNum">     847 </span>                :            :         nbr-&gt;isrouter = 1;
+<span class="lineNum">     848 </span>                :            :       }
+<span class="lineNum">     849 </span>                :            :       break;
+<span class="lineNum">     850 </span>                :            :     case UIP_ND6_OPT_MTU:
+<span class="lineNum">     851 </span>                :            :       PRINTF(&quot;Processing MTU option in RA\n&quot;);
+<span class="lineNum">     852 </span>                :            :       uip_ds6_if.link_mtu =
+<span class="lineNum">     853 </span>                :            :         uip_ntohl(((uip_nd6_opt_mtu *) UIP_ND6_OPT_HDR_BUF)-&gt;mtu);
+<span class="lineNum">     854 </span>                :            :       break;
+<span class="lineNum">     855 </span>                :            :     case UIP_ND6_OPT_PREFIX_INFO:
+<span class="lineNum">     856 </span>                :            :       PRINTF(&quot;Processing PREFIX option in RA\n&quot;);
+<span class="lineNum">     857 </span>                :            :       nd6_opt_prefix_info = (uip_nd6_opt_prefix_info *) UIP_ND6_OPT_HDR_BUF;
+<span class="lineNum">     858 </span>                :            :       if((uip_ntohl(nd6_opt_prefix_info-&gt;validlt) &gt;=
+<span class="lineNum">     859 </span>                :            :           uip_ntohl(nd6_opt_prefix_info-&gt;preferredlt))
+<span class="lineNum">     860 </span>                :            :          &amp;&amp; (!uip_is_addr_link_local(&amp;nd6_opt_prefix_info-&gt;prefix))) {
+<span class="lineNum">     861 </span>                :            :         /* on-link flag related processing */
+<span class="lineNum">     862 </span>                :            :         if(nd6_opt_prefix_info-&gt;flagsreserved1 &amp; UIP_ND6_RA_FLAG_ONLINK) {
+<span class="lineNum">     863 </span>                :            :           prefix =
+<span class="lineNum">     864 </span>                :            :             uip_ds6_prefix_lookup(&amp;nd6_opt_prefix_info-&gt;prefix,
+<span class="lineNum">     865 </span>                :            :                                   nd6_opt_prefix_info-&gt;preflen);
+<span class="lineNum">     866 </span>                :            :           if(prefix == NULL) {
+<span class="lineNum">     867 </span>                :            :             if(nd6_opt_prefix_info-&gt;validlt != 0) {
+<span class="lineNum">     868 </span>                :            :               if(nd6_opt_prefix_info-&gt;validlt != UIP_ND6_INFINITE_LIFETIME) {
+<span class="lineNum">     869 </span>                :            :                 prefix = uip_ds6_prefix_add(&amp;nd6_opt_prefix_info-&gt;prefix,
+<span class="lineNum">     870 </span>                :            :                                             nd6_opt_prefix_info-&gt;preflen,
+<span class="lineNum">     871 </span>                :            :                                             uip_ntohl(nd6_opt_prefix_info-&gt;
+<span class="lineNum">     872 </span>                :            :                                                   validlt));
+<span class="lineNum">     873 </span>                :            :               } else {
+<span class="lineNum">     874 </span>                :            :                 prefix = uip_ds6_prefix_add(&amp;nd6_opt_prefix_info-&gt;prefix,
+<span class="lineNum">     875 </span>                :            :                                             nd6_opt_prefix_info-&gt;preflen, 0);
+<span class="lineNum">     876 </span>                :            :               }
+<span class="lineNum">     877 </span>                :            :             }
+<span class="lineNum">     878 </span>                :            :           } else {
+<span class="lineNum">     879 </span>                :            :             switch (nd6_opt_prefix_info-&gt;validlt) {
+<span class="lineNum">     880 </span>                :            :             case 0:
+<span class="lineNum">     881 </span>                :            :               uip_ds6_prefix_rm(prefix);
+<span class="lineNum">     882 </span>                :            :               break;
+<span class="lineNum">     883 </span>                :            :             case UIP_ND6_INFINITE_LIFETIME:
+<span class="lineNum">     884 </span>                :            :               prefix-&gt;isinfinite = 1;
+<span class="lineNum">     885 </span>                :            :               break;
+<span class="lineNum">     886 </span>                :            :             default:
+<span class="lineNum">     887 </span>                :            :               PRINTF(&quot;Updating timer of prefix&quot;);
+<span class="lineNum">     888 </span>                :            :               PRINT6ADDR(&amp;prefix-&gt;ipaddr);
+<span class="lineNum">     889 </span>                :            :               PRINTF(&quot;new value %lu\n&quot;, uip_ntohl(nd6_opt_prefix_info-&gt;validlt));
+<span class="lineNum">     890 </span>                :            :               stimer_set(&amp;prefix-&gt;vlifetime,
+<span class="lineNum">     891 </span>                :            :                          uip_ntohl(nd6_opt_prefix_info-&gt;validlt));
+<span class="lineNum">     892 </span>                :            :               prefix-&gt;isinfinite = 0;
+<span class="lineNum">     893 </span>                :            :               break;
+<span class="lineNum">     894 </span>                :            :             }
+<span class="lineNum">     895 </span>                :            :           }
+<span class="lineNum">     896 </span>                :            :         }
+<span class="lineNum">     897 </span>                :            :         /* End of on-link flag related processing */
+<span class="lineNum">     898 </span>                :            :         /* autonomous flag related processing */
+<span class="lineNum">     899 </span>                :            :         if((nd6_opt_prefix_info-&gt;flagsreserved1 &amp; UIP_ND6_RA_FLAG_AUTONOMOUS)
+<span class="lineNum">     900 </span>                :            :            &amp;&amp; (nd6_opt_prefix_info-&gt;validlt != 0)
+<span class="lineNum">     901 </span>                :            :            &amp;&amp; (nd6_opt_prefix_info-&gt;preflen == UIP_DEFAULT_PREFIX_LEN)) {
+<span class="lineNum">     902 </span>                :            :           
+<span class="lineNum">     903 </span>                :            :           uip_ipaddr_copy(&amp;ipaddr, &amp;nd6_opt_prefix_info-&gt;prefix);
+<span class="lineNum">     904 </span>                :            :           uip_ds6_set_addr_iid(&amp;ipaddr, &amp;uip_lladdr);
+<span class="lineNum">     905 </span>                :            :           addr = uip_ds6_addr_lookup(&amp;ipaddr);
+<span class="lineNum">     906 </span>                :            :           if((addr != NULL) &amp;&amp; (addr-&gt;type == ADDR_AUTOCONF)) {
+<span class="lineNum">     907 </span>                :            :             if(nd6_opt_prefix_info-&gt;validlt != UIP_ND6_INFINITE_LIFETIME) {
+<span class="lineNum">     908 </span>                :            :               /* The processing below is defined in RFC4862 section 5.5.3 e */
+<span class="lineNum">     909 </span>                :            :               if((uip_ntohl(nd6_opt_prefix_info-&gt;validlt) &gt; 2 * 60 * 60) ||
+<span class="lineNum">     910 </span>                :            :                  (uip_ntohl(nd6_opt_prefix_info-&gt;validlt) &gt;
+<span class="lineNum">     911 </span>                :            :                   stimer_remaining(&amp;addr-&gt;vlifetime))) {
+<span class="lineNum">     912 </span>                :            :                 PRINTF(&quot;Updating timer of address&quot;);
+<span class="lineNum">     913 </span>                :            :                 PRINT6ADDR(&amp;addr-&gt;ipaddr);
+<span class="lineNum">     914 </span>                :            :                 PRINTF(&quot;new value %lu\n&quot;,
+<span class="lineNum">     915 </span>                :            :                        uip_ntohl(nd6_opt_prefix_info-&gt;validlt));
+<span class="lineNum">     916 </span>                :            :                 stimer_set(&amp;addr-&gt;vlifetime,
+<span class="lineNum">     917 </span>                :            :                            uip_ntohl(nd6_opt_prefix_info-&gt;validlt));
+<span class="lineNum">     918 </span>                :            :               } else {
+<span class="lineNum">     919 </span>                :            :                 stimer_set(&amp;addr-&gt;vlifetime, 2 * 60 * 60);
+<span class="lineNum">     920 </span>                :            :                 PRINTF(&quot;Updating timer of address &quot;);
+<span class="lineNum">     921 </span>                :            :                 PRINT6ADDR(&amp;addr-&gt;ipaddr);
+<span class="lineNum">     922 </span>                :            :                 PRINTF(&quot;new value %lu\n&quot;, (unsigned long)(2 * 60 * 60));
+<span class="lineNum">     923 </span>                :            :               }
+<span class="lineNum">     924 </span>                :            :               addr-&gt;isinfinite = 0;
+<span class="lineNum">     925 </span>                :            :             } else {
+<span class="lineNum">     926 </span>                :            :               addr-&gt;isinfinite = 1;
+<span class="lineNum">     927 </span>                :            :             }
+<span class="lineNum">     928 </span>                :            :           } else {
+<span class="lineNum">     929 </span>                :            :             if(uip_ntohl(nd6_opt_prefix_info-&gt;validlt) ==
+<span class="lineNum">     930 </span>                :            :                UIP_ND6_INFINITE_LIFETIME) {
+<span class="lineNum">     931 </span>                :            :               uip_ds6_addr_add(&amp;ipaddr, 0, ADDR_AUTOCONF);
+<span class="lineNum">     932 </span>                :            :             } else {
+<span class="lineNum">     933 </span>                :            :               uip_ds6_addr_add(&amp;ipaddr, uip_ntohl(nd6_opt_prefix_info-&gt;validlt),
+<span class="lineNum">     934 </span>                :            :                                ADDR_AUTOCONF);
+<span class="lineNum">     935 </span>                :            :             }
+<span class="lineNum">     936 </span>                :            :           }
+<span class="lineNum">     937 </span>                :            :         }
+<span class="lineNum">     938 </span>                :            :         /* End of autonomous flag related processing */
+<span class="lineNum">     939 </span>                :            :       }
+<span class="lineNum">     940 </span>                :            :       break;
+<span class="lineNum">     941 </span>                :            :     default:
+<span class="lineNum">     942 </span>                :            :       PRINTF(&quot;ND option not supported in RA&quot;);
+<span class="lineNum">     943 </span>                :            :       break;
+<span class="lineNum">     944 </span>                :            :     }
+<span class="lineNum">     945 </span>                :            :     nd6_opt_offset += (UIP_ND6_OPT_HDR_BUF-&gt;len &lt;&lt; 3);
+<span class="lineNum">     946 </span>                :            :   }
+<span class="lineNum">     947 </span>                :            : 
+<span class="lineNum">     948 </span>                :            :   defrt = uip_ds6_defrt_lookup(&amp;UIP_IP_BUF-&gt;srcipaddr);
+<span class="lineNum">     949 </span>                :            :   if(UIP_ND6_RA_BUF-&gt;router_lifetime != 0) {
+<span class="lineNum">     950 </span>                :            :     if(nbr != NULL) {
+<span class="lineNum">     951 </span>                :            :       nbr-&gt;isrouter = 1;
+<span class="lineNum">     952 </span>                :            :     }
+<span class="lineNum">     953 </span>                :            :     if(defrt == NULL) {
+<span class="lineNum">     954 </span>                :            :       uip_ds6_defrt_add(&amp;UIP_IP_BUF-&gt;srcipaddr,
+<span class="lineNum">     955 </span>                :            :                         (unsigned
+<span class="lineNum">     956 </span>                :            :                          long)(uip_ntohs(UIP_ND6_RA_BUF-&gt;router_lifetime)));
+<span class="lineNum">     957 </span>                :            :     } else {
+<span class="lineNum">     958 </span>                :            :       stimer_set(&amp;(defrt-&gt;lifetime),
+<span class="lineNum">     959 </span>                :            :                  (unsigned long)(uip_ntohs(UIP_ND6_RA_BUF-&gt;router_lifetime)));
+<span class="lineNum">     960 </span>                :            :     }
+<span class="lineNum">     961 </span>                :            :   } else {
+<span class="lineNum">     962 </span>                :            :     if(defrt != NULL) {
+<span class="lineNum">     963 </span>                :            :       uip_ds6_defrt_rm(defrt);
+<span class="lineNum">     964 </span>                :            :     }
+<span class="lineNum">     965 </span>                :            :   }
+<span class="lineNum">     966 </span>                :            : 
+<span class="lineNum">     967 </span>                :            : #if UIP_CONF_IPV6_QUEUE_PKT
+<span class="lineNum">     968 </span>                :            :   /* If the nbr just became reachable (e.g. it was in NBR_INCOMPLETE state
+<span class="lineNum">     969 </span>                :            :    * and we got a SLLAO), check if we had buffered a pkt for it */
+<span class="lineNum">     970 </span>                :            :   /*  if((nbr != NULL) &amp;&amp; (nbr-&gt;queue_buf_len != 0)) {
+<span class="lineNum">     971 </span>                :            :     uip_len = nbr-&gt;queue_buf_len;
+<span class="lineNum">     972 </span>                :            :     memcpy(UIP_IP_BUF, nbr-&gt;queue_buf, uip_len);
+<span class="lineNum">     973 </span>                :            :     nbr-&gt;queue_buf_len = 0;
+<span class="lineNum">     974 </span>                :            :     return;
+<span class="lineNum">     975 </span>                :            :     }*/
+<span class="lineNum">     976 </span>                :            :   if(nbr != NULL &amp;&amp; uip_packetqueue_buflen(&amp;nbr-&gt;packethandle) != 0) {
+<span class="lineNum">     977 </span>                :            :     uip_len = uip_packetqueue_buflen(&amp;nbr-&gt;packethandle);
+<span class="lineNum">     978 </span>                :            :     memcpy(UIP_IP_BUF, uip_packetqueue_buf(&amp;nbr-&gt;packethandle), uip_len);
+<span class="lineNum">     979 </span>                :            :     uip_packetqueue_free(&amp;nbr-&gt;packethandle);
+<span class="lineNum">     980 </span>                :            :     return;
+<span class="lineNum">     981 </span>                :            :   }
+<span class="lineNum">     982 </span>                :            : 
+<span class="lineNum">     983 </span>                :            : #endif /*UIP_CONF_IPV6_QUEUE_PKT */
+<span class="lineNum">     984 </span>                :            : 
+<span class="lineNum">     985 </span>                :            : discard:
+<span class="lineNum">     986 </span>                :            :   uip_len = 0;
+<span class="lineNum">     987 </span>                :            :   return;
+<span class="lineNum">     988 </span>                :            : }
+<span class="lineNum">     989 </span>                :            : #endif /* !UIP_CONF_ROUTER */
+<span class="lineNum">     990 </span>                :            : /*------------------------------------------------------------------*/
+<span class="lineNum">     991 </span>                :            : /* ICMPv6 input handlers */
+<span class="lineNum">     992 </span>                :            : #if UIP_ND6_SEND_NA
+<span class="lineNum">     993 </span>                :            : UIP_ICMP6_HANDLER(ns_input_handler, ICMP6_NS, UIP_ICMP6_HANDLER_CODE_ANY,
+<span class="lineNum">     994 </span>                :            :                   ns_input);
+<span class="lineNum">     995 </span>                :            : UIP_ICMP6_HANDLER(na_input_handler, ICMP6_NA, UIP_ICMP6_HANDLER_CODE_ANY,
+<span class="lineNum">     996 </span>                :            :                   na_input);
+<span class="lineNum">     997 </span>                :            : #endif
+<span class="lineNum">     998 </span>                :            : 
+<span class="lineNum">     999 </span>                :            : #if UIP_CONF_ROUTER &amp;&amp; UIP_ND6_SEND_RA
+<span class="lineNum">    1000 </span>                :            : UIP_ICMP6_HANDLER(rs_input_handler, ICMP6_RS, UIP_ICMP6_HANDLER_CODE_ANY,
+<span class="lineNum">    1001 </span>                :            :                   rs_input);
+<span class="lineNum">    1002 </span>                :            : #endif
+<span class="lineNum">    1003 </span>                :            : 
+<span class="lineNum">    1004 </span>                :            : #if !UIP_CONF_ROUTER
+<span class="lineNum">    1005 </span>                :            : UIP_ICMP6_HANDLER(ra_input_handler, ICMP6_RA, UIP_ICMP6_HANDLER_CODE_ANY,
+<span class="lineNum">    1006 </span>                :            :                   ra_input);
+<span class="lineNum">    1007 </span>                :            : #endif
+<a name="1008"><span class="lineNum">    1008 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">    1009 </span>                :            : void
+<span class="lineNum">    1010 </span>                :<span class="lineNoCov">          0 : uip_nd6_init()</span>
+<span class="lineNum">    1011 </span>                :            : {
+<span class="lineNum">    1012 </span>                :            : 
+<span class="lineNum">    1013 </span>                :            : #if UIP_ND6_SEND_NA
+<span class="lineNum">    1014 </span>                :            :   /* Only handle NSs if we are prepared to send out NAs */
+<span class="lineNum">    1015 </span>                :<span class="lineNoCov">          0 :   uip_icmp6_register_input_handler(&amp;ns_input_handler);</span>
+<span class="lineNum">    1016 </span>                :            : 
+<span class="lineNum">    1017 </span>                :            :   /*
+<span class="lineNum">    1018 </span>                :            :    * Only handle NAs if we are prepared to send out NAs.
+<span class="lineNum">    1019 </span>                :            :    * This is perhaps logically incorrect, but this condition was present in
+<span class="lineNum">    1020 </span>                :            :    * uip_process and we keep it until proven wrong
+<span class="lineNum">    1021 </span>                :            :    */
+<span class="lineNum">    1022 </span>                :<span class="lineNoCov">          0 :   uip_icmp6_register_input_handler(&amp;na_input_handler);</span>
+<span class="lineNum">    1023 </span>                :            : #endif
+<span class="lineNum">    1024 </span>                :            : 
+<span class="lineNum">    1025 </span>                :            : 
+<span class="lineNum">    1026 </span>                :            : #if UIP_CONF_ROUTER &amp;&amp; UIP_ND6_SEND_RA
+<span class="lineNum">    1027 </span>                :            :   /* Only accept RS if we are a router and happy to send out RAs */
+<span class="lineNum">    1028 </span>                :            :   uip_icmp6_register_input_handler(&amp;rs_input_handler);
+<span class="lineNum">    1029 </span>                :            : #endif
+<span class="lineNum">    1030 </span>                :            : 
+<span class="lineNum">    1031 </span>                :            : #if !UIP_CONF_ROUTER
+<span class="lineNum">    1032 </span>                :            :   /* Only process RAs if we are not a router */
+<span class="lineNum">    1033 </span>                :            :   uip_icmp6_register_input_handler(&amp;ra_input_handler);
+<span class="lineNum">    1034 </span>                :            : #endif
+<span class="lineNum">    1035 </span>                :<span class="lineNoCov">          0 : }</span>
+<span class="lineNum">    1036 </span>                :            : /*---------------------------------------------------------------------------*/
+<span class="lineNum">    1037 </span>                :            :  /** @} */
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.9</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

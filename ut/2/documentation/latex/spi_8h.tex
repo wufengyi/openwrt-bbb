@@ -1,0 +1,101 @@
+\hypertarget{spi_8h}{}\section{/home/user/contiki\+U\+T/contiki/core/dev/spi.h File Reference}
+\label{spi_8h}\index{/home/user/contiki\+U\+T/contiki/core/dev/spi.\+h@{/home/user/contiki\+U\+T/contiki/core/dev/spi.\+h}}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{spi_8h_abfd73add9df6d73ec58f26ef756fb451}{}\#define {\bfseries S\+P\+I\+\_\+\+W\+A\+I\+T\+F\+O\+R\+Tx\+\_\+\+B\+E\+F\+O\+R\+E}()\label{spi_8h_abfd73add9df6d73ec58f26ef756fb451}
+
+\item 
+\hypertarget{spi_8h_a46e8734138ecf5c5d18e3ab5631256cf}{}\#define {\bfseries S\+P\+I\+\_\+\+W\+A\+I\+T\+F\+O\+R\+Tx\+\_\+\+A\+F\+T\+E\+R}()~S\+P\+I\+\_\+\+W\+A\+I\+T\+F\+O\+R\+E\+O\+Tx()\label{spi_8h_a46e8734138ecf5c5d18e3ab5631256cf}
+
+\item 
+\hypertarget{spi_8h_ab8d94ba13b37962fe9831186737bb9af}{}\#define {\bfseries S\+P\+I\+\_\+\+W\+A\+I\+T\+F\+O\+R\+Tx\+\_\+\+E\+N\+D\+E\+D}()\label{spi_8h_ab8d94ba13b37962fe9831186737bb9af}
+
+\item 
+\#define {\bfseries S\+P\+I\+\_\+\+W\+R\+I\+T\+E}(data)
+\item 
+\#define {\bfseries S\+P\+I\+\_\+\+W\+R\+I\+T\+E\+\_\+\+F\+A\+S\+T}(data)
+\item 
+\#define {\bfseries S\+P\+I\+\_\+\+R\+E\+A\+D}(data)
+\item 
+\#define {\bfseries S\+P\+I\+\_\+\+F\+L\+U\+S\+H}()
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{spi_8h_ae909944aa85ae98323073c628be541aa}{}void {\bfseries spi\+\_\+init} (void)\label{spi_8h_ae909944aa85ae98323073c628be541aa}
+
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{spi_8h_a4a954e78d95627c38d510f8fea942f76}{}unsigned char {\bfseries spi\+\_\+busy}\label{spi_8h_a4a954e78d95627c38d510f8fea942f76}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Basic S\+P\+I macros \begin{DoxyAuthor}{Author}
+Joakim Eriksson \href{mailto:joakime@sics.se}{\tt joakime@sics.\+se} Niclas Finne \href{mailto:nfi@sics.se}{\tt nfi@sics.\+se} 
+\end{DoxyAuthor}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{spi_8h_abb260e240465da655334d3e0f9530824}{}\index{spi.\+h@{spi.\+h}!S\+P\+I\+\_\+\+F\+L\+U\+S\+H@{S\+P\+I\+\_\+\+F\+L\+U\+S\+H}}
+\index{S\+P\+I\+\_\+\+F\+L\+U\+S\+H@{S\+P\+I\+\_\+\+F\+L\+U\+S\+H}!spi.\+h@{spi.\+h}}
+\subsubsection[{S\+P\+I\+\_\+\+F\+L\+U\+S\+H}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+P\+I\+\_\+\+F\+L\+U\+S\+H(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{spi_8h_abb260e240465da655334d3e0f9530824}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{do} \{              \(\backslash\)
+    SPI\_RXBUF;      \(\backslash\)
+  \} \textcolor{keywordflow}{while}(0);
+\end{DoxyCode}
+\hypertarget{spi_8h_a755211af959737abdd182fcee9e360ed}{}\index{spi.\+h@{spi.\+h}!S\+P\+I\+\_\+\+R\+E\+A\+D@{S\+P\+I\+\_\+\+R\+E\+A\+D}}
+\index{S\+P\+I\+\_\+\+R\+E\+A\+D@{S\+P\+I\+\_\+\+R\+E\+A\+D}!spi.\+h@{spi.\+h}}
+\subsubsection[{S\+P\+I\+\_\+\+R\+E\+A\+D}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+P\+I\+\_\+\+R\+E\+A\+D(
+\begin{DoxyParamCaption}
+\item[{}]{data}
+\end{DoxyParamCaption}
+)}\label{spi_8h_a755211af959737abdd182fcee9e360ed}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{do} \{                   \(\backslash\)
+    SPI\_TXBUF = 0;       \(\backslash\)
+    SPI\_WAITFOREORx();   \(\backslash\)
+    data = SPI\_RXBUF;    \(\backslash\)
+  \} \textcolor{keywordflow}{while}(0)
+\end{DoxyCode}
+\hypertarget{spi_8h_a72d4fc0fa5961aa53434e1c55d2c8a3c}{}\index{spi.\+h@{spi.\+h}!S\+P\+I\+\_\+\+W\+R\+I\+T\+E@{S\+P\+I\+\_\+\+W\+R\+I\+T\+E}}
+\index{S\+P\+I\+\_\+\+W\+R\+I\+T\+E@{S\+P\+I\+\_\+\+W\+R\+I\+T\+E}!spi.\+h@{spi.\+h}}
+\subsubsection[{S\+P\+I\+\_\+\+W\+R\+I\+T\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+P\+I\+\_\+\+W\+R\+I\+T\+E(
+\begin{DoxyParamCaption}
+\item[{}]{data}
+\end{DoxyParamCaption}
+)}\label{spi_8h_a72d4fc0fa5961aa53434e1c55d2c8a3c}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{do} \{                                          \(\backslash\)
+    SPI\_WAITFORTx\_BEFORE();                     \(\backslash\)
+    SPI\_TXBUF = data;                           \(\backslash\)
+    SPI\_WAITFOREOTx();                          \(\backslash\)
+  \} \textcolor{keywordflow}{while}(0)
+\end{DoxyCode}
+\hypertarget{spi_8h_a1ed6335e5a399c5ba017f6222e385594}{}\index{spi.\+h@{spi.\+h}!S\+P\+I\+\_\+\+W\+R\+I\+T\+E\+\_\+\+F\+A\+S\+T@{S\+P\+I\+\_\+\+W\+R\+I\+T\+E\+\_\+\+F\+A\+S\+T}}
+\index{S\+P\+I\+\_\+\+W\+R\+I\+T\+E\+\_\+\+F\+A\+S\+T@{S\+P\+I\+\_\+\+W\+R\+I\+T\+E\+\_\+\+F\+A\+S\+T}!spi.\+h@{spi.\+h}}
+\subsubsection[{S\+P\+I\+\_\+\+W\+R\+I\+T\+E\+\_\+\+F\+A\+S\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+P\+I\+\_\+\+W\+R\+I\+T\+E\+\_\+\+F\+A\+S\+T(
+\begin{DoxyParamCaption}
+\item[{}]{data}
+\end{DoxyParamCaption}
+)}\label{spi_8h_a1ed6335e5a399c5ba017f6222e385594}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{do} \{                                          \(\backslash\)
+    SPI\_WAITFORTx\_BEFORE();                     \(\backslash\)
+    SPI\_TXBUF = data;                           \(\backslash\)
+    SPI\_WAITFORTx\_AFTER();                      \(\backslash\)
+  \} \textcolor{keywordflow}{while}(0)
+\end{DoxyCode}

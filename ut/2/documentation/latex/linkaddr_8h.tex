@@ -1,0 +1,38 @@
+\hypertarget{linkaddr_8h}{}\section{/home/user/contiki\+U\+T/contiki/core/net/linkaddr.h File Reference}
+\label{linkaddr_8h}\index{/home/user/contiki\+U\+T/contiki/core/net/linkaddr.\+h@{/home/user/contiki\+U\+T/contiki/core/net/linkaddr.\+h}}
+{\ttfamily \#include \char`\"{}contiki-\/conf.\+h\char`\"{}}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+union \hyperlink{unionlinkaddr__t}{linkaddr\+\_\+t}
+\item 
+union \hyperlink{unionlinkaddr__extended__t}{linkaddr\+\_\+extended\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__linkaddr_ga7d99de7749951ae439497bf8c33d73ec}{}\#define {\bfseries L\+I\+N\+K\+A\+D\+D\+R\+\_\+\+S\+I\+Z\+E}~2\label{group__linkaddr_ga7d99de7749951ae439497bf8c33d73ec}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__linkaddr_ga61b6a33229787905999787d55047aa80}{linkaddr\+\_\+copy} (\hyperlink{unionlinkaddr__t}{linkaddr\+\_\+t} $\ast$dest, const \hyperlink{unionlinkaddr__t}{linkaddr\+\_\+t} $\ast$from)
+\begin{DoxyCompactList}\small\item\em Copy a Rime address. \end{DoxyCompactList}\item 
+int \hyperlink{group__linkaddr_gaaf0cefa6d20d20da33dfaf5098e7d16d}{linkaddr\+\_\+cmp} (const \hyperlink{unionlinkaddr__t}{linkaddr\+\_\+t} $\ast$addr1, const \hyperlink{unionlinkaddr__t}{linkaddr\+\_\+t} $\ast$addr2)
+\begin{DoxyCompactList}\small\item\em Compare two Rime addresses. \end{DoxyCompactList}\item 
+void \hyperlink{group__linkaddr_ga5ec363b4d4a855f1c6c3da284451415a}{linkaddr\+\_\+set\+\_\+node\+\_\+addr} (\hyperlink{unionlinkaddr__t}{linkaddr\+\_\+t} $\ast$addr)
+\begin{DoxyCompactList}\small\item\em Set the address of the current node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{unionlinkaddr__t}{linkaddr\+\_\+t} \hyperlink{group__linkaddr_ga03585f3e07ec49ec11cb4bbd17f3cf0e}{linkaddr\+\_\+node\+\_\+addr}
+\begin{DoxyCompactList}\small\item\em The Rime address of the node. \end{DoxyCompactList}\item 
+const \hyperlink{unionlinkaddr__t}{linkaddr\+\_\+t} \hyperlink{group__linkaddr_gaa8829a95f1d11a93a3ff75c8f5b2bffd}{linkaddr\+\_\+null}
+\begin{DoxyCompactList}\small\item\em The null Rime address. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Header file for the Rime address representation \begin{DoxyAuthor}{Author}
+Adam Dunkels \href{mailto:adam@sics.se}{\tt adam@sics.\+se} 
+\end{DoxyAuthor}

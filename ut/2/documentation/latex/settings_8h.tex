@@ -1,0 +1,124 @@
+\hypertarget{settings_8h}{}\section{/home/user/contiki\+U\+T/contiki/core/lib/settings.h File Reference}
+\label{settings_8h}\index{/home/user/contiki\+U\+T/contiki/core/lib/settings.\+h@{/home/user/contiki\+U\+T/contiki/core/lib/settings.\+h}}
+
+
+Settings Manager.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}dev/eeprom.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}sys/cc.\+h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__settings__lib_ga407b8baa58a9c300c51b102b71c1f75c}{T\+C\+C}(a,  b)~((a)+(b)$\ast$256)
+\item 
+\#define \hyperlink{group__settings__lib_ga1c1c56019c03da222e9bc31e12ef572b}{S\+E\+T\+T\+I\+N\+G\+S\+\_\+\+K\+E\+Y\+\_\+\+E\+U\+I64}~\hyperlink{group__settings__lib_ga407b8baa58a9c300c51b102b71c1f75c}{T\+C\+C}(\textquotesingle{}E\textquotesingle{},\textquotesingle{}8\textquotesingle{})
+\item 
+\#define \hyperlink{group__settings__lib_ga6ddf102943ad20093ef7b3e96669b1bb}{S\+E\+T\+T\+I\+N\+G\+S\+\_\+\+K\+E\+Y\+\_\+\+E\+U\+I48}~\hyperlink{group__settings__lib_ga407b8baa58a9c300c51b102b71c1f75c}{T\+C\+C}(\textquotesingle{}E\textquotesingle{},\textquotesingle{}6\textquotesingle{})
+\item 
+\#define \hyperlink{group__settings__lib_gabf8742bdf29ef76a3ca68bbcd3382730}{S\+E\+T\+T\+I\+N\+G\+S\+\_\+\+K\+E\+Y\+\_\+\+C\+H\+A\+N\+N\+E\+L}~\hyperlink{group__settings__lib_ga407b8baa58a9c300c51b102b71c1f75c}{T\+C\+C}(\textquotesingle{}C\textquotesingle{},\textquotesingle{}H\textquotesingle{})
+\item 
+\#define \hyperlink{group__settings__lib_ga64ce6ecd0f8a3717b42717c7583fa17f}{S\+E\+T\+T\+I\+N\+G\+S\+\_\+\+K\+E\+Y\+\_\+\+T\+X\+P\+O\+W\+E\+R}~\hyperlink{group__settings__lib_ga407b8baa58a9c300c51b102b71c1f75c}{T\+C\+C}(\textquotesingle{}T\textquotesingle{},\textquotesingle{}P\textquotesingle{})
+\item 
+\#define \hyperlink{group__settings__lib_ga760a97bf22844448de082fe8d768c127}{S\+E\+T\+T\+I\+N\+G\+S\+\_\+\+K\+E\+Y\+\_\+\+P\+A\+N\+\_\+\+I\+D}~\hyperlink{group__settings__lib_ga407b8baa58a9c300c51b102b71c1f75c}{T\+C\+C}(\textquotesingle{}P\textquotesingle{},\textquotesingle{}N\textquotesingle{})
+\item 
+\#define \hyperlink{group__settings__lib_ga76396fc713cb0c3ede4c95e93ac4862e}{S\+E\+T\+T\+I\+N\+G\+S\+\_\+\+K\+E\+Y\+\_\+\+P\+A\+N\+\_\+\+A\+D\+D\+R}~\hyperlink{group__settings__lib_ga407b8baa58a9c300c51b102b71c1f75c}{T\+C\+C}(\textquotesingle{}P\textquotesingle{},\textquotesingle{}A\textquotesingle{})
+\item 
+\#define \hyperlink{group__settings__lib_gaf21df4e4821b6c46ab1827709e6ab3ba}{S\+E\+T\+T\+I\+N\+G\+S\+\_\+\+K\+E\+Y\+\_\+\+A\+E\+S128\+K\+E\+Y}~\hyperlink{group__settings__lib_ga407b8baa58a9c300c51b102b71c1f75c}{T\+C\+C}(\textquotesingle{}S\textquotesingle{},\textquotesingle{}K\textquotesingle{})
+\item 
+\#define \hyperlink{group__settings__lib_gaa59c4b915df4211a5b4772cfd064a02f}{S\+E\+T\+T\+I\+N\+G\+S\+\_\+\+K\+E\+Y\+\_\+\+A\+E\+S128\+E\+N\+A\+B\+L\+E\+D}~\hyperlink{group__settings__lib_ga407b8baa58a9c300c51b102b71c1f75c}{T\+C\+C}(\textquotesingle{}S\textquotesingle{},\textquotesingle{}E\textquotesingle{})
+\item 
+\#define \hyperlink{group__settings__lib_ga4aef84d3f6c558a1af998e466a42a9f4}{S\+E\+T\+T\+I\+N\+G\+S\+\_\+\+K\+E\+Y\+\_\+\+H\+O\+S\+T\+N\+A\+M\+E}~\hyperlink{group__settings__lib_ga407b8baa58a9c300c51b102b71c1f75c}{T\+C\+C}(\textquotesingle{}H\textquotesingle{},\textquotesingle{}N\textquotesingle{})
+\item 
+\#define \hyperlink{group__settings__lib_ga9d8929327ef3aa77972a387251ccdcc5}{S\+E\+T\+T\+I\+N\+G\+S\+\_\+\+K\+E\+Y\+\_\+\+D\+O\+M\+A\+I\+N\+N\+A\+M\+E}~\hyperlink{group__settings__lib_ga407b8baa58a9c300c51b102b71c1f75c}{T\+C\+C}(\textquotesingle{}D\textquotesingle{},\textquotesingle{}N\textquotesingle{})
+\item 
+\#define \hyperlink{group__settings__lib_ga86031e7d26d3a50e646e6e5aec152472}{S\+E\+T\+T\+I\+N\+G\+S\+\_\+\+K\+E\+Y\+\_\+\+R\+D\+C\+\_\+\+I\+N\+D\+E\+X}~\hyperlink{group__settings__lib_ga407b8baa58a9c300c51b102b71c1f75c}{T\+C\+C}(\textquotesingle{}R\textquotesingle{},\textquotesingle{}D\textquotesingle{})
+\item 
+\#define \hyperlink{group__settings__lib_ga1b3663a78693d45475737c70a295e519}{S\+E\+T\+T\+I\+N\+G\+S\+\_\+\+K\+E\+Y\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+\+M\+A\+S\+K}~\hyperlink{group__settings__lib_ga407b8baa58a9c300c51b102b71c1f75c}{T\+C\+C}(\textquotesingle{}C\textquotesingle{},\textquotesingle{}M\textquotesingle{})
+\item 
+\#define \hyperlink{group__settings__lib_gaccd70bd1f6a3ccce8fb515339452f5cf}{S\+E\+T\+T\+I\+N\+G\+S\+\_\+\+L\+A\+S\+T\+\_\+\+I\+N\+D\+E\+X}~0x\+F\+F
+\item 
+\#define \hyperlink{group__settings__lib_gae6f2c165b60a67997b96c9b5053a9b93}{S\+E\+T\+T\+I\+N\+G\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y}~0x\+F\+F\+F\+F
+\item 
+\#define \hyperlink{group__settings__lib_ga0d47f7bb51bbb0c6a6d32ff9051b5c1d}{S\+E\+T\+T\+I\+N\+G\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+I\+T\+E\+R}~E\+E\+P\+R\+O\+M\+\_\+\+N\+U\+L\+L
+\item 
+\hypertarget{group__settings__lib_gaf14752d92f2bb4490e50b6121a646c3b}{}\#define {\bfseries S\+E\+T\+T\+I\+N\+G\+S\+\_\+\+C\+O\+N\+F\+\_\+\+S\+U\+P\+P\+O\+R\+T\+\_\+\+L\+A\+R\+G\+E\+\_\+\+V\+A\+L\+U\+E\+S}~0\label{group__settings__lib_gaf14752d92f2bb4490e50b6121a646c3b}
+
+\item 
+\hypertarget{group__settings__lib_ga9fde18a6fbfc2f2a7e8d8360c95d29db}{}\#define {\bfseries S\+E\+T\+T\+I\+N\+G\+S\+\_\+\+M\+A\+X\+\_\+\+V\+A\+L\+U\+E\+\_\+\+S\+I\+Z\+E}~0x7\+F        /$\ast$ 127 bytes $\ast$/\label{group__settings__lib_ga9fde18a6fbfc2f2a7e8d8360c95d29db}
+
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__settings__lib_gafdcd055150f9fb7bea18b3d397a6818c}{}typedef uint16\+\_\+t {\bfseries settings\+\_\+key\+\_\+t}\label{group__settings__lib_gafdcd055150f9fb7bea18b3d397a6818c}
+
+\item 
+\hypertarget{group__settings__lib_ga8504abb492015cd9df51b2f2d4980beb}{}typedef uint16\+\_\+t {\bfseries settings\+\_\+length\+\_\+t}\label{group__settings__lib_ga8504abb492015cd9df51b2f2d4980beb}
+
+\item 
+\hypertarget{group__settings__lib_ga8970d85e120cd7afe18d432082c3d050}{}typedef eeprom\+\_\+addr\+\_\+t {\bfseries settings\+\_\+iter\+\_\+t}\label{group__settings__lib_ga8970d85e120cd7afe18d432082c3d050}
+
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__settings__lib_gab69d02b4e5008886566210355c6ca316}{}enum {\bfseries settings\+\_\+status\+\_\+t} \{ \\*
+{\bfseries S\+E\+T\+T\+I\+N\+G\+S\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+O\+K} = 0, 
+{\bfseries S\+E\+T\+T\+I\+N\+G\+S\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+F\+A\+I\+L\+U\+R\+E}, 
+{\bfseries S\+E\+T\+T\+I\+N\+G\+S\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+R\+G\+U\+M\+E\+N\+T}, 
+{\bfseries S\+E\+T\+T\+I\+N\+G\+S\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+N\+D}, 
+\\*
+{\bfseries S\+E\+T\+T\+I\+N\+G\+S\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+O\+U\+T\+\_\+\+O\+F\+\_\+\+S\+P\+A\+C\+E}, 
+{\bfseries S\+E\+T\+T\+I\+N\+G\+S\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+V\+A\+L\+U\+E\+\_\+\+T\+O\+O\+\_\+\+B\+I\+G}, 
+{\bfseries S\+E\+T\+T\+I\+N\+G\+S\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+U\+N\+I\+M\+P\+L\+E\+M\+E\+N\+T\+E\+D}
+ \}\label{group__settings__lib_gab69d02b4e5008886566210355c6ca316}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+settings\+\_\+status\+\_\+t \hyperlink{group__settings__lib_ga9a53effce56b81ff281e0a74bd8dc24a}{settings\+\_\+get} (settings\+\_\+key\+\_\+t key, uint8\+\_\+t index, uint8\+\_\+t $\ast$value, settings\+\_\+length\+\_\+t $\ast$value\+\_\+size)
+\item 
+settings\+\_\+status\+\_\+t \hyperlink{group__settings__lib_ga2b3f6cdf635874d3fc376b8db5ee3441}{settings\+\_\+add} (settings\+\_\+key\+\_\+t key, const uint8\+\_\+t $\ast$value, settings\+\_\+length\+\_\+t value\+\_\+size)
+\item 
+uint8\+\_\+t \hyperlink{group__settings__lib_ga84250b2939b9b11089a20f35bf2339a6}{settings\+\_\+check} (settings\+\_\+key\+\_\+t key, uint8\+\_\+t index)
+\item 
+void \hyperlink{group__settings__lib_ga706295b937c4e89f45b4d3a378c5a310}{settings\+\_\+wipe} (void)
+\item 
+settings\+\_\+status\+\_\+t \hyperlink{group__settings__lib_gad555a662030f3ed1f3c815d6643bf552}{settings\+\_\+set} (settings\+\_\+key\+\_\+t key, const uint8\+\_\+t $\ast$value, settings\+\_\+length\+\_\+t value\+\_\+size)
+\item 
+settings\+\_\+status\+\_\+t \hyperlink{group__settings__lib_ga9401ab649c773afd42671b41d6e0921b}{settings\+\_\+delete} (settings\+\_\+key\+\_\+t key, uint8\+\_\+t index)
+\item 
+settings\+\_\+iter\+\_\+t \hyperlink{group__settings__lib_ga09464b27f0bc78e22c7ff0d57341e2cd}{settings\+\_\+iter\+\_\+begin} ()
+\item 
+settings\+\_\+iter\+\_\+t \hyperlink{group__settings__lib_ga921d2c5da8290b03d0ecff99d36ccb15}{settings\+\_\+iter\+\_\+next} (settings\+\_\+iter\+\_\+t iter)
+\item 
+\hypertarget{group__settings__lib_ga84809d2206ac378b59ad4cb879c407b7}{}uint8\+\_\+t {\bfseries settings\+\_\+iter\+\_\+is\+\_\+valid} (settings\+\_\+iter\+\_\+t iter)\label{group__settings__lib_ga84809d2206ac378b59ad4cb879c407b7}
+
+\item 
+\hypertarget{group__settings__lib_ga478ca6f0ca2ee16295b551c93cb0ebd2}{}settings\+\_\+key\+\_\+t {\bfseries settings\+\_\+iter\+\_\+get\+\_\+key} (settings\+\_\+iter\+\_\+t iter)\label{group__settings__lib_ga478ca6f0ca2ee16295b551c93cb0ebd2}
+
+\item 
+\hypertarget{group__settings__lib_ga6501f07db00484c398e699dd0f578480}{}settings\+\_\+length\+\_\+t {\bfseries settings\+\_\+iter\+\_\+get\+\_\+value\+\_\+length} (settings\+\_\+iter\+\_\+t iter)\label{group__settings__lib_ga6501f07db00484c398e699dd0f578480}
+
+\item 
+\hypertarget{group__settings__lib_gaffec033c8572f024bcbba472d7ebf716}{}eeprom\+\_\+addr\+\_\+t {\bfseries settings\+\_\+iter\+\_\+get\+\_\+value\+\_\+addr} (settings\+\_\+iter\+\_\+t iter)\label{group__settings__lib_gaffec033c8572f024bcbba472d7ebf716}
+
+\item 
+\hypertarget{group__settings__lib_gad0b19321b7ecccb7d7d1ff1c68336f51}{}settings\+\_\+length\+\_\+t {\bfseries settings\+\_\+iter\+\_\+get\+\_\+value\+\_\+bytes} (settings\+\_\+iter\+\_\+t item, void $\ast$bytes, settings\+\_\+length\+\_\+t max\+\_\+length)\label{group__settings__lib_gad0b19321b7ecccb7d7d1ff1c68336f51}
+
+\item 
+\hypertarget{group__settings__lib_ga18b13b47aaf086c05667d004a4760736}{}settings\+\_\+status\+\_\+t {\bfseries settings\+\_\+iter\+\_\+delete} (settings\+\_\+iter\+\_\+t item)\label{group__settings__lib_ga18b13b47aaf086c05667d004a4760736}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Settings Manager. 
+
+\begin{DoxyAuthor}{Author}
+Robert Quattlebaum \href{mailto:darco@deepdarc.com}{\tt darco@deepdarc.\+com} 
+\end{DoxyAuthor}

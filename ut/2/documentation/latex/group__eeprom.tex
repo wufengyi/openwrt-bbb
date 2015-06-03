@@ -1,0 +1,90 @@
+\hypertarget{group__eeprom}{}\section{E\+E\+P\+R\+O\+M A\+P\+I}
+\label{group__eeprom}\index{E\+E\+P\+R\+O\+M A\+P\+I@{E\+E\+P\+R\+O\+M A\+P\+I}}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__eeprom_ga3a1c69b139c3985a63a47df263c22eb1}{}\#define {\bfseries E\+E\+P\+R\+O\+M\+\_\+\+N\+U\+L\+L}~0\label{group__eeprom_ga3a1c69b139c3985a63a47df263c22eb1}
+
+\item 
+\hypertarget{group__eeprom_gae3ef7bba113f663df6996f286b632a3f}{}\#define {\bfseries E\+E\+P\+R\+O\+M\+\_\+\+S\+I\+Z\+E}~0 /$\ast$ Default to no E\+E\+P\+R\+O\+M $\ast$/\label{group__eeprom_gae3ef7bba113f663df6996f286b632a3f}
+
+\item 
+\hypertarget{group__eeprom_ga234e4f1294ec845752e1cb4b1dcd7add}{}\#define {\bfseries E\+E\+P\+R\+O\+M\+\_\+\+E\+N\+D\+\_\+\+A\+D\+D\+R}~(E\+E\+P\+R\+O\+M\+\_\+\+S\+I\+Z\+E -\/ 1)\label{group__eeprom_ga234e4f1294ec845752e1cb4b1dcd7add}
+
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__eeprom_ga5825c96b624f47244f64b3e2b9ea39b9}{}typedef unsigned short {\bfseries eeprom\+\_\+addr\+\_\+t}\label{group__eeprom_ga5825c96b624f47244f64b3e2b9ea39b9}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__eeprom_gac78250ee593cc00686f8b6209b48a745}{eeprom\+\_\+write} (eeprom\+\_\+addr\+\_\+t addr, unsigned char $\ast$buf, int size)
+\item 
+void \hyperlink{group__eeprom_ga273489bf4a99139d385b3d01ac596644}{eeprom\+\_\+read} (eeprom\+\_\+addr\+\_\+t addr, unsigned char $\ast$buf, int size)
+\item 
+void \hyperlink{group__eeprom_ga4ec7f9d780da432051aa74ec5892a94c}{eeprom\+\_\+init} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The E\+E\+P\+R\+O\+M A\+P\+I defines a common interface for E\+E\+P\+R\+O\+M access on Contiki platforms.
+
+A platform with E\+E\+P\+R\+O\+M support must implement this A\+P\+I. 
+
+\subsection{Function Documentation}
+\hypertarget{group__eeprom_ga4ec7f9d780da432051aa74ec5892a94c}{}\index{E\+E\+P\+R\+O\+M A\+P\+I@{E\+E\+P\+R\+O\+M A\+P\+I}!eeprom\+\_\+init@{eeprom\+\_\+init}}
+\index{eeprom\+\_\+init@{eeprom\+\_\+init}!E\+E\+P\+R\+O\+M A\+P\+I@{E\+E\+P\+R\+O\+M A\+P\+I}}
+\subsubsection[{eeprom\+\_\+init}]{\setlength{\rightskip}{0pt plus 5cm}void eeprom\+\_\+init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group__eeprom_ga4ec7f9d780da432051aa74ec5892a94c}
+Initialize the E\+E\+P\+R\+O\+M module
+
+This function initializes the E\+E\+P\+R\+O\+M module and is called from the bootup code. \hypertarget{group__eeprom_ga273489bf4a99139d385b3d01ac596644}{}\index{E\+E\+P\+R\+O\+M A\+P\+I@{E\+E\+P\+R\+O\+M A\+P\+I}!eeprom\+\_\+read@{eeprom\+\_\+read}}
+\index{eeprom\+\_\+read@{eeprom\+\_\+read}!E\+E\+P\+R\+O\+M A\+P\+I@{E\+E\+P\+R\+O\+M A\+P\+I}}
+\subsubsection[{eeprom\+\_\+read}]{\setlength{\rightskip}{0pt plus 5cm}void eeprom\+\_\+read (
+\begin{DoxyParamCaption}
+\item[{eeprom\+\_\+addr\+\_\+t}]{addr, }
+\item[{unsigned char $\ast$}]{buf, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\label{group__eeprom_ga273489bf4a99139d385b3d01ac596644}
+Read data from the E\+E\+P\+R\+O\+M.
+
+This function reads a number of bytes from the specified address in E\+E\+P\+R\+O\+M and into a buffer in memory.
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr} & The address in E\+E\+P\+R\+O\+M from which the data should be read.\\
+\hline
+{\em buf} & A pointer to the buffer to which the data should be stored.\\
+\hline
+{\em size} & The number of bytes to read. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__eeprom_gac78250ee593cc00686f8b6209b48a745}{}\index{E\+E\+P\+R\+O\+M A\+P\+I@{E\+E\+P\+R\+O\+M A\+P\+I}!eeprom\+\_\+write@{eeprom\+\_\+write}}
+\index{eeprom\+\_\+write@{eeprom\+\_\+write}!E\+E\+P\+R\+O\+M A\+P\+I@{E\+E\+P\+R\+O\+M A\+P\+I}}
+\subsubsection[{eeprom\+\_\+write}]{\setlength{\rightskip}{0pt plus 5cm}void eeprom\+\_\+write (
+\begin{DoxyParamCaption}
+\item[{eeprom\+\_\+addr\+\_\+t}]{addr, }
+\item[{unsigned char $\ast$}]{buf, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\label{group__eeprom_gac78250ee593cc00686f8b6209b48a745}
+Write a buffer into E\+E\+P\+R\+O\+M.
+
+This function writes a buffer of the specified size into E\+E\+P\+R\+O\+M.
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr} & The address in E\+E\+P\+R\+O\+M to which the buffer should be written.\\
+\hline
+{\em buf} & A pointer to the buffer from which data is to be read.\\
+\hline
+{\em size} & The number of bytes to write into E\+E\+P\+R\+O\+M. \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,468 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - coverage.info - core/net/rpl/rpl-ext-header.c</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">core/net/rpl</a> - rpl-ext-header.c<span style="font-size: 80%;"> (source / <a href="rpl-ext-header.c.func.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">124</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2014-12-23</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">7</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">80</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">           Branch data     Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>                :            : /*</a>
+<span class="lineNum">       2 </span>                :            :  * Copyright (c) 2009, Swedish Institute of Computer Science.
+<span class="lineNum">       3 </span>                :            :  * All rights reserved.
+<span class="lineNum">       4 </span>                :            :  *
+<span class="lineNum">       5 </span>                :            :  * Redistribution and use in source and binary forms, with or without
+<span class="lineNum">       6 </span>                :            :  * modification, are permitted provided that the following conditions
+<span class="lineNum">       7 </span>                :            :  * are met:
+<span class="lineNum">       8 </span>                :            :  * 1. Redistributions of source code must retain the above copyright
+<span class="lineNum">       9 </span>                :            :  *    notice, this list of conditions and the following disclaimer.
+<span class="lineNum">      10 </span>                :            :  * 2. Redistributions in binary form must reproduce the above copyright
+<span class="lineNum">      11 </span>                :            :  *    notice, this list of conditions and the following disclaimer in the
+<span class="lineNum">      12 </span>                :            :  *    documentation and/or other materials provided with the distribution.
+<span class="lineNum">      13 </span>                :            :  * 3. Neither the name of the Institute nor the names of its contributors
+<span class="lineNum">      14 </span>                :            :  *    may be used to endorse or promote products derived from this software
+<span class="lineNum">      15 </span>                :            :  *    without specific prior written permission.
+<span class="lineNum">      16 </span>                :            :  *
+<span class="lineNum">      17 </span>                :            :  * THIS SOFTWARE IS PROVIDED BY THE INSTITUTE AND CONTRIBUTORS ``AS IS'' AND
+<span class="lineNum">      18 </span>                :            :  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+<span class="lineNum">      19 </span>                :            :  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+<span class="lineNum">      20 </span>                :            :  * ARE DISCLAIMED.  IN NO EVENT SHALL THE INSTITUTE OR CONTRIBUTORS BE LIABLE
+<span class="lineNum">      21 </span>                :            :  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+<span class="lineNum">      22 </span>                :            :  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+<span class="lineNum">      23 </span>                :            :  * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+<span class="lineNum">      24 </span>                :            :  * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+<span class="lineNum">      25 </span>                :            :  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+<span class="lineNum">      26 </span>                :            :  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+<span class="lineNum">      27 </span>                :            :  * SUCH DAMAGE.
+<span class="lineNum">      28 </span>                :            :  *
+<span class="lineNum">      29 </span>                :            :  * This file is part of the Contiki operating system.
+<span class="lineNum">      30 </span>                :            :  */
+<span class="lineNum">      31 </span>                :            : 
+<span class="lineNum">      32 </span>                :            : /**
+<span class="lineNum">      33 </span>                :            :  * \file
+<span class="lineNum">      34 </span>                :            :  *         Management of extension headers for ContikiRPL.
+<span class="lineNum">      35 </span>                :            :  *
+<span class="lineNum">      36 </span>                :            :  * \author Vincent Brillault &lt;vincent.brillault@imag.fr&gt;,
+<span class="lineNum">      37 </span>                :            :  *         Joakim Eriksson &lt;joakime@sics.se&gt;,
+<span class="lineNum">      38 </span>                :            :  *         Niclas Finne &lt;nfi@sics.se&gt;,
+<span class="lineNum">      39 </span>                :            :  *         Nicolas Tsiftes &lt;nvt@sics.se&gt;.
+<span class="lineNum">      40 </span>                :            :  */
+<span class="lineNum">      41 </span>                :            : 
+<span class="lineNum">      42 </span>                :            : /**
+<span class="lineNum">      43 </span>                :            :  * \addtogroup uip6
+<span class="lineNum">      44 </span>                :            :  * @{
+<span class="lineNum">      45 </span>                :            :  */
+<span class="lineNum">      46 </span>                :            : 
+<span class="lineNum">      47 </span>                :            : #include &quot;net/ip/uip.h&quot;
+<span class="lineNum">      48 </span>                :            : #include &quot;net/ip/tcpip.h&quot;
+<span class="lineNum">      49 </span>                :            : #include &quot;net/ipv6/uip-ds6.h&quot;
+<span class="lineNum">      50 </span>                :            : #include &quot;net/rpl/rpl-private.h&quot;
+<span class="lineNum">      51 </span>                :            : #include &quot;net/packetbuf.h&quot;
+<span class="lineNum">      52 </span>                :            : 
+<span class="lineNum">      53 </span>                :            : #define DEBUG DEBUG_NONE
+<span class="lineNum">      54 </span>                :            : #include &quot;net/ip/uip-debug.h&quot;
+<span class="lineNum">      55 </span>                :            : 
+<span class="lineNum">      56 </span>                :            : #include &lt;limits.h&gt;
+<span class="lineNum">      57 </span>                :            : #include &lt;string.h&gt;
+<span class="lineNum">      58 </span>                :            : 
+<span class="lineNum">      59 </span>                :            : /*---------------------------------------------------------------------------*/
+<span class="lineNum">      60 </span>                :            : #define UIP_IP_BUF                ((struct uip_ip_hdr *)&amp;uip_buf[UIP_LLH_LEN])
+<span class="lineNum">      61 </span>                :            : #define UIP_EXT_BUF               ((struct uip_ext_hdr *)&amp;uip_buf[uip_l2_l3_hdr_len])
+<span class="lineNum">      62 </span>                :            : #define UIP_HBHO_BUF              ((struct uip_hbho_hdr *)&amp;uip_buf[uip_l2_l3_hdr_len])
+<span class="lineNum">      63 </span>                :            : #define UIP_HBHO_NEXT_BUF         ((struct uip_ext_hdr *)&amp;uip_buf[uip_l2_l3_hdr_len + RPL_HOP_BY_HOP_LEN])
+<span class="lineNum">      64 </span>                :            : #define UIP_EXT_HDR_OPT_BUF       ((struct uip_ext_hdr_opt *)&amp;uip_buf[uip_l2_l3_hdr_len + uip_ext_opt_offset])
+<span class="lineNum">      65 </span>                :            : #define UIP_EXT_HDR_OPT_PADN_BUF  ((struct uip_ext_hdr_opt_padn *)&amp;uip_buf[uip_l2_l3_hdr_len + uip_ext_opt_offset])
+<span class="lineNum">      66 </span>                :            : #define UIP_EXT_HDR_OPT_RPL_BUF   ((struct uip_ext_hdr_opt_rpl *)&amp;uip_buf[uip_l2_l3_hdr_len + uip_ext_opt_offset])
+<a name="67"><span class="lineNum">      67 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">      68 </span>                :            : int
+<span class="lineNum">      69 </span>                :<span class="lineNoCov">          0 : rpl_verify_header(int uip_ext_opt_offset)</span>
+<span class="lineNum">      70 </span>                :            : {
+<span class="lineNum">      71 </span>                :            :   rpl_instance_t *instance;
+<span class="lineNum">      72 </span>                :            :   int down;
+<span class="lineNum">      73 </span>                :            :   uint16_t sender_rank;
+<span class="lineNum">      74 </span>                :            :   uint8_t sender_closer;
+<span class="lineNum">      75 </span>                :            :   uip_ds6_route_t *route;
+<span class="lineNum">      76 </span>                :            : 
+<span class="lineNum">      77 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(UIP_HBHO_BUF-&gt;len != RPL_HOP_BY_HOP_LEN - 8) {</span>
+<span class="lineNum">      78 </span>                :            :     PRINTF(&quot;RPL: Hop-by-hop extension header has wrong size\n&quot;);
+<span class="lineNum">      79 </span>                :            :     return 1;
+<span class="lineNum">      80 </span>                :            :   }
+<span class="lineNum">      81 </span>                :            : 
+<span class="lineNum">      82 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(UIP_EXT_HDR_OPT_RPL_BUF-&gt;opt_type != UIP_EXT_HDR_OPT_RPL) {</span>
+<span class="lineNum">      83 </span>                :            :     PRINTF(&quot;RPL: Non RPL Hop-by-hop option\n&quot;);
+<span class="lineNum">      84 </span>                :            :     return 1;
+<span class="lineNum">      85 </span>                :            :   }
+<span class="lineNum">      86 </span>                :            : 
+<span class="lineNum">      87 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(UIP_EXT_HDR_OPT_RPL_BUF-&gt;opt_len != RPL_HDR_OPT_LEN) {</span>
+<span class="lineNum">      88 </span>                :            :     PRINTF(&quot;RPL: Bad header option! (wrong length)\n&quot;);
+<span class="lineNum">      89 </span>                :            :     return 1;
+<span class="lineNum">      90 </span>                :            :   }
+<span class="lineNum">      91 </span>                :            : 
+<span class="lineNum">      92 </span>                :<span class="lineNoCov">          0 :   instance = rpl_get_instance(UIP_EXT_HDR_OPT_RPL_BUF-&gt;instance);</span>
+<span class="lineNum">      93 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(instance == NULL) {</span>
+<span class="lineNum">      94 </span>                :            :     PRINTF(&quot;RPL: Unknown instance: %u\n&quot;,
+<span class="lineNum">      95 </span>                :            :            UIP_EXT_HDR_OPT_RPL_BUF-&gt;instance);
+<span class="lineNum">      96 </span>                :            :     return 1;
+<span class="lineNum">      97 </span>                :            :   }
+<span class="lineNum">      98 </span>                :            : 
+<span class="lineNum">      99 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(UIP_EXT_HDR_OPT_RPL_BUF-&gt;flags &amp; RPL_HDR_OPT_FWD_ERR) {</span>
+<span class="lineNum">     100 </span>                :            :     PRINTF(&quot;RPL: Forward error!\n&quot;);
+<span class="lineNum">     101 </span>                :            :     /* We should try to repair it by removing the neighbor that caused
+<span class="lineNum">     102 </span>                :            :        the packet to be forwareded in the first place. We drop any
+<span class="lineNum">     103 </span>                :            :        routes that go through the neighbor that sent the packet to
+<span class="lineNum">     104 </span>                :            :        us. */
+<span class="lineNum">     105 </span>                :<span class="lineNoCov">          0 :     route = uip_ds6_route_lookup(&amp;UIP_IP_BUF-&gt;destipaddr);</span>
+<span class="lineNum">     106 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(route != NULL) {</span>
+<span class="lineNum">     107 </span>                :<span class="lineNoCov">          0 :       uip_ds6_route_rm(route);</span>
+<span class="lineNum">     108 </span>                :            :     }
+<span class="lineNum">     109 </span>                :            :     RPL_STAT(rpl_stats.forward_errors++);
+<span class="lineNum">     110 </span>                :            :     /* Trigger DAO retransmission */
+<span class="lineNum">     111 </span>                :<span class="lineNoCov">          0 :     rpl_reset_dio_timer(instance);</span>
+<span class="lineNum">     112 </span>                :            :     /* drop the packet as it is not routable */
+<span class="lineNum">     113 </span>                :<span class="lineNoCov">          0 :     return 1;</span>
+<span class="lineNum">     114 </span>                :            :   }
+<span class="lineNum">     115 </span>                :            : 
+<span class="lineNum">     116 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(!instance-&gt;current_dag-&gt;joined) {</span>
+<span class="lineNum">     117 </span>                :            :     PRINTF(&quot;RPL: No DAG in the instance\n&quot;);
+<span class="lineNum">     118 </span>                :            :     return 1;
+<span class="lineNum">     119 </span>                :            :   }
+<span class="lineNum">     120 </span>                :            : 
+<span class="lineNum">     121 </span>                :<span class="lineNoCov">          0 :   down = 0;</span>
+<span class="lineNum">     122 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(UIP_EXT_HDR_OPT_RPL_BUF-&gt;flags &amp; RPL_HDR_OPT_DOWN) {</span>
+<span class="lineNum">     123 </span>                :<span class="lineNoCov">          0 :     down = 1;</span>
+<span class="lineNum">     124 </span>                :            :   }
+<span class="lineNum">     125 </span>                :            : 
+<span class="lineNum">     126 </span>                :<span class="lineNoCov">          0 :   sender_rank = UIP_HTONS(UIP_EXT_HDR_OPT_RPL_BUF-&gt;senderrank);</span>
+<span class="lineNum">     127 </span>                :<span class="lineNoCov">          0 :   sender_closer = sender_rank &lt; instance-&gt;current_dag-&gt;rank;</span>
+<span class="lineNum">     128 </span>                :            : 
+<span class="lineNum">     129 </span>                :            :   PRINTF(&quot;RPL: Packet going %s, sender closer %d (%d &lt; %d)\n&quot;, down == 1 ? &quot;down&quot; : &quot;up&quot;,
+<span class="lineNum">     130 </span>                :            :          sender_closer,
+<span class="lineNum">     131 </span>                :            :          sender_rank,
+<span class="lineNum">     132 </span>                :            :          instance-&gt;current_dag-&gt;rank
+<span class="lineNum">     133 </span>                :            :          );
+<span class="lineNum">     134 </span>                :            : 
+<span class="lineNum">     135 </span>[<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>][<span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if((down &amp;&amp; !sender_closer) || (!down &amp;&amp; sender_closer)) {</span>
+<span class="lineNum">     136 </span>                :            :     PRINTF(&quot;RPL: Loop detected - senderrank: %d my-rank: %d sender_closer: %d\n&quot;,
+<span class="lineNum">     137 </span>                :            :            sender_rank, instance-&gt;current_dag-&gt;rank,
+<span class="lineNum">     138 </span>                :            :            sender_closer);
+<span class="lineNum">     139 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(UIP_EXT_HDR_OPT_RPL_BUF-&gt;flags &amp; RPL_HDR_OPT_RANK_ERR) {</span>
+<span class="lineNum">     140 </span>                :            :       PRINTF(&quot;RPL: Rank error signalled in RPL option!\n&quot;);
+<span class="lineNum">     141 </span>                :            :       /* Packet must be dropped and dio trickle timer reset, see RFC6550 - 11.2.2.2 */
+<span class="lineNum">     142 </span>                :<span class="lineNoCov">          0 :       rpl_reset_dio_timer(instance);</span>
+<span class="lineNum">     143 </span>                :<span class="lineNoCov">          0 :       return 1;</span>
+<span class="lineNum">     144 </span>                :            :     }
+<span class="lineNum">     145 </span>                :            :     PRINTF(&quot;RPL: Single error tolerated\n&quot;);
+<span class="lineNum">     146 </span>                :<span class="lineNoCov">          0 :     UIP_EXT_HDR_OPT_RPL_BUF-&gt;flags |= RPL_HDR_OPT_RANK_ERR;</span>
+<span class="lineNum">     147 </span>                :<span class="lineNoCov">          0 :     return 0;</span>
+<span class="lineNum">     148 </span>                :            :   }
+<span class="lineNum">     149 </span>                :            : 
+<span class="lineNum">     150 </span>                :            :   PRINTF(&quot;RPL: Rank OK\n&quot;);
+<span class="lineNum">     151 </span>                :            : 
+<span class="lineNum">     152 </span>                :            :   return 0;
+<span class="lineNum">     153 </span>                :            : }
+<a name="154"><span class="lineNum">     154 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     155 </span>                :            : static void
+<span class="lineNum">     156 </span>                :<span class="lineNoCov">          0 : set_rpl_opt(unsigned uip_ext_opt_offset)</span>
+<span class="lineNum">     157 </span>                :            : {
+<span class="lineNum">     158 </span>                :            :   uint8_t temp_len;
+<span class="lineNum">     159 </span>                :            : 
+<span class="lineNum">     160 </span>                :<span class="lineNoCov">          0 :   memmove(UIP_HBHO_NEXT_BUF, UIP_EXT_BUF, uip_len - UIP_IPH_LEN);</span>
+<span class="lineNum">     161 </span>                :<span class="lineNoCov">          0 :   memset(UIP_HBHO_BUF, 0, RPL_HOP_BY_HOP_LEN);</span>
+<span class="lineNum">     162 </span>                :<span class="lineNoCov">          0 :   UIP_HBHO_BUF-&gt;next = UIP_IP_BUF-&gt;proto;</span>
+<span class="lineNum">     163 </span>                :<span class="lineNoCov">          0 :   UIP_IP_BUF-&gt;proto = UIP_PROTO_HBHO;</span>
+<span class="lineNum">     164 </span>                :<span class="lineNoCov">          0 :   UIP_HBHO_BUF-&gt;len = RPL_HOP_BY_HOP_LEN - 8;</span>
+<span class="lineNum">     165 </span>                :<span class="lineNoCov">          0 :   UIP_EXT_HDR_OPT_RPL_BUF-&gt;opt_type = UIP_EXT_HDR_OPT_RPL;</span>
+<span class="lineNum">     166 </span>                :<span class="lineNoCov">          0 :   UIP_EXT_HDR_OPT_RPL_BUF-&gt;opt_len = RPL_HDR_OPT_LEN;</span>
+<span class="lineNum">     167 </span>                :<span class="lineNoCov">          0 :   UIP_EXT_HDR_OPT_RPL_BUF-&gt;flags = 0;</span>
+<span class="lineNum">     168 </span>                :<span class="lineNoCov">          0 :   UIP_EXT_HDR_OPT_RPL_BUF-&gt;instance = 0;</span>
+<span class="lineNum">     169 </span>                :<span class="lineNoCov">          0 :   UIP_EXT_HDR_OPT_RPL_BUF-&gt;senderrank = 0;</span>
+<span class="lineNum">     170 </span>                :<span class="lineNoCov">          0 :   uip_len += RPL_HOP_BY_HOP_LEN;</span>
+<span class="lineNum">     171 </span>                :<span class="lineNoCov">          0 :   temp_len = UIP_IP_BUF-&gt;len[1];</span>
+<span class="lineNum">     172 </span>                :<span class="lineNoCov">          0 :   UIP_IP_BUF-&gt;len[1] += UIP_HBHO_BUF-&gt;len + 8;</span>
+<span class="lineNum">     173 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(UIP_IP_BUF-&gt;len[1] &lt; temp_len) {</span>
+<span class="lineNum">     174 </span>                :<span class="lineNoCov">          0 :     UIP_IP_BUF-&gt;len[0]++;</span>
+<span class="lineNum">     175 </span>                :            :   }
+<span class="lineNum">     176 </span>                :<span class="lineNoCov">          0 : }</span>
+<a name="177"><span class="lineNum">     177 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     178 </span>                :            : int
+<span class="lineNum">     179 </span>                :<span class="lineNoCov">          0 : rpl_update_header_empty(void)</span>
+<span class="lineNum">     180 </span>                :            : {
+<span class="lineNum">     181 </span>                :            :   rpl_instance_t *instance;
+<span class="lineNum">     182 </span>                :            :   int uip_ext_opt_offset;
+<span class="lineNum">     183 </span>                :            :   int last_uip_ext_len;
+<span class="lineNum">     184 </span>                :            :   rpl_parent_t *parent;
+<span class="lineNum">     185 </span>                :            : 
+<span class="lineNum">     186 </span>                :<span class="lineNoCov">          0 :   last_uip_ext_len = uip_ext_len;</span>
+<span class="lineNum">     187 </span>                :<span class="lineNoCov">          0 :   uip_ext_len = 0;</span>
+<span class="lineNum">     188 </span>                :<span class="lineNoCov">          0 :   uip_ext_opt_offset = 2;</span>
+<span class="lineNum">     189 </span>                :            : 
+<span class="lineNum">     190 </span>                :            :   PRINTF(&quot;RPL: Verifying the presence of the RPL header option\n&quot;);
+<span class="lineNum">     191 </span>                :            : 
+<span class="lineNum">     192 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   switch(UIP_IP_BUF-&gt;proto) {</span>
+<span class="lineNum">     193 </span>                :            :   case UIP_PROTO_HBHO:
+<span class="lineNum">     194 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(UIP_HBHO_BUF-&gt;len != RPL_HOP_BY_HOP_LEN - 8) {</span>
+<span class="lineNum">     195 </span>                :            :       PRINTF(&quot;RPL: Hop-by-hop extension header has wrong size\n&quot;);
+<span class="lineNum">     196 </span>                :<span class="lineNoCov">          0 :       uip_ext_len = last_uip_ext_len;</span>
+<span class="lineNum">     197 </span>                :<span class="lineNoCov">          0 :       return;</span>
+<span class="lineNum">     198 </span>                :            :     }
+<span class="lineNum">     199 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(UIP_EXT_HDR_OPT_RPL_BUF-&gt;opt_type != UIP_EXT_HDR_OPT_RPL) {</span>
+<span class="lineNum">     200 </span>                :            :       PRINTF(&quot;RPL: Non RPL Hop-by-hop option support not implemented\n&quot;);
+<span class="lineNum">     201 </span>                :<span class="lineNoCov">          0 :       uip_ext_len = last_uip_ext_len;</span>
+<span class="lineNum">     202 </span>                :<span class="lineNoCov">          0 :       return;</span>
+<span class="lineNum">     203 </span>                :            :     }
+<span class="lineNum">     204 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(UIP_EXT_HDR_OPT_RPL_BUF-&gt;opt_len != RPL_HDR_OPT_LEN) {</span>
+<span class="lineNum">     205 </span>                :            :       PRINTF(&quot;RPL: RPL Hop-by-hop option has wrong length\n&quot;);
+<span class="lineNum">     206 </span>                :<span class="lineNoCov">          0 :       uip_ext_len = last_uip_ext_len;</span>
+<span class="lineNum">     207 </span>                :<span class="lineNoCov">          0 :       return 0;</span>
+<span class="lineNum">     208 </span>                :            :     }
+<span class="lineNum">     209 </span>                :<span class="lineNoCov">          0 :     instance = rpl_get_instance(UIP_EXT_HDR_OPT_RPL_BUF-&gt;instance);</span>
+<span class="lineNum">     210 </span>[<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>][<span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(instance == NULL || !instance-&gt;used || !instance-&gt;current_dag-&gt;joined) {</span>
+<span class="lineNum">         </span>        [<span class="branchNoExec" title="Branch 4 was not executed"> # </span><span class="branchNoExec" title="Branch 5 was not executed"> # </span>]
+<span class="lineNum">     211 </span>                :            :       PRINTF(&quot;RPL: Unable to add hop-by-hop extension header: incorrect instance\n&quot;);
+<span class="lineNum">     212 </span>                :            :       return 0;
+<span class="lineNum">     213 </span>                :            :     }
+<span class="lineNum">     214 </span>                :            :     break;
+<span class="lineNum">     215 </span>                :            :   default:
+<span class="lineNum">     216 </span>                :            :     PRINTF(&quot;RPL: No hop-by-hop option found, creating it\n&quot;);
+<span class="lineNum">     217 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(uip_len + RPL_HOP_BY_HOP_LEN &gt; UIP_BUFSIZE) {</span>
+<span class="lineNum">     218 </span>                :            :       PRINTF(&quot;RPL: Packet too long: impossible to add hop-by-hop option\n&quot;);
+<span class="lineNum">     219 </span>                :<span class="lineNoCov">          0 :       uip_ext_len = last_uip_ext_len;</span>
+<span class="lineNum">     220 </span>                :<span class="lineNoCov">          0 :       return 0;</span>
+<span class="lineNum">     221 </span>                :            :     }
+<span class="lineNum">     222 </span>                :<span class="lineNoCov">          0 :     set_rpl_opt(uip_ext_opt_offset);</span>
+<span class="lineNum">     223 </span>                :<span class="lineNoCov">          0 :     uip_ext_len = last_uip_ext_len + RPL_HOP_BY_HOP_LEN;</span>
+<span class="lineNum">     224 </span>                :<span class="lineNoCov">          0 :     return 0;</span>
+<span class="lineNum">     225 </span>                :            :   }
+<span class="lineNum">     226 </span>                :            : 
+<span class="lineNum">     227 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   switch(UIP_EXT_HDR_OPT_BUF-&gt;type) {</span>
+<span class="lineNum">     228 </span>                :            :   case UIP_EXT_HDR_OPT_RPL:
+<span class="lineNum">     229 </span>                :            :     PRINTF(&quot;RPL: Updating RPL option\n&quot;);
+<span class="lineNum">     230 </span>                :<span class="lineNoCov">          0 :     UIP_EXT_HDR_OPT_RPL_BUF-&gt;senderrank = UIP_HTONS(instance-&gt;current_dag-&gt;rank);</span>
+<span class="lineNum">     231 </span>                :            : 
+<span class="lineNum">     232 </span>                :            :     /* Check the direction of the down flag, as per Section 11.2.2.3,
+<span class="lineNum">     233 </span>                :            :        which states that if a packet is going down it should in
+<span class="lineNum">     234 </span>                :            :        general not go back up again. If this happens, a
+<span class="lineNum">     235 </span>                :            :        RPL_HDR_OPT_FWD_ERR should be flagged. */
+<span class="lineNum">     236 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if((UIP_EXT_HDR_OPT_RPL_BUF-&gt;flags &amp; RPL_HDR_OPT_DOWN)) {</span>
+<span class="lineNum">     237 </span>        [<span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span>]:<span class="lineNoCov">          0 :       if(uip_ds6_route_lookup(&amp;UIP_IP_BUF-&gt;destipaddr) == NULL) {</span>
+<span class="lineNum">     238 </span>                :<span class="lineNoCov">          0 :         UIP_EXT_HDR_OPT_RPL_BUF-&gt;flags |= RPL_HDR_OPT_FWD_ERR;</span>
+<span class="lineNum">     239 </span>                :            :         PRINTF(&quot;RPL forwarding error\n&quot;);
+<span class="lineNum">     240 </span>                :            :         /* We should send back the packet to the originating parent,
+<span class="lineNum">     241 </span>                :            :            but it is not feasible yet, so we send a No-Path DAO instead */
+<span class="lineNum">     242 </span>                :            :         PRINTF(&quot;RPL generate No-Path DAO\n&quot;);
+<span class="lineNum">     243 </span>                :<span class="lineNoCov">          0 :         parent = rpl_get_parent((uip_lladdr_t *)packetbuf_addr(PACKETBUF_ADDR_SENDER));</span>
+<span class="lineNum">     244 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :         if(parent != NULL) {</span>
+<span class="lineNum">     245 </span>                :<span class="lineNoCov">          0 :           dao_output_target(parent, &amp;UIP_IP_BUF-&gt;destipaddr, RPL_ZERO_LIFETIME);</span>
+<span class="lineNum">     246 </span>                :            :         }
+<span class="lineNum">     247 </span>                :            :         /* Drop packet */
+<span class="lineNum">     248 </span>                :            :         return 1;
+<span class="lineNum">     249 </span>                :            :       }
+<span class="lineNum">     250 </span>                :            :     } else {
+<span class="lineNum">     251 </span>                :            :       /* Set the down extension flag correctly as described in Section
+<span class="lineNum">     252 </span>                :            :          11.2 of RFC6550. If the packet progresses along a DAO route,
+<span class="lineNum">     253 </span>                :            :          the down flag should be set. */
+<span class="lineNum">     254 </span>        [<span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span>]:<span class="lineNoCov">          0 :       if(uip_ds6_route_lookup(&amp;UIP_IP_BUF-&gt;destipaddr) == NULL) {</span>
+<span class="lineNum">     255 </span>                :            :         /* No route was found, so this packet will go towards the RPL
+<span class="lineNum">     256 </span>                :            :            root. If so, we should not set the down flag. */
+<span class="lineNum">     257 </span>                :<span class="lineNoCov">          0 :         UIP_EXT_HDR_OPT_RPL_BUF-&gt;flags &amp;= ~RPL_HDR_OPT_DOWN;</span>
+<span class="lineNum">     258 </span>                :            :         PRINTF(&quot;RPL option going up\n&quot;);
+<span class="lineNum">     259 </span>                :            :       } else {
+<span class="lineNum">     260 </span>                :            :         /* A DAO route was found so we set the down flag. */
+<span class="lineNum">     261 </span>                :<span class="lineNoCov">          0 :         UIP_EXT_HDR_OPT_RPL_BUF-&gt;flags |= RPL_HDR_OPT_DOWN;</span>
+<span class="lineNum">     262 </span>                :            :         PRINTF(&quot;RPL option going down\n&quot;);
+<span class="lineNum">     263 </span>                :            :       }
+<span class="lineNum">     264 </span>                :            :     }
+<span class="lineNum">     265 </span>                :            : 
+<span class="lineNum">     266 </span>                :<span class="lineNoCov">          0 :     uip_ext_len = last_uip_ext_len;</span>
+<span class="lineNum">     267 </span>                :<span class="lineNoCov">          0 :     return 0;</span>
+<span class="lineNum">     268 </span>                :            :   default:
+<span class="lineNum">     269 </span>                :            :     PRINTF(&quot;RPL: Multi Hop-by-hop options not implemented\n&quot;);
+<span class="lineNum">     270 </span>                :<span class="lineNoCov">          0 :     uip_ext_len = last_uip_ext_len;</span>
+<span class="lineNum">     271 </span>                :<span class="lineNoCov">          0 :     return 0;</span>
+<span class="lineNum">     272 </span>                :            :   }
+<span class="lineNum">     273 </span>                :            : }
+<a name="274"><span class="lineNum">     274 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     275 </span>                :            : int
+<span class="lineNum">     276 </span>                :<span class="lineNoCov">          0 : rpl_update_header_final(uip_ipaddr_t *addr)</span>
+<span class="lineNum">     277 </span>                :            : {
+<span class="lineNum">     278 </span>                :            :   rpl_parent_t *parent;
+<span class="lineNum">     279 </span>                :            :   int uip_ext_opt_offset;
+<span class="lineNum">     280 </span>                :            :   int last_uip_ext_len;
+<span class="lineNum">     281 </span>                :            : 
+<span class="lineNum">     282 </span>                :<span class="lineNoCov">          0 :   last_uip_ext_len = uip_ext_len;</span>
+<span class="lineNum">     283 </span>                :<span class="lineNoCov">          0 :   uip_ext_len = 0;</span>
+<span class="lineNum">     284 </span>                :<span class="lineNoCov">          0 :   uip_ext_opt_offset = 2;</span>
+<span class="lineNum">     285 </span>                :            : 
+<span class="lineNum">     286 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(UIP_IP_BUF-&gt;proto == UIP_PROTO_HBHO) {</span>
+<span class="lineNum">     287 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(UIP_HBHO_BUF-&gt;len != RPL_HOP_BY_HOP_LEN - 8) {</span>
+<span class="lineNum">     288 </span>                :            :       PRINTF(&quot;RPL: Non RPL Hop-by-hop options support not implemented\n&quot;);
+<span class="lineNum">     289 </span>                :<span class="lineNoCov">          0 :       uip_ext_len = last_uip_ext_len;</span>
+<span class="lineNum">     290 </span>                :<span class="lineNoCov">          0 :       return 0;</span>
+<span class="lineNum">     291 </span>                :            :     }
+<span class="lineNum">     292 </span>                :            : 
+<span class="lineNum">     293 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(UIP_EXT_HDR_OPT_BUF-&gt;type == UIP_EXT_HDR_OPT_RPL) {</span>
+<span class="lineNum">     294 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       if(UIP_EXT_HDR_OPT_RPL_BUF-&gt;senderrank == 0) {</span>
+<span class="lineNum">     295 </span>                :            :         PRINTF(&quot;RPL: Updating RPL option\n&quot;);
+<span class="lineNum">     296 </span>[<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>][<span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :         if(default_instance == NULL || !default_instance-&gt;used || !default_instance-&gt;current_dag-&gt;joined) {</span>
+<span class="lineNum">         </span>        [<span class="branchNoExec" title="Branch 4 was not executed"> # </span><span class="branchNoExec" title="Branch 5 was not executed"> # </span>]
+<span class="lineNum">     297 </span>                :            :           PRINTF(&quot;RPL: Unable to add hop-by-hop extension header: incorrect default instance\n&quot;);
+<span class="lineNum">     298 </span>                :            :           return 1;
+<span class="lineNum">     299 </span>                :            :         }
+<span class="lineNum">     300 </span>                :<span class="lineNoCov">          0 :         parent = rpl_find_parent(default_instance-&gt;current_dag, addr);</span>
+<span class="lineNum">     301 </span>[<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>][<span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :         if(parent == NULL || parent != parent-&gt;dag-&gt;preferred_parent) {</span>
+<span class="lineNum">     302 </span>                :<span class="lineNoCov">          0 :           UIP_EXT_HDR_OPT_RPL_BUF-&gt;flags = RPL_HDR_OPT_DOWN;</span>
+<span class="lineNum">     303 </span>                :            :         }
+<span class="lineNum">     304 </span>                :<span class="lineNoCov">          0 :         UIP_EXT_HDR_OPT_RPL_BUF-&gt;instance = default_instance-&gt;instance_id;</span>
+<span class="lineNum">     305 </span>                :<span class="lineNoCov">          0 :         UIP_EXT_HDR_OPT_RPL_BUF-&gt;senderrank = UIP_HTONS(default_instance-&gt;current_dag-&gt;rank);</span>
+<span class="lineNum">     306 </span>                :            :       }
+<span class="lineNum">     307 </span>                :            :     }
+<span class="lineNum">     308 </span>                :            :   }
+<span class="lineNum">     309 </span>                :            :   return 0;
+<span class="lineNum">     310 </span>                :            : }
+<a name="311"><span class="lineNum">     311 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     312 </span>                :            : void
+<span class="lineNum">     313 </span>                :<span class="lineNoCov">          0 : rpl_remove_header(void)</span>
+<span class="lineNum">     314 </span>                :            : {
+<span class="lineNum">     315 </span>                :            :   uint8_t temp_len;
+<span class="lineNum">     316 </span>                :            : 
+<span class="lineNum">     317 </span>                :<span class="lineNoCov">          0 :   uip_ext_len = 0;</span>
+<span class="lineNum">     318 </span>                :            : 
+<span class="lineNum">     319 </span>                :            :   PRINTF(&quot;RPL: Verifying the presence of the RPL header option\n&quot;);
+<span class="lineNum">     320 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   switch(UIP_IP_BUF-&gt;proto){</span>
+<span class="lineNum">     321 </span>                :            :   case UIP_PROTO_HBHO:
+<span class="lineNum">     322 </span>                :            :     PRINTF(&quot;RPL: Removing the RPL header option\n&quot;);
+<span class="lineNum">     323 </span>                :<span class="lineNoCov">          0 :     UIP_IP_BUF-&gt;proto = UIP_HBHO_BUF-&gt;next;</span>
+<span class="lineNum">     324 </span>                :<span class="lineNoCov">          0 :     temp_len = UIP_IP_BUF-&gt;len[1];</span>
+<span class="lineNum">     325 </span>                :<span class="lineNoCov">          0 :     uip_len -= UIP_HBHO_BUF-&gt;len + 8;</span>
+<span class="lineNum">     326 </span>                :<span class="lineNoCov">          0 :     UIP_IP_BUF-&gt;len[1] -= UIP_HBHO_BUF-&gt;len + 8;</span>
+<span class="lineNum">     327 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(UIP_IP_BUF-&gt;len[1] &gt; temp_len) {</span>
+<span class="lineNum">     328 </span>                :<span class="lineNoCov">          0 :       UIP_IP_BUF-&gt;len[0]--;</span>
+<span class="lineNum">     329 </span>                :            :     }
+<span class="lineNum">     330 </span>                :<span class="lineNoCov">          0 :     memmove(UIP_EXT_BUF, UIP_HBHO_NEXT_BUF, uip_len - UIP_IPH_LEN);</span>
+<span class="lineNum">     331 </span>                :            :     break;
+<span class="lineNum">     332 </span>                :            :   default:
+<span class="lineNum">     333 </span>                :            :     PRINTF(&quot;RPL: No hop-by-hop Option found\n&quot;);
+<span class="lineNum">     334 </span>                :            :   }
+<span class="lineNum">     335 </span>                :<span class="lineNoCov">          0 : }</span>
+<a name="336"><span class="lineNum">     336 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     337 </span>                :            : uint8_t
+<span class="lineNum">     338 </span>                :<span class="lineNoCov">          0 : rpl_invert_header(void)</span>
+<span class="lineNum">     339 </span>                :            : {
+<span class="lineNum">     340 </span>                :            :   uint8_t uip_ext_opt_offset;
+<span class="lineNum">     341 </span>                :            :   uint8_t last_uip_ext_len;
+<span class="lineNum">     342 </span>                :            : 
+<span class="lineNum">     343 </span>                :<span class="lineNoCov">          0 :   last_uip_ext_len = uip_ext_len;</span>
+<span class="lineNum">     344 </span>                :<span class="lineNoCov">          0 :   uip_ext_len = 0;</span>
+<span class="lineNum">     345 </span>                :<span class="lineNoCov">          0 :   uip_ext_opt_offset = 2;</span>
+<span class="lineNum">     346 </span>                :            : 
+<span class="lineNum">     347 </span>                :            :   PRINTF(&quot;RPL: Verifying the presence of the RPL header option\n&quot;);
+<span class="lineNum">     348 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   switch(UIP_IP_BUF-&gt;proto) {</span>
+<span class="lineNum">     349 </span>                :            :   case UIP_PROTO_HBHO:
+<span class="lineNum">     350 </span>                :            :     break;
+<span class="lineNum">     351 </span>                :            :   default:
+<span class="lineNum">     352 </span>                :            :     PRINTF(&quot;RPL: No hop-by-hop Option found\n&quot;);
+<span class="lineNum">     353 </span>                :<span class="lineNoCov">          0 :     uip_ext_len = last_uip_ext_len;</span>
+<span class="lineNum">     354 </span>                :<span class="lineNoCov">          0 :     return 0;</span>
+<span class="lineNum">     355 </span>                :            :   }
+<span class="lineNum">     356 </span>                :            : 
+<span class="lineNum">     357 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   switch (UIP_EXT_HDR_OPT_BUF-&gt;type) {</span>
+<span class="lineNum">     358 </span>                :            :   case UIP_EXT_HDR_OPT_RPL:
+<span class="lineNum">     359 </span>                :            :     PRINTF(&quot;RPL: Updating RPL option (switching direction)\n&quot;);
+<span class="lineNum">     360 </span>                :<span class="lineNoCov">          0 :     UIP_EXT_HDR_OPT_RPL_BUF-&gt;flags &amp;= RPL_HDR_OPT_DOWN;</span>
+<span class="lineNum">     361 </span>                :<span class="lineNoCov">          0 :     UIP_EXT_HDR_OPT_RPL_BUF-&gt;flags ^= RPL_HDR_OPT_DOWN;</span>
+<span class="lineNum">     362 </span>                :<span class="lineNoCov">          0 :     UIP_EXT_HDR_OPT_RPL_BUF-&gt;senderrank = UIP_HTONS(rpl_get_instance(UIP_EXT_HDR_OPT_RPL_BUF-&gt;instance)-&gt;current_dag-&gt;rank);</span>
+<span class="lineNum">     363 </span>                :<span class="lineNoCov">          0 :     uip_ext_len = last_uip_ext_len;</span>
+<span class="lineNum">     364 </span>                :<span class="lineNoCov">          0 :     return RPL_HOP_BY_HOP_LEN;</span>
+<span class="lineNum">     365 </span>                :            :   default:
+<span class="lineNum">     366 </span>                :            :     PRINTF(&quot;RPL: Multi Hop-by-hop options not implemented\n&quot;);
+<span class="lineNum">     367 </span>                :<span class="lineNoCov">          0 :     uip_ext_len = last_uip_ext_len;</span>
+<span class="lineNum">     368 </span>                :<span class="lineNoCov">          0 :     return 0;</span>
+<span class="lineNum">     369 </span>                :            :   }
+<span class="lineNum">     370 </span>                :            : }
+<a name="371"><span class="lineNum">     371 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     372 </span>                :            : void
+<span class="lineNum">     373 </span>                :<span class="lineNoCov">          0 : rpl_insert_header(void)</span>
+<span class="lineNum">     374 </span>                :            : {
+<span class="lineNum">     375 </span>[<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>][<span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(default_instance != NULL &amp;&amp; !uip_is_addr_mcast(&amp;UIP_IP_BUF-&gt;destipaddr)) {</span>
+<span class="lineNum">     376 </span>                :<span class="lineNoCov">          0 :     rpl_update_header_empty();</span>
+<span class="lineNum">     377 </span>                :            :   }
+<span class="lineNum">     378 </span>                :<span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     379 </span>                :            : /*---------------------------------------------------------------------------*/
+<span class="lineNum">     380 </span>                :            : 
+<span class="lineNum">     381 </span>                :            : /** @}*/
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.9</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

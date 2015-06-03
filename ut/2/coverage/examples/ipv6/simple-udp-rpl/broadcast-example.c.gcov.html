@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - coverage.info - examples/ipv6/simple-udp-rpl/broadcast-example.c</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">examples/ipv6/simple-udp-rpl</a> - broadcast-example.c<span style="font-size: 80%;"> (source / <a href="broadcast-example.c.func.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">15</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2014-12-23</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">16</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">           Branch data     Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>                :            : /*</a>
+<span class="lineNum">       2 </span>                :            :  * Copyright (c) 2011, Swedish Institute of Computer Science.
+<span class="lineNum">       3 </span>                :            :  * All rights reserved.
+<span class="lineNum">       4 </span>                :            :  *
+<span class="lineNum">       5 </span>                :            :  * Redistribution and use in source and binary forms, with or without
+<span class="lineNum">       6 </span>                :            :  * modification, are permitted provided that the following conditions
+<span class="lineNum">       7 </span>                :            :  * are met:
+<span class="lineNum">       8 </span>                :            :  * 1. Redistributions of source code must retain the above copyright
+<span class="lineNum">       9 </span>                :            :  *    notice, this list of conditions and the following disclaimer.
+<span class="lineNum">      10 </span>                :            :  * 2. Redistributions in binary form must reproduce the above copyright
+<span class="lineNum">      11 </span>                :            :  *    notice, this list of conditions and the following disclaimer in the
+<span class="lineNum">      12 </span>                :            :  *    documentation and/or other materials provided with the distribution.
+<span class="lineNum">      13 </span>                :            :  * 3. Neither the name of the Institute nor the names of its contributors
+<span class="lineNum">      14 </span>                :            :  *    may be used to endorse or promote products derived from this software
+<span class="lineNum">      15 </span>                :            :  *    without specific prior written permission.
+<span class="lineNum">      16 </span>                :            :  *
+<span class="lineNum">      17 </span>                :            :  * THIS SOFTWARE IS PROVIDED BY THE INSTITUTE AND CONTRIBUTORS ``AS IS'' AND
+<span class="lineNum">      18 </span>                :            :  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+<span class="lineNum">      19 </span>                :            :  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+<span class="lineNum">      20 </span>                :            :  * ARE DISCLAIMED.  IN NO EVENT SHALL THE INSTITUTE OR CONTRIBUTORS BE LIABLE
+<span class="lineNum">      21 </span>                :            :  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+<span class="lineNum">      22 </span>                :            :  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+<span class="lineNum">      23 </span>                :            :  * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+<span class="lineNum">      24 </span>                :            :  * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+<span class="lineNum">      25 </span>                :            :  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+<span class="lineNum">      26 </span>                :            :  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+<span class="lineNum">      27 </span>                :            :  * SUCH DAMAGE.
+<span class="lineNum">      28 </span>                :            :  *
+<span class="lineNum">      29 </span>                :            :  * This file is part of the Contiki operating system.
+<span class="lineNum">      30 </span>                :            :  *
+<span class="lineNum">      31 </span>                :            :  */
+<span class="lineNum">      32 </span>                :            : 
+<span class="lineNum">      33 </span>                :            : #include &quot;contiki.h&quot;
+<span class="lineNum">      34 </span>                :            : #include &quot;lib/random.h&quot;
+<span class="lineNum">      35 </span>                :            : #include &quot;sys/ctimer.h&quot;
+<span class="lineNum">      36 </span>                :            : #include &quot;sys/etimer.h&quot;
+<span class="lineNum">      37 </span>                :            : #include &quot;net/ip/uip.h&quot;
+<span class="lineNum">      38 </span>                :            : #include &quot;net/ipv6/uip-ds6.h&quot;
+<span class="lineNum">      39 </span>                :            : 
+<span class="lineNum">      40 </span>                :            : #include &quot;simple-udp.h&quot;
+<span class="lineNum">      41 </span>                :            : 
+<span class="lineNum">      42 </span>                :            : 
+<span class="lineNum">      43 </span>                :            : #include &lt;stdio.h&gt;
+<span class="lineNum">      44 </span>                :            : #include &lt;string.h&gt;
+<span class="lineNum">      45 </span>                :            : 
+<span class="lineNum">      46 </span>                :            : #define UDP_PORT 1234
+<span class="lineNum">      47 </span>                :            : 
+<span class="lineNum">      48 </span>                :            : #define SEND_INTERVAL           (20 * CLOCK_SECOND)
+<span class="lineNum">      49 </span>                :            : #define SEND_TIME               (random_rand() % (SEND_INTERVAL))
+<span class="lineNum">      50 </span>                :            : 
+<span class="lineNum">      51 </span>                :            : static struct simple_udp_connection broadcast_connection;
+<span class="lineNum">      52 </span>                :            : 
+<span class="lineNum">      53 </span>                :            : /*---------------------------------------------------------------------------*/
+<span class="lineNum">      54 </span>                :            : PROCESS(broadcast_example_process, &quot;UDP broadcast example process&quot;);
+<span class="lineNum">      55 </span>                :            : AUTOSTART_PROCESSES(&amp;broadcast_example_process);
+<a name="56"><span class="lineNum">      56 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">      57 </span>                :            : static void
+<span class="lineNum">      58 </span>                :<span class="lineNoCov">          0 : receiver(struct simple_udp_connection *c,</span>
+<span class="lineNum">      59 </span>                :            :          const uip_ipaddr_t *sender_addr,
+<span class="lineNum">      60 </span>                :            :          uint16_t sender_port,
+<span class="lineNum">      61 </span>                :            :          const uip_ipaddr_t *receiver_addr,
+<span class="lineNum">      62 </span>                :            :          uint16_t receiver_port,
+<span class="lineNum">      63 </span>                :            :          const uint8_t *data,
+<span class="lineNum">      64 </span>                :            :          uint16_t datalen)
+<span class="lineNum">      65 </span>                :            : {
+<span class="lineNum">      66 </span>                :            :   printf(&quot;Data received on port %d from port %d with length %d\n&quot;,
+<span class="lineNum">      67 </span>                :<span class="lineNoCov">          0 :          receiver_port, sender_port, datalen);</span>
+<a name="68"><span class="lineNum">      68 </span>                :<span class="lineNoCov">          0 : }</span></a>
+<span class="lineNum">      69 </span>                :            : /*---------------------------------------------------------------------------*/
+<span class="lineNum">      70 </span>                :<span class="lineNoCov">          0 : PROCESS_THREAD(broadcast_example_process, ev, data)</span>
+<span class="lineNum">      71 </span>                :            : {
+<span class="lineNum">      72 </span>                :            :   static struct etimer periodic_timer;
+<span class="lineNum">      73 </span>                :            :   static struct etimer send_timer;
+<span class="lineNum">      74 </span>                :            :   uip_ipaddr_t addr;
+<span class="lineNum">      75 </span>                :            : 
+<span class="lineNum">      76 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :   PROCESS_BEGIN();</span>
+<span class="lineNum">      77 </span>                :            : 
+<span class="lineNum">      78 </span>                :            :   simple_udp_register(&amp;broadcast_connection, UDP_PORT,
+<span class="lineNum">      79 </span>                :            :                       NULL, UDP_PORT,
+<span class="lineNum">      80 </span>                :<span class="lineNoCov">          0 :                       receiver);</span>
+<span class="lineNum">      81 </span>                :            : 
+<span class="lineNum">      82 </span>                :<span class="lineNoCov">          0 :   etimer_set(&amp;periodic_timer, SEND_INTERVAL);</span>
+<span class="lineNum">      83 </span>                :<span class="lineNoCov">          0 :   while(1) {</span>
+<span class="lineNum">      84 </span>[<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>][<span class="branchNoExec" title="Branch 3 was not executed"> # </span><span class="branchNoExec" title="Branch 4 was not executed"> # </span>]:<span class="lineNoCov">          0 :     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&amp;periodic_timer));</span>
+<span class="lineNum">         </span>        [<span class="branchNoExec" title="Branch 5 was not executed"> # </span><span class="branchNoExec" title="Branch 6 was not executed"> # </span>]
+<span class="lineNum">      85 </span>                :<span class="lineNoCov">          0 :     etimer_reset(&amp;periodic_timer);</span>
+<span class="lineNum">      86 </span>                :<span class="lineNoCov">          0 :     etimer_set(&amp;send_timer, SEND_TIME);</span>
+<span class="lineNum">      87 </span>                :            : 
+<span class="lineNum">      88 </span>[<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>][<span class="branchNoExec" title="Branch 3 was not executed"> # </span><span class="branchNoExec" title="Branch 4 was not executed"> # </span>]:<span class="lineNoCov">          0 :     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&amp;send_timer));</span>
+<span class="lineNum">         </span>        [<span class="branchNoExec" title="Branch 5 was not executed"> # </span><span class="branchNoExec" title="Branch 6 was not executed"> # </span>]
+<span class="lineNum">      89 </span>                :            :     printf(&quot;Sending broadcast\n&quot;);
+<span class="lineNum">      90 </span>                :<span class="lineNoCov">          0 :     uip_create_linklocal_allnodes_mcast(&amp;addr);</span>
+<span class="lineNum">      91 </span>                :<span class="lineNoCov">          0 :     simple_udp_sendto(&amp;broadcast_connection, &quot;Test&quot;, 4, &amp;addr);</span>
+<span class="lineNum">      92 </span>                :            :   }
+<span class="lineNum">      93 </span>                :            : 
+<span class="lineNum">      94 </span>                :<span class="lineNoCov">          0 :   PROCESS_END();</span>
+<span class="lineNum">      95 </span>                :            : }
+<span class="lineNum">      96 </span>                :            : /*---------------------------------------------------------------------------*/
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.9</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

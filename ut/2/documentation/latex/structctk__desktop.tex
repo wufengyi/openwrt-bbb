@@ -1,0 +1,78 @@
+\hypertarget{structctk__desktop}{}\section{ctk\+\_\+desktop Struct Reference}
+\label{structctk__desktop}\index{ctk\+\_\+desktop@{ctk\+\_\+desktop}}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{structctk__desktop_aca68c318930404e60482bf1e69ea0852}{name}
+\item 
+struct \hyperlink{structctk__window}{ctk\+\_\+window} \hyperlink{structctk__desktop_ae50b40fab03969958331255e939616ee}{desktop\+\_\+window}
+\item 
+struct \hyperlink{structctk__window}{ctk\+\_\+window} $\ast$ \hyperlink{structctk__desktop_ab8349c5e65cb15988a848723dc5ec05f}{windows}
+\item 
+struct \hyperlink{structctk__window}{ctk\+\_\+window} $\ast$ \hyperlink{structctk__desktop_ab3eb78a18c8e9e744cf1b529041704d0}{dialog}
+\item 
+unsigned char \hyperlink{structctk__desktop_aed82ebe84d80a552b4766badac4bb9db}{height}
+\item 
+unsigned char \hyperlink{structctk__desktop_a7b6d5b276ee4defe23e90fd03088ac10}{width}
+\item 
+unsigned char \hyperlink{structctk__desktop_a51920c8b038bc60c96837d0120bf6cb9}{redraw}
+\item 
+struct \hyperlink{structctk__widget}{ctk\+\_\+widget} $\ast$ \hyperlink{structctk__desktop_add627f6c546946087f9a9b16c691b8dc}{redraw\+\_\+widgets} \mbox{[}C\+T\+K\+\_\+\+C\+O\+N\+F\+\_\+\+M\+A\+X\+\_\+\+R\+E\+D\+R\+A\+W\+W\+I\+D\+G\+E\+T\+S\mbox{]}
+\item 
+unsigned char \hyperlink{structctk__desktop_aaf90f191111d9b0ff3f8a10d4563964c}{redraw\+\_\+widgetptr}
+\item 
+struct \hyperlink{structctk__window}{ctk\+\_\+window} $\ast$ \hyperlink{structctk__desktop_a5d1ee2fbc501fb71c7690b91493b46c1}{redraw\+\_\+windows} \mbox{[}C\+T\+K\+\_\+\+C\+O\+N\+F\+\_\+\+M\+A\+X\+\_\+\+R\+E\+D\+R\+A\+W\+W\+I\+N\+D\+O\+W\+S\mbox{]}
+\item 
+unsigned char \hyperlink{structctk__desktop_a893796b824512c19839b54c28c035cb8}{redraw\+\_\+windowptr}
+\item 
+unsigned char \hyperlink{structctk__desktop_ae770b8567f0838de5ad83ce196b0a6ea}{redraw\+\_\+y1}
+\item 
+unsigned char \hyperlink{structctk__desktop_a870ac347ec560d19f9a0926c6bdf2b37}{redraw\+\_\+y2}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{structctk__desktop_ae50b40fab03969958331255e939616ee}{}\index{ctk\+\_\+desktop@{ctk\+\_\+desktop}!desktop\+\_\+window@{desktop\+\_\+window}}
+\index{desktop\+\_\+window@{desktop\+\_\+window}!ctk\+\_\+desktop@{ctk\+\_\+desktop}}
+\subsubsection[{desktop\+\_\+window}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf ctk\+\_\+window} ctk\+\_\+desktop\+::desktop\+\_\+window}\label{structctk__desktop_ae50b40fab03969958331255e939616ee}
+The background window which contains tha desktop icons. \hypertarget{structctk__desktop_ab3eb78a18c8e9e744cf1b529041704d0}{}\index{ctk\+\_\+desktop@{ctk\+\_\+desktop}!dialog@{dialog}}
+\index{dialog@{dialog}!ctk\+\_\+desktop@{ctk\+\_\+desktop}}
+\subsubsection[{dialog}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf ctk\+\_\+window}$\ast$ ctk\+\_\+desktop\+::dialog}\label{structctk__desktop_ab3eb78a18c8e9e744cf1b529041704d0}
+A pointer to the open dialog, or N\+U\+L\+L if no dialog is open. \hypertarget{structctk__desktop_aed82ebe84d80a552b4766badac4bb9db}{}\index{ctk\+\_\+desktop@{ctk\+\_\+desktop}!height@{height}}
+\index{height@{height}!ctk\+\_\+desktop@{ctk\+\_\+desktop}}
+\subsubsection[{height}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char ctk\+\_\+desktop\+::height}\label{structctk__desktop_aed82ebe84d80a552b4766badac4bb9db}
+The height of the desktop, in characters. \hypertarget{structctk__desktop_aca68c318930404e60482bf1e69ea0852}{}\index{ctk\+\_\+desktop@{ctk\+\_\+desktop}!name@{name}}
+\index{name@{name}!ctk\+\_\+desktop@{ctk\+\_\+desktop}}
+\subsubsection[{name}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ ctk\+\_\+desktop\+::name}\label{structctk__desktop_aca68c318930404e60482bf1e69ea0852}
+The name of the desktop. \hypertarget{structctk__desktop_a51920c8b038bc60c96837d0120bf6cb9}{}\index{ctk\+\_\+desktop@{ctk\+\_\+desktop}!redraw@{redraw}}
+\index{redraw@{redraw}!ctk\+\_\+desktop@{ctk\+\_\+desktop}}
+\subsubsection[{redraw}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char ctk\+\_\+desktop\+::redraw}\label{structctk__desktop_a51920c8b038bc60c96837d0120bf6cb9}
+The redraw flag. \hypertarget{structctk__desktop_aaf90f191111d9b0ff3f8a10d4563964c}{}\index{ctk\+\_\+desktop@{ctk\+\_\+desktop}!redraw\+\_\+widgetptr@{redraw\+\_\+widgetptr}}
+\index{redraw\+\_\+widgetptr@{redraw\+\_\+widgetptr}!ctk\+\_\+desktop@{ctk\+\_\+desktop}}
+\subsubsection[{redraw\+\_\+widgetptr}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char ctk\+\_\+desktop\+::redraw\+\_\+widgetptr}\label{structctk__desktop_aaf90f191111d9b0ff3f8a10d4563964c}
+Pointer to the last widget on the redraw\+\_\+widgets list. \hypertarget{structctk__desktop_add627f6c546946087f9a9b16c691b8dc}{}\index{ctk\+\_\+desktop@{ctk\+\_\+desktop}!redraw\+\_\+widgets@{redraw\+\_\+widgets}}
+\index{redraw\+\_\+widgets@{redraw\+\_\+widgets}!ctk\+\_\+desktop@{ctk\+\_\+desktop}}
+\subsubsection[{redraw\+\_\+widgets}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf ctk\+\_\+widget}$\ast$ ctk\+\_\+desktop\+::redraw\+\_\+widgets\mbox{[}C\+T\+K\+\_\+\+C\+O\+N\+F\+\_\+\+M\+A\+X\+\_\+\+R\+E\+D\+R\+A\+W\+W\+I\+D\+G\+E\+T\+S\mbox{]}}\label{structctk__desktop_add627f6c546946087f9a9b16c691b8dc}
+The list of widgets to be redrawn. \hypertarget{structctk__desktop_a893796b824512c19839b54c28c035cb8}{}\index{ctk\+\_\+desktop@{ctk\+\_\+desktop}!redraw\+\_\+windowptr@{redraw\+\_\+windowptr}}
+\index{redraw\+\_\+windowptr@{redraw\+\_\+windowptr}!ctk\+\_\+desktop@{ctk\+\_\+desktop}}
+\subsubsection[{redraw\+\_\+windowptr}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char ctk\+\_\+desktop\+::redraw\+\_\+windowptr}\label{structctk__desktop_a893796b824512c19839b54c28c035cb8}
+Pointer to the last window on the redraw\+\_\+windows list. \hypertarget{structctk__desktop_a5d1ee2fbc501fb71c7690b91493b46c1}{}\index{ctk\+\_\+desktop@{ctk\+\_\+desktop}!redraw\+\_\+windows@{redraw\+\_\+windows}}
+\index{redraw\+\_\+windows@{redraw\+\_\+windows}!ctk\+\_\+desktop@{ctk\+\_\+desktop}}
+\subsubsection[{redraw\+\_\+windows}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf ctk\+\_\+window}$\ast$ ctk\+\_\+desktop\+::redraw\+\_\+windows\mbox{[}C\+T\+K\+\_\+\+C\+O\+N\+F\+\_\+\+M\+A\+X\+\_\+\+R\+E\+D\+R\+A\+W\+W\+I\+N\+D\+O\+W\+S\mbox{]}}\label{structctk__desktop_a5d1ee2fbc501fb71c7690b91493b46c1}
+The list of windows to be redrawn. \hypertarget{structctk__desktop_ae770b8567f0838de5ad83ce196b0a6ea}{}\index{ctk\+\_\+desktop@{ctk\+\_\+desktop}!redraw\+\_\+y1@{redraw\+\_\+y1}}
+\index{redraw\+\_\+y1@{redraw\+\_\+y1}!ctk\+\_\+desktop@{ctk\+\_\+desktop}}
+\subsubsection[{redraw\+\_\+y1}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char ctk\+\_\+desktop\+::redraw\+\_\+y1}\label{structctk__desktop_ae770b8567f0838de5ad83ce196b0a6ea}
+The lower y bound of the area to be redrawn if C\+T\+K\+\_\+\+R\+E\+D\+R\+A\+W\+\_\+\+P\+A\+R\+T is flagged. \hypertarget{structctk__desktop_a870ac347ec560d19f9a0926c6bdf2b37}{}\index{ctk\+\_\+desktop@{ctk\+\_\+desktop}!redraw\+\_\+y2@{redraw\+\_\+y2}}
+\index{redraw\+\_\+y2@{redraw\+\_\+y2}!ctk\+\_\+desktop@{ctk\+\_\+desktop}}
+\subsubsection[{redraw\+\_\+y2}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char ctk\+\_\+desktop\+::redraw\+\_\+y2}\label{structctk__desktop_a870ac347ec560d19f9a0926c6bdf2b37}
+The upper y bound of the area to be redrawn if C\+T\+K\+\_\+\+R\+E\+D\+R\+A\+W\+\_\+\+P\+A\+R\+T is flagged. \hypertarget{structctk__desktop_a7b6d5b276ee4defe23e90fd03088ac10}{}\index{ctk\+\_\+desktop@{ctk\+\_\+desktop}!width@{width}}
+\index{width@{width}!ctk\+\_\+desktop@{ctk\+\_\+desktop}}
+\subsubsection[{width}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char ctk\+\_\+desktop\+::width}\label{structctk__desktop_a7b6d5b276ee4defe23e90fd03088ac10}
+The width of the desktop, in characters. \hypertarget{structctk__desktop_ab8349c5e65cb15988a848723dc5ec05f}{}\index{ctk\+\_\+desktop@{ctk\+\_\+desktop}!windows@{windows}}
+\index{windows@{windows}!ctk\+\_\+desktop@{ctk\+\_\+desktop}}
+\subsubsection[{windows}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf ctk\+\_\+window}$\ast$ ctk\+\_\+desktop\+::windows}\label{structctk__desktop_ab8349c5e65cb15988a848723dc5ec05f}
+The list of open windows. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/contiki\+U\+T/contiki/core/ctk/\hyperlink{ctk_8h}{ctk.\+h}\end{DoxyCompactItemize}

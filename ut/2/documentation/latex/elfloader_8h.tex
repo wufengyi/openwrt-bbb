@@ -1,0 +1,71 @@
+\hypertarget{elfloader_8h}{}\section{/home/user/contiki\+U\+T/contiki/core/loader/elfloader.h File Reference}
+\label{elfloader_8h}\index{/home/user/contiki\+U\+T/contiki/core/loader/elfloader.\+h@{/home/user/contiki\+U\+T/contiki/core/loader/elfloader.\+h}}
+{\ttfamily \#include \char`\"{}cfs/cfs.\+h\char`\"{}}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structelf32__rela}{elf32\+\_\+rela}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__elfloader_ga8079bf9400f6ab6ea2bcbb02619bf642}{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+O\+K}~0
+\item 
+\#define \hyperlink{group__elfloader_gadc23fd3bb068baab21e0719f5272f5f4}{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+B\+A\+D\+\_\+\+E\+L\+F\+\_\+\+H\+E\+A\+D\+E\+R}~1
+\item 
+\#define \hyperlink{group__elfloader_ga1f5f088314c4af0fe4889c5f282b07f1}{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+S\+Y\+M\+T\+A\+B}~2
+\item 
+\#define \hyperlink{group__elfloader_ga75a62386c75729c352ecf37de87121cc}{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+S\+T\+R\+T\+A\+B}~3
+\item 
+\#define \hyperlink{group__elfloader_ga8b8819f1e0118bf282c0097beb3d5570}{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+T\+E\+X\+T}~4
+\item 
+\#define \hyperlink{group__elfloader_ga2a128ca398d9ab5d2ad49e298c81f278}{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+S\+Y\+M\+B\+O\+L\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+N\+D}~5
+\item 
+\#define \hyperlink{group__elfloader_ga48634066def7d19e02812e360e074ccf}{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+S\+E\+G\+M\+E\+N\+T\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+N\+D}~6
+\item 
+\#define \hyperlink{group__elfloader_ga98dc2983b4456dc3484f1144347da8d2}{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+S\+T\+A\+R\+T\+P\+O\+I\+N\+T}~7
+\item 
+\hypertarget{group__elfloader_ga9cca0b1cd724e509effb0c07f235d65d}{}\#define {\bfseries E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+D\+A\+T\+A\+M\+E\+M\+O\+R\+Y\+\_\+\+S\+I\+Z\+E}~0x100\label{group__elfloader_ga9cca0b1cd724e509effb0c07f235d65d}
+
+\item 
+\hypertarget{group__elfloader_gaa356f95a6de8f4a40fe6b51a26543b00}{}\#define {\bfseries E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+T\+E\+X\+T\+M\+E\+M\+O\+R\+Y\+\_\+\+S\+I\+Z\+E}~0x100\label{group__elfloader_gaa356f95a6de8f4a40fe6b51a26543b00}
+
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__elfloader_ga14c85b9bd0eeef4214bc87b90d0d3e02}{}typedef unsigned long {\bfseries elf32\+\_\+word}\label{group__elfloader_ga14c85b9bd0eeef4214bc87b90d0d3e02}
+
+\item 
+\hypertarget{group__elfloader_ga963fca44d5c29ca9406aa3a0ca40f808}{}typedef signed long {\bfseries elf32\+\_\+sword}\label{group__elfloader_ga963fca44d5c29ca9406aa3a0ca40f808}
+
+\item 
+\hypertarget{group__elfloader_ga74d25e010922731c8ec5351be7ee3ca8}{}typedef unsigned short {\bfseries elf32\+\_\+half}\label{group__elfloader_ga74d25e010922731c8ec5351be7ee3ca8}
+
+\item 
+\hypertarget{group__elfloader_ga273f7555ac1256eb829dfb274e00f82c}{}typedef unsigned long {\bfseries elf32\+\_\+off}\label{group__elfloader_ga273f7555ac1256eb829dfb274e00f82c}
+
+\item 
+\hypertarget{group__elfloader_ga47a5fb7713f48fb20559b4b9c88cfa3a}{}typedef unsigned long {\bfseries elf32\+\_\+addr}\label{group__elfloader_ga47a5fb7713f48fb20559b4b9c88cfa3a}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__elfloader_gacfa73525b05c5a176aa1017b071340a4}{elfloader\+\_\+init} (void)
+\item 
+int \hyperlink{group__elfloader_ga57190d49fcc860d9a780f2860e896a5b}{elfloader\+\_\+load} (int fd)
+\begin{DoxyCompactList}\small\item\em Load and relocate an E\+L\+F file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct process $\ast$const $\ast$ \hyperlink{group__elfloader_ga9f2016bded2b94bde0fd29bf260aecd1}{elfloader\+\_\+autostart\+\_\+processes}
+\item 
+char \hyperlink{group__elfloader_gaf087e757d08d26af687c22380a039d75}{elfloader\+\_\+unknown} \mbox{[}30\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Header file for the Contiki E\+L\+F loader. \begin{DoxyAuthor}{Author}
+Adam Dunkels \href{mailto:adam@sics.se}{\tt adam@sics.\+se} 
+\end{DoxyAuthor}

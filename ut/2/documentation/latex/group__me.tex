@@ -1,0 +1,97 @@
+\hypertarget{group__me}{}\section{Table-\/driven Manchester encoding and decoding}
+\label{group__me}\index{Table-\/driven Manchester encoding and decoding@{Table-\/driven Manchester encoding and decoding}}
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \hyperlink{me_8c}{me.\+c}
+\item 
+file \hyperlink{me_8h}{me.\+h}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+unsigned short \hyperlink{group__me_ga72548e4a7b5ab863881a226601684a5f}{me\+\_\+encode} (unsigned char c)
+\item 
+unsigned char \hyperlink{group__me_ga2ba94b4f5cb665f0a50989a97dab40d9}{me\+\_\+decode16} (unsigned short m)
+\item 
+unsigned char \hyperlink{group__me_ga0f2e13136808a58db639c0dc56a1d64a}{me\+\_\+decode8} (unsigned char m)
+\item 
+unsigned char \hyperlink{group__me_ga270f4332b76bf56b924ac5dcbcecb4af}{me\+\_\+valid} (unsigned char m)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Manchester encoding is a bit encoding scheme which translates each bit into two bits\+: the original bit and the inverted bit.
+
+Manchester encoding is used for transmitting ones and zeroes between two computers. The Manchester encoding reduces the receive oscillator drift by making sure that no consecutive ones or zeroes are ever transmitted.
+
+The table driven method of Manchester encoding and decoding uses two tables with 256 entries. One table is a direct mapping of an 8-\/bit byte into a 16-\/bit Manchester encoding of the byte. The second table is a mapping of a Manchester encoded 8-\/bit byte to 4 decoded bits. 
+
+\subsection{Function Documentation}
+\hypertarget{group__me_ga2ba94b4f5cb665f0a50989a97dab40d9}{}\index{Table-\/driven Manchester encoding and decoding@{Table-\/driven Manchester encoding and decoding}!me\+\_\+decode16@{me\+\_\+decode16}}
+\index{me\+\_\+decode16@{me\+\_\+decode16}!Table-\/driven Manchester encoding and decoding@{Table-\/driven Manchester encoding and decoding}}
+\subsubsection[{me\+\_\+decode16}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char me\+\_\+decode16 (
+\begin{DoxyParamCaption}
+\item[{unsigned short}]{m}
+\end{DoxyParamCaption}
+)}\label{group__me_ga2ba94b4f5cb665f0a50989a97dab40d9}
+Decode a Manchester encoded 16-\/bit word.
+
+This function decodes a Manchester encoded 16-\/bit word into a 8-\/bit byte. The function does not check for parity errors in the encoded byte.
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & The 16-\/bit Manchester encoded word \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The decoded 8-\/bit byte 
+\end{DoxyReturn}
+\hypertarget{group__me_ga0f2e13136808a58db639c0dc56a1d64a}{}\index{Table-\/driven Manchester encoding and decoding@{Table-\/driven Manchester encoding and decoding}!me\+\_\+decode8@{me\+\_\+decode8}}
+\index{me\+\_\+decode8@{me\+\_\+decode8}!Table-\/driven Manchester encoding and decoding@{Table-\/driven Manchester encoding and decoding}}
+\subsubsection[{me\+\_\+decode8}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char me\+\_\+decode8 (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{m}
+\end{DoxyParamCaption}
+)}\label{group__me_ga0f2e13136808a58db639c0dc56a1d64a}
+Decode a Manchester encoded 8-\/bit byte.
+
+This function decodes a Manchester encoded 8-\/bit byte into 4 decoded bits.. The function does not check for parity errors in the encoded byte.
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & The 8-\/bit Manchester encoded byte \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The decoded 4 bits 
+\end{DoxyReturn}
+\hypertarget{group__me_ga72548e4a7b5ab863881a226601684a5f}{}\index{Table-\/driven Manchester encoding and decoding@{Table-\/driven Manchester encoding and decoding}!me\+\_\+encode@{me\+\_\+encode}}
+\index{me\+\_\+encode@{me\+\_\+encode}!Table-\/driven Manchester encoding and decoding@{Table-\/driven Manchester encoding and decoding}}
+\subsubsection[{me\+\_\+encode}]{\setlength{\rightskip}{0pt plus 5cm}unsigned short me\+\_\+encode (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{c}
+\end{DoxyParamCaption}
+)}\label{group__me_ga72548e4a7b5ab863881a226601684a5f}
+Manchester encode an 8-\/bit byte.
+
+This function Manchester encodes an 8-\/bit byte into a 16-\/bit word. The function me\+\_\+decode() does the inverse operation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & The byte to be encoded\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em The} & encoded word. \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__me_ga270f4332b76bf56b924ac5dcbcecb4af}{}\index{Table-\/driven Manchester encoding and decoding@{Table-\/driven Manchester encoding and decoding}!me\+\_\+valid@{me\+\_\+valid}}
+\index{me\+\_\+valid@{me\+\_\+valid}!Table-\/driven Manchester encoding and decoding@{Table-\/driven Manchester encoding and decoding}}
+\subsubsection[{me\+\_\+valid}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char me\+\_\+valid (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{m}
+\end{DoxyParamCaption}
+)}\label{group__me_ga270f4332b76bf56b924ac5dcbcecb4af}
+Check if an encoded byte is valid. 

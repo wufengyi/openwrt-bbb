@@ -1,0 +1,150 @@
+\hypertarget{group__mmem}{}\section{Managed memory allocator}
+\label{group__mmem}\index{Managed memory allocator@{Managed memory allocator}}
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \hyperlink{mmem_8c}{mmem.\+c}
+\item 
+file \hyperlink{mmem_8h}{mmem.\+h}
+\end{DoxyCompactItemize}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structmmem}{mmem}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__mmem_gaca6097cc8e48d9cb9970f0b09bbe1ccf}{}\#define {\bfseries M\+M\+E\+M\+\_\+\+S\+I\+Z\+E}~4096\label{group__mmem_gaca6097cc8e48d9cb9970f0b09bbe1ccf}
+
+\item 
+\#define \hyperlink{group__mmem_ga3167a04b2eccfe04a9a1e9a63847d147}{M\+M\+E\+M\+\_\+\+P\+T\+R}(m)
+\begin{DoxyCompactList}\small\item\em Get a pointer to the managed memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__mmem_ga0cefcd211c74c9e1e5e87faf6616cc48}{}{\bfseries L\+I\+S\+T} (mmemlist)\label{group__mmem_ga0cefcd211c74c9e1e5e87faf6616cc48}
+
+\item 
+int \hyperlink{group__mmem_ga0fedd76f44b4750a7762f633467e5515}{mmem\+\_\+alloc} (struct \hyperlink{structmmem}{mmem} $\ast$m, unsigned int size)
+\begin{DoxyCompactList}\small\item\em Allocate a managed memory block. \end{DoxyCompactList}\item 
+void \hyperlink{group__mmem_ga172798945ec6cf2d23cb7cb7dc76861c}{mmem\+\_\+free} (struct \hyperlink{structmmem}{mmem} $\ast$m)
+\begin{DoxyCompactList}\small\item\em Deallocate a managed memory block. \end{DoxyCompactList}\item 
+void \hyperlink{group__mmem_ga71d6c141eaf75846c90c72f6f1386902}{mmem\+\_\+init} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the managed memory module. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__mmem_gade5eff319d4fab5a0ceefb8742c1dc7a}{}unsigned int {\bfseries avail\+\_\+memory}\label{group__mmem_gade5eff319d4fab5a0ceefb8742c1dc7a}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The managed memory allocator is a fragmentation-\/free memory manager. It keeps the allocated memory free from fragmentation by compacting the memory when blocks are freed. A program that uses the managed memory module cannot be sure that allocated memory stays in place. Therefore, a level of indirection is used\+: access to allocated memory must always be done using a special macro.
+
+\begin{DoxyNote}{Note}
+This module has not been heavily tested. 
+\end{DoxyNote}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{group__mmem_ga3167a04b2eccfe04a9a1e9a63847d147}{}\index{Managed memory allocator@{Managed memory allocator}!M\+M\+E\+M\+\_\+\+P\+T\+R@{M\+M\+E\+M\+\_\+\+P\+T\+R}}
+\index{M\+M\+E\+M\+\_\+\+P\+T\+R@{M\+M\+E\+M\+\_\+\+P\+T\+R}!Managed memory allocator@{Managed memory allocator}}
+\subsubsection[{M\+M\+E\+M\+\_\+\+P\+T\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+M\+E\+M\+\_\+\+P\+T\+R(
+\begin{DoxyParamCaption}
+\item[{}]{m}
+\end{DoxyParamCaption}
+)}\label{group__mmem_ga3167a04b2eccfe04a9a1e9a63847d147}
+
+
+Get a pointer to the managed memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & A pointer to the struct mmem \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the memory block, or N\+U\+L\+L if memory could not be allocated. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Adam Dunkels \begin{DoxyVerb}        This macro is used to get a pointer to a memory block
+        allocated with mmem_alloc().\end{DoxyVerb}
+ 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\hypertarget{group__mmem_ga0fedd76f44b4750a7762f633467e5515}{}\index{Managed memory allocator@{Managed memory allocator}!mmem\+\_\+alloc@{mmem\+\_\+alloc}}
+\index{mmem\+\_\+alloc@{mmem\+\_\+alloc}!Managed memory allocator@{Managed memory allocator}}
+\subsubsection[{mmem\+\_\+alloc}]{\setlength{\rightskip}{0pt plus 5cm}int mmem\+\_\+alloc (
+\begin{DoxyParamCaption}
+\item[{struct {\bf mmem} $\ast$}]{m, }
+\item[{unsigned int}]{size}
+\end{DoxyParamCaption}
+)}\label{group__mmem_ga0fedd76f44b4750a7762f633467e5515}
+
+
+Allocate a managed memory block. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & A pointer to a struct mmem. \\
+\hline
+{\em size} & The size of the requested memory block \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Non-\/zero if the memory could be allocated, zero if memory was not available. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Adam Dunkels \begin{DoxyVerb}        This function allocates a chunk of managed memory. The
+        memory allocated with this function must be deallocated
+        using the mmem_free() function.
+
+        \note This function does NOT return a pointer to the
+        allocated memory, but a pointer to a structure that
+        contains information about the managed memory. The
+        macro MMEM_PTR() is used to get a pointer to the
+        allocated memory.\end{DoxyVerb}
+ 
+\end{DoxyAuthor}
+\hypertarget{group__mmem_ga172798945ec6cf2d23cb7cb7dc76861c}{}\index{Managed memory allocator@{Managed memory allocator}!mmem\+\_\+free@{mmem\+\_\+free}}
+\index{mmem\+\_\+free@{mmem\+\_\+free}!Managed memory allocator@{Managed memory allocator}}
+\subsubsection[{mmem\+\_\+free}]{\setlength{\rightskip}{0pt plus 5cm}void mmem\+\_\+free (
+\begin{DoxyParamCaption}
+\item[{struct {\bf mmem} $\ast$}]{m}
+\end{DoxyParamCaption}
+)}\label{group__mmem_ga172798945ec6cf2d23cb7cb7dc76861c}
+
+
+Deallocate a managed memory block. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & A pointer to the managed memory block \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Adam Dunkels \begin{DoxyVerb}        This function deallocates a managed memory block that
+        previously has been allocated with mmem_alloc().\end{DoxyVerb}
+ 
+\end{DoxyAuthor}
+\hypertarget{group__mmem_ga71d6c141eaf75846c90c72f6f1386902}{}\index{Managed memory allocator@{Managed memory allocator}!mmem\+\_\+init@{mmem\+\_\+init}}
+\index{mmem\+\_\+init@{mmem\+\_\+init}!Managed memory allocator@{Managed memory allocator}}
+\subsubsection[{mmem\+\_\+init}]{\setlength{\rightskip}{0pt plus 5cm}void mmem\+\_\+init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group__mmem_ga71d6c141eaf75846c90c72f6f1386902}
+
+
+Initialize the managed memory module. 
+
+\begin{DoxyAuthor}{Author}
+Adam Dunkels \begin{DoxyVerb}        This function initializes the managed memory module and
+        should be called before any other function from the
+        module.\end{DoxyVerb}
+ 
+\end{DoxyAuthor}

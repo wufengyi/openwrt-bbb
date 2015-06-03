@@ -1,0 +1,50 @@
+\hypertarget{structctk__menu}{}\section{ctk\+\_\+menu Struct Reference}
+\label{structctk__menu}\index{ctk\+\_\+menu@{ctk\+\_\+menu}}
+
+
+{\ttfamily \#include $<$ctk.\+h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structctk__menu}{ctk\+\_\+menu} $\ast$ \hyperlink{structctk__menu_a3db782ac147f877ad858f963ce3a3f31}{next}
+\item 
+char $\ast$ \hyperlink{structctk__menu_ad615e76a042ea15b52b7f30edc4d4c89}{title}
+\item 
+unsigned char \hyperlink{structctk__menu_afe750b5bc481a67c6e7f684dbaa7bfd8}{titlelen}
+\item 
+unsigned char \hyperlink{structctk__menu_a1929cc70bb8d66ead25d37828d68bfc2}{nitems}
+\item 
+unsigned char \hyperlink{structctk__menu_a4a97e6108145907fe4b83fd8f5862df5}{active}
+\item 
+struct \hyperlink{structctk__menuitem}{ctk\+\_\+menuitem} \hyperlink{structctk__menu_a5e3c53417a3e30ca1a51dfcfb0929d1f}{items} \mbox{[}C\+T\+K\+\_\+\+M\+A\+X\+M\+E\+N\+U\+I\+T\+E\+M\+S\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Representation of an individual menu. 
+
+\subsection{Member Data Documentation}
+\hypertarget{structctk__menu_a4a97e6108145907fe4b83fd8f5862df5}{}\index{ctk\+\_\+menu@{ctk\+\_\+menu}!active@{active}}
+\index{active@{active}!ctk\+\_\+menu@{ctk\+\_\+menu}}
+\subsubsection[{active}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char ctk\+\_\+menu\+::active}\label{structctk__menu_a4a97e6108145907fe4b83fd8f5862df5}
+The currently active menu item. \hypertarget{structctk__menu_a5e3c53417a3e30ca1a51dfcfb0929d1f}{}\index{ctk\+\_\+menu@{ctk\+\_\+menu}!items@{items}}
+\index{items@{items}!ctk\+\_\+menu@{ctk\+\_\+menu}}
+\subsubsection[{items}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf ctk\+\_\+menuitem} ctk\+\_\+menu\+::items\mbox{[}C\+T\+K\+\_\+\+M\+A\+X\+M\+E\+N\+U\+I\+T\+E\+M\+S\mbox{]}}\label{structctk__menu_a5e3c53417a3e30ca1a51dfcfb0929d1f}
+The array which contains all the menu items. \hypertarget{structctk__menu_a3db782ac147f877ad858f963ce3a3f31}{}\index{ctk\+\_\+menu@{ctk\+\_\+menu}!next@{next}}
+\index{next@{next}!ctk\+\_\+menu@{ctk\+\_\+menu}}
+\subsubsection[{next}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf ctk\+\_\+menu}$\ast$ ctk\+\_\+menu\+::next}\label{structctk__menu_a3db782ac147f877ad858f963ce3a3f31}
+Apointer to the next menu, or is N\+U\+L\+L if this is the last menu, and should be used by the ctk-\/draw module when stepping through the menus when drawing them on screen. \hypertarget{structctk__menu_a1929cc70bb8d66ead25d37828d68bfc2}{}\index{ctk\+\_\+menu@{ctk\+\_\+menu}!nitems@{nitems}}
+\index{nitems@{nitems}!ctk\+\_\+menu@{ctk\+\_\+menu}}
+\subsubsection[{nitems}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char ctk\+\_\+menu\+::nitems}\label{structctk__menu_a1929cc70bb8d66ead25d37828d68bfc2}
+The total number of menu items in the menu. \hypertarget{structctk__menu_ad615e76a042ea15b52b7f30edc4d4c89}{}\index{ctk\+\_\+menu@{ctk\+\_\+menu}!title@{title}}
+\index{title@{title}!ctk\+\_\+menu@{ctk\+\_\+menu}}
+\subsubsection[{title}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ ctk\+\_\+menu\+::title}\label{structctk__menu_ad615e76a042ea15b52b7f30edc4d4c89}
+The menu title. \hypertarget{structctk__menu_afe750b5bc481a67c6e7f684dbaa7bfd8}{}\index{ctk\+\_\+menu@{ctk\+\_\+menu}!titlelen@{titlelen}}
+\index{titlelen@{titlelen}!ctk\+\_\+menu@{ctk\+\_\+menu}}
+\subsubsection[{titlelen}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char ctk\+\_\+menu\+::titlelen}\label{structctk__menu_afe750b5bc481a67c6e7f684dbaa7bfd8}
+The length of the title in characters. Cached for speed reasons. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/contiki\+U\+T/contiki/core/ctk/\hyperlink{ctk_8h}{ctk.\+h}\end{DoxyCompactItemize}

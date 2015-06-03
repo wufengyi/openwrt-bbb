@@ -1,0 +1,161 @@
+The examples/ directory contains a few examples that will help you get started with Contiki.
+
+To run the example programs, you need either to be running Linux or Free\+B\+S\+D (or any other U\+N\+I\+X-\/type system), or install Cygwin if you are running Microsoft Windows \href{http://cygwin.com}{\tt http\+://cygwin.\+com}. As a minimum you will need to have the gcc C compiler installed. To run the examples in the \textquotesingle{}netsim\textquotesingle{} target, you need to have G\+T\+K 1.\+x development libraries installed. These are usually called \textquotesingle{}gtk-\/devel\textquotesingle{}, \textquotesingle{}libgtk1-\/devel\textquotesingle{} or similar in your Linux software installation programs.
+
+\subsection*{compile-\/platforms/ }
+
+A test script that compiles Contiki for a number of platforms and reports any errors found during the build.
+
+\subsection*{email/ }
+
+An email program supporting S\+M\+T\+P. It can be compiled and run in the \textquotesingle{}win32\textquotesingle{} target by typing the following commands\+: \begin{DoxyVerb}cd examples/email
+make
+./email-client.win32
+\end{DoxyVerb}
+
+
+Most likely you\textquotesingle{}ll have to adjust the T\+C\+P/\+I\+P values set in \hyperlink{group__IPV6_ga0c99d968a34e803d378692bde2e3f18f}{main()} in platform/win32/contiki-\/main.\+c to match your needs.
+
+Please consult cpu/native/net/\+R\+E\+A\+D\+M\+E-\/\+W\+P\+C\+A\+P.\+md as well.
+
+\subsection*{esb/ }
+
+A set of demo applications for the E\+S\+B board.
+
+\subsection*{ftp/ }
+
+An F\+T\+P client supporting download. It can be compiled and run in the \textquotesingle{}win32\textquotesingle{} target by typing the following commands\+: \begin{DoxyVerb}cd examples/ftp
+make
+./ftp-client.win32
+\end{DoxyVerb}
+
+
+Most likely you\textquotesingle{}ll have to adjust the T\+C\+P/\+I\+P values set in \hyperlink{group__IPV6_ga0c99d968a34e803d378692bde2e3f18f}{main()} in platform/win32/contiki-\/main.\+c to match your needs.
+
+Please consult cpu/native/net/\+R\+E\+A\+D\+M\+E-\/\+W\+P\+C\+A\+P.\+md as well.
+
+\subsection*{hello-\/world/ }
+
+A really simple Contiki program that shows how to write Contiki programs. To compile and test the program, go into the hello-\/world directory\+: \begin{DoxyVerb}cd examples/hello-world
+\end{DoxyVerb}
+
+
+Run the \textquotesingle{}make\textquotesingle{} command. \begin{DoxyVerb}make
+\end{DoxyVerb}
+
+
+This will compile the hello-\/world program in the \textquotesingle{}native\textquotesingle{} target. This causes the entire Contiki operating system and the hello-\/world application to be compiled into a single program that can be run by typing the following command\+: \begin{DoxyVerb}./hello-world.native
+\end{DoxyVerb}
+
+
+This will print out the following text\+: \begin{DoxyVerb}Contiki initiated, now starting process scheduling
+Hello, world
+\end{DoxyVerb}
+
+
+The program will then appear to hang, and must be stopped by pressing the C key while holding down the Control key.
+
+\subsection*{irc/ }
+
+An I\+R\+C client. It can be compiled and run in the \textquotesingle{}win32\textquotesingle{} target by typing the following commands\+: \begin{DoxyVerb}cd examples/irc
+make
+./irc-client.win32
+\end{DoxyVerb}
+
+
+Most likely you\textquotesingle{}ll have to adjust the T\+C\+P/\+I\+P values set in \hyperlink{group__IPV6_ga0c99d968a34e803d378692bde2e3f18f}{main()} in platform/win32/contiki-\/main.\+c to match your needs.
+
+Please consult cpu/native/net/\+R\+E\+A\+D\+M\+E-\/\+W\+P\+C\+A\+P.\+md as well.
+
+\subsection*{multi-\/threading/ }
+
+A quite simple demonstration of the Contiki multi-\/threading library employing two worker threads each running a recursive function. It can be compiled and run in the \textquotesingle{}native\textquotesingle{} target by typing the following commands\+: \begin{DoxyVerb}cd examples/multi-threading
+make
+./multi-threading.native
+\end{DoxyVerb}
+
+
+\subsection*{rime/ }
+
+Contains a set of examples on how to use the Rime communications stack. To run those examples in the \textquotesingle{}netsim\textquotesingle{} target (a very simple Contiki network simulator), compile the programs with\+: \begin{DoxyVerb}make TARGET=netsim
+\end{DoxyVerb}
+
+
+You will need to have G\+T\+K 1.\+x development libraries installed.
+
+Run the different programs\+: \begin{DoxyVerb}./test-abc.netsim
+./test-meshroute.netsim
+./test-rudolph0.netsim
+./test-rudolph1.netsim
+./test-treeroute.netsim
+./test-trickle.netsim
+\end{DoxyVerb}
+
+
+Most of the examples requires you to click with the middle mouse button on one of the simulated nodes for something to happen.
+
+\subsection*{sky/ }
+
+Examples inteded for running on the Tmote Sky board. To compile those, you need to have msp430-\/gcc (the gcc C compiler for the M\+S\+P430 microcontroller) installed.
+
+The follwing programs are included\+:
+
+
+\begin{DoxyItemize}
+\item blink.\+c A simple program that blinks the on-\/board L\+E\+Ds
+\item sky-\/collect.\+c Collects sensor data and energy profile values to a sink. Press the \char`\"{}user\char`\"{} button on the Tmote Sky that is connected to the P\+C to make the node a sink.
+\item test-\/button.\+c Toggles the L\+E\+Ds when the button is pressed.
+\item test-\/cfs.\+c Tests the 1 mb flash memory of the Tmote Sky
+\end{DoxyItemize}
+
+\subsection*{telnet-\/server/ }
+
+A simple T\+C\+P telnet server with a simple command shell. It can be compiled and run in the \textquotesingle{}minimal-\/net\textquotesingle{} target by typing the following commands\+: \begin{DoxyVerb}cd examples/telnet-server
+make
+./telnet-server.minimal-net
+\end{DoxyVerb}
+
+
+Most likely you\textquotesingle{}ll have to adjust the T\+C\+P/\+I\+P values set in \hyperlink{group__IPV6_ga0c99d968a34e803d378692bde2e3f18f}{main()} in platform/minimal-\/net/contiki-\/main.\+c to match your needs.
+
+Please consult cpu/native/net/\+R\+E\+A\+D\+M\+E-\/\+W\+P\+C\+A\+P.\+md as well if you are running Microsoft Windows.
+
+\subsection*{webbrowser/ }
+
+A text mode web browser supporting links and forms. It can be compiled and run in the \textquotesingle{}win32\textquotesingle{} target by typing the following commands\+: \begin{DoxyVerb}cd examples/webbrowser
+make
+./webbrowser.win32
+\end{DoxyVerb}
+
+
+Most likely you\textquotesingle{}ll have to adjust the T\+C\+P/\+I\+P values set in \hyperlink{group__IPV6_ga0c99d968a34e803d378692bde2e3f18f}{main()} in platform/win32/contiki-\/main.\+c to match your needs.
+
+Please consult cpu/native/net/\+R\+E\+A\+D\+M\+E-\/\+W\+P\+C\+A\+P.\+md as well.
+
+\subsection*{webserver/ }
+
+A web server supporting dynamic content creation using \char`\"{}scripts\char`\"{} which are actually compiled-\/in C-\/functions. It can be compiled and run in the \textquotesingle{}minimal-\/net\textquotesingle{} target by typing the following commands\+: \begin{DoxyVerb}cd examples/webserver
+make
+./webserver-example.minimal-net
+\end{DoxyVerb}
+
+
+As an alternative to the static and dynamic compiled-\/in content the web server can instead support \char`\"{}external\char`\"{} static-\/only content loaded from any storage supported by the \textquotesingle{}Contiki File System\textquotesingle{} (C\+F\+S) interface. To compile it in the \textquotesingle{}minimal-\/net\textquotesingle{} target and have it load files from disk use the following command\+: \begin{DoxyVerb}make HTTPD-CFS=1
+\end{DoxyVerb}
+
+
+Most likely you\textquotesingle{}ll have to adjust the T\+C\+P/\+I\+P values set in \hyperlink{group__IPV6_ga0c99d968a34e803d378692bde2e3f18f}{main()} in platform/minimal-\/net/contiki-\/main.\+c to match your needs.
+
+Please consult cpu/native/net/\+R\+E\+A\+D\+M\+E-\/\+W\+P\+C\+A\+P.\+md as well if you are running Microsoft Windows.
+
+\subsection*{wget/ }
+
+A command line program that retrieves files from web servers and saves them using the \textquotesingle{}Contiki File System\textquotesingle{} (C\+F\+S). It can be compiled and run in the \textquotesingle{}minimal-\/net\textquotesingle{} target by typing the following commands\+: \begin{DoxyVerb}cd examples/wget
+make
+./wget.minimal-net
+\end{DoxyVerb}
+
+
+Most likely you\textquotesingle{}ll have to adjust the T\+C\+P/\+I\+P values set in \hyperlink{group__IPV6_ga0c99d968a34e803d378692bde2e3f18f}{main()} in platform/minimal-\/net/contiki-\/main.\+c to match your needs.
+
+Please consult cpu/native/net/\+R\+E\+A\+D\+M\+E-\/\+W\+P\+C\+A\+P.\+md as well if you are running Microsoft Windows. 

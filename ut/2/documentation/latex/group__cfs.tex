@@ -1,0 +1,503 @@
+\hypertarget{group__cfs}{}\section{The Contiki file system interface}
+\label{group__cfs}\index{The Contiki file system interface@{The Contiki file system interface}}
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \hyperlink{cfs-coffee_8h}{cfs-\/coffee.\+h}
+\end{DoxyCompactItemize}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structcfs__dir}{cfs\+\_\+dir}
+\item 
+struct \hyperlink{structcfs__dirent}{cfs\+\_\+dirent}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__cfs_ga3ba46c00491d80f860a9e531403a0a63}{C\+F\+S\+\_\+\+C\+O\+F\+F\+E\+E\+\_\+\+I\+O\+\_\+\+F\+L\+A\+S\+H\+\_\+\+A\+W\+A\+R\+E}~0x1
+\item 
+\#define \hyperlink{group__cfs_ga6f4139866092ae209517c8b9e8c740c1}{C\+F\+S\+\_\+\+C\+O\+F\+F\+E\+E\+\_\+\+I\+O\+\_\+\+F\+I\+R\+M\+\_\+\+S\+I\+Z\+E}~0x2
+\item 
+\#define \hyperlink{group__cfs_ga00fed0156dbcbd1214203c7f2507e376}{C\+F\+S\+\_\+\+R\+E\+A\+D}~1
+\item 
+\#define \hyperlink{group__cfs_ga798793edf50f38e3e41364f0f6f71201}{C\+F\+S\+\_\+\+W\+R\+I\+T\+E}~2
+\item 
+\#define \hyperlink{group__cfs_ga2b402228c26a3590f1d4bf44df0b2b82}{C\+F\+S\+\_\+\+A\+P\+P\+E\+N\+D}~4
+\item 
+\#define \hyperlink{group__cfs_ga72cd7360175436b7ed26606708314dc0}{C\+F\+S\+\_\+\+S\+E\+E\+K\+\_\+\+S\+E\+T}~0
+\item 
+\#define \hyperlink{group__cfs_ga79a4ba5a9b5924df5db6e998e84a7d53}{C\+F\+S\+\_\+\+S\+E\+E\+K\+\_\+\+C\+U\+R}~1
+\item 
+\#define \hyperlink{group__cfs_ga96fb6bf3f2e9f69d526f9119551bedce}{C\+F\+S\+\_\+\+S\+E\+E\+K\+\_\+\+E\+N\+D}~2
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__cfs_gaceb17efc19e2857ee8dca0a729365213}{}typedef int {\bfseries cfs\+\_\+offset\+\_\+t}\label{group__cfs_gaceb17efc19e2857ee8dca0a729365213}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+C\+C\+I\+F int \hyperlink{group__cfs_gadc1727a1a27a40a8483135425a42c5de}{cfs\+\_\+open} (const char $\ast$name, int flags)
+\begin{DoxyCompactList}\small\item\em Open a file. \end{DoxyCompactList}\item 
+C\+C\+I\+F void \hyperlink{group__cfs_gadc3991eb5ac0e1cb6fd5e162049785b4}{cfs\+\_\+close} (int fd)
+\begin{DoxyCompactList}\small\item\em Close an open file. \end{DoxyCompactList}\item 
+C\+C\+I\+F int \hyperlink{group__cfs_ga7bc4a520b99285c46ffb0f80dbe78ca1}{cfs\+\_\+read} (int fd, void $\ast$buf, unsigned int len)
+\begin{DoxyCompactList}\small\item\em Read data from an open file. \end{DoxyCompactList}\item 
+C\+C\+I\+F int \hyperlink{group__cfs_ga0c8cd2e553c7c2cfbe2ffb0fbc874fb7}{cfs\+\_\+write} (int fd, const void $\ast$buf, unsigned int len)
+\begin{DoxyCompactList}\small\item\em Write data to an open file. \end{DoxyCompactList}\item 
+C\+C\+I\+F cfs\+\_\+offset\+\_\+t \hyperlink{group__cfs_ga116cdc7036a99707477b50bd496fa1c1}{cfs\+\_\+seek} (int fd, cfs\+\_\+offset\+\_\+t offset, int whence)
+\begin{DoxyCompactList}\small\item\em Seek to a specified position in an open file. \end{DoxyCompactList}\item 
+C\+C\+I\+F int \hyperlink{group__cfs_gacad1f14239db1a889ccf9804040e0d20}{cfs\+\_\+remove} (const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Remove a file. \end{DoxyCompactList}\item 
+C\+C\+I\+F int \hyperlink{group__cfs_gab4df33476a46ca00caf8de9cbb3e8f05}{cfs\+\_\+opendir} (struct \hyperlink{structcfs__dir}{cfs\+\_\+dir} $\ast$dirp, const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Open a directory for reading directory entries. \end{DoxyCompactList}\item 
+C\+C\+I\+F int \hyperlink{group__cfs_ga6367d2b762784fabea2ad1f533aa4bf4}{cfs\+\_\+readdir} (struct \hyperlink{structcfs__dir}{cfs\+\_\+dir} $\ast$dirp, struct \hyperlink{structcfs__dirent}{cfs\+\_\+dirent} $\ast$dirent)
+\begin{DoxyCompactList}\small\item\em Read a directory entry. \end{DoxyCompactList}\item 
+C\+C\+I\+F void \hyperlink{group__cfs_gaef17820cc7daaeac661e401ca7b3054b}{cfs\+\_\+closedir} (struct \hyperlink{structcfs__dir}{cfs\+\_\+dir} $\ast$dirp)
+\begin{DoxyCompactList}\small\item\em Close a directory opened with \hyperlink{group__cfs_gab4df33476a46ca00caf8de9cbb3e8f05}{cfs\+\_\+opendir()}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions called from application programs}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{group__cfs_ga2586fe834b8b6e943c5e116919edb357}{cfs\+\_\+coffee\+\_\+reserve} (const char $\ast$name, cfs\+\_\+offset\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Reserve space for a file. \end{DoxyCompactList}\item 
+int \hyperlink{group__cfs_ga00f5e8bad702aa74e5c14fc6f60064c8}{cfs\+\_\+coffee\+\_\+configure\+\_\+log} (const char $\ast$\hyperlink{structfile}{file}, unsigned log\+\_\+size, unsigned log\+\_\+entry\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Configure the on-\/demand log file. \end{DoxyCompactList}\item 
+int \hyperlink{group__cfs_gacc3d4dd048dae3848693c7b175539110}{cfs\+\_\+coffee\+\_\+set\+\_\+io\+\_\+semantics} (int fd, unsigned flags)
+\begin{DoxyCompactList}\small\item\em Set the I/\+O semantics for accessing a file. \end{DoxyCompactList}\item 
+int \hyperlink{group__cfs_ga20f73caab6f11eebc05378fe9d4606b3}{cfs\+\_\+coffee\+\_\+format} (void)
+\begin{DoxyCompactList}\small\item\em Format the storage area assigned to Coffee. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group__cfs_gae4e97787746c7040c54f5adf60d4709b}{cfs\+\_\+coffee\+\_\+get\+\_\+protected\+\_\+mem} (unsigned $\ast$size)
+\begin{DoxyCompactList}\small\item\em Points out a memory region that may not be altered during checkpointing operations that use the file system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The Contiki file system interface (C\+F\+S) defines an abstract A\+P\+I for reading directories and for reading and writing files. The C\+F\+S A\+P\+I is intentionally simple. The C\+F\+S A\+P\+I is modeled after the P\+O\+S\+I\+X file A\+P\+I, and slightly simplified. 
+
+\subsection{Macro Definition Documentation}
+\hypertarget{group__cfs_ga2b402228c26a3590f1d4bf44df0b2b82}{}\index{The Contiki file system interface@{The Contiki file system interface}!C\+F\+S\+\_\+\+A\+P\+P\+E\+N\+D@{C\+F\+S\+\_\+\+A\+P\+P\+E\+N\+D}}
+\index{C\+F\+S\+\_\+\+A\+P\+P\+E\+N\+D@{C\+F\+S\+\_\+\+A\+P\+P\+E\+N\+D}!The Contiki file system interface@{The Contiki file system interface}}
+\subsubsection[{C\+F\+S\+\_\+\+A\+P\+P\+E\+N\+D}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+F\+S\+\_\+\+A\+P\+P\+E\+N\+D~4}\label{group__cfs_ga2b402228c26a3590f1d4bf44df0b2b82}
+Specify that \hyperlink{group__cfs_gadc1727a1a27a40a8483135425a42c5de}{cfs\+\_\+open()} should append written data to the file rather than overwriting it.
+
+This constant indicates to \hyperlink{group__cfs_gadc1727a1a27a40a8483135425a42c5de}{cfs\+\_\+open()} that a file that should be opened for writing gets written data appended to the end of the file. The default behaviour (without C\+F\+S\+\_\+\+A\+P\+P\+E\+N\+D) is that the file is overwritten with the new data.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__cfs_gadc1727a1a27a40a8483135425a42c5de}{cfs\+\_\+open()} 
+\end{DoxySeeAlso}
+\hypertarget{group__cfs_ga6f4139866092ae209517c8b9e8c740c1}{}\index{The Contiki file system interface@{The Contiki file system interface}!C\+F\+S\+\_\+\+C\+O\+F\+F\+E\+E\+\_\+\+I\+O\+\_\+\+F\+I\+R\+M\+\_\+\+S\+I\+Z\+E@{C\+F\+S\+\_\+\+C\+O\+F\+F\+E\+E\+\_\+\+I\+O\+\_\+\+F\+I\+R\+M\+\_\+\+S\+I\+Z\+E}}
+\index{C\+F\+S\+\_\+\+C\+O\+F\+F\+E\+E\+\_\+\+I\+O\+\_\+\+F\+I\+R\+M\+\_\+\+S\+I\+Z\+E@{C\+F\+S\+\_\+\+C\+O\+F\+F\+E\+E\+\_\+\+I\+O\+\_\+\+F\+I\+R\+M\+\_\+\+S\+I\+Z\+E}!The Contiki file system interface@{The Contiki file system interface}}
+\subsubsection[{C\+F\+S\+\_\+\+C\+O\+F\+F\+E\+E\+\_\+\+I\+O\+\_\+\+F\+I\+R\+M\+\_\+\+S\+I\+Z\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+F\+S\+\_\+\+C\+O\+F\+F\+E\+E\+\_\+\+I\+O\+\_\+\+F\+I\+R\+M\+\_\+\+S\+I\+Z\+E~0x2}\label{group__cfs_ga6f4139866092ae209517c8b9e8c740c1}
+Instruct Coffee not to attempt to extend the file when there is an attempt to write past the reserved file size.
+
+A case when this is necessary is when the file has a firm size limit, and a safeguard is needed to protect against writes beyond this limit.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__cfs_gacc3d4dd048dae3848693c7b175539110}{cfs\+\_\+coffee\+\_\+set\+\_\+io\+\_\+semantics()} 
+\end{DoxySeeAlso}
+\hypertarget{group__cfs_ga3ba46c00491d80f860a9e531403a0a63}{}\index{The Contiki file system interface@{The Contiki file system interface}!C\+F\+S\+\_\+\+C\+O\+F\+F\+E\+E\+\_\+\+I\+O\+\_\+\+F\+L\+A\+S\+H\+\_\+\+A\+W\+A\+R\+E@{C\+F\+S\+\_\+\+C\+O\+F\+F\+E\+E\+\_\+\+I\+O\+\_\+\+F\+L\+A\+S\+H\+\_\+\+A\+W\+A\+R\+E}}
+\index{C\+F\+S\+\_\+\+C\+O\+F\+F\+E\+E\+\_\+\+I\+O\+\_\+\+F\+L\+A\+S\+H\+\_\+\+A\+W\+A\+R\+E@{C\+F\+S\+\_\+\+C\+O\+F\+F\+E\+E\+\_\+\+I\+O\+\_\+\+F\+L\+A\+S\+H\+\_\+\+A\+W\+A\+R\+E}!The Contiki file system interface@{The Contiki file system interface}}
+\subsubsection[{C\+F\+S\+\_\+\+C\+O\+F\+F\+E\+E\+\_\+\+I\+O\+\_\+\+F\+L\+A\+S\+H\+\_\+\+A\+W\+A\+R\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+F\+S\+\_\+\+C\+O\+F\+F\+E\+E\+\_\+\+I\+O\+\_\+\+F\+L\+A\+S\+H\+\_\+\+A\+W\+A\+R\+E~0x1}\label{group__cfs_ga3ba46c00491d80f860a9e531403a0a63}
+Instruct Coffee that the access pattern to this file is adapted to flash I/\+O semantics by design, and Coffee should therefore not invoke its own micro logs when file modifications occur.
+
+This semantical I/\+O setting is useful when implementing flash storage algorithms on top of Coffee.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__cfs_gacc3d4dd048dae3848693c7b175539110}{cfs\+\_\+coffee\+\_\+set\+\_\+io\+\_\+semantics()} 
+\end{DoxySeeAlso}
+\hypertarget{group__cfs_ga00fed0156dbcbd1214203c7f2507e376}{}\index{The Contiki file system interface@{The Contiki file system interface}!C\+F\+S\+\_\+\+R\+E\+A\+D@{C\+F\+S\+\_\+\+R\+E\+A\+D}}
+\index{C\+F\+S\+\_\+\+R\+E\+A\+D@{C\+F\+S\+\_\+\+R\+E\+A\+D}!The Contiki file system interface@{The Contiki file system interface}}
+\subsubsection[{C\+F\+S\+\_\+\+R\+E\+A\+D}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+F\+S\+\_\+\+R\+E\+A\+D~1}\label{group__cfs_ga00fed0156dbcbd1214203c7f2507e376}
+Specify that \hyperlink{group__cfs_gadc1727a1a27a40a8483135425a42c5de}{cfs\+\_\+open()} should open a file for reading.
+
+This constant indicates to \hyperlink{group__cfs_gadc1727a1a27a40a8483135425a42c5de}{cfs\+\_\+open()} that a file should be opened for reading. C\+F\+S\+\_\+\+W\+R\+I\+T\+E should be used if the file is opened for writing, and C\+F\+S\+\_\+\+R\+E\+A\+D + C\+F\+S\+\_\+\+W\+R\+I\+T\+E indicates that the file is opened for both reading and writing.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__cfs_gadc1727a1a27a40a8483135425a42c5de}{cfs\+\_\+open()} 
+\end{DoxySeeAlso}
+\hypertarget{group__cfs_ga79a4ba5a9b5924df5db6e998e84a7d53}{}\index{The Contiki file system interface@{The Contiki file system interface}!C\+F\+S\+\_\+\+S\+E\+E\+K\+\_\+\+C\+U\+R@{C\+F\+S\+\_\+\+S\+E\+E\+K\+\_\+\+C\+U\+R}}
+\index{C\+F\+S\+\_\+\+S\+E\+E\+K\+\_\+\+C\+U\+R@{C\+F\+S\+\_\+\+S\+E\+E\+K\+\_\+\+C\+U\+R}!The Contiki file system interface@{The Contiki file system interface}}
+\subsubsection[{C\+F\+S\+\_\+\+S\+E\+E\+K\+\_\+\+C\+U\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+F\+S\+\_\+\+S\+E\+E\+K\+\_\+\+C\+U\+R~1}\label{group__cfs_ga79a4ba5a9b5924df5db6e998e84a7d53}
+Specify that \hyperlink{group__cfs_ga116cdc7036a99707477b50bd496fa1c1}{cfs\+\_\+seek()} should compute the offset from the current position of the file pointer.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__cfs_ga116cdc7036a99707477b50bd496fa1c1}{cfs\+\_\+seek()} 
+\end{DoxySeeAlso}
+\hypertarget{group__cfs_ga96fb6bf3f2e9f69d526f9119551bedce}{}\index{The Contiki file system interface@{The Contiki file system interface}!C\+F\+S\+\_\+\+S\+E\+E\+K\+\_\+\+E\+N\+D@{C\+F\+S\+\_\+\+S\+E\+E\+K\+\_\+\+E\+N\+D}}
+\index{C\+F\+S\+\_\+\+S\+E\+E\+K\+\_\+\+E\+N\+D@{C\+F\+S\+\_\+\+S\+E\+E\+K\+\_\+\+E\+N\+D}!The Contiki file system interface@{The Contiki file system interface}}
+\subsubsection[{C\+F\+S\+\_\+\+S\+E\+E\+K\+\_\+\+E\+N\+D}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+F\+S\+\_\+\+S\+E\+E\+K\+\_\+\+E\+N\+D~2}\label{group__cfs_ga96fb6bf3f2e9f69d526f9119551bedce}
+Specify that \hyperlink{group__cfs_ga116cdc7036a99707477b50bd496fa1c1}{cfs\+\_\+seek()} should compute the offset from the end of the file.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__cfs_ga116cdc7036a99707477b50bd496fa1c1}{cfs\+\_\+seek()} 
+\end{DoxySeeAlso}
+\hypertarget{group__cfs_ga72cd7360175436b7ed26606708314dc0}{}\index{The Contiki file system interface@{The Contiki file system interface}!C\+F\+S\+\_\+\+S\+E\+E\+K\+\_\+\+S\+E\+T@{C\+F\+S\+\_\+\+S\+E\+E\+K\+\_\+\+S\+E\+T}}
+\index{C\+F\+S\+\_\+\+S\+E\+E\+K\+\_\+\+S\+E\+T@{C\+F\+S\+\_\+\+S\+E\+E\+K\+\_\+\+S\+E\+T}!The Contiki file system interface@{The Contiki file system interface}}
+\subsubsection[{C\+F\+S\+\_\+\+S\+E\+E\+K\+\_\+\+S\+E\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+F\+S\+\_\+\+S\+E\+E\+K\+\_\+\+S\+E\+T~0}\label{group__cfs_ga72cd7360175436b7ed26606708314dc0}
+Specify that \hyperlink{group__cfs_ga116cdc7036a99707477b50bd496fa1c1}{cfs\+\_\+seek()} should compute the offset from the beginning of the file.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__cfs_ga116cdc7036a99707477b50bd496fa1c1}{cfs\+\_\+seek()} 
+\end{DoxySeeAlso}
+\hypertarget{group__cfs_ga798793edf50f38e3e41364f0f6f71201}{}\index{The Contiki file system interface@{The Contiki file system interface}!C\+F\+S\+\_\+\+W\+R\+I\+T\+E@{C\+F\+S\+\_\+\+W\+R\+I\+T\+E}}
+\index{C\+F\+S\+\_\+\+W\+R\+I\+T\+E@{C\+F\+S\+\_\+\+W\+R\+I\+T\+E}!The Contiki file system interface@{The Contiki file system interface}}
+\subsubsection[{C\+F\+S\+\_\+\+W\+R\+I\+T\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+F\+S\+\_\+\+W\+R\+I\+T\+E~2}\label{group__cfs_ga798793edf50f38e3e41364f0f6f71201}
+Specify that \hyperlink{group__cfs_gadc1727a1a27a40a8483135425a42c5de}{cfs\+\_\+open()} should open a file for writing.
+
+This constant indicates to \hyperlink{group__cfs_gadc1727a1a27a40a8483135425a42c5de}{cfs\+\_\+open()} that a file should be opened for writing. C\+F\+S\+\_\+\+R\+E\+A\+D should be used if the file is opened for reading, and C\+F\+S\+\_\+\+R\+E\+A\+D + C\+F\+S\+\_\+\+W\+R\+I\+T\+E indicates that the file is opened for both reading and writing.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__cfs_gadc1727a1a27a40a8483135425a42c5de}{cfs\+\_\+open()} 
+\end{DoxySeeAlso}
+
+
+\subsection{Function Documentation}
+\hypertarget{group__cfs_gadc3991eb5ac0e1cb6fd5e162049785b4}{}\index{The Contiki file system interface@{The Contiki file system interface}!cfs\+\_\+close@{cfs\+\_\+close}}
+\index{cfs\+\_\+close@{cfs\+\_\+close}!The Contiki file system interface@{The Contiki file system interface}}
+\subsubsection[{cfs\+\_\+close}]{\setlength{\rightskip}{0pt plus 5cm}C\+C\+I\+F void cfs\+\_\+close (
+\begin{DoxyParamCaption}
+\item[{int}]{fd}
+\end{DoxyParamCaption}
+)}\label{group__cfs_gadc3991eb5ac0e1cb6fd5e162049785b4}
+
+
+Close an open file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fd} & The file descriptor of the open file. \begin{DoxyVerb}        This function closes a file that has previously been
+        opened with cfs_open().\end{DoxyVerb}
+ \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__cfs_gaef17820cc7daaeac661e401ca7b3054b}{}\index{The Contiki file system interface@{The Contiki file system interface}!cfs\+\_\+closedir@{cfs\+\_\+closedir}}
+\index{cfs\+\_\+closedir@{cfs\+\_\+closedir}!The Contiki file system interface@{The Contiki file system interface}}
+\subsubsection[{cfs\+\_\+closedir}]{\setlength{\rightskip}{0pt plus 5cm}C\+C\+I\+F void cfs\+\_\+closedir (
+\begin{DoxyParamCaption}
+\item[{struct {\bf cfs\+\_\+dir} $\ast$}]{dirp}
+\end{DoxyParamCaption}
+)}\label{group__cfs_gaef17820cc7daaeac661e401ca7b3054b}
+
+
+Close a directory opened with \hyperlink{group__cfs_gab4df33476a46ca00caf8de9cbb3e8f05}{cfs\+\_\+opendir()}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dirp} & A pointer to a struct \hyperlink{structcfs__dir}{cfs\+\_\+dir} that has been opened with \hyperlink{group__cfs_gab4df33476a46ca00caf8de9cbb3e8f05}{cfs\+\_\+opendir()}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__cfs_gab4df33476a46ca00caf8de9cbb3e8f05}{cfs\+\_\+opendir()} 
+
+\hyperlink{group__cfs_ga6367d2b762784fabea2ad1f533aa4bf4}{cfs\+\_\+readdir()} 
+\end{DoxySeeAlso}
+\hypertarget{group__cfs_ga00f5e8bad702aa74e5c14fc6f60064c8}{}\index{The Contiki file system interface@{The Contiki file system interface}!cfs\+\_\+coffee\+\_\+configure\+\_\+log@{cfs\+\_\+coffee\+\_\+configure\+\_\+log}}
+\index{cfs\+\_\+coffee\+\_\+configure\+\_\+log@{cfs\+\_\+coffee\+\_\+configure\+\_\+log}!The Contiki file system interface@{The Contiki file system interface}}
+\subsubsection[{cfs\+\_\+coffee\+\_\+configure\+\_\+log}]{\setlength{\rightskip}{0pt plus 5cm}int cfs\+\_\+coffee\+\_\+configure\+\_\+log (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{file, }
+\item[{unsigned}]{log\+\_\+size, }
+\item[{unsigned}]{log\+\_\+entry\+\_\+size}
+\end{DoxyParamCaption}
+)}\label{group__cfs_ga00f5e8bad702aa74e5c14fc6f60064c8}
+
+
+Configure the on-\/demand log file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & The filename. \\
+\hline
+{\em log\+\_\+size} & The total log size. \\
+\hline
+{\em log\+\_\+entry\+\_\+size} & The log entry size. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 on failure.
+\end{DoxyReturn}
+When file data is first modified, Coffee creates a micro log for the file. The micro log stores a table of modifications whose parameters--the log size and the log entry size--can be modified through the cfs\+\_\+coffee\+\_\+configure\+\_\+log function. \hypertarget{group__cfs_ga20f73caab6f11eebc05378fe9d4606b3}{}\index{The Contiki file system interface@{The Contiki file system interface}!cfs\+\_\+coffee\+\_\+format@{cfs\+\_\+coffee\+\_\+format}}
+\index{cfs\+\_\+coffee\+\_\+format@{cfs\+\_\+coffee\+\_\+format}!The Contiki file system interface@{The Contiki file system interface}}
+\subsubsection[{cfs\+\_\+coffee\+\_\+format}]{\setlength{\rightskip}{0pt plus 5cm}int cfs\+\_\+coffee\+\_\+format (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group__cfs_ga20f73caab6f11eebc05378fe9d4606b3}
+
+
+Format the storage area assigned to Coffee. 
+
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 on failure.
+\end{DoxyReturn}
+Coffee formats the underlying storage by setting all bits to zero. Formatting must be done before using Coffee for the first time in a mote. \hypertarget{group__cfs_gae4e97787746c7040c54f5adf60d4709b}{}\index{The Contiki file system interface@{The Contiki file system interface}!cfs\+\_\+coffee\+\_\+get\+\_\+protected\+\_\+mem@{cfs\+\_\+coffee\+\_\+get\+\_\+protected\+\_\+mem}}
+\index{cfs\+\_\+coffee\+\_\+get\+\_\+protected\+\_\+mem@{cfs\+\_\+coffee\+\_\+get\+\_\+protected\+\_\+mem}!The Contiki file system interface@{The Contiki file system interface}}
+\subsubsection[{cfs\+\_\+coffee\+\_\+get\+\_\+protected\+\_\+mem}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ cfs\+\_\+coffee\+\_\+get\+\_\+protected\+\_\+mem (
+\begin{DoxyParamCaption}
+\item[{unsigned $\ast$}]{size}
+\end{DoxyParamCaption}
+)}\label{group__cfs_gae4e97787746c7040c54f5adf60d4709b}
+
+
+Points out a memory region that may not be altered during checkpointing operations that use the file system. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the protected memory.
+\end{DoxyReturn}
+This function returns the protected memory pointer and writes its size to the given parameter. Mainly used by sensornet checkpointing to protect the coffee state during C\+F\+S-\/based checkpointing operations. \hypertarget{group__cfs_ga2586fe834b8b6e943c5e116919edb357}{}\index{The Contiki file system interface@{The Contiki file system interface}!cfs\+\_\+coffee\+\_\+reserve@{cfs\+\_\+coffee\+\_\+reserve}}
+\index{cfs\+\_\+coffee\+\_\+reserve@{cfs\+\_\+coffee\+\_\+reserve}!The Contiki file system interface@{The Contiki file system interface}}
+\subsubsection[{cfs\+\_\+coffee\+\_\+reserve}]{\setlength{\rightskip}{0pt plus 5cm}int cfs\+\_\+coffee\+\_\+reserve (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{name, }
+\item[{cfs\+\_\+offset\+\_\+t}]{size}
+\end{DoxyParamCaption}
+)}\label{group__cfs_ga2586fe834b8b6e943c5e116919edb357}
+
+
+Reserve space for a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The filename. \\
+\hline
+{\em size} & The size of the file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 on failure.
+\end{DoxyReturn}
+Coffee uses sequential page structures for files. The sequential structure can be reserved with a certain size. If a file has not been reserved when it is opened for the first time, it will be allocated with a default size. \hypertarget{group__cfs_gacc3d4dd048dae3848693c7b175539110}{}\index{The Contiki file system interface@{The Contiki file system interface}!cfs\+\_\+coffee\+\_\+set\+\_\+io\+\_\+semantics@{cfs\+\_\+coffee\+\_\+set\+\_\+io\+\_\+semantics}}
+\index{cfs\+\_\+coffee\+\_\+set\+\_\+io\+\_\+semantics@{cfs\+\_\+coffee\+\_\+set\+\_\+io\+\_\+semantics}!The Contiki file system interface@{The Contiki file system interface}}
+\subsubsection[{cfs\+\_\+coffee\+\_\+set\+\_\+io\+\_\+semantics}]{\setlength{\rightskip}{0pt plus 5cm}int cfs\+\_\+coffee\+\_\+set\+\_\+io\+\_\+semantics (
+\begin{DoxyParamCaption}
+\item[{int}]{fd, }
+\item[{unsigned}]{flags}
+\end{DoxyParamCaption}
+)}\label{group__cfs_gacc3d4dd048dae3848693c7b175539110}
+
+
+Set the I/\+O semantics for accessing a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fd} & The file descriptor through which the file is accessed. \\
+\hline
+{\em flags} & A bit vector of flags.\\
+\hline
+\end{DoxyParams}
+Coffee is used on a wide range of storage types, and the default I/\+O file semantics may not be optimal for the access pattern of a certain file. Hence, this functions allows programmers to switch the /\+O semantics on a file that is accessed through a particular file descriptor. \hypertarget{group__cfs_gadc1727a1a27a40a8483135425a42c5de}{}\index{The Contiki file system interface@{The Contiki file system interface}!cfs\+\_\+open@{cfs\+\_\+open}}
+\index{cfs\+\_\+open@{cfs\+\_\+open}!The Contiki file system interface@{The Contiki file system interface}}
+\subsubsection[{cfs\+\_\+open}]{\setlength{\rightskip}{0pt plus 5cm}C\+C\+I\+F int cfs\+\_\+open (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{name, }
+\item[{int}]{flags}
+\end{DoxyParamCaption}
+)}\label{group__cfs_gadc1727a1a27a40a8483135425a42c5de}
+
+
+Open a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the file. \\
+\hline
+{\em flags} & C\+F\+S\+\_\+\+R\+E\+A\+D, or C\+F\+S\+\_\+\+W\+R\+I\+T\+E/\+C\+F\+S\+\_\+\+A\+P\+P\+E\+N\+D, or both. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A file descriptor, if the file could be opened, or -\/1 if the file could not be opened.
+\end{DoxyReturn}
+This function opens a file and returns a file descriptor for the opened file. If the file could not be opened, the function returns -\/1. The function can open a file for reading or writing, or both.
+
+An opened file must be closed with \hyperlink{group__cfs_gadc3991eb5ac0e1cb6fd5e162049785b4}{cfs\+\_\+close()}.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__cfs_ga00fed0156dbcbd1214203c7f2507e376}{C\+F\+S\+\_\+\+R\+E\+A\+D} 
+
+\hyperlink{group__cfs_ga798793edf50f38e3e41364f0f6f71201}{C\+F\+S\+\_\+\+W\+R\+I\+T\+E} 
+
+\hyperlink{group__cfs_gadc3991eb5ac0e1cb6fd5e162049785b4}{cfs\+\_\+close()} 
+\end{DoxySeeAlso}
+\hypertarget{group__cfs_gab4df33476a46ca00caf8de9cbb3e8f05}{}\index{The Contiki file system interface@{The Contiki file system interface}!cfs\+\_\+opendir@{cfs\+\_\+opendir}}
+\index{cfs\+\_\+opendir@{cfs\+\_\+opendir}!The Contiki file system interface@{The Contiki file system interface}}
+\subsubsection[{cfs\+\_\+opendir}]{\setlength{\rightskip}{0pt plus 5cm}C\+C\+I\+F int cfs\+\_\+opendir (
+\begin{DoxyParamCaption}
+\item[{struct {\bf cfs\+\_\+dir} $\ast$}]{dirp, }
+\item[{const char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}\label{group__cfs_gab4df33476a46ca00caf8de9cbb3e8f05}
+
+
+Open a directory for reading directory entries. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dirp} & A pointer to a struct \hyperlink{structcfs__dir}{cfs\+\_\+dir} that is filled in by the function. \\
+\hline
+{\em name} & The name of the directory. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 or -\/1 if the directory could not be opened.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__cfs_ga6367d2b762784fabea2ad1f533aa4bf4}{cfs\+\_\+readdir()} 
+
+\hyperlink{group__cfs_gaef17820cc7daaeac661e401ca7b3054b}{cfs\+\_\+closedir()} 
+\end{DoxySeeAlso}
+\hypertarget{group__cfs_ga7bc4a520b99285c46ffb0f80dbe78ca1}{}\index{The Contiki file system interface@{The Contiki file system interface}!cfs\+\_\+read@{cfs\+\_\+read}}
+\index{cfs\+\_\+read@{cfs\+\_\+read}!The Contiki file system interface@{The Contiki file system interface}}
+\subsubsection[{cfs\+\_\+read}]{\setlength{\rightskip}{0pt plus 5cm}C\+C\+I\+F int cfs\+\_\+read (
+\begin{DoxyParamCaption}
+\item[{int}]{fd, }
+\item[{void $\ast$}]{buf, }
+\item[{unsigned int}]{len}
+\end{DoxyParamCaption}
+)}\label{group__cfs_ga7bc4a520b99285c46ffb0f80dbe78ca1}
+
+
+Read data from an open file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fd} & The file descriptor of the open file. \\
+\hline
+{\em buf} & The buffer in which data should be read from the file. \\
+\hline
+{\em len} & The number of bytes that should be read. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of bytes that was actually read from the file. \begin{DoxyVerb}        This function reads data from an open file into a
+        buffer. The file must have first been opened with
+        cfs_open() and the CFS_READ flag.\end{DoxyVerb}
+ 
+\end{DoxyReturn}
+\hypertarget{group__cfs_ga6367d2b762784fabea2ad1f533aa4bf4}{}\index{The Contiki file system interface@{The Contiki file system interface}!cfs\+\_\+readdir@{cfs\+\_\+readdir}}
+\index{cfs\+\_\+readdir@{cfs\+\_\+readdir}!The Contiki file system interface@{The Contiki file system interface}}
+\subsubsection[{cfs\+\_\+readdir}]{\setlength{\rightskip}{0pt plus 5cm}C\+C\+I\+F int cfs\+\_\+readdir (
+\begin{DoxyParamCaption}
+\item[{struct {\bf cfs\+\_\+dir} $\ast$}]{dirp, }
+\item[{struct {\bf cfs\+\_\+dirent} $\ast$}]{dirent}
+\end{DoxyParamCaption}
+)}\label{group__cfs_ga6367d2b762784fabea2ad1f533aa4bf4}
+
+
+Read a directory entry. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dirp} & A pointer to a struct \hyperlink{structcfs__dir}{cfs\+\_\+dir} that has been opened with \hyperlink{group__cfs_gab4df33476a46ca00caf8de9cbb3e8f05}{cfs\+\_\+opendir()}. \\
+\hline
+{\em dirent} & A pointer to a struct \hyperlink{structcfs__dirent}{cfs\+\_\+dirent} that is filled in by \hyperlink{group__cfs_ga6367d2b762784fabea2ad1f533aa4bf4}{cfs\+\_\+readdir()} \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & If a directory entry was read. \\
+\hline
+{\em -\/1} & If no more directory entries can be read.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__cfs_gab4df33476a46ca00caf8de9cbb3e8f05}{cfs\+\_\+opendir()} 
+
+\hyperlink{group__cfs_gaef17820cc7daaeac661e401ca7b3054b}{cfs\+\_\+closedir()} 
+\end{DoxySeeAlso}
+\hypertarget{group__cfs_gacad1f14239db1a889ccf9804040e0d20}{}\index{The Contiki file system interface@{The Contiki file system interface}!cfs\+\_\+remove@{cfs\+\_\+remove}}
+\index{cfs\+\_\+remove@{cfs\+\_\+remove}!The Contiki file system interface@{The Contiki file system interface}}
+\subsubsection[{cfs\+\_\+remove}]{\setlength{\rightskip}{0pt plus 5cm}C\+C\+I\+F int cfs\+\_\+remove (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}\label{group__cfs_gacad1f14239db1a889ccf9804040e0d20}
+
+
+Remove a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the file. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & If the file was removed. \\
+\hline
+\end{DoxyRetVals}
+\begin{DoxyReturn}{Returns}
+-\/1 If the file could not be removed or if it doesn\textquotesingle{}t exist. 
+\end{DoxyReturn}
+\hypertarget{group__cfs_ga116cdc7036a99707477b50bd496fa1c1}{}\index{The Contiki file system interface@{The Contiki file system interface}!cfs\+\_\+seek@{cfs\+\_\+seek}}
+\index{cfs\+\_\+seek@{cfs\+\_\+seek}!The Contiki file system interface@{The Contiki file system interface}}
+\subsubsection[{cfs\+\_\+seek}]{\setlength{\rightskip}{0pt plus 5cm}C\+C\+I\+F cfs\+\_\+offset\+\_\+t cfs\+\_\+seek (
+\begin{DoxyParamCaption}
+\item[{int}]{fd, }
+\item[{cfs\+\_\+offset\+\_\+t}]{offset, }
+\item[{int}]{whence}
+\end{DoxyParamCaption}
+)}\label{group__cfs_ga116cdc7036a99707477b50bd496fa1c1}
+
+
+Seek to a specified position in an open file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fd} & The file descriptor of the open file. \\
+\hline
+{\em offset} & A position, either relative or absolute, in the file. \\
+\hline
+{\em whence} & Determines how to interpret the offset parameter. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The new position in the file, or (cfs\+\_\+offset\+\_\+t)-\/1 if the seek failed. \begin{DoxyVerb}        This function moves the file position to the specified
+        position in the file. The next byte that is read from
+        or written to the file will be at the position given 
+        determined by the combination of the offset parameter 
+        and the whence parameter.
+\end{DoxyVerb}
+
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__cfs_ga79a4ba5a9b5924df5db6e998e84a7d53}{C\+F\+S\+\_\+\+S\+E\+E\+K\+\_\+\+C\+U\+R} 
+
+\hyperlink{group__cfs_ga96fb6bf3f2e9f69d526f9119551bedce}{C\+F\+S\+\_\+\+S\+E\+E\+K\+\_\+\+E\+N\+D} 
+
+\hyperlink{group__cfs_ga72cd7360175436b7ed26606708314dc0}{C\+F\+S\+\_\+\+S\+E\+E\+K\+\_\+\+S\+E\+T} 
+\end{DoxySeeAlso}
+\hypertarget{group__cfs_ga0c8cd2e553c7c2cfbe2ffb0fbc874fb7}{}\index{The Contiki file system interface@{The Contiki file system interface}!cfs\+\_\+write@{cfs\+\_\+write}}
+\index{cfs\+\_\+write@{cfs\+\_\+write}!The Contiki file system interface@{The Contiki file system interface}}
+\subsubsection[{cfs\+\_\+write}]{\setlength{\rightskip}{0pt plus 5cm}C\+C\+I\+F int cfs\+\_\+write (
+\begin{DoxyParamCaption}
+\item[{int}]{fd, }
+\item[{const void $\ast$}]{buf, }
+\item[{unsigned int}]{len}
+\end{DoxyParamCaption}
+)}\label{group__cfs_ga0c8cd2e553c7c2cfbe2ffb0fbc874fb7}
+
+
+Write data to an open file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fd} & The file descriptor of the open file. \\
+\hline
+{\em buf} & The buffer from which data should be written to the file. \\
+\hline
+{\em len} & The number of bytes that should be written. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of bytes that was actually written to the file. \begin{DoxyVerb}        This function reads writes data from a memory buffer to
+        an open file. The file must have been opened with
+        cfs_open() and the CFS_WRITE flag.\end{DoxyVerb}
+ 
+\end{DoxyReturn}

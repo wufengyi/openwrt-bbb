@@ -1,0 +1,128 @@
+\hypertarget{group__linkaddr}{}\section{Rime addresses}
+\label{group__linkaddr}\index{Rime addresses@{Rime addresses}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+union \hyperlink{unionlinkaddr__t}{linkaddr\+\_\+t}
+\item 
+union \hyperlink{unionlinkaddr__extended__t}{linkaddr\+\_\+extended\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__linkaddr_ga7d99de7749951ae439497bf8c33d73ec}{}\#define {\bfseries L\+I\+N\+K\+A\+D\+D\+R\+\_\+\+S\+I\+Z\+E}~2\label{group__linkaddr_ga7d99de7749951ae439497bf8c33d73ec}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__linkaddr_ga61b6a33229787905999787d55047aa80}{linkaddr\+\_\+copy} (\hyperlink{unionlinkaddr__t}{linkaddr\+\_\+t} $\ast$dest, const \hyperlink{unionlinkaddr__t}{linkaddr\+\_\+t} $\ast$from)
+\begin{DoxyCompactList}\small\item\em Copy a Rime address. \end{DoxyCompactList}\item 
+int \hyperlink{group__linkaddr_gaaf0cefa6d20d20da33dfaf5098e7d16d}{linkaddr\+\_\+cmp} (const \hyperlink{unionlinkaddr__t}{linkaddr\+\_\+t} $\ast$addr1, const \hyperlink{unionlinkaddr__t}{linkaddr\+\_\+t} $\ast$addr2)
+\begin{DoxyCompactList}\small\item\em Compare two Rime addresses. \end{DoxyCompactList}\item 
+void \hyperlink{group__linkaddr_ga5ec363b4d4a855f1c6c3da284451415a}{linkaddr\+\_\+set\+\_\+node\+\_\+addr} (\hyperlink{unionlinkaddr__t}{linkaddr\+\_\+t} $\ast$addr)
+\begin{DoxyCompactList}\small\item\em Set the address of the current node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{unionlinkaddr__t}{linkaddr\+\_\+t} \hyperlink{group__linkaddr_ga03585f3e07ec49ec11cb4bbd17f3cf0e}{linkaddr\+\_\+node\+\_\+addr}
+\begin{DoxyCompactList}\small\item\em The Rime address of the node. \end{DoxyCompactList}\item 
+\hyperlink{unionlinkaddr__t}{linkaddr\+\_\+t} \hyperlink{group__linkaddr_ga03585f3e07ec49ec11cb4bbd17f3cf0e}{linkaddr\+\_\+node\+\_\+addr}
+\begin{DoxyCompactList}\small\item\em The Rime address of the node. \end{DoxyCompactList}\item 
+const \hyperlink{unionlinkaddr__t}{linkaddr\+\_\+t} \hyperlink{group__linkaddr_gaa8829a95f1d11a93a3ff75c8f5b2bffd}{linkaddr\+\_\+null}
+\begin{DoxyCompactList}\small\item\em The null Rime address. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The linkaddr module is an abstract representation of addresses in Rime. 
+
+\subsection{Function Documentation}
+\hypertarget{group__linkaddr_gaaf0cefa6d20d20da33dfaf5098e7d16d}{}\index{Rime addresses@{Rime addresses}!linkaddr\+\_\+cmp@{linkaddr\+\_\+cmp}}
+\index{linkaddr\+\_\+cmp@{linkaddr\+\_\+cmp}!Rime addresses@{Rime addresses}}
+\subsubsection[{linkaddr\+\_\+cmp}]{\setlength{\rightskip}{0pt plus 5cm}int linkaddr\+\_\+cmp (
+\begin{DoxyParamCaption}
+\item[{const {\bf linkaddr\+\_\+t} $\ast$}]{addr1, }
+\item[{const {\bf linkaddr\+\_\+t} $\ast$}]{addr2}
+\end{DoxyParamCaption}
+)}\label{group__linkaddr_gaaf0cefa6d20d20da33dfaf5098e7d16d}
+
+
+Compare two Rime addresses. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr1} & The first address \\
+\hline
+{\em addr2} & The second address \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Non-\/zero if the addresses are the same, zero if they are different \begin{DoxyVerb}        This function compares two Rime addresses and returns
+        the result of the comparison. The function acts like
+        the '==' operator and returns non-zero if the addresses
+        are the same, and zero if the addresses are different.\end{DoxyVerb}
+ 
+\end{DoxyReturn}
+\hypertarget{group__linkaddr_ga61b6a33229787905999787d55047aa80}{}\index{Rime addresses@{Rime addresses}!linkaddr\+\_\+copy@{linkaddr\+\_\+copy}}
+\index{linkaddr\+\_\+copy@{linkaddr\+\_\+copy}!Rime addresses@{Rime addresses}}
+\subsubsection[{linkaddr\+\_\+copy}]{\setlength{\rightskip}{0pt plus 5cm}void linkaddr\+\_\+copy (
+\begin{DoxyParamCaption}
+\item[{{\bf linkaddr\+\_\+t} $\ast$}]{dest, }
+\item[{const {\bf linkaddr\+\_\+t} $\ast$}]{from}
+\end{DoxyParamCaption}
+)}\label{group__linkaddr_ga61b6a33229787905999787d55047aa80}
+
+
+Copy a Rime address. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & The destination \\
+\hline
+{\em from} & The source \begin{DoxyVerb}        This function copies a Rime address from one location
+        to another.\end{DoxyVerb}
+ \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__linkaddr_ga5ec363b4d4a855f1c6c3da284451415a}{}\index{Rime addresses@{Rime addresses}!linkaddr\+\_\+set\+\_\+node\+\_\+addr@{linkaddr\+\_\+set\+\_\+node\+\_\+addr}}
+\index{linkaddr\+\_\+set\+\_\+node\+\_\+addr@{linkaddr\+\_\+set\+\_\+node\+\_\+addr}!Rime addresses@{Rime addresses}}
+\subsubsection[{linkaddr\+\_\+set\+\_\+node\+\_\+addr}]{\setlength{\rightskip}{0pt plus 5cm}void linkaddr\+\_\+set\+\_\+node\+\_\+addr (
+\begin{DoxyParamCaption}
+\item[{{\bf linkaddr\+\_\+t} $\ast$}]{addr}
+\end{DoxyParamCaption}
+)}\label{group__linkaddr_ga5ec363b4d4a855f1c6c3da284451415a}
+
+
+Set the address of the current node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr} & The address \begin{DoxyVerb}        This function sets the Rime address of the node.\end{DoxyVerb}
+ \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Variable Documentation}
+\hypertarget{group__linkaddr_ga03585f3e07ec49ec11cb4bbd17f3cf0e}{}\index{Rime addresses@{Rime addresses}!linkaddr\+\_\+node\+\_\+addr@{linkaddr\+\_\+node\+\_\+addr}}
+\index{linkaddr\+\_\+node\+\_\+addr@{linkaddr\+\_\+node\+\_\+addr}!Rime addresses@{Rime addresses}}
+\subsubsection[{linkaddr\+\_\+node\+\_\+addr}]{\setlength{\rightskip}{0pt plus 5cm}{\bf linkaddr\+\_\+t} linkaddr\+\_\+node\+\_\+addr}\label{group__linkaddr_ga03585f3e07ec49ec11cb4bbd17f3cf0e}
+
+
+The Rime address of the node. 
+
+This variable contains the Rime address of the node. This variable should not be changed directly; rather, the \hyperlink{group__linkaddr_ga5ec363b4d4a855f1c6c3da284451415a}{linkaddr\+\_\+set\+\_\+node\+\_\+addr()} function should be used. \hypertarget{group__linkaddr_ga03585f3e07ec49ec11cb4bbd17f3cf0e}{}\index{Rime addresses@{Rime addresses}!linkaddr\+\_\+node\+\_\+addr@{linkaddr\+\_\+node\+\_\+addr}}
+\index{linkaddr\+\_\+node\+\_\+addr@{linkaddr\+\_\+node\+\_\+addr}!Rime addresses@{Rime addresses}}
+\subsubsection[{linkaddr\+\_\+node\+\_\+addr}]{\setlength{\rightskip}{0pt plus 5cm}{\bf linkaddr\+\_\+t} linkaddr\+\_\+node\+\_\+addr}\label{group__linkaddr_ga03585f3e07ec49ec11cb4bbd17f3cf0e}
+
+
+The Rime address of the node. 
+
+This variable contains the Rime address of the node. This variable should not be changed directly; rather, the \hyperlink{group__linkaddr_ga5ec363b4d4a855f1c6c3da284451415a}{linkaddr\+\_\+set\+\_\+node\+\_\+addr()} function should be used. \hypertarget{group__linkaddr_gaa8829a95f1d11a93a3ff75c8f5b2bffd}{}\index{Rime addresses@{Rime addresses}!linkaddr\+\_\+null@{linkaddr\+\_\+null}}
+\index{linkaddr\+\_\+null@{linkaddr\+\_\+null}!Rime addresses@{Rime addresses}}
+\subsubsection[{linkaddr\+\_\+null}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf linkaddr\+\_\+t} linkaddr\+\_\+null}\label{group__linkaddr_gaa8829a95f1d11a93a3ff75c8f5b2bffd}
+
+
+The null Rime address. 
+
+This variable contains the null Rime address. The null address is used in route tables to indicate that the table entry is unused. Nodes with no configured address has the null address. Nodes with their node address set to the null address will have problems communicating with other nodes. 

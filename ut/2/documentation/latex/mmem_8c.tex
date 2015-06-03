@@ -1,0 +1,36 @@
+\hypertarget{mmem_8c}{}\section{/home/user/contiki\+U\+T/contiki/core/lib/mmem.c File Reference}
+\label{mmem_8c}\index{/home/user/contiki\+U\+T/contiki/core/lib/mmem.\+c@{/home/user/contiki\+U\+T/contiki/core/lib/mmem.\+c}}
+{\ttfamily \#include \char`\"{}mmem.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}list.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}contiki-\/conf.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__mmem_gaca6097cc8e48d9cb9970f0b09bbe1ccf}{}\#define {\bfseries M\+M\+E\+M\+\_\+\+S\+I\+Z\+E}~4096\label{group__mmem_gaca6097cc8e48d9cb9970f0b09bbe1ccf}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__mmem_ga0cefcd211c74c9e1e5e87faf6616cc48}{}{\bfseries L\+I\+S\+T} (mmemlist)\label{group__mmem_ga0cefcd211c74c9e1e5e87faf6616cc48}
+
+\item 
+int \hyperlink{group__mmem_ga0fedd76f44b4750a7762f633467e5515}{mmem\+\_\+alloc} (struct \hyperlink{structmmem}{mmem} $\ast$m, unsigned int size)
+\begin{DoxyCompactList}\small\item\em Allocate a managed memory block. \end{DoxyCompactList}\item 
+void \hyperlink{group__mmem_ga172798945ec6cf2d23cb7cb7dc76861c}{mmem\+\_\+free} (struct \hyperlink{structmmem}{mmem} $\ast$m)
+\begin{DoxyCompactList}\small\item\em Deallocate a managed memory block. \end{DoxyCompactList}\item 
+void \hyperlink{group__mmem_ga71d6c141eaf75846c90c72f6f1386902}{mmem\+\_\+init} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the managed memory module. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__mmem_gade5eff319d4fab5a0ceefb8742c1dc7a}{}unsigned int {\bfseries avail\+\_\+memory}\label{group__mmem_gade5eff319d4fab5a0ceefb8742c1dc7a}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of the managed memory allocator \begin{DoxyAuthor}{Author}
+Adam Dunkels \href{mailto:adam@sics.se}{\tt adam@sics.\+se} 
+\end{DoxyAuthor}

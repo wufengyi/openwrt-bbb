@@ -1,0 +1,558 @@
+\hypertarget{group__trickle-timer}{}\section{Trickle timers}
+\label{group__trickle-timer}\index{Trickle timers@{Trickle timers}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structtrickle__timer}{trickle\+\_\+timer}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__trickle-timer_gad72dbcf6d0153db1b8d8a58001feed83}{}\#define {\bfseries D\+E\+B\+U\+G}~0\label{group__trickle-timer_gad72dbcf6d0153db1b8d8a58001feed83}
+
+\item 
+\hypertarget{group__trickle-timer_ga1f464e950a4fa11e8821b5c725921a15}{}\#define {\bfseries P\+R\+I\+N\+T\+F}(...)\label{group__trickle-timer_ga1f464e950a4fa11e8821b5c725921a15}
+
+\item 
+\hypertarget{group__trickle-timer_gaf612a348c64f66b8d578b190dc7e87ed}{}\#define \hyperlink{group__trickle-timer_gaf612a348c64f66b8d578b190dc7e87ed}{tt\+\_\+rand}()~random\+\_\+rand()\label{group__trickle-timer_gaf612a348c64f66b8d578b190dc7e87ed}
+
+\begin{DoxyCompactList}\small\item\em Wide randoms for platforms using a 4-\/byte wide clock (see \hyperlink{group__trickle-timer_ga2b3b9fd1a895243db18b35b7600bac15}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+W\+I\+D\+E\+\_\+\+R\+A\+N\+D}) \end{DoxyCompactList}\item 
+\#define \hyperlink{group__trickle-timer_ga361fa866c3bba8e5a05de3b957bc04c1}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+O\+M\+P\+E\+N\+S\+A\+T\+E\+\_\+\+D\+R\+I\+F\+T}~1
+\begin{DoxyCompactList}\small\item\em Controls whether the library will try to compensate for time drifts caused by getting called later than scheduled. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__trickle-timer_ga2b3b9fd1a895243db18b35b7600bac15}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+W\+I\+D\+E\+\_\+\+R\+A\+N\+D}~1
+\begin{DoxyCompactList}\small\item\em Turns on support for 4-\/byte wide, unsigned random numbers. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__trickle-timer_ga157285503882e567c275871fd30d3016}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+M\+A\+X\+\_\+\+I\+M\+A\+X\+\_\+\+W\+I\+D\+T\+H}~\hyperlink{group__trickle-timer_ga63607c0782cac7d825d07bff8c89b3d4}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+M\+A\+X\+\_\+\+I\+M\+A\+X\+\_\+\+G\+E\+N\+E\+R\+I\+C}
+\begin{DoxyCompactList}\small\item\em Selects a flavor for the \textquotesingle{}Find maximum Imax\textquotesingle{} (max\+\_\+imax) function. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__trickle-timer_gad47a05440295b6f171873f5f43384e56}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+E\+R\+R\+O\+R\+\_\+\+C\+H\+E\+C\+K\+I\+N\+G}~1
+\begin{DoxyCompactList}\small\item\em Enables/\+Disables error checking. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Trickle Timer Library\+: Constants}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__trickle-timer_ga72117b57dd1e192ca8a016055d2310f3}{}\#define \hyperlink{group__trickle-timer_ga72117b57dd1e192ca8a016055d2310f3}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+F\+I\+N\+I\+T\+E\+\_\+\+R\+E\+D\+U\+N\+D\+A\+N\+C\+Y}~0x00\label{group__trickle-timer_ga72117b57dd1e192ca8a016055d2310f3}
+
+\begin{DoxyCompactList}\small\item\em Set as value of k to disable suppression. \end{DoxyCompactList}\item 
+\hypertarget{group__trickle-timer_gac24600ceec4a0dc4b57df1baeb4b876d}{}\#define {\bfseries T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+E\+R\+R\+O\+R}~0\label{group__trickle-timer_gac24600ceec4a0dc4b57df1baeb4b876d}
+
+\item 
+\hypertarget{group__trickle-timer_ga8075209f39b5756f0eb5c4ec4b8136e2}{}\#define {\bfseries T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+S\+U\+C\+C\+E\+S\+S}~1\label{group__trickle-timer_ga8075209f39b5756f0eb5c4ec4b8136e2}
+
+\item 
+\hypertarget{group__trickle-timer_ga63607c0782cac7d825d07bff8c89b3d4}{}\#define \hyperlink{group__trickle-timer_ga63607c0782cac7d825d07bff8c89b3d4}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+M\+A\+X\+\_\+\+I\+M\+A\+X\+\_\+\+G\+E\+N\+E\+R\+I\+C}~0\label{group__trickle-timer_ga63607c0782cac7d825d07bff8c89b3d4}
+
+\begin{DoxyCompactList}\small\item\em Use as the value of T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+M\+A\+X\+\_\+\+I\+M\+A\+X\+\_\+\+W\+I\+D\+T\+H to enable the generic \textquotesingle{}Find max Imax\textquotesingle{} routine. \end{DoxyCompactList}\item 
+\hypertarget{group__trickle-timer_ga41b658ea4619c5e104efb050f664e3f1}{}\#define \hyperlink{group__trickle-timer_ga41b658ea4619c5e104efb050f664e3f1}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+M\+A\+X\+\_\+\+I\+M\+A\+X\+\_\+16\+\_\+\+B\+I\+T}~1\label{group__trickle-timer_ga41b658ea4619c5e104efb050f664e3f1}
+
+\begin{DoxyCompactList}\small\item\em Use as the value of T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+M\+A\+X\+\_\+\+I\+M\+A\+X\+\_\+\+W\+I\+D\+T\+H to enable the 16-\/bit \textquotesingle{}Find max Imax\textquotesingle{} routine. \end{DoxyCompactList}\item 
+\hypertarget{group__trickle-timer_gaaaa2a3bec490540d904a0b4a44c6251d}{}\#define \hyperlink{group__trickle-timer_gaaaa2a3bec490540d904a0b4a44c6251d}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+M\+A\+X\+\_\+\+I\+M\+A\+X\+\_\+32\+\_\+\+B\+I\+T}~2\label{group__trickle-timer_gaaaa2a3bec490540d904a0b4a44c6251d}
+
+\begin{DoxyCompactList}\small\item\em Use as the value of T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+M\+A\+X\+\_\+\+I\+M\+A\+X\+\_\+\+W\+I\+D\+T\+H to enable the 32-\/bit \textquotesingle{}Find max Imax\textquotesingle{} routine. \end{DoxyCompactList}\item 
+\hypertarget{group__trickle-timer_ga45ed26596d700d8c9111751b243eae7b}{}\#define \hyperlink{group__trickle-timer_ga45ed26596d700d8c9111751b243eae7b}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+T\+X\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S}~0\label{group__trickle-timer_ga45ed26596d700d8c9111751b243eae7b}
+
+\begin{DoxyCompactList}\small\item\em Constants used as values for the {\itshape suppress} param of trickle\+\_\+timer\+\_\+cb\+\_\+t. \end{DoxyCompactList}\item 
+\hypertarget{group__trickle-timer_gae692f25bfc1a2915a28389db0fb2a752}{}\#define {\bfseries T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+T\+X\+\_\+\+O\+K}~1\label{group__trickle-timer_gae692f25bfc1a2915a28389db0fb2a752}
+
+\item 
+\#define \hyperlink{group__trickle-timer_ga46a9d1ac6e07dc96cfd6224b873333ca}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+S\+\_\+\+S\+T\+O\+P\+P\+E\+D}~0
+\begin{DoxyCompactList}\small\item\em A trickle timer is considered \textquotesingle{}stopped\textquotesingle{} when i\+\_\+cur == T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+S\+\_\+\+S\+T\+O\+P\+P\+E\+D. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Trickle Timer Library\+: Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__trickle-timer_ga8c327f7f935dcc95d89fcbbc664fcdcf}{}\#define \hyperlink{group__trickle-timer_ga8c327f7f935dcc95d89fcbbc664fcdcf}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+L\+O\+C\+K\+\_\+\+M\+A\+X}~((clock\+\_\+time\+\_\+t)$\sim$0)\label{group__trickle-timer_ga8c327f7f935dcc95d89fcbbc664fcdcf}
+
+\begin{DoxyCompactList}\small\item\em cross-\/platform method to get the maximum clock\+\_\+time\+\_\+t value \end{DoxyCompactList}\item 
+\#define \hyperlink{group__trickle-timer_ga5f4e1c6f73eb9c0a18db8434d7103bd6}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+I\+O\+N\+\_\+\+E\+N\+A\+B\+L\+E\+D}(tt)~((tt)-\/$>$k != \hyperlink{group__trickle-timer_ga72117b57dd1e192ca8a016055d2310f3}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+F\+I\+N\+I\+T\+E\+\_\+\+R\+E\+D\+U\+N\+D\+A\+N\+C\+Y})
+\begin{DoxyCompactList}\small\item\em Checks if the trickle timer\textquotesingle{}s suppression feature is enabled. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__trickle-timer_ga2c3a5dfb5c0f102b1c9755c303620004}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+I\+O\+N\+\_\+\+D\+I\+S\+A\+B\+L\+E\+D}(tt)~((tt)-\/$>$k == \hyperlink{group__trickle-timer_ga72117b57dd1e192ca8a016055d2310f3}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+F\+I\+N\+I\+T\+E\+\_\+\+R\+E\+D\+U\+N\+D\+A\+N\+C\+Y})
+\begin{DoxyCompactList}\small\item\em Checks if the trickle timer\textquotesingle{}s suppression feature is disabled. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__trickle-timer_ga2b39325309fb89efa3b965437a249bef}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+P\+R\+O\+T\+O\+\_\+\+T\+X\+\_\+\+A\+L\+L\+O\+W}(tt)~(\hyperlink{group__trickle-timer_ga2c3a5dfb5c0f102b1c9755c303620004}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+I\+O\+N\+\_\+\+D\+I\+S\+A\+B\+L\+E\+D}(tt) $\vert$$\vert$ ((tt)-\/$>$c $<$ (tt)-\/$>$k))
+\begin{DoxyCompactList}\small\item\em Determines whether the protocol must go ahead with a transmission. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__trickle-timer_ga7c8719d9d4ebb06f080442e87fd514c7}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+P\+R\+O\+T\+O\+\_\+\+T\+X\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S}(tt)~(\hyperlink{group__trickle-timer_ga5f4e1c6f73eb9c0a18db8434d7103bd6}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+I\+O\+N\+\_\+\+E\+N\+A\+B\+L\+E\+D}(tt) \&\& ((tt)-\/$>$c $>$= (tt)-\/$>$k))
+\begin{DoxyCompactList}\small\item\em Determines whether the protocol must suppress a transmission. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__trickle-timer_ga160b7df536d05607f970ef92d1834b8b}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L\+\_\+\+M\+A\+X}(tt)~((tt)-\/$>$i\+\_\+max\+\_\+abs)
+\begin{DoxyCompactList}\small\item\em Returns a timer\textquotesingle{}s maximum interval size (Imin $<$$<$ Imax) as a number of clock ticks. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__trickle-timer_gaee0150ea3a6efe6136abcb2a9019d096}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L\+\_\+\+E\+N\+D}(tt)~((tt)-\/$>$i\+\_\+start + (tt)-\/$>$i\+\_\+cur)
+\begin{DoxyCompactList}\small\item\em Returns the current trickle interval\textquotesingle{}s end (absolute time in ticks) \end{DoxyCompactList}\item 
+\#define \hyperlink{group__trickle-timer_gaf18c0aac91ab42fe0ebb332650330cc2}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+M\+I\+N\+\_\+\+I\+S\+\_\+\+O\+K}(imin)~((imin $>$ 1) \&\& (i\+\_\+min $<$= (\hyperlink{group__trickle-timer_ga8c327f7f935dcc95d89fcbbc664fcdcf}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+L\+O\+C\+K\+\_\+\+M\+A\+X} $>$$>$ 1)))
+\begin{DoxyCompactList}\small\item\em Checks whether an Imin value is suitable considering the various restrictions imposed by our platform\textquotesingle{}s clock as well as by the library itself. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__trickle-timer_ga48f0bd27341eba9602cb971642221700}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+M\+I\+N\+\_\+\+I\+S\+\_\+\+B\+A\+D}(imin)~((imin $<$ 2) $\vert$$\vert$ (i\+\_\+min $>$ (\hyperlink{group__trickle-timer_ga8c327f7f935dcc95d89fcbbc664fcdcf}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+L\+O\+C\+K\+\_\+\+M\+A\+X} $>$$>$ 1)))
+\begin{DoxyCompactList}\small\item\em Checks whether an Imin value is invalid considering the various restrictions imposed by our platform\textquotesingle{}s clock as well as by the library itself. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__trickle-timer_ga82b7d1b4b6fb7d11da496229782a5ba7}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+P\+A\+I\+R\+\_\+\+I\+S\+\_\+\+B\+A\+D}(i\+\_\+min,  i\+\_\+max)~((\hyperlink{group__trickle-timer_ga8c327f7f935dcc95d89fcbbc664fcdcf}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+L\+O\+C\+K\+\_\+\+M\+A\+X} $>$$>$ (i\+\_\+max + 1)) $<$ i\+\_\+min -\/ 1)
+\begin{DoxyCompactList}\small\item\em Checks whether Imin $<$$<$ Imax is unsuitable considering the boundaries of our platform\textquotesingle{}s clock\+\_\+time\+\_\+t. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Trickle Timer Library\+: Data Representation}
+\begin{DoxyCompactItemize}
+\item 
+typedef void($\ast$ \hyperlink{group__trickle-timer_ga243193848d28e6373682b8bd2e25850a}{trickle\+\_\+timer\+\_\+cb\+\_\+t}) (void $\ast$ptr, uint8\+\_\+t suppress)
+\begin{DoxyCompactList}\small\item\em typedef for a callback function to be defined in the protocol\textquotesingle{}s implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Trickle Timer Library\+: Functions called by protocol implementations}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__trickle-timer_gaf7df1a3da4f9be5e2f17c3b77668eb6e}{trickle\+\_\+timer\+\_\+consistency} (struct \hyperlink{structtrickle__timer}{trickle\+\_\+timer} $\ast$tt)
+\begin{DoxyCompactList}\small\item\em To be called by the protocol when it hears a consistent transmission. \end{DoxyCompactList}\item 
+void \hyperlink{group__trickle-timer_gae401435f40030c5c4f0f49e813fd9afc}{trickle\+\_\+timer\+\_\+inconsistency} (struct \hyperlink{structtrickle__timer}{trickle\+\_\+timer} $\ast$tt)
+\begin{DoxyCompactList}\small\item\em To be called by the protocol when it hears an inconsistent transmission. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{group__trickle-timer_ga4b21d9fbed3c0c903fa1687b812a7f9c}{trickle\+\_\+timer\+\_\+config} (struct \hyperlink{structtrickle__timer}{trickle\+\_\+timer} $\ast$tt, clock\+\_\+time\+\_\+t i\+\_\+min, uint8\+\_\+t i\+\_\+max, uint8\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em Configure a trickle timer. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{group__trickle-timer_ga57b03043f109c0b2adb1dc92637ee8b4}{trickle\+\_\+timer\+\_\+set} (struct \hyperlink{structtrickle__timer}{trickle\+\_\+timer} $\ast$tt, \hyperlink{group__trickle-timer_ga243193848d28e6373682b8bd2e25850a}{trickle\+\_\+timer\+\_\+cb\+\_\+t} proto\+\_\+cb, void $\ast$ptr)
+\begin{DoxyCompactList}\small\item\em Start a previously configured trickle timer. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__trickle-timer_gaa475b1b9b3edd81df04d290bd34d7e72}{trickle\+\_\+timer\+\_\+stop}(tt)
+\begin{DoxyCompactList}\small\item\em Stop a running trickle timer. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__trickle-timer_ga3795c2533ccbd951226385e9b8f30f09}{trickle\+\_\+timer\+\_\+reset\+\_\+event}(tt)~\hyperlink{group__trickle-timer_gae401435f40030c5c4f0f49e813fd9afc}{trickle\+\_\+timer\+\_\+inconsistency}(tt)
+\begin{DoxyCompactList}\small\item\em To be called by the protocol when an external event occurs that should trigger a timer reset. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__trickle-timer_ga584276a4a8fdcdaf58aa9406e5214591}{trickle\+\_\+timer\+\_\+is\+\_\+running}(tt)~((tt)-\/$>$i\+\_\+cur != \hyperlink{group__trickle-timer_ga46a9d1ac6e07dc96cfd6224b873333ca}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+S\+\_\+\+S\+T\+O\+P\+P\+E\+D})
+\begin{DoxyCompactList}\small\item\em To be called in order to determine whether a trickle timer is running. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This library implements timers which behave in accordance with R\+F\+C 6206 \char`\"{}\+The Trickle Algorithm\char`\"{} (\href{http://tools.ietf.org/html/rfc6206}{\tt http\+://tools.\+ietf.\+org/html/rfc6206})
+
+Protocols wishing to use trickle timers, may use this library instead of implementing the trickle algorithm internally.
+
+The protocol implementation will declare one (or more) variable(s) of type struct \hyperlink{structtrickle__timer}{trickle\+\_\+timer} and will then populate its fields by calling \hyperlink{group__trickle-timer_ga4b21d9fbed3c0c903fa1687b812a7f9c}{trickle\+\_\+timer\+\_\+config()}. \hyperlink{group__trickle-timer_ga57b03043f109c0b2adb1dc92637ee8b4}{trickle\+\_\+timer\+\_\+set()} will start the timer.
+
+When the timer reaches time t within the current trickle interval, the library will call a protocol-\/provided callback, which will signal to the protocol that it is time to T\+X (see algorithm step 4 in the R\+F\+C).
+
+The proto does not need to check the suppression conditions. This is done by the library and if T\+X must be suppressed, the callback won\textquotesingle{}t be called at all.
+
+The library also provides functions to be called when the protocol hears a \textquotesingle{}consistent\textquotesingle{} or \textquotesingle{}inconsistent\textquotesingle{} message and when an \textquotesingle{}external event\textquotesingle{} occurs (in this context, those terms have the exact same meaning as in the R\+F\+C). 
+
+\subsection{Macro Definition Documentation}
+\hypertarget{group__trickle-timer_ga361fa866c3bba8e5a05de3b957bc04c1}{}\index{Trickle timers@{Trickle timers}!T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+O\+M\+P\+E\+N\+S\+A\+T\+E\+\_\+\+D\+R\+I\+F\+T@{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+O\+M\+P\+E\+N\+S\+A\+T\+E\+\_\+\+D\+R\+I\+F\+T}}
+\index{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+O\+M\+P\+E\+N\+S\+A\+T\+E\+\_\+\+D\+R\+I\+F\+T@{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+O\+M\+P\+E\+N\+S\+A\+T\+E\+\_\+\+D\+R\+I\+F\+T}!Trickle timers@{Trickle timers}}
+\subsubsection[{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+O\+M\+P\+E\+N\+S\+A\+T\+E\+\_\+\+D\+R\+I\+F\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+O\+M\+P\+E\+N\+S\+A\+T\+E\+\_\+\+D\+R\+I\+F\+T~1}\label{group__trickle-timer_ga361fa866c3bba8e5a05de3b957bc04c1}
+
+
+Controls whether the library will try to compensate for time drifts caused by getting called later than scheduled. 
+
+1\+: Enabled (default). 0\+: Disabled
+
+To override the default, define T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+O\+N\+F\+\_\+\+C\+O\+M\+P\+E\+N\+S\+A\+T\+E\+\_\+\+D\+R\+I\+F\+T in contiki-\/conf.\+h
+
+Bear in mind that this controls the behaviour of the entire library (i.\+e. all trickle timers) and not of an individual timer \hypertarget{group__trickle-timer_gad47a05440295b6f171873f5f43384e56}{}\index{Trickle timers@{Trickle timers}!T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+E\+R\+R\+O\+R\+\_\+\+C\+H\+E\+C\+K\+I\+N\+G@{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+E\+R\+R\+O\+R\+\_\+\+C\+H\+E\+C\+K\+I\+N\+G}}
+\index{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+E\+R\+R\+O\+R\+\_\+\+C\+H\+E\+C\+K\+I\+N\+G@{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+E\+R\+R\+O\+R\+\_\+\+C\+H\+E\+C\+K\+I\+N\+G}!Trickle timers@{Trickle timers}}
+\subsubsection[{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+E\+R\+R\+O\+R\+\_\+\+C\+H\+E\+C\+K\+I\+N\+G}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+E\+R\+R\+O\+R\+\_\+\+C\+H\+E\+C\+K\+I\+N\+G~1}\label{group__trickle-timer_gad47a05440295b6f171873f5f43384e56}
+
+
+Enables/\+Disables error checking. 
+
+1\+: Enabled (default). The library checks the validity of Imin and Imax 0\+: Disabled. All error checking is turned off. This reduces code size. \hypertarget{group__trickle-timer_ga48f0bd27341eba9602cb971642221700}{}\index{Trickle timers@{Trickle timers}!T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+M\+I\+N\+\_\+\+I\+S\+\_\+\+B\+A\+D@{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+M\+I\+N\+\_\+\+I\+S\+\_\+\+B\+A\+D}}
+\index{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+M\+I\+N\+\_\+\+I\+S\+\_\+\+B\+A\+D@{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+M\+I\+N\+\_\+\+I\+S\+\_\+\+B\+A\+D}!Trickle timers@{Trickle timers}}
+\subsubsection[{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+M\+I\+N\+\_\+\+I\+S\+\_\+\+B\+A\+D}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+M\+I\+N\+\_\+\+I\+S\+\_\+\+B\+A\+D(
+\begin{DoxyParamCaption}
+\item[{}]{imin}
+\end{DoxyParamCaption}
+)~((imin $<$ 2) $\vert$$\vert$ (i\+\_\+min $>$ ({\bf T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+L\+O\+C\+K\+\_\+\+M\+A\+X} $>$$>$ 1)))}\label{group__trickle-timer_ga48f0bd27341eba9602cb971642221700}
+
+
+Checks whether an Imin value is invalid considering the various restrictions imposed by our platform\textquotesingle{}s clock as well as by the library itself. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em imin} & An Imin value in clock ticks\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 1} & The Imin value is invalid \\
+\hline
+{\em 0} & The Imin value is valid \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__trickle-timer_gaf18c0aac91ab42fe0ebb332650330cc2}{}\index{Trickle timers@{Trickle timers}!T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+M\+I\+N\+\_\+\+I\+S\+\_\+\+O\+K@{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+M\+I\+N\+\_\+\+I\+S\+\_\+\+O\+K}}
+\index{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+M\+I\+N\+\_\+\+I\+S\+\_\+\+O\+K@{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+M\+I\+N\+\_\+\+I\+S\+\_\+\+O\+K}!Trickle timers@{Trickle timers}}
+\subsubsection[{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+M\+I\+N\+\_\+\+I\+S\+\_\+\+O\+K}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+M\+I\+N\+\_\+\+I\+S\+\_\+\+O\+K(
+\begin{DoxyParamCaption}
+\item[{}]{imin}
+\end{DoxyParamCaption}
+)~((imin $>$ 1) \&\& (i\+\_\+min $<$= ({\bf T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+L\+O\+C\+K\+\_\+\+M\+A\+X} $>$$>$ 1)))}\label{group__trickle-timer_gaf18c0aac91ab42fe0ebb332650330cc2}
+
+
+Checks whether an Imin value is suitable considering the various restrictions imposed by our platform\textquotesingle{}s clock as well as by the library itself. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em imin} & An Imin value in clock ticks\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 1} & The Imin value is valid \\
+\hline
+{\em 0} & The Imin value is invalid \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__trickle-timer_gaee0150ea3a6efe6136abcb2a9019d096}{}\index{Trickle timers@{Trickle timers}!T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L\+\_\+\+E\+N\+D@{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L\+\_\+\+E\+N\+D}}
+\index{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L\+\_\+\+E\+N\+D@{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L\+\_\+\+E\+N\+D}!Trickle timers@{Trickle timers}}
+\subsubsection[{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L\+\_\+\+E\+N\+D}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L\+\_\+\+E\+N\+D(
+\begin{DoxyParamCaption}
+\item[{}]{tt}
+\end{DoxyParamCaption}
+)~((tt)-\/$>$i\+\_\+start + (tt)-\/$>$i\+\_\+cur)}\label{group__trickle-timer_gaee0150ea3a6efe6136abcb2a9019d096}
+
+
+Returns the current trickle interval\textquotesingle{}s end (absolute time in ticks) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tt} & A pointer to a \hyperlink{structtrickle__timer}{trickle\+\_\+timer} structure\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The absolute number of clock ticks when the current trickle interval will expire 
+\end{DoxyReturn}
+\hypertarget{group__trickle-timer_ga160b7df536d05607f970ef92d1834b8b}{}\index{Trickle timers@{Trickle timers}!T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L\+\_\+\+M\+A\+X@{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L\+\_\+\+M\+A\+X}}
+\index{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L\+\_\+\+M\+A\+X@{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L\+\_\+\+M\+A\+X}!Trickle timers@{Trickle timers}}
+\subsubsection[{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L\+\_\+\+M\+A\+X}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L\+\_\+\+M\+A\+X(
+\begin{DoxyParamCaption}
+\item[{}]{tt}
+\end{DoxyParamCaption}
+)~((tt)-\/$>$i\+\_\+max\+\_\+abs)}\label{group__trickle-timer_ga160b7df536d05607f970ef92d1834b8b}
+
+
+Returns a timer\textquotesingle{}s maximum interval size (Imin $<$$<$ Imax) as a number of clock ticks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tt} & A pointer to a \hyperlink{structtrickle__timer}{trickle\+\_\+timer} structure\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Maximum trickle interval length in clock ticks 
+\end{DoxyReturn}
+\hypertarget{group__trickle-timer_ga82b7d1b4b6fb7d11da496229782a5ba7}{}\index{Trickle timers@{Trickle timers}!T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+P\+A\+I\+R\+\_\+\+I\+S\+\_\+\+B\+A\+D@{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+P\+A\+I\+R\+\_\+\+I\+S\+\_\+\+B\+A\+D}}
+\index{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+P\+A\+I\+R\+\_\+\+I\+S\+\_\+\+B\+A\+D@{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+P\+A\+I\+R\+\_\+\+I\+S\+\_\+\+B\+A\+D}!Trickle timers@{Trickle timers}}
+\subsubsection[{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+P\+A\+I\+R\+\_\+\+I\+S\+\_\+\+B\+A\+D}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+P\+A\+I\+R\+\_\+\+I\+S\+\_\+\+B\+A\+D(
+\begin{DoxyParamCaption}
+\item[{}]{i\+\_\+min, }
+\item[{}]{i\+\_\+max}
+\end{DoxyParamCaption}
+)~(({\bf T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+L\+O\+C\+K\+\_\+\+M\+A\+X} $>$$>$ (i\+\_\+max + 1)) $<$ i\+\_\+min -\/ 1)}\label{group__trickle-timer_ga82b7d1b4b6fb7d11da496229782a5ba7}
+
+
+Checks whether Imin $<$$<$ Imax is unsuitable considering the boundaries of our platform\textquotesingle{}s clock\+\_\+time\+\_\+t. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+min} & Imin value \\
+\hline
+{\em i\+\_\+max} & Maximum number of doublings\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em non-\/zero} & The pair would exceed clock boundaries \\
+\hline
+{\em 0} & The pair is suitable for the platform\\
+\hline
+\end{DoxyRetVals}
+Timers scheduled far in the future can be perceived as being scheduled in the past. Thus, we limit Imin $<$$<$ Imax to be L\+E\+Q(\+T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+L\+O\+C\+K\+\_\+\+M\+A\+X $>$$>$ 1) + 1 \hypertarget{group__trickle-timer_ga584276a4a8fdcdaf58aa9406e5214591}{}\index{Trickle timers@{Trickle timers}!trickle\+\_\+timer\+\_\+is\+\_\+running@{trickle\+\_\+timer\+\_\+is\+\_\+running}}
+\index{trickle\+\_\+timer\+\_\+is\+\_\+running@{trickle\+\_\+timer\+\_\+is\+\_\+running}!Trickle timers@{Trickle timers}}
+\subsubsection[{trickle\+\_\+timer\+\_\+is\+\_\+running}]{\setlength{\rightskip}{0pt plus 5cm}\#define trickle\+\_\+timer\+\_\+is\+\_\+running(
+\begin{DoxyParamCaption}
+\item[{}]{tt}
+\end{DoxyParamCaption}
+)~((tt)-\/$>$i\+\_\+cur != {\bf T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+S\+\_\+\+S\+T\+O\+P\+P\+E\+D})}\label{group__trickle-timer_ga584276a4a8fdcdaf58aa9406e5214591}
+
+
+To be called in order to determine whether a trickle timer is running. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tt} & A pointer to a \hyperlink{structtrickle__timer}{trickle\+\_\+timer} structure \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & The timer is stopped \\
+\hline
+{\em non-\/zero} & The timer is running \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__trickle-timer_ga46a9d1ac6e07dc96cfd6224b873333ca}{}\index{Trickle timers@{Trickle timers}!T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+S\+\_\+\+S\+T\+O\+P\+P\+E\+D@{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+S\+\_\+\+S\+T\+O\+P\+P\+E\+D}}
+\index{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+S\+\_\+\+S\+T\+O\+P\+P\+E\+D@{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+S\+\_\+\+S\+T\+O\+P\+P\+E\+D}!Trickle timers@{Trickle timers}}
+\subsubsection[{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+S\+\_\+\+S\+T\+O\+P\+P\+E\+D}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+S\+\_\+\+S\+T\+O\+P\+P\+E\+D~0}\label{group__trickle-timer_ga46a9d1ac6e07dc96cfd6224b873333ca}
+
+
+A trickle timer is considered \textquotesingle{}stopped\textquotesingle{} when i\+\_\+cur == T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+S\+\_\+\+S\+T\+O\+P\+P\+E\+D. 
+
+\hyperlink{group__trickle-timer_gaa475b1b9b3edd81df04d290bd34d7e72}{trickle\+\_\+timer\+\_\+stop()} must be used to correctly disable a trickle timer. Do N\+O\+T set the value of i\+\_\+cur to 0 directly, as this will fail to stop the timer. \hypertarget{group__trickle-timer_ga157285503882e567c275871fd30d3016}{}\index{Trickle timers@{Trickle timers}!T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+M\+A\+X\+\_\+\+I\+M\+A\+X\+\_\+\+W\+I\+D\+T\+H@{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+M\+A\+X\+\_\+\+I\+M\+A\+X\+\_\+\+W\+I\+D\+T\+H}}
+\index{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+M\+A\+X\+\_\+\+I\+M\+A\+X\+\_\+\+W\+I\+D\+T\+H@{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+M\+A\+X\+\_\+\+I\+M\+A\+X\+\_\+\+W\+I\+D\+T\+H}!Trickle timers@{Trickle timers}}
+\subsubsection[{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+M\+A\+X\+\_\+\+I\+M\+A\+X\+\_\+\+W\+I\+D\+T\+H}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+M\+A\+X\+\_\+\+I\+M\+A\+X\+\_\+\+W\+I\+D\+T\+H~{\bf T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+M\+A\+X\+\_\+\+I\+M\+A\+X\+\_\+\+G\+E\+N\+E\+R\+I\+C}}\label{group__trickle-timer_ga157285503882e567c275871fd30d3016}
+
+
+Selects a flavor for the \textquotesingle{}Find maximum Imax\textquotesingle{} (max\+\_\+imax) function. 
+
+When configuring a new trickle timer, the library verifies that the (Imin , Imax) pair will fit in the platform\textquotesingle{}s clock\+\_\+time\+\_\+t boundaries. If this is not the case, Imax will be adjusted down. In order to achieve this, we use an internal function which is a slight variant of a standard \textquotesingle{}Count Leading Zeros\textquotesingle{}.
+
+This functionality is disabled when \hyperlink{group__trickle-timer_gad47a05440295b6f171873f5f43384e56}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+E\+R\+R\+O\+R\+\_\+\+C\+H\+E\+C\+K\+I\+N\+G} is 0
+
+This define helps us generate, at the pre-\/processing stage, the desired version of this function. We start with a generic version by default. The platform\textquotesingle{}s contiki-\/conf.\+h can change this to use the 16-\/ or 32-\/bit specific flavor by defining T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+O\+N\+F\+\_\+\+M\+A\+X\+\_\+\+I\+M\+A\+X\+\_\+\+W\+I\+D\+T\+H.
+
+Depending on the toolchain, the generic variant may actually result in a smaller code size. Do your own experiments.
+
+T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+M\+A\+X\+\_\+\+I\+M\+A\+X\+\_\+\+G\+E\+N\+E\+R\+I\+C (0)\+: Generic function which will work regardless whether the platform uses a 16 or 32 bit wide clock type
+
+T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+M\+A\+X\+\_\+\+I\+M\+A\+X\+\_\+16\+\_\+\+B\+I\+T (1)\+: You can select this in your contiki-\/conf.\+h if your platform\textquotesingle{}s clock\+\_\+time\+\_\+t is 16 bits wide
+
+T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+M\+A\+X\+\_\+\+I\+M\+A\+X\+\_\+32\+\_\+\+B\+I\+T (2)\+: You can select this in your contiki-\/conf.\+h if your platform\textquotesingle{}s clock\+\_\+time\+\_\+t is 32 bits wide \hypertarget{group__trickle-timer_ga2b39325309fb89efa3b965437a249bef}{}\index{Trickle timers@{Trickle timers}!T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+P\+R\+O\+T\+O\+\_\+\+T\+X\+\_\+\+A\+L\+L\+O\+W@{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+P\+R\+O\+T\+O\+\_\+\+T\+X\+\_\+\+A\+L\+L\+O\+W}}
+\index{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+P\+R\+O\+T\+O\+\_\+\+T\+X\+\_\+\+A\+L\+L\+O\+W@{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+P\+R\+O\+T\+O\+\_\+\+T\+X\+\_\+\+A\+L\+L\+O\+W}!Trickle timers@{Trickle timers}}
+\subsubsection[{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+P\+R\+O\+T\+O\+\_\+\+T\+X\+\_\+\+A\+L\+L\+O\+W}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+P\+R\+O\+T\+O\+\_\+\+T\+X\+\_\+\+A\+L\+L\+O\+W(
+\begin{DoxyParamCaption}
+\item[{}]{tt}
+\end{DoxyParamCaption}
+)~({\bf T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+I\+O\+N\+\_\+\+D\+I\+S\+A\+B\+L\+E\+D}(tt) $\vert$$\vert$ ((tt)-\/$>$c $<$ (tt)-\/$>$k))}\label{group__trickle-timer_ga2b39325309fb89efa3b965437a249bef}
+
+
+Determines whether the protocol must go ahead with a transmission. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tt} & A pointer to a \hyperlink{structtrickle__timer}{trickle\+\_\+timer} structure\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em non-\/zero} & Go ahead with T\+X \\
+\hline
+{\em 0} & Suppress \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__trickle-timer_ga7c8719d9d4ebb06f080442e87fd514c7}{}\index{Trickle timers@{Trickle timers}!T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+P\+R\+O\+T\+O\+\_\+\+T\+X\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S@{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+P\+R\+O\+T\+O\+\_\+\+T\+X\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S}}
+\index{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+P\+R\+O\+T\+O\+\_\+\+T\+X\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S@{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+P\+R\+O\+T\+O\+\_\+\+T\+X\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S}!Trickle timers@{Trickle timers}}
+\subsubsection[{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+P\+R\+O\+T\+O\+\_\+\+T\+X\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+P\+R\+O\+T\+O\+\_\+\+T\+X\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S(
+\begin{DoxyParamCaption}
+\item[{}]{tt}
+\end{DoxyParamCaption}
+)~({\bf T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+I\+O\+N\+\_\+\+E\+N\+A\+B\+L\+E\+D}(tt) \&\& ((tt)-\/$>$c $>$= (tt)-\/$>$k))}\label{group__trickle-timer_ga7c8719d9d4ebb06f080442e87fd514c7}
+
+
+Determines whether the protocol must suppress a transmission. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tt} & A pointer to a \hyperlink{structtrickle__timer}{trickle\+\_\+timer} structure\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em non-\/zero} & Suppress \\
+\hline
+{\em 0} & Go ahead with T\+X \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__trickle-timer_ga3795c2533ccbd951226385e9b8f30f09}{}\index{Trickle timers@{Trickle timers}!trickle\+\_\+timer\+\_\+reset\+\_\+event@{trickle\+\_\+timer\+\_\+reset\+\_\+event}}
+\index{trickle\+\_\+timer\+\_\+reset\+\_\+event@{trickle\+\_\+timer\+\_\+reset\+\_\+event}!Trickle timers@{Trickle timers}}
+\subsubsection[{trickle\+\_\+timer\+\_\+reset\+\_\+event}]{\setlength{\rightskip}{0pt plus 5cm}\#define trickle\+\_\+timer\+\_\+reset\+\_\+event(
+\begin{DoxyParamCaption}
+\item[{}]{tt}
+\end{DoxyParamCaption}
+)~{\bf trickle\+\_\+timer\+\_\+inconsistency}(tt)}\label{group__trickle-timer_ga3795c2533ccbd951226385e9b8f30f09}
+
+
+To be called by the protocol when an external event occurs that should trigger a timer reset. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tt} & A pointer to a \hyperlink{structtrickle__timer}{trickle\+\_\+timer} structure\\
+\hline
+\end{DoxyParams}
+When an external event occurs that should result in a timer reset, the protocol implementation must call this function to notify the library.
+
+Before resetting the timer, the library will perform a set of checks. Therefore, it is important that the protocol calls this function instead of trying to reset the timer by itself. \hypertarget{group__trickle-timer_gaa475b1b9b3edd81df04d290bd34d7e72}{}\index{Trickle timers@{Trickle timers}!trickle\+\_\+timer\+\_\+stop@{trickle\+\_\+timer\+\_\+stop}}
+\index{trickle\+\_\+timer\+\_\+stop@{trickle\+\_\+timer\+\_\+stop}!Trickle timers@{Trickle timers}}
+\subsubsection[{trickle\+\_\+timer\+\_\+stop}]{\setlength{\rightskip}{0pt plus 5cm}\#define trickle\+\_\+timer\+\_\+stop(
+\begin{DoxyParamCaption}
+\item[{}]{tt}
+\end{DoxyParamCaption}
+)}\label{group__trickle-timer_gaa475b1b9b3edd81df04d290bd34d7e72}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{do} \{ \(\backslash\)
+  ctimer\_stop(&((tt)->ct)); \(\backslash\)
+  (tt)->i\_cur = \hyperlink{group__trickle-timer_ga46a9d1ac6e07dc96cfd6224b873333ca}{TRICKLE\_TIMER\_IS\_STOPPED}; \(\backslash\)
+\} \textcolor{keywordflow}{while}(0)
+\end{DoxyCode}
+
+
+Stop a running trickle timer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tt} & A pointer to a \hyperlink{structtrickle__timer}{trickle\+\_\+timer} structure\\
+\hline
+\end{DoxyParams}
+This function stops a running trickle timer that was previously started with trickle\+\_\+timer\+\_\+start(). After this function has been called, the trickle timer will no longer call the protocol\textquotesingle{}s callback and its interval will not double any more. In order to resume the trickle timer, the user application must call \hyperlink{group__trickle-timer_ga57b03043f109c0b2adb1dc92637ee8b4}{trickle\+\_\+timer\+\_\+set()}.
+
+The protocol implementation must N\+O\+T use \hyperlink{group__trickle-timer_gaa475b1b9b3edd81df04d290bd34d7e72}{trickle\+\_\+timer\+\_\+stop()}, \+\_\+set() cycles to reset a timer manually. Instead, in response to events or inconsistencies, the corresponding functions must be used \hypertarget{group__trickle-timer_ga2c3a5dfb5c0f102b1c9755c303620004}{}\index{Trickle timers@{Trickle timers}!T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+I\+O\+N\+\_\+\+D\+I\+S\+A\+B\+L\+E\+D@{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+I\+O\+N\+\_\+\+D\+I\+S\+A\+B\+L\+E\+D}}
+\index{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+I\+O\+N\+\_\+\+D\+I\+S\+A\+B\+L\+E\+D@{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+I\+O\+N\+\_\+\+D\+I\+S\+A\+B\+L\+E\+D}!Trickle timers@{Trickle timers}}
+\subsubsection[{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+I\+O\+N\+\_\+\+D\+I\+S\+A\+B\+L\+E\+D}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+I\+O\+N\+\_\+\+D\+I\+S\+A\+B\+L\+E\+D(
+\begin{DoxyParamCaption}
+\item[{}]{tt}
+\end{DoxyParamCaption}
+)~((tt)-\/$>$k == {\bf T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+F\+I\+N\+I\+T\+E\+\_\+\+R\+E\+D\+U\+N\+D\+A\+N\+C\+Y})}\label{group__trickle-timer_ga2c3a5dfb5c0f102b1c9755c303620004}
+
+
+Checks if the trickle timer\textquotesingle{}s suppression feature is disabled. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tt} & A pointer to a \hyperlink{structtrickle__timer}{trickle\+\_\+timer} structure\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em non-\/zero} & Suppression is disabled \\
+\hline
+{\em 0} & Suppression is enabled \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__trickle-timer_ga5f4e1c6f73eb9c0a18db8434d7103bd6}{}\index{Trickle timers@{Trickle timers}!T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+I\+O\+N\+\_\+\+E\+N\+A\+B\+L\+E\+D@{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+I\+O\+N\+\_\+\+E\+N\+A\+B\+L\+E\+D}}
+\index{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+I\+O\+N\+\_\+\+E\+N\+A\+B\+L\+E\+D@{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+I\+O\+N\+\_\+\+E\+N\+A\+B\+L\+E\+D}!Trickle timers@{Trickle timers}}
+\subsubsection[{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+I\+O\+N\+\_\+\+E\+N\+A\+B\+L\+E\+D}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+I\+O\+N\+\_\+\+E\+N\+A\+B\+L\+E\+D(
+\begin{DoxyParamCaption}
+\item[{}]{tt}
+\end{DoxyParamCaption}
+)~((tt)-\/$>$k != {\bf T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+F\+I\+N\+I\+T\+E\+\_\+\+R\+E\+D\+U\+N\+D\+A\+N\+C\+Y})}\label{group__trickle-timer_ga5f4e1c6f73eb9c0a18db8434d7103bd6}
+
+
+Checks if the trickle timer\textquotesingle{}s suppression feature is enabled. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tt} & A pointer to a \hyperlink{structtrickle__timer}{trickle\+\_\+timer} structure\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em non-\/zero} & Suppression is enabled \\
+\hline
+{\em 0} & Suppression is disabled \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__trickle-timer_ga2b3b9fd1a895243db18b35b7600bac15}{}\index{Trickle timers@{Trickle timers}!T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+W\+I\+D\+E\+\_\+\+R\+A\+N\+D@{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+W\+I\+D\+E\+\_\+\+R\+A\+N\+D}}
+\index{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+W\+I\+D\+E\+\_\+\+R\+A\+N\+D@{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+W\+I\+D\+E\+\_\+\+R\+A\+N\+D}!Trickle timers@{Trickle timers}}
+\subsubsection[{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+W\+I\+D\+E\+\_\+\+R\+A\+N\+D}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+W\+I\+D\+E\+\_\+\+R\+A\+N\+D~1}\label{group__trickle-timer_ga2b3b9fd1a895243db18b35b7600bac15}
+
+
+Turns on support for 4-\/byte wide, unsigned random numbers. 
+
+We need this for platforms which have a 4-\/byte wide clock\+\_\+time\+\_\+t. For those platforms and if Imin $<$$<$ Imax is G\+T 0x\+F\+F\+F\+F, random\+\_\+rand alone is not always enough to generate a correct t in \mbox{[}I/2, I). Specifically, we need wide randoms when I $>$ 0x1\+F\+F\+F\+F.
+
+For platforms with a 2-\/byte wide clock\+\_\+time\+\_\+t, this can be defined as 0 to reduce code footprint and increase speed. 
+
+\subsection{Typedef Documentation}
+\hypertarget{group__trickle-timer_ga243193848d28e6373682b8bd2e25850a}{}\index{Trickle timers@{Trickle timers}!trickle\+\_\+timer\+\_\+cb\+\_\+t@{trickle\+\_\+timer\+\_\+cb\+\_\+t}}
+\index{trickle\+\_\+timer\+\_\+cb\+\_\+t@{trickle\+\_\+timer\+\_\+cb\+\_\+t}!Trickle timers@{Trickle timers}}
+\subsubsection[{trickle\+\_\+timer\+\_\+cb\+\_\+t}]{\setlength{\rightskip}{0pt plus 5cm}typedef void($\ast$  trickle\+\_\+timer\+\_\+cb\+\_\+t) (void $\ast$ptr, uint8\+\_\+t suppress)}\label{group__trickle-timer_ga243193848d28e6373682b8bd2e25850a}
+
+
+typedef for a callback function to be defined in the protocol\textquotesingle{}s implementation. 
+
+Those callbaks are stored as a function pointer inside a \hyperlink{structtrickle__timer}{trickle\+\_\+timer} structure and are called by the library at time t within the current trickle interval.
+
+Some protocols may rely on multiple trickle timers. For this reason, this function\textquotesingle{}s argument will be an opaque pointer, aiming to help the protocol determine which timer triggered the call.
+
+The {\itshape suppress} argument is used so that the library can signal the protocol whether it should T\+X or suppress 
+
+\subsection{Function Documentation}
+\hypertarget{group__trickle-timer_ga4b21d9fbed3c0c903fa1687b812a7f9c}{}\index{Trickle timers@{Trickle timers}!trickle\+\_\+timer\+\_\+config@{trickle\+\_\+timer\+\_\+config}}
+\index{trickle\+\_\+timer\+\_\+config@{trickle\+\_\+timer\+\_\+config}!Trickle timers@{Trickle timers}}
+\subsubsection[{trickle\+\_\+timer\+\_\+config}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t trickle\+\_\+timer\+\_\+config (
+\begin{DoxyParamCaption}
+\item[{struct {\bf trickle\+\_\+timer} $\ast$}]{tt, }
+\item[{clock\+\_\+time\+\_\+t}]{i\+\_\+min, }
+\item[{uint8\+\_\+t}]{i\+\_\+max, }
+\item[{uint8\+\_\+t}]{k}
+\end{DoxyParamCaption}
+)}\label{group__trickle-timer_ga4b21d9fbed3c0c903fa1687b812a7f9c}
+
+
+Configure a trickle timer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tt} & A pointer to a \hyperlink{structtrickle__timer}{trickle\+\_\+timer} structure \\
+\hline
+{\em i\+\_\+min} & The timer\textquotesingle{}s Imin configuration parameter, in units of clock\+\_\+time\+\_\+t \\
+\hline
+{\em i\+\_\+max} & The timer\textquotesingle{}s Imax configuration parameter (maximum number of doublings), specified as number of doublings \\
+\hline
+{\em k} & The timer\textquotesingle{}s K (redundancy constant). If the value of K equals \hyperlink{group__trickle-timer_ga72117b57dd1e192ca8a016055d2310f3}{T\+R\+I\+C\+K\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+F\+I\+N\+I\+T\+E\+\_\+\+R\+E\+D\+U\+N\+D\+A\+N\+C\+Y}, message suppression will be disabled \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Error (Bad argument) \\
+\hline
+{\em non-\/zero} & Success.\\
+\hline
+\end{DoxyRetVals}
+This function is used to set the initial configuration for a trickle timer. A trickle timer M\+U\+S\+T be configured before the protocol calls \hyperlink{group__trickle-timer_ga57b03043f109c0b2adb1dc92637ee8b4}{trickle\+\_\+timer\+\_\+set()}.
+
+If Imin$<$$<$Imax would exceed the platform\textquotesingle{}s clock\+\_\+time\+\_\+t boundaries, this function adjusts Imax to the maximum permitted value for the provided Imin. This means that in a network with heterogenous hardware, \textquotesingle{}we\textquotesingle{} are likely to have a different Imax than \textquotesingle{}some of them\textquotesingle{}. See R\+F\+C 6206, sec 6.\+3 for the consequences of this situation \hypertarget{group__trickle-timer_gaf7df1a3da4f9be5e2f17c3b77668eb6e}{}\index{Trickle timers@{Trickle timers}!trickle\+\_\+timer\+\_\+consistency@{trickle\+\_\+timer\+\_\+consistency}}
+\index{trickle\+\_\+timer\+\_\+consistency@{trickle\+\_\+timer\+\_\+consistency}!Trickle timers@{Trickle timers}}
+\subsubsection[{trickle\+\_\+timer\+\_\+consistency}]{\setlength{\rightskip}{0pt plus 5cm}void trickle\+\_\+timer\+\_\+consistency (
+\begin{DoxyParamCaption}
+\item[{struct {\bf trickle\+\_\+timer} $\ast$}]{tt}
+\end{DoxyParamCaption}
+)}\label{group__trickle-timer_gaf7df1a3da4f9be5e2f17c3b77668eb6e}
+
+
+To be called by the protocol when it hears a consistent transmission. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tt} & A pointer to a \hyperlink{structtrickle__timer}{trickle\+\_\+timer} structure\\
+\hline
+\end{DoxyParams}
+When the trickle-\/based protocol hears a consistent transmission it must call this function to increment trickle\textquotesingle{}s consistency counter, which is later used to determine whether the protocol must suppress or go ahead with its own transmissions.
+
+As the trickle timer library implementation may change in the future to perform further tasks upon reception of a consistent transmission, the protocol\textquotesingle{}s implementation M\+U\+S\+T use this call to increment the consistency counter instead of directly writing to the structure\textquotesingle{}s field. \hypertarget{group__trickle-timer_gae401435f40030c5c4f0f49e813fd9afc}{}\index{Trickle timers@{Trickle timers}!trickle\+\_\+timer\+\_\+inconsistency@{trickle\+\_\+timer\+\_\+inconsistency}}
+\index{trickle\+\_\+timer\+\_\+inconsistency@{trickle\+\_\+timer\+\_\+inconsistency}!Trickle timers@{Trickle timers}}
+\subsubsection[{trickle\+\_\+timer\+\_\+inconsistency}]{\setlength{\rightskip}{0pt plus 5cm}void trickle\+\_\+timer\+\_\+inconsistency (
+\begin{DoxyParamCaption}
+\item[{struct {\bf trickle\+\_\+timer} $\ast$}]{tt}
+\end{DoxyParamCaption}
+)}\label{group__trickle-timer_gae401435f40030c5c4f0f49e813fd9afc}
+
+
+To be called by the protocol when it hears an inconsistent transmission. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tt} & A pointer to a \hyperlink{structtrickle__timer}{trickle\+\_\+timer} structure\\
+\hline
+\end{DoxyParams}
+When the protocol hears an inconsistent transmission, it must call this function to notify the library that the timer must be reset.
+
+Before resetting the timer, the library will perform a set of checks. Therefore, it is important that the protocol calls this function instead of trying to reset the timer by itself. \hypertarget{group__trickle-timer_ga57b03043f109c0b2adb1dc92637ee8b4}{}\index{Trickle timers@{Trickle timers}!trickle\+\_\+timer\+\_\+set@{trickle\+\_\+timer\+\_\+set}}
+\index{trickle\+\_\+timer\+\_\+set@{trickle\+\_\+timer\+\_\+set}!Trickle timers@{Trickle timers}}
+\subsubsection[{trickle\+\_\+timer\+\_\+set}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t trickle\+\_\+timer\+\_\+set (
+\begin{DoxyParamCaption}
+\item[{struct {\bf trickle\+\_\+timer} $\ast$}]{tt, }
+\item[{{\bf trickle\+\_\+timer\+\_\+cb\+\_\+t}}]{proto\+\_\+cb, }
+\item[{void $\ast$}]{ptr}
+\end{DoxyParamCaption}
+)}\label{group__trickle-timer_ga57b03043f109c0b2adb1dc92637ee8b4}
+
+
+Start a previously configured trickle timer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tt} & A pointer to a \hyperlink{structtrickle__timer}{trickle\+\_\+timer} structure \\
+\hline
+{\em proto\+\_\+cb} & A pointer to a callback function, which will be invoked at at time t within the current trickle interval \\
+\hline
+{\em ptr} & An opaque pointer which will be passed as the argument to proto\+\_\+cb when the timer fires. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Error (tt was null or the timer was not configured properly) \\
+\hline
+{\em non-\/zero} & Success.\\
+\hline
+\end{DoxyRetVals}
+This function is used to set a trickle timer. The protocol implementation must use this function O\+N\+L\+Y to initialise a new trickle timer and N\+O\+T to reset it as a result of external events or inconsistencies.
+
+The protocol implementation must configure the trickle timer by calling \hyperlink{group__trickle-timer_ga4b21d9fbed3c0c903fa1687b812a7f9c}{trickle\+\_\+timer\+\_\+config()} before calling this function. 

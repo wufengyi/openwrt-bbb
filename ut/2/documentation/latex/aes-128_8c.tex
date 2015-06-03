@@ -1,0 +1,37 @@
+\hypertarget{aes-128_8c}{}\section{/home/user/contiki\+U\+T/contiki/core/lib/aes-\/128.c File Reference}
+\label{aes-128_8c}\index{/home/user/contiki\+U\+T/contiki/core/lib/aes-\/128.\+c@{/home/user/contiki\+U\+T/contiki/core/lib/aes-\/128.\+c}}
+{\ttfamily \#include \char`\"{}lib/aes-\/128.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{aes-128_8c_aaf06f325766216e2c24ea4ce2d69bc38}{}void \hyperlink{aes-128_8c_aaf06f325766216e2c24ea4ce2d69bc38}{aes\+\_\+128\+\_\+padded\+\_\+encrypt} (uint8\+\_\+t $\ast$plaintext\+\_\+and\+\_\+result, uint8\+\_\+t plaintext\+\_\+len)\label{aes-128_8c_aaf06f325766216e2c24ea4ce2d69bc38}
+
+\begin{DoxyCompactList}\small\item\em Pads the plaintext with zeroes before calling A\+E\+S\+\_\+128.\+encrypt. \end{DoxyCompactList}\item 
+\hypertarget{aes-128_8c_af3d3a1d98476d18eb897330340517233}{}void \hyperlink{aes-128_8c_af3d3a1d98476d18eb897330340517233}{aes\+\_\+128\+\_\+set\+\_\+padded\+\_\+key} (uint8\+\_\+t $\ast$key, uint8\+\_\+t key\+\_\+len)\label{aes-128_8c_af3d3a1d98476d18eb897330340517233}
+
+\begin{DoxyCompactList}\small\item\em Pads the key with zeroes before calling A\+E\+S\+\_\+128.\+set\+\_\+key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \hyperlink{structaes__128__driver}{aes\+\_\+128\+\_\+driver} {\bfseries aes\+\_\+128\+\_\+driver}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Wrapped A\+E\+S-\/128 implementation from Texas Instruments. \begin{DoxyAuthor}{Author}
+Konrad Krentz \href{mailto:konrad.krentz@gmail.com}{\tt konrad.\+krentz@gmail.\+com} 
+\end{DoxyAuthor}
+
+
+\subsection{Variable Documentation}
+\hypertarget{aes-128_8c_a905346d3c99808c6c0b98148a1a45ca8}{}\index{aes-\/128.\+c@{aes-\/128.\+c}!aes\+\_\+128\+\_\+driver@{aes\+\_\+128\+\_\+driver}}
+\index{aes\+\_\+128\+\_\+driver@{aes\+\_\+128\+\_\+driver}!aes-\/128.\+c@{aes-\/128.\+c}}
+\subsubsection[{aes\+\_\+128\+\_\+driver}]{\setlength{\rightskip}{0pt plus 5cm}const struct {\bf aes\+\_\+128\+\_\+driver} {\bf aes\+\_\+128\+\_\+driver}}\label{aes-128_8c_a905346d3c99808c6c0b98148a1a45ca8}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= \{
+  set\_key,
+  encrypt
+\}
+\end{DoxyCode}

@@ -1,0 +1,58 @@
+\hypertarget{cfs_8h}{}\section{/home/user/contiki\+U\+T/contiki/core/cfs/cfs.h File Reference}
+\label{cfs_8h}\index{/home/user/contiki\+U\+T/contiki/core/cfs/cfs.\+h@{/home/user/contiki\+U\+T/contiki/core/cfs/cfs.\+h}}
+{\ttfamily \#include \char`\"{}contiki.\+h\char`\"{}}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structcfs__dir}{cfs\+\_\+dir}
+\item 
+struct \hyperlink{structcfs__dirent}{cfs\+\_\+dirent}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__cfs_ga00fed0156dbcbd1214203c7f2507e376}{C\+F\+S\+\_\+\+R\+E\+A\+D}~1
+\item 
+\#define \hyperlink{group__cfs_ga798793edf50f38e3e41364f0f6f71201}{C\+F\+S\+\_\+\+W\+R\+I\+T\+E}~2
+\item 
+\#define \hyperlink{group__cfs_ga2b402228c26a3590f1d4bf44df0b2b82}{C\+F\+S\+\_\+\+A\+P\+P\+E\+N\+D}~4
+\item 
+\#define \hyperlink{group__cfs_ga72cd7360175436b7ed26606708314dc0}{C\+F\+S\+\_\+\+S\+E\+E\+K\+\_\+\+S\+E\+T}~0
+\item 
+\#define \hyperlink{group__cfs_ga79a4ba5a9b5924df5db6e998e84a7d53}{C\+F\+S\+\_\+\+S\+E\+E\+K\+\_\+\+C\+U\+R}~1
+\item 
+\#define \hyperlink{group__cfs_ga96fb6bf3f2e9f69d526f9119551bedce}{C\+F\+S\+\_\+\+S\+E\+E\+K\+\_\+\+E\+N\+D}~2
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__cfs_gaceb17efc19e2857ee8dca0a729365213}{}typedef int {\bfseries cfs\+\_\+offset\+\_\+t}\label{group__cfs_gaceb17efc19e2857ee8dca0a729365213}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+C\+C\+I\+F int \hyperlink{group__cfs_gadc1727a1a27a40a8483135425a42c5de}{cfs\+\_\+open} (const char $\ast$name, int flags)
+\begin{DoxyCompactList}\small\item\em Open a file. \end{DoxyCompactList}\item 
+C\+C\+I\+F void \hyperlink{group__cfs_gadc3991eb5ac0e1cb6fd5e162049785b4}{cfs\+\_\+close} (int fd)
+\begin{DoxyCompactList}\small\item\em Close an open file. \end{DoxyCompactList}\item 
+C\+C\+I\+F int \hyperlink{group__cfs_ga7bc4a520b99285c46ffb0f80dbe78ca1}{cfs\+\_\+read} (int fd, void $\ast$buf, unsigned int len)
+\begin{DoxyCompactList}\small\item\em Read data from an open file. \end{DoxyCompactList}\item 
+C\+C\+I\+F int \hyperlink{group__cfs_ga0c8cd2e553c7c2cfbe2ffb0fbc874fb7}{cfs\+\_\+write} (int fd, const void $\ast$buf, unsigned int len)
+\begin{DoxyCompactList}\small\item\em Write data to an open file. \end{DoxyCompactList}\item 
+C\+C\+I\+F cfs\+\_\+offset\+\_\+t \hyperlink{group__cfs_ga116cdc7036a99707477b50bd496fa1c1}{cfs\+\_\+seek} (int fd, cfs\+\_\+offset\+\_\+t offset, int whence)
+\begin{DoxyCompactList}\small\item\em Seek to a specified position in an open file. \end{DoxyCompactList}\item 
+C\+C\+I\+F int \hyperlink{group__cfs_gacad1f14239db1a889ccf9804040e0d20}{cfs\+\_\+remove} (const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Remove a file. \end{DoxyCompactList}\item 
+C\+C\+I\+F int \hyperlink{group__cfs_gab4df33476a46ca00caf8de9cbb3e8f05}{cfs\+\_\+opendir} (struct \hyperlink{structcfs__dir}{cfs\+\_\+dir} $\ast$dirp, const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Open a directory for reading directory entries. \end{DoxyCompactList}\item 
+C\+C\+I\+F int \hyperlink{group__cfs_ga6367d2b762784fabea2ad1f533aa4bf4}{cfs\+\_\+readdir} (struct \hyperlink{structcfs__dir}{cfs\+\_\+dir} $\ast$dirp, struct \hyperlink{structcfs__dirent}{cfs\+\_\+dirent} $\ast$dirent)
+\begin{DoxyCompactList}\small\item\em Read a directory entry. \end{DoxyCompactList}\item 
+C\+C\+I\+F void \hyperlink{group__cfs_gaef17820cc7daaeac661e401ca7b3054b}{cfs\+\_\+closedir} (struct \hyperlink{structcfs__dir}{cfs\+\_\+dir} $\ast$dirp)
+\begin{DoxyCompactList}\small\item\em Close a directory opened with \hyperlink{group__cfs_gab4df33476a46ca00caf8de9cbb3e8f05}{cfs\+\_\+opendir()}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+C\+F\+S header file. \begin{DoxyAuthor}{Author}
+Adam Dunkels \href{mailto:adam@sics.se}{\tt adam@sics.\+se} 
+\end{DoxyAuthor}

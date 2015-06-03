@@ -1,0 +1,22 @@
+\hypertarget{petsciiconv_8h}{}\section{/home/user/contiki\+U\+T/contiki/core/lib/petsciiconv.h File Reference}
+\label{petsciiconv_8h}\index{/home/user/contiki\+U\+T/contiki/core/lib/petsciiconv.\+h@{/home/user/contiki\+U\+T/contiki/core/lib/petsciiconv.\+h}}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{petsciiconv_8h_a5f33fe7d1c9c0c3e62cf66eddd505781}{}\#define {\bfseries petsciiconv\+\_\+toascii}(buf,  len)\label{petsciiconv_8h_a5f33fe7d1c9c0c3e62cf66eddd505781}
+
+\item 
+\hypertarget{petsciiconv_8h_a0fb987a7b814f5f70ee9a97da9254b7a}{}\#define {\bfseries petsciiconv\+\_\+topetscii}(buf,  len)\label{petsciiconv_8h_a0fb987a7b814f5f70ee9a97da9254b7a}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+P\+E\+T\+S\+C\+I\+I/\+A\+S\+C\+I\+I conversion functions. \begin{DoxyAuthor}{Author}
+Adam Dunkels \href{mailto:adam@dunkels.com}{\tt adam@dunkels.\+com}
+\end{DoxyAuthor}
+The Commodore based Contiki targets all have a special character encoding called P\+E\+T\+S\+C\+I\+I which differs from the A\+S\+C\+I\+I encoding that normally is used for representing characters.
+
+\begin{DoxyNote}{Note}
+For targets that do not use P\+E\+T\+S\+C\+I\+I encoding the C compiler define W\+I\+T\+H\+\_\+\+A\+S\+C\+I\+I should be used to avoid the P\+E\+T\+S\+C\+I\+I converting functions. 
+\end{DoxyNote}

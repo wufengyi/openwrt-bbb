@@ -1,0 +1,34 @@
+\hypertarget{memb_8h}{}\section{/home/user/contiki\+U\+T/contiki/core/lib/memb.h File Reference}
+\label{memb_8h}\index{/home/user/contiki\+U\+T/contiki/core/lib/memb.\+h@{/home/user/contiki\+U\+T/contiki/core/lib/memb.\+h}}
+{\ttfamily \#include \char`\"{}sys/cc.\+h\char`\"{}}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structmemb}{memb}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__memb_gaf31774d02a69fd3f1c2b282454438cba}{M\+E\+M\+B}(name,  structure,  num)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__memb_gab8f8dad927b501d8b4ed4340d1bcf4fb}{memb\+\_\+init} (struct \hyperlink{structmemb}{memb} $\ast$m)
+\item 
+void $\ast$ \hyperlink{group__memb_ga9eb12536c921ee25d3886ed9640fe6fe}{memb\+\_\+alloc} (struct \hyperlink{structmemb}{memb} $\ast$m)
+\item 
+char \hyperlink{group__memb_ga513698da82ec79ec7115ffa0d80df77d}{memb\+\_\+free} (struct \hyperlink{structmemb}{memb} $\ast$m, void $\ast$ptr)
+\item 
+\hypertarget{group__memb_ga5f27331634d09c481815d8fe2b6394de}{}int {\bfseries memb\+\_\+inmemb} (struct \hyperlink{structmemb}{memb} $\ast$m, void $\ast$ptr)\label{group__memb_ga5f27331634d09c481815d8fe2b6394de}
+
+\item 
+\hypertarget{group__memb_gae13c7c0ca9c05bd1b3301e23574ab227}{}int {\bfseries memb\+\_\+numfree} (struct \hyperlink{structmemb}{memb} $\ast$m)\label{group__memb_gae13c7c0ca9c05bd1b3301e23574ab227}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Memory block allocation routines. \begin{DoxyAuthor}{Author}
+Adam Dunkels \href{mailto:adam@sics.se}{\tt adam@sics.\+se} 
+\end{DoxyAuthor}

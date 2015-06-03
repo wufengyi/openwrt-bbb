@@ -1,0 +1,58 @@
+\hypertarget{serial-line_8h}{}\section{/home/user/contiki\+U\+T/contiki/core/dev/serial-\/line.h File Reference}
+\label{serial-line_8h}\index{/home/user/contiki\+U\+T/contiki/core/dev/serial-\/line.\+h@{/home/user/contiki\+U\+T/contiki/core/dev/serial-\/line.\+h}}
+{\ttfamily \#include \char`\"{}contiki.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{serial-line_8h_ad81ea2a42dbb17b32bbf1cbd00e6d429}{serial\+\_\+line\+\_\+input\+\_\+byte} (unsigned char c)
+\item 
+\hypertarget{serial-line_8h_a65b3553ca8eb4d6eefffaa3c5d138e0c}{}void {\bfseries serial\+\_\+line\+\_\+init} (void)\label{serial-line_8h_a65b3553ca8eb4d6eefffaa3c5d138e0c}
+
+\item 
+\hypertarget{serial-line_8h_ab0e23583a470b738bb4b5e81b68d4f15}{}{\bfseries P\+R\+O\+C\+E\+S\+S\+\_\+\+N\+A\+M\+E} (serial\+\_\+line\+\_\+process)\label{serial-line_8h_ab0e23583a470b738bb4b5e81b68d4f15}
+
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+process\+\_\+event\+\_\+t \hyperlink{serial-line_8h_aff9e9fcec2b8108edd16ae3c0545c0db}{serial\+\_\+line\+\_\+event\+\_\+message}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Generic serial I/\+O process header filer \begin{DoxyAuthor}{Author}
+Adam Dunkels 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\hypertarget{serial-line_8h_ad81ea2a42dbb17b32bbf1cbd00e6d429}{}\index{serial-\/line.\+h@{serial-\/line.\+h}!serial\+\_\+line\+\_\+input\+\_\+byte@{serial\+\_\+line\+\_\+input\+\_\+byte}}
+\index{serial\+\_\+line\+\_\+input\+\_\+byte@{serial\+\_\+line\+\_\+input\+\_\+byte}!serial-\/line.\+h@{serial-\/line.\+h}}
+\subsubsection[{serial\+\_\+line\+\_\+input\+\_\+byte}]{\setlength{\rightskip}{0pt plus 5cm}int serial\+\_\+line\+\_\+input\+\_\+byte (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{c}
+\end{DoxyParamCaption}
+)}\label{serial-line_8h_ad81ea2a42dbb17b32bbf1cbd00e6d429}
+Get one byte of input from the serial driver.
+
+This function is to be called from the actual R\+S232 driver to get one byte of serial data input.
+
+For systems using low-\/power C\+P\+U modes, the return value of the function can be used to determine if the C\+P\+U should be woken up or not. If the function returns non-\/zero, the C\+P\+U should be powered up. If the function returns zero, the C\+P\+U can continue to be powered down.
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & The data that is received.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Non-\/zero if the C\+P\+U should be powered up, zero otherwise. 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\hypertarget{serial-line_8h_aff9e9fcec2b8108edd16ae3c0545c0db}{}\index{serial-\/line.\+h@{serial-\/line.\+h}!serial\+\_\+line\+\_\+event\+\_\+message@{serial\+\_\+line\+\_\+event\+\_\+message}}
+\index{serial\+\_\+line\+\_\+event\+\_\+message@{serial\+\_\+line\+\_\+event\+\_\+message}!serial-\/line.\+h@{serial-\/line.\+h}}
+\subsubsection[{serial\+\_\+line\+\_\+event\+\_\+message}]{\setlength{\rightskip}{0pt plus 5cm}process\+\_\+event\+\_\+t serial\+\_\+line\+\_\+event\+\_\+message}\label{serial-line_8h_aff9e9fcec2b8108edd16ae3c0545c0db}
+Event posted when a line of input has been received.
+
+This event is posted when an entire line of input has been received from the serial port. A data pointer to the incoming line of input is sent together with the event. 

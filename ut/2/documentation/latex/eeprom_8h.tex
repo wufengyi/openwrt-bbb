@@ -1,0 +1,35 @@
+\hypertarget{eeprom_8h}{}\section{/home/user/contiki\+U\+T/contiki/core/dev/eeprom.h File Reference}
+\label{eeprom_8h}\index{/home/user/contiki\+U\+T/contiki/core/dev/eeprom.\+h@{/home/user/contiki\+U\+T/contiki/core/dev/eeprom.\+h}}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__eeprom_ga3a1c69b139c3985a63a47df263c22eb1}{}\#define {\bfseries E\+E\+P\+R\+O\+M\+\_\+\+N\+U\+L\+L}~0\label{group__eeprom_ga3a1c69b139c3985a63a47df263c22eb1}
+
+\item 
+\hypertarget{group__eeprom_gae3ef7bba113f663df6996f286b632a3f}{}\#define {\bfseries E\+E\+P\+R\+O\+M\+\_\+\+S\+I\+Z\+E}~0 /$\ast$ Default to no E\+E\+P\+R\+O\+M $\ast$/\label{group__eeprom_gae3ef7bba113f663df6996f286b632a3f}
+
+\item 
+\hypertarget{group__eeprom_ga234e4f1294ec845752e1cb4b1dcd7add}{}\#define {\bfseries E\+E\+P\+R\+O\+M\+\_\+\+E\+N\+D\+\_\+\+A\+D\+D\+R}~(E\+E\+P\+R\+O\+M\+\_\+\+S\+I\+Z\+E -\/ 1)\label{group__eeprom_ga234e4f1294ec845752e1cb4b1dcd7add}
+
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__eeprom_ga5825c96b624f47244f64b3e2b9ea39b9}{}typedef unsigned short {\bfseries eeprom\+\_\+addr\+\_\+t}\label{group__eeprom_ga5825c96b624f47244f64b3e2b9ea39b9}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__eeprom_gac78250ee593cc00686f8b6209b48a745}{eeprom\+\_\+write} (eeprom\+\_\+addr\+\_\+t addr, unsigned char $\ast$buf, int size)
+\item 
+void \hyperlink{group__eeprom_ga273489bf4a99139d385b3d01ac596644}{eeprom\+\_\+read} (eeprom\+\_\+addr\+\_\+t addr, unsigned char $\ast$buf, int size)
+\item 
+void \hyperlink{group__eeprom_ga4ec7f9d780da432051aa74ec5892a94c}{eeprom\+\_\+init} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+E\+E\+P\+R\+O\+M functions. \begin{DoxyAuthor}{Author}
+Adam Dunkels \href{mailto:adam@sics.se}{\tt adam@sics.\+se} 
+\end{DoxyAuthor}

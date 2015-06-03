@@ -1,0 +1,157 @@
+\hypertarget{group__elfloader}{}\section{The Contiki E\+L\+F loader}
+\label{group__elfloader}\index{The Contiki E\+L\+F loader@{The Contiki E\+L\+F loader}}
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__elfloaderarch}{Architecture specific functionality for the E\+L\+F loader.}
+\end{DoxyCompactItemize}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structelf32__rela}{elf32\+\_\+rela}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__elfloader_ga8079bf9400f6ab6ea2bcbb02619bf642}{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+O\+K}~0
+\item 
+\#define \hyperlink{group__elfloader_gadc23fd3bb068baab21e0719f5272f5f4}{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+B\+A\+D\+\_\+\+E\+L\+F\+\_\+\+H\+E\+A\+D\+E\+R}~1
+\item 
+\#define \hyperlink{group__elfloader_ga1f5f088314c4af0fe4889c5f282b07f1}{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+S\+Y\+M\+T\+A\+B}~2
+\item 
+\#define \hyperlink{group__elfloader_ga75a62386c75729c352ecf37de87121cc}{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+S\+T\+R\+T\+A\+B}~3
+\item 
+\#define \hyperlink{group__elfloader_ga8b8819f1e0118bf282c0097beb3d5570}{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+T\+E\+X\+T}~4
+\item 
+\#define \hyperlink{group__elfloader_ga2a128ca398d9ab5d2ad49e298c81f278}{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+S\+Y\+M\+B\+O\+L\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+N\+D}~5
+\item 
+\#define \hyperlink{group__elfloader_ga48634066def7d19e02812e360e074ccf}{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+S\+E\+G\+M\+E\+N\+T\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+N\+D}~6
+\item 
+\#define \hyperlink{group__elfloader_ga98dc2983b4456dc3484f1144347da8d2}{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+S\+T\+A\+R\+T\+P\+O\+I\+N\+T}~7
+\item 
+\hypertarget{group__elfloader_ga9cca0b1cd724e509effb0c07f235d65d}{}\#define {\bfseries E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+D\+A\+T\+A\+M\+E\+M\+O\+R\+Y\+\_\+\+S\+I\+Z\+E}~0x100\label{group__elfloader_ga9cca0b1cd724e509effb0c07f235d65d}
+
+\item 
+\hypertarget{group__elfloader_gaa356f95a6de8f4a40fe6b51a26543b00}{}\#define {\bfseries E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+T\+E\+X\+T\+M\+E\+M\+O\+R\+Y\+\_\+\+S\+I\+Z\+E}~0x100\label{group__elfloader_gaa356f95a6de8f4a40fe6b51a26543b00}
+
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__elfloader_ga14c85b9bd0eeef4214bc87b90d0d3e02}{}typedef unsigned long {\bfseries elf32\+\_\+word}\label{group__elfloader_ga14c85b9bd0eeef4214bc87b90d0d3e02}
+
+\item 
+\hypertarget{group__elfloader_ga963fca44d5c29ca9406aa3a0ca40f808}{}typedef signed long {\bfseries elf32\+\_\+sword}\label{group__elfloader_ga963fca44d5c29ca9406aa3a0ca40f808}
+
+\item 
+\hypertarget{group__elfloader_ga74d25e010922731c8ec5351be7ee3ca8}{}typedef unsigned short {\bfseries elf32\+\_\+half}\label{group__elfloader_ga74d25e010922731c8ec5351be7ee3ca8}
+
+\item 
+\hypertarget{group__elfloader_ga273f7555ac1256eb829dfb274e00f82c}{}typedef unsigned long {\bfseries elf32\+\_\+off}\label{group__elfloader_ga273f7555ac1256eb829dfb274e00f82c}
+
+\item 
+\hypertarget{group__elfloader_ga47a5fb7713f48fb20559b4b9c88cfa3a}{}typedef unsigned long {\bfseries elf32\+\_\+addr}\label{group__elfloader_ga47a5fb7713f48fb20559b4b9c88cfa3a}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__elfloader_gacfa73525b05c5a176aa1017b071340a4}{elfloader\+\_\+init} (void)
+\item 
+int \hyperlink{group__elfloader_ga57190d49fcc860d9a780f2860e896a5b}{elfloader\+\_\+load} (int fd)
+\begin{DoxyCompactList}\small\item\em Load and relocate an E\+L\+F file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct process $\ast$const $\ast$ \hyperlink{group__elfloader_ga9f2016bded2b94bde0fd29bf260aecd1}{elfloader\+\_\+autostart\+\_\+processes}
+\item 
+char \hyperlink{group__elfloader_gaf087e757d08d26af687c22380a039d75}{elfloader\+\_\+unknown} \mbox{[}30\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The Contiki E\+L\+F loader links, relocates, and loads E\+L\+F (Executable Linkable Format) object files into a running Contiki system.
+
+E\+L\+F is a standard format for relocatable object code and executable files. E\+L\+F is the standard program format for Linux, Solaris, and other operating systems.
+
+An E\+L\+F file contains either a standalone executable program or a program module. The file contains both the program code, the program data, as well as information about how to link, relocate, and load the program into a running system.
+
+The E\+L\+F file is composed of a set of sections. The sections contain program code, data, or relocation information, but can also contain debugging information.
+
+To link and relocate an E\+L\+F file, the Contiki E\+L\+F loader first parses the E\+L\+F file structure to find the appropriate E\+L\+F sections. It then allocates memory for the program code and data in R\+O\+M and R\+A\+M, respectively. After allocating memory, the Contiki E\+L\+F loader starts relocating the code found in the E\+L\+F file. 
+
+\subsection{Macro Definition Documentation}
+\hypertarget{group__elfloader_gadc23fd3bb068baab21e0719f5272f5f4}{}\index{The Contiki E\+L\+F loader@{The Contiki E\+L\+F loader}!E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+B\+A\+D\+\_\+\+E\+L\+F\+\_\+\+H\+E\+A\+D\+E\+R@{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+B\+A\+D\+\_\+\+E\+L\+F\+\_\+\+H\+E\+A\+D\+E\+R}}
+\index{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+B\+A\+D\+\_\+\+E\+L\+F\+\_\+\+H\+E\+A\+D\+E\+R@{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+B\+A\+D\+\_\+\+E\+L\+F\+\_\+\+H\+E\+A\+D\+E\+R}!The Contiki E\+L\+F loader@{The Contiki E\+L\+F loader}}
+\subsubsection[{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+B\+A\+D\+\_\+\+E\+L\+F\+\_\+\+H\+E\+A\+D\+E\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+B\+A\+D\+\_\+\+E\+L\+F\+\_\+\+H\+E\+A\+D\+E\+R~1}\label{group__elfloader_gadc23fd3bb068baab21e0719f5272f5f4}
+Return value from \hyperlink{group__elfloader_ga57190d49fcc860d9a780f2860e896a5b}{elfloader\+\_\+load()} indicating that the E\+L\+F file had a bad header. \hypertarget{group__elfloader_ga98dc2983b4456dc3484f1144347da8d2}{}\index{The Contiki E\+L\+F loader@{The Contiki E\+L\+F loader}!E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+S\+T\+A\+R\+T\+P\+O\+I\+N\+T@{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+S\+T\+A\+R\+T\+P\+O\+I\+N\+T}}
+\index{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+S\+T\+A\+R\+T\+P\+O\+I\+N\+T@{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+S\+T\+A\+R\+T\+P\+O\+I\+N\+T}!The Contiki E\+L\+F loader@{The Contiki E\+L\+F loader}}
+\subsubsection[{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+S\+T\+A\+R\+T\+P\+O\+I\+N\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+S\+T\+A\+R\+T\+P\+O\+I\+N\+T~7}\label{group__elfloader_ga98dc2983b4456dc3484f1144347da8d2}
+Return value from \hyperlink{group__elfloader_ga57190d49fcc860d9a780f2860e896a5b}{elfloader\+\_\+load()} indicating that no starting point could be found in the loaded module. \hypertarget{group__elfloader_ga75a62386c75729c352ecf37de87121cc}{}\index{The Contiki E\+L\+F loader@{The Contiki E\+L\+F loader}!E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+S\+T\+R\+T\+A\+B@{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+S\+T\+R\+T\+A\+B}}
+\index{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+S\+T\+R\+T\+A\+B@{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+S\+T\+R\+T\+A\+B}!The Contiki E\+L\+F loader@{The Contiki E\+L\+F loader}}
+\subsubsection[{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+S\+T\+R\+T\+A\+B}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+S\+T\+R\+T\+A\+B~3}\label{group__elfloader_ga75a62386c75729c352ecf37de87121cc}
+Return value from \hyperlink{group__elfloader_ga57190d49fcc860d9a780f2860e896a5b}{elfloader\+\_\+load()} indicating that no string table could be found in the E\+L\+F file. \hypertarget{group__elfloader_ga1f5f088314c4af0fe4889c5f282b07f1}{}\index{The Contiki E\+L\+F loader@{The Contiki E\+L\+F loader}!E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+S\+Y\+M\+T\+A\+B@{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+S\+Y\+M\+T\+A\+B}}
+\index{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+S\+Y\+M\+T\+A\+B@{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+S\+Y\+M\+T\+A\+B}!The Contiki E\+L\+F loader@{The Contiki E\+L\+F loader}}
+\subsubsection[{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+S\+Y\+M\+T\+A\+B}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+S\+Y\+M\+T\+A\+B~2}\label{group__elfloader_ga1f5f088314c4af0fe4889c5f282b07f1}
+Return value from \hyperlink{group__elfloader_ga57190d49fcc860d9a780f2860e896a5b}{elfloader\+\_\+load()} indicating that no symbol table could be found in the E\+L\+F file. \hypertarget{group__elfloader_ga8b8819f1e0118bf282c0097beb3d5570}{}\index{The Contiki E\+L\+F loader@{The Contiki E\+L\+F loader}!E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+T\+E\+X\+T@{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+T\+E\+X\+T}}
+\index{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+T\+E\+X\+T@{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+T\+E\+X\+T}!The Contiki E\+L\+F loader@{The Contiki E\+L\+F loader}}
+\subsubsection[{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+T\+E\+X\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+N\+O\+\_\+\+T\+E\+X\+T~4}\label{group__elfloader_ga8b8819f1e0118bf282c0097beb3d5570}
+Return value from \hyperlink{group__elfloader_ga57190d49fcc860d9a780f2860e896a5b}{elfloader\+\_\+load()} indicating that the size of the .text segment was zero. \hypertarget{group__elfloader_ga8079bf9400f6ab6ea2bcbb02619bf642}{}\index{The Contiki E\+L\+F loader@{The Contiki E\+L\+F loader}!E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+O\+K@{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+O\+K}}
+\index{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+O\+K@{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+O\+K}!The Contiki E\+L\+F loader@{The Contiki E\+L\+F loader}}
+\subsubsection[{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+O\+K}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+O\+K~0}\label{group__elfloader_ga8079bf9400f6ab6ea2bcbb02619bf642}
+Return value from \hyperlink{group__elfloader_ga57190d49fcc860d9a780f2860e896a5b}{elfloader\+\_\+load()} indicating that loading worked. \hypertarget{group__elfloader_ga48634066def7d19e02812e360e074ccf}{}\index{The Contiki E\+L\+F loader@{The Contiki E\+L\+F loader}!E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+S\+E\+G\+M\+E\+N\+T\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+N\+D@{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+S\+E\+G\+M\+E\+N\+T\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+N\+D}}
+\index{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+S\+E\+G\+M\+E\+N\+T\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+N\+D@{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+S\+E\+G\+M\+E\+N\+T\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+N\+D}!The Contiki E\+L\+F loader@{The Contiki E\+L\+F loader}}
+\subsubsection[{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+S\+E\+G\+M\+E\+N\+T\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+N\+D}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+S\+E\+G\+M\+E\+N\+T\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+N\+D~6}\label{group__elfloader_ga48634066def7d19e02812e360e074ccf}
+Return value from \hyperlink{group__elfloader_ga57190d49fcc860d9a780f2860e896a5b}{elfloader\+\_\+load()} indicating that one of the required segments (.data, .bss, or .text) could not be found. \hypertarget{group__elfloader_ga2a128ca398d9ab5d2ad49e298c81f278}{}\index{The Contiki E\+L\+F loader@{The Contiki E\+L\+F loader}!E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+S\+Y\+M\+B\+O\+L\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+N\+D@{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+S\+Y\+M\+B\+O\+L\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+N\+D}}
+\index{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+S\+Y\+M\+B\+O\+L\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+N\+D@{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+S\+Y\+M\+B\+O\+L\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+N\+D}!The Contiki E\+L\+F loader@{The Contiki E\+L\+F loader}}
+\subsubsection[{E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+S\+Y\+M\+B\+O\+L\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+N\+D}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+S\+Y\+M\+B\+O\+L\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+N\+D~5}\label{group__elfloader_ga2a128ca398d9ab5d2ad49e298c81f278}
+Return value from \hyperlink{group__elfloader_ga57190d49fcc860d9a780f2860e896a5b}{elfloader\+\_\+load()} indicating that a symbol specific symbol could not be found.
+
+If this value is returned from \hyperlink{group__elfloader_ga57190d49fcc860d9a780f2860e896a5b}{elfloader\+\_\+load()}, the symbol has been copied into the elfloader\+\_\+unknown\mbox{[}\mbox{]} array. 
+
+\subsection{Function Documentation}
+\hypertarget{group__elfloader_gacfa73525b05c5a176aa1017b071340a4}{}\index{The Contiki E\+L\+F loader@{The Contiki E\+L\+F loader}!elfloader\+\_\+init@{elfloader\+\_\+init}}
+\index{elfloader\+\_\+init@{elfloader\+\_\+init}!The Contiki E\+L\+F loader@{The Contiki E\+L\+F loader}}
+\subsubsection[{elfloader\+\_\+init}]{\setlength{\rightskip}{0pt plus 5cm}void elfloader\+\_\+init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group__elfloader_gacfa73525b05c5a176aa1017b071340a4}
+elfloader initialization function.
+
+This function should be called at boot up to initialize the elfloader. \hypertarget{group__elfloader_ga57190d49fcc860d9a780f2860e896a5b}{}\index{The Contiki E\+L\+F loader@{The Contiki E\+L\+F loader}!elfloader\+\_\+load@{elfloader\+\_\+load}}
+\index{elfloader\+\_\+load@{elfloader\+\_\+load}!The Contiki E\+L\+F loader@{The Contiki E\+L\+F loader}}
+\subsubsection[{elfloader\+\_\+load}]{\setlength{\rightskip}{0pt plus 5cm}int elfloader\+\_\+load (
+\begin{DoxyParamCaption}
+\item[{int}]{fd}
+\end{DoxyParamCaption}
+)}\label{group__elfloader_ga57190d49fcc860d9a780f2860e896a5b}
+
+
+Load and relocate an E\+L\+F file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fd} & An open C\+F\+S file descriptor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+E\+L\+F\+L\+O\+A\+D\+E\+R\+\_\+\+O\+K if loading and relocation worked. Otherwise an error value.
+\end{DoxyReturn}
+This function loads and relocates an E\+L\+F file. The E\+L\+F file must have been opened with \hyperlink{group__cfs_gadc1727a1a27a40a8483135425a42c5de}{cfs\+\_\+open()} prior to calling this function.
+
+If the function is able to load the E\+L\+F file, a pointer to the process structure in the model is stored in the elfloader\+\_\+loaded\+\_\+process variable.
+
+\begin{DoxyNote}{Note}
+This function modifies the E\+L\+F file opened with \hyperlink{group__cfs_gadc1727a1a27a40a8483135425a42c5de}{cfs\+\_\+open()}! If the contents of the file is required to be intact, the file must be backed up first. 
+\end{DoxyNote}
+
+
+\subsection{Variable Documentation}
+\hypertarget{group__elfloader_ga9f2016bded2b94bde0fd29bf260aecd1}{}\index{The Contiki E\+L\+F loader@{The Contiki E\+L\+F loader}!elfloader\+\_\+autostart\+\_\+processes@{elfloader\+\_\+autostart\+\_\+processes}}
+\index{elfloader\+\_\+autostart\+\_\+processes@{elfloader\+\_\+autostart\+\_\+processes}!The Contiki E\+L\+F loader@{The Contiki E\+L\+F loader}}
+\subsubsection[{elfloader\+\_\+autostart\+\_\+processes}]{\setlength{\rightskip}{0pt plus 5cm}struct process$\ast$ const$\ast$ elfloader\+\_\+autostart\+\_\+processes}\label{group__elfloader_ga9f2016bded2b94bde0fd29bf260aecd1}
+A pointer to the processes loaded with \hyperlink{group__elfloader_ga57190d49fcc860d9a780f2860e896a5b}{elfloader\+\_\+load()}. \hypertarget{group__elfloader_gaf087e757d08d26af687c22380a039d75}{}\index{The Contiki E\+L\+F loader@{The Contiki E\+L\+F loader}!elfloader\+\_\+unknown@{elfloader\+\_\+unknown}}
+\index{elfloader\+\_\+unknown@{elfloader\+\_\+unknown}!The Contiki E\+L\+F loader@{The Contiki E\+L\+F loader}}
+\subsubsection[{elfloader\+\_\+unknown}]{\setlength{\rightskip}{0pt plus 5cm}char elfloader\+\_\+unknown\mbox{[}30\mbox{]}}\label{group__elfloader_gaf087e757d08d26af687c22380a039d75}
+If \hyperlink{group__elfloader_ga57190d49fcc860d9a780f2860e896a5b}{elfloader\+\_\+load()} could not find a specific symbol, it is copied into this array. 

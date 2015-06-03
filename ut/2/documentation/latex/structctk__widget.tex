@@ -1,0 +1,74 @@
+\hypertarget{structctk__widget}{}\section{ctk\+\_\+widget Struct Reference}
+\label{structctk__widget}\index{ctk\+\_\+widget@{ctk\+\_\+widget}}
+
+
+{\ttfamily \#include $<$ctk.\+h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structctk__widget}{ctk\+\_\+widget} $\ast$ \hyperlink{structctk__widget_a3621ec9de98f2b90ec42cb2833d88423}{next}
+\item 
+struct \hyperlink{structctk__window}{ctk\+\_\+window} $\ast$ \hyperlink{structctk__widget_a07d184cf7dba0e5051b132da7f392490}{window}
+\item 
+unsigned char \hyperlink{structctk__widget_a58125a019e53600eae696dac334c6b82}{x}
+\item 
+unsigned char \hyperlink{structctk__widget_a64d6f0d7568e491e7f5cd0d38f40d1af}{y}
+\item 
+unsigned char \hyperlink{structctk__widget_a0313c4e5ca0a34104fc5514b6dd8d636}{type}
+\item 
+unsigned char \hyperlink{structctk__widget_ad28eb196d37bba6a60b48f4c7e6eb45e}{w}
+\item 
+unsigned char \hyperlink{structctk__widget_aceacf7e857117aff2c54a4c7c6441dac}{h}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>struct \hyperlink{structctk__widget__label}{ctk\_widget\_label} {\bfseries label}\\
+\>struct \hyperlink{structctk__widget__button}{ctk\_widget\_button} {\bfseries button}\\
+\>struct \hyperlink{structctk__widget__hyperlink}{ctk\_widget\_hyperlink} {\bfseries hyperlink}\\
+\>struct \hyperlink{structctk__widget__textentry}{ctk\_widget\_textentry} {\bfseries textentry}\\
+\>struct \hyperlink{structctk__widget__icon}{ctk\_widget\_icon} {\bfseries icon}\\
+\>struct \hyperlink{structctk__widget__bitmap}{ctk\_widget\_bitmap} {\bfseries bitmap}\\
+\} \hyperlink{structctk__widget_afead36ab9579674197fdf985ccb82555}{widget}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The generic C\+T\+K widget structure that contains all other widget structures.
+
+Since the widgets of a window are arranged on a linked list, the widget structure contains a next pointer which is used for this purpose. The widget structure also contains the placement and the size of the widget.
+
+Finally, the actual per-\/widget structure is contained in this top-\/level widget structure. 
+
+\subsection{Member Data Documentation}
+\hypertarget{structctk__widget_aceacf7e857117aff2c54a4c7c6441dac}{}\index{ctk\+\_\+widget@{ctk\+\_\+widget}!h@{h}}
+\index{h@{h}!ctk\+\_\+widget@{ctk\+\_\+widget}}
+\subsubsection[{h}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char ctk\+\_\+widget\+::h}\label{structctk__widget_aceacf7e857117aff2c54a4c7c6441dac}
+The height of the widget in character coordinates. \hypertarget{structctk__widget_a3621ec9de98f2b90ec42cb2833d88423}{}\index{ctk\+\_\+widget@{ctk\+\_\+widget}!next@{next}}
+\index{next@{next}!ctk\+\_\+widget@{ctk\+\_\+widget}}
+\subsubsection[{next}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf ctk\+\_\+widget}$\ast$ ctk\+\_\+widget\+::next}\label{structctk__widget_a3621ec9de98f2b90ec42cb2833d88423}
+The next widget in the linked list of widgets that is contained in the \hyperlink{structctk__window}{ctk\+\_\+window} structure. \hypertarget{structctk__widget_a0313c4e5ca0a34104fc5514b6dd8d636}{}\index{ctk\+\_\+widget@{ctk\+\_\+widget}!type@{type}}
+\index{type@{type}!ctk\+\_\+widget@{ctk\+\_\+widget}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char ctk\+\_\+widget\+::type}\label{structctk__widget_a0313c4e5ca0a34104fc5514b6dd8d636}
+The type of the widget\+: C\+T\+K\+\_\+\+W\+I\+D\+G\+E\+T\+\_\+\+S\+E\+P\+A\+R\+A\+T\+O\+R, C\+T\+K\+\_\+\+W\+I\+D\+G\+E\+T\+\_\+\+L\+A\+B\+E\+L, C\+T\+K\+\_\+\+W\+I\+D\+G\+E\+T\+\_\+\+B\+U\+T\+T\+O\+N, C\+T\+K\+\_\+\+W\+I\+D\+G\+E\+T\+\_\+\+H\+Y\+P\+E\+R\+L\+I\+N\+K, C\+T\+K\+\_\+\+W\+I\+D\+G\+E\+T\+\_\+\+T\+E\+X\+T\+E\+N\+T\+R\+Y, C\+T\+K\+\_\+\+W\+I\+D\+G\+E\+T\+\_\+\+B\+I\+T\+M\+A\+P or C\+T\+K\+\_\+\+W\+I\+D\+G\+E\+T\+\_\+\+I\+C\+O\+N. \hypertarget{structctk__widget_ad28eb196d37bba6a60b48f4c7e6eb45e}{}\index{ctk\+\_\+widget@{ctk\+\_\+widget}!w@{w}}
+\index{w@{w}!ctk\+\_\+widget@{ctk\+\_\+widget}}
+\subsubsection[{w}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char ctk\+\_\+widget\+::w}\label{structctk__widget_ad28eb196d37bba6a60b48f4c7e6eb45e}
+The width of the widget in character coordinates. \hypertarget{structctk__widget_afead36ab9579674197fdf985ccb82555}{}\index{ctk\+\_\+widget@{ctk\+\_\+widget}!widget@{widget}}
+\index{widget@{widget}!ctk\+\_\+widget@{ctk\+\_\+widget}}
+\subsubsection[{widget}]{\setlength{\rightskip}{0pt plus 5cm}union \{ ... \}   ctk\+\_\+widget\+::widget}\label{structctk__widget_afead36ab9579674197fdf985ccb82555}
+The union which contains the actual widget structure, as determined by the type field. \hypertarget{structctk__widget_a07d184cf7dba0e5051b132da7f392490}{}\index{ctk\+\_\+widget@{ctk\+\_\+widget}!window@{window}}
+\index{window@{window}!ctk\+\_\+widget@{ctk\+\_\+widget}}
+\subsubsection[{window}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf ctk\+\_\+window}$\ast$ ctk\+\_\+widget\+::window}\label{structctk__widget_a07d184cf7dba0e5051b132da7f392490}
+The window in which the widget is contained. \hypertarget{structctk__widget_a58125a019e53600eae696dac334c6b82}{}\index{ctk\+\_\+widget@{ctk\+\_\+widget}!x@{x}}
+\index{x@{x}!ctk\+\_\+widget@{ctk\+\_\+widget}}
+\subsubsection[{x}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char ctk\+\_\+widget\+::x}\label{structctk__widget_a58125a019e53600eae696dac334c6b82}
+The x position of the widget within the containing window, in character coordinates. \hypertarget{structctk__widget_a64d6f0d7568e491e7f5cd0d38f40d1af}{}\index{ctk\+\_\+widget@{ctk\+\_\+widget}!y@{y}}
+\index{y@{y}!ctk\+\_\+widget@{ctk\+\_\+widget}}
+\subsubsection[{y}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char ctk\+\_\+widget\+::y}\label{structctk__widget_a64d6f0d7568e491e7f5cd0d38f40d1af}
+The y position of the widget within the containing window, in character coordinates. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/contiki\+U\+T/contiki/core/ctk/\hyperlink{ctk_8h}{ctk.\+h}\end{DoxyCompactItemize}

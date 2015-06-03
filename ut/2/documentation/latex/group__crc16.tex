@@ -1,0 +1,81 @@
+\hypertarget{group__crc16}{}\section{Cyclic Redundancy Check 16 (C\+R\+C16) calculation}
+\label{group__crc16}\index{Cyclic Redundancy Check 16 (\+C\+R\+C16) calculation@{Cyclic Redundancy Check 16 (\+C\+R\+C16) calculation}}
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \hyperlink{crc16_8c}{crc16.\+c}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+unsigned short \hyperlink{group__crc16_ga1c898c9701c991daef7514d2ad88669a}{crc16\+\_\+add} (unsigned char b, unsigned short crc)
+\begin{DoxyCompactList}\small\item\em Update an accumulated C\+R\+C16 checksum with one byte. \end{DoxyCompactList}\item 
+unsigned short \hyperlink{group__crc16_ga7feada5644b9a99215dcb4fa9c5bc7c0}{crc16\+\_\+data} (const unsigned char $\ast$data, int datalen, unsigned short acc)
+\begin{DoxyCompactList}\small\item\em Calculate the C\+R\+C16 over a data area. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The Cyclic Redundancy Check 16 is a hash function that produces a checksum that is used to detect errors in transmissions. The C\+R\+C16 calculation module is an iterative C\+R\+C calculator that can be used to cumulatively update a C\+R\+C checksum for every incoming byte. 
+
+\subsection{Function Documentation}
+\hypertarget{group__crc16_ga1c898c9701c991daef7514d2ad88669a}{}\index{Cyclic Redundancy Check 16 (\+C\+R\+C16) calculation@{Cyclic Redundancy Check 16 (\+C\+R\+C16) calculation}!crc16\+\_\+add@{crc16\+\_\+add}}
+\index{crc16\+\_\+add@{crc16\+\_\+add}!Cyclic Redundancy Check 16 (\+C\+R\+C16) calculation@{Cyclic Redundancy Check 16 (\+C\+R\+C16) calculation}}
+\subsubsection[{crc16\+\_\+add}]{\setlength{\rightskip}{0pt plus 5cm}unsigned short crc16\+\_\+add (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{b, }
+\item[{unsigned short}]{crc}
+\end{DoxyParamCaption}
+)}\label{group__crc16_ga1c898c9701c991daef7514d2ad88669a}
+
+
+Update an accumulated C\+R\+C16 checksum with one byte. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & The byte to be added to the checksum \\
+\hline
+{\em crc} & The accumulated C\+R\+C that is to be updated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The updated C\+R\+C checksum. \begin{DoxyVerb}        This function updates an accumulated CRC16 checksum
+        with one byte. It can be used as a running checksum, or
+        to checksum an entire data block.
+
+        \note The algorithm used in this implementation is
+        tailored for a running checksum and does not perform as
+        well as a table-driven algorithm when checksumming an
+        entire data block.\end{DoxyVerb}
+ 
+\end{DoxyReturn}
+\hypertarget{group__crc16_ga7feada5644b9a99215dcb4fa9c5bc7c0}{}\index{Cyclic Redundancy Check 16 (\+C\+R\+C16) calculation@{Cyclic Redundancy Check 16 (\+C\+R\+C16) calculation}!crc16\+\_\+data@{crc16\+\_\+data}}
+\index{crc16\+\_\+data@{crc16\+\_\+data}!Cyclic Redundancy Check 16 (\+C\+R\+C16) calculation@{Cyclic Redundancy Check 16 (\+C\+R\+C16) calculation}}
+\subsubsection[{crc16\+\_\+data}]{\setlength{\rightskip}{0pt plus 5cm}unsigned short crc16\+\_\+data (
+\begin{DoxyParamCaption}
+\item[{const unsigned char $\ast$}]{data, }
+\item[{int}]{datalen, }
+\item[{unsigned short}]{acc}
+\end{DoxyParamCaption}
+)}\label{group__crc16_ga7feada5644b9a99215dcb4fa9c5bc7c0}
+
+
+Calculate the C\+R\+C16 over a data area. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Pointer to the data \\
+\hline
+{\em datalen} & The length of the data \\
+\hline
+{\em crc} & The accumulated C\+R\+C that is to be updated (or zero). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The C\+R\+C16 checksum. \begin{DoxyVerb}        This function calculates the CRC16 checksum of a data area.
+
+        \note The algorithm used in this implementation is
+        tailored for a running checksum and does not perform as
+        well as a table-driven algorithm when checksumming an
+        entire data block.\end{DoxyVerb}
+ 
+\end{DoxyReturn}

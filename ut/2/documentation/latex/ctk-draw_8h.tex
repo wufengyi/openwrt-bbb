@@ -1,0 +1,47 @@
+\hypertarget{ctk-draw_8h}{}\section{/home/user/contiki\+U\+T/contiki/core/ctk/ctk-\/draw.h File Reference}
+\label{ctk-draw_8h}\index{/home/user/contiki\+U\+T/contiki/core/ctk/ctk-\/draw.\+h@{/home/user/contiki\+U\+T/contiki/core/ctk/ctk-\/draw.\+h}}
+{\ttfamily \#include \char`\"{}ctk/ctk.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}contiki-\/conf.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__ctkdraw_ga271a33b474a94da63244e94c84127303}{ctk\+\_\+draw\+\_\+init} (void)
+\item 
+void \hyperlink{group__ctkdraw_gae6e8805e52467b2942c2af3e0080b6e1}{ctk\+\_\+draw\+\_\+clear} (unsigned char clipy1, unsigned char clipy2)
+\item 
+void \hyperlink{group__ctkdraw_gaeade88277aa23594cd8dc9f4caeba46d}{ctk\+\_\+draw\+\_\+clear\+\_\+window} (struct \hyperlink{structctk__window}{ctk\+\_\+window} $\ast$window, unsigned char focus, unsigned char clipy1, unsigned char clipy2)
+\item 
+void \hyperlink{group__ctkdraw_gae172d39b14556ee88707d4e6979abb34}{ctk\+\_\+draw\+\_\+window} (struct \hyperlink{structctk__window}{ctk\+\_\+window} $\ast$window, unsigned char focus, unsigned char clipy1, unsigned char clipy2, unsigned char draw\+\_\+borders)
+\item 
+void \hyperlink{group__ctkdraw_gae973e0af36f51f685e88216fa10ceb56}{ctk\+\_\+draw\+\_\+dialog} (struct \hyperlink{structctk__window}{ctk\+\_\+window} $\ast$dialog)
+\item 
+void \hyperlink{group__ctkdraw_ga2c09354ec5cfdb654b09cf478e8f2399}{ctk\+\_\+draw\+\_\+widget} (struct \hyperlink{structctk__widget}{ctk\+\_\+widget} $\ast$w, unsigned char focus, unsigned char clipy1, unsigned char clipy2)
+\item 
+\hypertarget{group__ctkdraw_gaa91a72c85f1c0a96ef85661b3b655067}{}void {\bfseries ctk\+\_\+draw\+\_\+menus} (struct \hyperlink{structctk__menus}{ctk\+\_\+menus} $\ast$menus)\label{group__ctkdraw_gaa91a72c85f1c0a96ef85661b3b655067}
+
+\item 
+\hypertarget{group__ctkdraw_ga573ade441a6b0b0ccbaf5f1ccc90fa9b}{}C\+C\+I\+F unsigned char {\bfseries ctk\+\_\+draw\+\_\+width} (void)\label{group__ctkdraw_ga573ade441a6b0b0ccbaf5f1ccc90fa9b}
+
+\item 
+\hypertarget{group__ctkdraw_gac8b314f484f9c768f337ab2daabf9318}{}C\+C\+I\+F unsigned char {\bfseries ctk\+\_\+draw\+\_\+height} (void)\label{group__ctkdraw_gac8b314f484f9c768f337ab2daabf9318}
+
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__ctkdraw_ga9e116d894f9f5823092910e77b8224e0}{}unsigned char {\bfseries ctk\+\_\+draw\+\_\+windowborder\+\_\+width}\label{group__ctkdraw_ga9e116d894f9f5823092910e77b8224e0}
+
+\item 
+\hypertarget{group__ctkdraw_ga90e742edc8b359a73f02699c84d921e2}{}unsigned char {\bfseries ctk\+\_\+draw\+\_\+windowborder\+\_\+height}\label{group__ctkdraw_ga90e742edc8b359a73f02699c84d921e2}
+
+\item 
+\hypertarget{group__ctkdraw_ga60d13ead987fe40807293206478b207f}{}unsigned char {\bfseries ctk\+\_\+draw\+\_\+windowtitle\+\_\+height}\label{group__ctkdraw_ga60d13ead987fe40807293206478b207f}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+C\+T\+K screen drawing module interface, ctk-\/draw. \begin{DoxyAuthor}{Author}
+Adam Dunkels \href{mailto:adam@dunkels.com}{\tt adam@dunkels.\+com}
+\end{DoxyAuthor}
+This file contains the interface for the ctk-\/draw module.\+The ctk-\/draw module takes care of the actual screen drawing for C\+T\+K by implementing a handful of functions that are called by C\+T\+K. 

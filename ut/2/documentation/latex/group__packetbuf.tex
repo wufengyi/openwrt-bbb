@@ -1,0 +1,574 @@
+\hypertarget{group__packetbuf}{}\section{Rime buffer management}
+\label{group__packetbuf}\index{Rime buffer management@{Rime buffer management}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structpacketbuf__attr}{packetbuf\+\_\+attr}
+\item 
+struct \hyperlink{structpacketbuf__addr}{packetbuf\+\_\+addr}
+\item 
+struct \hyperlink{structpacketbuf__attrlist}{packetbuf\+\_\+attrlist}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__packetbuf_gad72dbcf6d0153db1b8d8a58001feed83}{}\#define {\bfseries D\+E\+B\+U\+G}~0\label{group__packetbuf_gad72dbcf6d0153db1b8d8a58001feed83}
+
+\item 
+\hypertarget{group__packetbuf_ga1f464e950a4fa11e8821b5c725921a15}{}\#define {\bfseries P\+R\+I\+N\+T\+F}(...)\label{group__packetbuf_ga1f464e950a4fa11e8821b5c725921a15}
+
+\item 
+\hypertarget{group__packetbuf_ga7a3b189fd04b82463abb4117fdb26b67}{}\#define \hyperlink{group__packetbuf_ga7a3b189fd04b82463abb4117fdb26b67}{P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+S\+I\+Z\+E}~128\label{group__packetbuf_ga7a3b189fd04b82463abb4117fdb26b67}
+
+\begin{DoxyCompactList}\small\item\em The size of the packetbuf, in bytes. \end{DoxyCompactList}\item 
+\hypertarget{group__packetbuf_gaf99c845894c567c1222a56be9c6cfe5b}{}\#define \hyperlink{group__packetbuf_gaf99c845894c567c1222a56be9c6cfe5b}{P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+H\+D\+R\+\_\+\+S\+I\+Z\+E}~48\label{group__packetbuf_gaf99c845894c567c1222a56be9c6cfe5b}
+
+\begin{DoxyCompactList}\small\item\em The size of the packetbuf header, in bytes. \end{DoxyCompactList}\item 
+\hypertarget{group__packetbuf_ga51333e5de8dd6e51a380a62e0e8465e8}{}\#define {\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+T\+Y\+P\+E\+\_\+\+D\+A\+T\+A}~0\label{group__packetbuf_ga51333e5de8dd6e51a380a62e0e8465e8}
+
+\item 
+\hypertarget{group__packetbuf_gaf6798df81e0305809ab69e4c1c21ee3d}{}\#define {\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+T\+Y\+P\+E\+\_\+\+A\+C\+K}~1\label{group__packetbuf_gaf6798df81e0305809ab69e4c1c21ee3d}
+
+\item 
+\hypertarget{group__packetbuf_ga473bd497a7759554bb01b6ccccf75813}{}\#define {\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+T\+R\+E\+A\+M}~2\label{group__packetbuf_ga473bd497a7759554bb01b6ccccf75813}
+
+\item 
+\hypertarget{group__packetbuf_ga70f75d37e1db9371cdd0edd544efe639}{}\#define {\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+T\+R\+E\+A\+M\+\_\+\+E\+N\+D}~3\label{group__packetbuf_ga70f75d37e1db9371cdd0edd544efe639}
+
+\item 
+\hypertarget{group__packetbuf_gafeaa40ccea6d3e55702071fc488b7abc}{}\#define {\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+T\+Y\+P\+E\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P}~4\label{group__packetbuf_gafeaa40ccea6d3e55702071fc488b7abc}
+
+\item 
+\hypertarget{group__packetbuf_gacf293b790a9072c05c6b34f38e5c1cef}{}\#define {\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+N\+U\+M\+\_\+\+A\+D\+D\+R\+S}~2\label{group__packetbuf_gacf293b790a9072c05c6b34f38e5c1cef}
+
+\item 
+\hypertarget{group__packetbuf_ga8a89c6f910cc654688984fb66630265c}{}\#define {\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+N\+U\+M\+\_\+\+A\+T\+T\+R\+S}~(P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+M\+A\+X -\/ P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+N\+U\+M\+\_\+\+A\+D\+D\+R\+S)\label{group__packetbuf_ga8a89c6f910cc654688984fb66630265c}
+
+\item 
+\hypertarget{group__packetbuf_ga68297e1490c66b27b79d086f0afa6516}{}\#define {\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+D\+D\+R\+\_\+\+F\+I\+R\+S\+T}~P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+D\+D\+R\+\_\+\+S\+E\+N\+D\+E\+R\label{group__packetbuf_ga68297e1490c66b27b79d086f0afa6516}
+
+\item 
+\hypertarget{group__packetbuf_ga097dd34bfa4307faa1e7f3c1a5765ace}{}\#define {\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+I\+S\+\_\+\+A\+D\+D\+R}(type)~((type) $>$= P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+D\+D\+R\+\_\+\+F\+I\+R\+S\+T)\label{group__packetbuf_ga097dd34bfa4307faa1e7f3c1a5765ace}
+
+\item 
+\hypertarget{group__packetbuf_gafd13fe2284d00adb7e8dfadd6ad38647}{}\#define {\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+I\+B\+U\+T\+E\+S}(...)~\{ \+\_\+\+\_\+\+V\+A\+\_\+\+A\+R\+G\+S\+\_\+\+\_\+ P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+L\+A\+S\+T \}\label{group__packetbuf_gafd13fe2284d00adb7e8dfadd6ad38647}
+
+\item 
+\hypertarget{group__packetbuf_ga6e9533a0217db95b301b8a527257663c}{}\#define {\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+L\+A\+S\+T}~\{ P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+N\+O\+N\+E, 0 \}\label{group__packetbuf_ga6e9533a0217db95b301b8a527257663c}
+
+\item 
+\hypertarget{group__packetbuf_ga86f084560f6b26e9e963522efb10662b}{}\#define {\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+B\+I\+T}~1\label{group__packetbuf_ga86f084560f6b26e9e963522efb10662b}
+
+\item 
+\hypertarget{group__packetbuf_gaf067f809891ee0b0b9aae3dd09777456}{}\#define {\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+B\+Y\+T\+E}~8\label{group__packetbuf_gaf067f809891ee0b0b9aae3dd09777456}
+
+\item 
+\hypertarget{group__packetbuf_ga04a0145df4d55cce9a5331f51a4b9b25}{}\#define {\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+D\+D\+R\+S\+I\+Z\+E}~(L\+I\+N\+K\+A\+D\+D\+R\+\_\+\+S\+I\+Z\+E $\ast$ P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+B\+Y\+T\+E)\label{group__packetbuf_ga04a0145df4d55cce9a5331f51a4b9b25}
+
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__packetbuf_gae41466452329cdd6c9bf33ee579b9590}{}typedef uint16\+\_\+t {\bfseries packetbuf\+\_\+attr\+\_\+t}\label{group__packetbuf_gae41466452329cdd6c9bf33ee579b9590}
+
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__packetbuf_ga61dadd085c1777f559549e05962b2c9e}{}enum \{ \\*
+{\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+N\+O\+N\+E}, 
+{\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+C\+H\+A\+N\+N\+E\+L}, 
+{\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+N\+E\+T\+W\+O\+R\+K\+\_\+\+I\+D}, 
+{\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+L\+I\+N\+K\+\_\+\+Q\+U\+A\+L\+I\+T\+Y}, 
+\\*
+{\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+R\+S\+S\+I}, 
+{\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P}, 
+{\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+R\+A\+D\+I\+O\+\_\+\+T\+X\+P\+O\+W\+E\+R}, 
+{\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+L\+I\+S\+T\+E\+N\+\_\+\+T\+I\+M\+E}, 
+\\*
+{\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+T\+R\+A\+N\+S\+M\+I\+T\+\_\+\+T\+I\+M\+E}, 
+{\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+M\+A\+X\+\_\+\+M\+A\+C\+\_\+\+T\+R\+A\+N\+S\+M\+I\+S\+S\+I\+O\+N\+S}, 
+{\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+M\+A\+C\+\_\+\+S\+E\+Q\+N\+O}, 
+{\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+M\+A\+C\+\_\+\+A\+C\+K}, 
+\\*
+{\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+I\+S\+\_\+\+C\+R\+E\+A\+T\+E\+D\+\_\+\+A\+N\+D\+\_\+\+S\+E\+C\+U\+R\+E\+D}, 
+{\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+R\+E\+L\+I\+A\+B\+L\+E}, 
+{\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+I\+D}, 
+{\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+T\+Y\+P\+E}, 
+\\*
+{\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+P\+E\+N\+D\+I\+N\+G}, 
+{\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+F\+R\+A\+M\+E\+\_\+\+T\+Y\+P\+E}, 
+{\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+D\+D\+R\+\_\+\+S\+E\+N\+D\+E\+R}, 
+{\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+D\+D\+R\+\_\+\+R\+E\+C\+E\+I\+V\+E\+R}, 
+\\*
+{\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+M\+A\+X}
+ \}\label{group__packetbuf_ga61dadd085c1777f559549e05962b2c9e}
+
+\item 
+\hypertarget{group__packetbuf_ga726ca809ffd3d67ab4b8476646f26635}{}enum \{ {\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+S\+E\+C\+U\+R\+I\+T\+Y\+\_\+\+L\+E\+V\+E\+L}, 
+{\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+F\+R\+A\+M\+E\+\_\+\+C\+O\+U\+N\+T\+E\+R\+\_\+\+B\+Y\+T\+E\+S\+\_\+0\+\_\+1}, 
+{\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+F\+R\+A\+M\+E\+\_\+\+C\+O\+U\+N\+T\+E\+R\+\_\+\+B\+Y\+T\+E\+S\+\_\+2\+\_\+3}
+ \}\label{group__packetbuf_ga726ca809ffd3d67ab4b8476646f26635}
+
+\item 
+\hypertarget{group__packetbuf_ga0411cd49bb5b71852cecd93bcbf0ca2d}{}enum \{ {\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+K\+E\+Y\+\_\+\+I\+D\+\_\+\+M\+O\+D\+E}, 
+{\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+K\+E\+Y\+\_\+\+I\+N\+D\+E\+X}, 
+{\bfseries P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+A\+T\+T\+R\+\_\+\+K\+E\+Y\+\_\+\+S\+O\+U\+R\+C\+E\+\_\+\+B\+Y\+T\+E\+S\+\_\+0\+\_\+1}
+ \}\label{group__packetbuf_ga0411cd49bb5b71852cecd93bcbf0ca2d}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__packetbuf_gaa540c9abf0db13d27881b616f7794824}{packetbuf\+\_\+clear} (void)
+\begin{DoxyCompactList}\small\item\em Clear and reset the packetbuf. \end{DoxyCompactList}\item 
+void \hyperlink{group__packetbuf_ga9ed85aa3405fa87ed8b1e523dd374dcd}{packetbuf\+\_\+clear\+\_\+hdr} (void)
+\begin{DoxyCompactList}\small\item\em Clear and reset the header of the packetbuf. \end{DoxyCompactList}\item 
+int \hyperlink{group__packetbuf_ga5fd9cb98f800733b6d9381bce81cd224}{packetbuf\+\_\+copyfrom} (const void $\ast$from, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Copy from external data into the packetbuf. \end{DoxyCompactList}\item 
+void \hyperlink{group__packetbuf_ga39a862c119717560e224923801c1fa2a}{packetbuf\+\_\+compact} (void)
+\begin{DoxyCompactList}\small\item\em Compact the packetbuf. \end{DoxyCompactList}\item 
+int \hyperlink{group__packetbuf_gac4b6f4ff134a21b6c2f726ca9342bb2f}{packetbuf\+\_\+copyto\+\_\+hdr} (uint8\+\_\+t $\ast$to)
+\begin{DoxyCompactList}\small\item\em Copy the header portion of the packetbuf to an external buffer. \end{DoxyCompactList}\item 
+int \hyperlink{group__packetbuf_gacad3b92ca8f9ce7845b6c490ba9f05bf}{packetbuf\+\_\+copyto} (void $\ast$to)
+\begin{DoxyCompactList}\small\item\em Copy the entire packetbuf to an external buffer. \end{DoxyCompactList}\item 
+int \hyperlink{group__packetbuf_gacffe7341cbfe90034e829ea70111203a}{packetbuf\+\_\+hdralloc} (int size)
+\begin{DoxyCompactList}\small\item\em Extend the header of the packetbuf, for outbound packets. \end{DoxyCompactList}\item 
+\hypertarget{group__packetbuf_ga4b2940aecccd22785e0160684c3a8327}{}void {\bfseries packetbuf\+\_\+hdr\+\_\+remove} (int size)\label{group__packetbuf_ga4b2940aecccd22785e0160684c3a8327}
+
+\item 
+int \hyperlink{group__packetbuf_gad7d9d402f591a560b5502bc6c8bcbd20}{packetbuf\+\_\+hdrreduce} (int size)
+\begin{DoxyCompactList}\small\item\em Reduce the header in the packetbuf, for incoming packets. \end{DoxyCompactList}\item 
+void \hyperlink{group__packetbuf_ga236b0d557fe119c39796432484c94b26}{packetbuf\+\_\+set\+\_\+datalen} (uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Set the length of the data in the packetbuf. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group__packetbuf_ga29a6f3f230b55e6bc2f017879c27113a}{packetbuf\+\_\+dataptr} (void)
+\begin{DoxyCompactList}\small\item\em Get a pointer to the data in the packetbuf. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group__packetbuf_ga67c213a97ab9bdadddd90db1df0a3058}{packetbuf\+\_\+hdrptr} (void)
+\begin{DoxyCompactList}\small\item\em Get a pointer to the header in the packetbuf, for outbound packets. \end{DoxyCompactList}\item 
+void \hyperlink{group__packetbuf_ga3f5025b223cc3cf94a7645dd4a3e1819}{packetbuf\+\_\+reference} (void $\ast$ptr, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Point the packetbuf to external data. \end{DoxyCompactList}\item 
+int \hyperlink{group__packetbuf_gac861e157b35ff95f7fd2c7fa925edd58}{packetbuf\+\_\+is\+\_\+reference} (void)
+\begin{DoxyCompactList}\small\item\em Check if the packetbuf references external data. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group__packetbuf_gadb970d1a23b7bc7c8e18d45a9c9dd579}{packetbuf\+\_\+reference\+\_\+ptr} (void)
+\begin{DoxyCompactList}\small\item\em Get a pointer to external data referenced by the packetbuf. \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{group__packetbuf_ga4a1157b882c15f5ea05d64f81d37115d}{packetbuf\+\_\+datalen} (void)
+\begin{DoxyCompactList}\small\item\em Get the length of the data in the packetbuf. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{group__packetbuf_ga591ff8749c8a62c45f4a32e38303ce5f}{packetbuf\+\_\+hdrlen} (void)
+\begin{DoxyCompactList}\small\item\em Get the length of the header in the packetbuf. \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{group__packetbuf_ga3cc486f4d4f837db11c6376bee07ebcb}{packetbuf\+\_\+totlen} (void)
+\begin{DoxyCompactList}\small\item\em Get the total length of the header and data in the packetbuf. \end{DoxyCompactList}\item 
+\hypertarget{group__packetbuf_ga4fc3165c0161cb961492e6c9d83e5085}{}void {\bfseries packetbuf\+\_\+attr\+\_\+clear} (void)\label{group__packetbuf_ga4fc3165c0161cb961492e6c9d83e5085}
+
+\item 
+\hypertarget{group__packetbuf_ga510215a521924e7c7d343fc6e93887d5}{}void {\bfseries packetbuf\+\_\+attr\+\_\+copyto} (struct \hyperlink{structpacketbuf__attr}{packetbuf\+\_\+attr} $\ast$attrs, struct \hyperlink{structpacketbuf__addr}{packetbuf\+\_\+addr} $\ast$addrs)\label{group__packetbuf_ga510215a521924e7c7d343fc6e93887d5}
+
+\item 
+\hypertarget{group__packetbuf_gad32a9c0c337161884c9bf73481ef41c0}{}void {\bfseries packetbuf\+\_\+attr\+\_\+copyfrom} (struct \hyperlink{structpacketbuf__attr}{packetbuf\+\_\+attr} $\ast$attrs, struct \hyperlink{structpacketbuf__addr}{packetbuf\+\_\+addr} $\ast$addrs)\label{group__packetbuf_gad32a9c0c337161884c9bf73481ef41c0}
+
+\item 
+\hypertarget{group__packetbuf_ga98c48d863f9321f7da017af6542249e3}{}int {\bfseries packetbuf\+\_\+set\+\_\+attr} (uint8\+\_\+t type, const packetbuf\+\_\+attr\+\_\+t val)\label{group__packetbuf_ga98c48d863f9321f7da017af6542249e3}
+
+\item 
+\hypertarget{group__packetbuf_ga705d728750d2675cd3ca6354d1175040}{}packetbuf\+\_\+attr\+\_\+t {\bfseries packetbuf\+\_\+attr} (uint8\+\_\+t type)\label{group__packetbuf_ga705d728750d2675cd3ca6354d1175040}
+
+\item 
+\hypertarget{group__packetbuf_ga56d82959356e056070affda88365c3cb}{}int {\bfseries packetbuf\+\_\+set\+\_\+addr} (uint8\+\_\+t type, const \hyperlink{unionlinkaddr__t}{linkaddr\+\_\+t} $\ast$addr)\label{group__packetbuf_ga56d82959356e056070affda88365c3cb}
+
+\item 
+\hypertarget{group__packetbuf_ga4f1ab76f775cfd566822fdfa69431646}{}const \hyperlink{unionlinkaddr__t}{linkaddr\+\_\+t} $\ast$ {\bfseries packetbuf\+\_\+addr} (uint8\+\_\+t type)\label{group__packetbuf_ga4f1ab76f775cfd566822fdfa69431646}
+
+\item 
+int \hyperlink{group__packetbuf_gaace1fdbc02444a06c58aa379b44111aa}{packetbuf\+\_\+holds\+\_\+broadcast} (void)
+\begin{DoxyCompactList}\small\item\em Checks whether the current packet is a broadcast. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__packetbuf_gabb318b0452c06e571fa0c4bc553684a7}{}struct \hyperlink{structpacketbuf__attr}{packetbuf\+\_\+attr} {\bfseries packetbuf\+\_\+attrs} \mbox{[}P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+N\+U\+M\+\_\+\+A\+T\+T\+R\+S\mbox{]}\label{group__packetbuf_gabb318b0452c06e571fa0c4bc553684a7}
+
+\item 
+\hypertarget{group__packetbuf_gacd204773e0cf2d1fbfe6b8e0d4d25c2e}{}struct \hyperlink{structpacketbuf__addr}{packetbuf\+\_\+addr} {\bfseries packetbuf\+\_\+addrs} \mbox{[}P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+N\+U\+M\+\_\+\+A\+D\+D\+R\+S\mbox{]}\label{group__packetbuf_gacd204773e0cf2d1fbfe6b8e0d4d25c2e}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The packetbuf module does Rime\textquotesingle{}s buffer management. 
+
+\subsection{Function Documentation}
+\hypertarget{group__packetbuf_gaa540c9abf0db13d27881b616f7794824}{}\index{Rime buffer management@{Rime buffer management}!packetbuf\+\_\+clear@{packetbuf\+\_\+clear}}
+\index{packetbuf\+\_\+clear@{packetbuf\+\_\+clear}!Rime buffer management@{Rime buffer management}}
+\subsubsection[{packetbuf\+\_\+clear}]{\setlength{\rightskip}{0pt plus 5cm}void packetbuf\+\_\+clear (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group__packetbuf_gaa540c9abf0db13d27881b616f7794824}
+
+
+Clear and reset the packetbuf. 
+
+This function clears the packetbuf and resets all internal state pointers (header size, header pointer, external data pointer). It is used before preparing a packet in the packetbuf. \hypertarget{group__packetbuf_ga9ed85aa3405fa87ed8b1e523dd374dcd}{}\index{Rime buffer management@{Rime buffer management}!packetbuf\+\_\+clear\+\_\+hdr@{packetbuf\+\_\+clear\+\_\+hdr}}
+\index{packetbuf\+\_\+clear\+\_\+hdr@{packetbuf\+\_\+clear\+\_\+hdr}!Rime buffer management@{Rime buffer management}}
+\subsubsection[{packetbuf\+\_\+clear\+\_\+hdr}]{\setlength{\rightskip}{0pt plus 5cm}void packetbuf\+\_\+clear\+\_\+hdr (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group__packetbuf_ga9ed85aa3405fa87ed8b1e523dd374dcd}
+
+
+Clear and reset the header of the packetbuf. 
+
+This function clears the header of the packetbuf and resets all the internal state pointers pertaining to the header (header size, header pointer, but not external data pointer). It is used before after sending a packet in the packetbuf, to be able to reuse the packet buffer for a later retransmission. \hypertarget{group__packetbuf_ga39a862c119717560e224923801c1fa2a}{}\index{Rime buffer management@{Rime buffer management}!packetbuf\+\_\+compact@{packetbuf\+\_\+compact}}
+\index{packetbuf\+\_\+compact@{packetbuf\+\_\+compact}!Rime buffer management@{Rime buffer management}}
+\subsubsection[{packetbuf\+\_\+compact}]{\setlength{\rightskip}{0pt plus 5cm}void packetbuf\+\_\+compact (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group__packetbuf_ga39a862c119717560e224923801c1fa2a}
+
+
+Compact the packetbuf. 
+
+This function compacts the packetbuf by copying the data portion of the packetbuf so that becomes consecutive to the header. It also copies external data that has previously been referenced with \hyperlink{group__packetbuf_ga3f5025b223cc3cf94a7645dd4a3e1819}{packetbuf\+\_\+reference()} into the packetbuf.
+
+This function is called by the Rime code before a packet is to be sent by a device driver. This assures that the entire packet is consecutive in memory. \hypertarget{group__packetbuf_ga5fd9cb98f800733b6d9381bce81cd224}{}\index{Rime buffer management@{Rime buffer management}!packetbuf\+\_\+copyfrom@{packetbuf\+\_\+copyfrom}}
+\index{packetbuf\+\_\+copyfrom@{packetbuf\+\_\+copyfrom}!Rime buffer management@{Rime buffer management}}
+\subsubsection[{packetbuf\+\_\+copyfrom}]{\setlength{\rightskip}{0pt plus 5cm}int packetbuf\+\_\+copyfrom (
+\begin{DoxyParamCaption}
+\item[{const void $\ast$}]{from, }
+\item[{uint16\+\_\+t}]{len}
+\end{DoxyParamCaption}
+)}\label{group__packetbuf_ga5fd9cb98f800733b6d9381bce81cd224}
+
+
+Copy from external data into the packetbuf. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em from} & A pointer to the data from which to copy \\
+\hline
+{\em len} & The size of the data to copy \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em The} & number of bytes that was copied into the packetbuf \begin{DoxyVerb}        This function copies data from a pointer into the
+        packetbuf. If the data that is to be copied is larger
+        than the packetbuf, only the data that fits in the
+        packetbuf is copied. The number of bytes that could be
+        copied into the rimbuf is returned.\end{DoxyVerb}
+ \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__packetbuf_gacad3b92ca8f9ce7845b6c490ba9f05bf}{}\index{Rime buffer management@{Rime buffer management}!packetbuf\+\_\+copyto@{packetbuf\+\_\+copyto}}
+\index{packetbuf\+\_\+copyto@{packetbuf\+\_\+copyto}!Rime buffer management@{Rime buffer management}}
+\subsubsection[{packetbuf\+\_\+copyto}]{\setlength{\rightskip}{0pt plus 5cm}int packetbuf\+\_\+copyto (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{to}
+\end{DoxyParamCaption}
+)}\label{group__packetbuf_gacad3b92ca8f9ce7845b6c490ba9f05bf}
+
+
+Copy the entire packetbuf to an external buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em to} & A pointer to the buffer to which the data is to be copied \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em The} & number of bytes that was copied to the external buffer \begin{DoxyVerb}        This function copies the packetbuf to an external
+        buffer. Both the data portion and the header portion of
+        the packetbuf is copied. If the packetbuf referenced
+        external data (referenced with packetbuf_reference()) the
+        external data is copied.
+
+        The external buffer to which the packetbuf is to be
+        copied must be able to accomodate at least
+        (PACKETBUF_SIZE + PACKETBUF_HDR_SIZE) bytes. The number of
+        bytes that was copied to the external buffer is
+        returned.\end{DoxyVerb}
+ \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__packetbuf_gac4b6f4ff134a21b6c2f726ca9342bb2f}{}\index{Rime buffer management@{Rime buffer management}!packetbuf\+\_\+copyto\+\_\+hdr@{packetbuf\+\_\+copyto\+\_\+hdr}}
+\index{packetbuf\+\_\+copyto\+\_\+hdr@{packetbuf\+\_\+copyto\+\_\+hdr}!Rime buffer management@{Rime buffer management}}
+\subsubsection[{packetbuf\+\_\+copyto\+\_\+hdr}]{\setlength{\rightskip}{0pt plus 5cm}int packetbuf\+\_\+copyto\+\_\+hdr (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{to}
+\end{DoxyParamCaption}
+)}\label{group__packetbuf_gac4b6f4ff134a21b6c2f726ca9342bb2f}
+
+
+Copy the header portion of the packetbuf to an external buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em to} & A pointer to the buffer to which the data is to be copied \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em The} & number of bytes that was copied to the external buffer \begin{DoxyVerb}        This function copies the header portion of the packetbuf
+        to an external buffer.
+
+        The external buffer to which the packetbuf is to be
+        copied must be able to accomodate at least
+        PACKETBUF_HDR_SIZE bytes. The number of bytes that was
+        copied to the external buffer is returned.\end{DoxyVerb}
+ \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__packetbuf_ga4a1157b882c15f5ea05d64f81d37115d}{}\index{Rime buffer management@{Rime buffer management}!packetbuf\+\_\+datalen@{packetbuf\+\_\+datalen}}
+\index{packetbuf\+\_\+datalen@{packetbuf\+\_\+datalen}!Rime buffer management@{Rime buffer management}}
+\subsubsection[{packetbuf\+\_\+datalen}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t packetbuf\+\_\+datalen (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group__packetbuf_ga4a1157b882c15f5ea05d64f81d37115d}
+
+
+Get the length of the data in the packetbuf. 
+
+\begin{DoxyReturn}{Returns}
+Length of the data in the packetbuf \begin{DoxyVerb}        For outbound packets, the packetbuf consists of two
+        parts: header and data. This function is used to get
+        the length of the data in the packetbuf. The data is
+        stored in the packetbuf and accessed via the
+        packetbuf_dataptr() function.
+
+        For incoming packets, both the packet header and the
+        packet data is stored in the data portion of the
+        packetbuf. This function is then used to get the total
+        length of the packet - both header and data.\end{DoxyVerb}
+ 
+\end{DoxyReturn}
+\hypertarget{group__packetbuf_ga29a6f3f230b55e6bc2f017879c27113a}{}\index{Rime buffer management@{Rime buffer management}!packetbuf\+\_\+dataptr@{packetbuf\+\_\+dataptr}}
+\index{packetbuf\+\_\+dataptr@{packetbuf\+\_\+dataptr}!Rime buffer management@{Rime buffer management}}
+\subsubsection[{packetbuf\+\_\+dataptr}]{\setlength{\rightskip}{0pt plus 5cm}void $\ast$ packetbuf\+\_\+dataptr (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group__packetbuf_ga29a6f3f230b55e6bc2f017879c27113a}
+
+
+Get a pointer to the data in the packetbuf. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the packetbuf data \begin{DoxyVerb}        This function is used to get a pointer to the data in
+        the packetbuf. The data is either stored in the packetbuf,
+        or referenced to an external location.
+
+        For outbound packets, the packetbuf consists of two
+        parts: header and data. The header is accessed with the
+        packetbuf_hdrptr() function.
+
+        For incoming packets, both the packet header and the
+        packet data is stored in the data portion of the
+        packetbuf. Thus this function is used to get a pointer to
+        the header for incoming packets.\end{DoxyVerb}
+ 
+\end{DoxyReturn}
+\hypertarget{group__packetbuf_gacffe7341cbfe90034e829ea70111203a}{}\index{Rime buffer management@{Rime buffer management}!packetbuf\+\_\+hdralloc@{packetbuf\+\_\+hdralloc}}
+\index{packetbuf\+\_\+hdralloc@{packetbuf\+\_\+hdralloc}!Rime buffer management@{Rime buffer management}}
+\subsubsection[{packetbuf\+\_\+hdralloc}]{\setlength{\rightskip}{0pt plus 5cm}int packetbuf\+\_\+hdralloc (
+\begin{DoxyParamCaption}
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\label{group__packetbuf_gacffe7341cbfe90034e829ea70111203a}
+
+
+Extend the header of the packetbuf, for outbound packets. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & The number of bytes the header should be extended \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Non-\/zero} & if the header could be extended, zero otherwise \begin{DoxyVerb}        This function is used to allocate extra space in the
+        header portion in the packetbuf, when preparing outbound
+        packets for transmission. If the function is unable to
+        allocate sufficient header space, the function returns
+        zero and does not allocate anything.\end{DoxyVerb}
+ \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__packetbuf_ga591ff8749c8a62c45f4a32e38303ce5f}{}\index{Rime buffer management@{Rime buffer management}!packetbuf\+\_\+hdrlen@{packetbuf\+\_\+hdrlen}}
+\index{packetbuf\+\_\+hdrlen@{packetbuf\+\_\+hdrlen}!Rime buffer management@{Rime buffer management}}
+\subsubsection[{packetbuf\+\_\+hdrlen}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t packetbuf\+\_\+hdrlen (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group__packetbuf_ga591ff8749c8a62c45f4a32e38303ce5f}
+
+
+Get the length of the header in the packetbuf. 
+
+\begin{DoxyReturn}{Returns}
+Length of the header in the packetbuf \begin{DoxyVerb}        For outbound packets, the packetbuf consists of two
+        parts: header and data. This function is used to get
+        the length of the header in the packetbuf. The header is
+        stored in the packetbuf and accessed via the
+        packetbuf_hdrptr() function.\end{DoxyVerb}
+ 
+\end{DoxyReturn}
+\hypertarget{group__packetbuf_ga67c213a97ab9bdadddd90db1df0a3058}{}\index{Rime buffer management@{Rime buffer management}!packetbuf\+\_\+hdrptr@{packetbuf\+\_\+hdrptr}}
+\index{packetbuf\+\_\+hdrptr@{packetbuf\+\_\+hdrptr}!Rime buffer management@{Rime buffer management}}
+\subsubsection[{packetbuf\+\_\+hdrptr}]{\setlength{\rightskip}{0pt plus 5cm}void $\ast$ packetbuf\+\_\+hdrptr (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group__packetbuf_ga67c213a97ab9bdadddd90db1df0a3058}
+
+
+Get a pointer to the header in the packetbuf, for outbound packets. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the packetbuf header \begin{DoxyVerb}        For outbound packets, the packetbuf consists of two
+        parts: header and data. This function is used to get a
+        pointer to the header in the packetbuf. The header is
+        stored in the packetbuf.\end{DoxyVerb}
+ 
+\end{DoxyReturn}
+\hypertarget{group__packetbuf_gad7d9d402f591a560b5502bc6c8bcbd20}{}\index{Rime buffer management@{Rime buffer management}!packetbuf\+\_\+hdrreduce@{packetbuf\+\_\+hdrreduce}}
+\index{packetbuf\+\_\+hdrreduce@{packetbuf\+\_\+hdrreduce}!Rime buffer management@{Rime buffer management}}
+\subsubsection[{packetbuf\+\_\+hdrreduce}]{\setlength{\rightskip}{0pt plus 5cm}int packetbuf\+\_\+hdrreduce (
+\begin{DoxyParamCaption}
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\label{group__packetbuf_gad7d9d402f591a560b5502bc6c8bcbd20}
+
+
+Reduce the header in the packetbuf, for incoming packets. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & The number of bytes the header should be reduced \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Non-\/zero} & if the header could be reduced, zero otherwise \begin{DoxyVerb}        This function is used to remove the first part of the
+        header in the packetbuf, when processing incoming
+        packets. If the function is unable to remove the
+        requested amount of header space, the function returns
+        zero and does not allocate anything.\end{DoxyVerb}
+ \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__packetbuf_gaace1fdbc02444a06c58aa379b44111aa}{}\index{Rime buffer management@{Rime buffer management}!packetbuf\+\_\+holds\+\_\+broadcast@{packetbuf\+\_\+holds\+\_\+broadcast}}
+\index{packetbuf\+\_\+holds\+\_\+broadcast@{packetbuf\+\_\+holds\+\_\+broadcast}!Rime buffer management@{Rime buffer management}}
+\subsubsection[{packetbuf\+\_\+holds\+\_\+broadcast}]{\setlength{\rightskip}{0pt plus 5cm}int packetbuf\+\_\+holds\+\_\+broadcast (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group__packetbuf_gaace1fdbc02444a06c58aa379b44111aa}
+
+
+Checks whether the current packet is a broadcast. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & iff current packet is not a broadcast \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__packetbuf_gac861e157b35ff95f7fd2c7fa925edd58}{}\index{Rime buffer management@{Rime buffer management}!packetbuf\+\_\+is\+\_\+reference@{packetbuf\+\_\+is\+\_\+reference}}
+\index{packetbuf\+\_\+is\+\_\+reference@{packetbuf\+\_\+is\+\_\+reference}!Rime buffer management@{Rime buffer management}}
+\subsubsection[{packetbuf\+\_\+is\+\_\+reference}]{\setlength{\rightskip}{0pt plus 5cm}int packetbuf\+\_\+is\+\_\+reference (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group__packetbuf_gac861e157b35ff95f7fd2c7fa925edd58}
+
+
+Check if the packetbuf references external data. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em Non-\/zero} & if the packetbuf references external data, zero otherwise. \begin{DoxyVerb}        For outbound packets, the packetbuf consists of two
+        parts: header and data. This function is used to check
+        if the packetbuf points to external data that has
+        previously been referenced with packetbuf_reference().\end{DoxyVerb}
+ \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__packetbuf_ga3f5025b223cc3cf94a7645dd4a3e1819}{}\index{Rime buffer management@{Rime buffer management}!packetbuf\+\_\+reference@{packetbuf\+\_\+reference}}
+\index{packetbuf\+\_\+reference@{packetbuf\+\_\+reference}!Rime buffer management@{Rime buffer management}}
+\subsubsection[{packetbuf\+\_\+reference}]{\setlength{\rightskip}{0pt plus 5cm}void packetbuf\+\_\+reference (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{ptr, }
+\item[{uint16\+\_\+t}]{len}
+\end{DoxyParamCaption}
+)}\label{group__packetbuf_ga3f5025b223cc3cf94a7645dd4a3e1819}
+
+
+Point the packetbuf to external data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ptr} & A pointer to the external data \\
+\hline
+{\em len} & The length of the external data \begin{DoxyVerb}        For outbound packets, the packetbuf consists of two
+        parts: header and data. This function is used to make
+        the packetbuf point to external data. The function also
+        specifies the length of the external data that the
+        packetbuf references.\end{DoxyVerb}
+ \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__packetbuf_gadb970d1a23b7bc7c8e18d45a9c9dd579}{}\index{Rime buffer management@{Rime buffer management}!packetbuf\+\_\+reference\+\_\+ptr@{packetbuf\+\_\+reference\+\_\+ptr}}
+\index{packetbuf\+\_\+reference\+\_\+ptr@{packetbuf\+\_\+reference\+\_\+ptr}!Rime buffer management@{Rime buffer management}}
+\subsubsection[{packetbuf\+\_\+reference\+\_\+ptr}]{\setlength{\rightskip}{0pt plus 5cm}void $\ast$ packetbuf\+\_\+reference\+\_\+ptr (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group__packetbuf_gadb970d1a23b7bc7c8e18d45a9c9dd579}
+
+
+Get a pointer to external data referenced by the packetbuf. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em A} & pointer to the external data \begin{DoxyVerb}        For outbound packets, the packetbuf consists of two
+        parts: header and data. The data may point to external
+        data that has previously been referenced with
+        packetbuf_reference(). This function is used to get a
+        pointer to the external data.\end{DoxyVerb}
+ \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__packetbuf_ga236b0d557fe119c39796432484c94b26}{}\index{Rime buffer management@{Rime buffer management}!packetbuf\+\_\+set\+\_\+datalen@{packetbuf\+\_\+set\+\_\+datalen}}
+\index{packetbuf\+\_\+set\+\_\+datalen@{packetbuf\+\_\+set\+\_\+datalen}!Rime buffer management@{Rime buffer management}}
+\subsubsection[{packetbuf\+\_\+set\+\_\+datalen}]{\setlength{\rightskip}{0pt plus 5cm}void packetbuf\+\_\+set\+\_\+datalen (
+\begin{DoxyParamCaption}
+\item[{uint16\+\_\+t}]{len}
+\end{DoxyParamCaption}
+)}\label{group__packetbuf_ga236b0d557fe119c39796432484c94b26}
+
+
+Set the length of the data in the packetbuf. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em len} & The length of the data \begin{DoxyVerb}        For outbound packets, the packetbuf consists of two
+        parts: header and data. This function is used to set
+        the length of the data in the packetbuf.\end{DoxyVerb}
+ \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__packetbuf_ga3cc486f4d4f837db11c6376bee07ebcb}{}\index{Rime buffer management@{Rime buffer management}!packetbuf\+\_\+totlen@{packetbuf\+\_\+totlen}}
+\index{packetbuf\+\_\+totlen@{packetbuf\+\_\+totlen}!Rime buffer management@{Rime buffer management}}
+\subsubsection[{packetbuf\+\_\+totlen}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t packetbuf\+\_\+totlen (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group__packetbuf_ga3cc486f4d4f837db11c6376bee07ebcb}
+
+
+Get the total length of the header and data in the packetbuf. 
+
+\begin{DoxyReturn}{Returns}
+Length of data and header in the packetbuf 
+\end{DoxyReturn}

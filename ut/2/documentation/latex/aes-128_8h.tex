@@ -1,0 +1,41 @@
+\hypertarget{aes-128_8h}{}\section{/home/user/contiki\+U\+T/contiki/core/lib/aes-\/128.h File Reference}
+\label{aes-128_8h}\index{/home/user/contiki\+U\+T/contiki/core/lib/aes-\/128.\+h@{/home/user/contiki\+U\+T/contiki/core/lib/aes-\/128.\+h}}
+{\ttfamily \#include \char`\"{}contiki.\+h\char`\"{}}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structaes__128__driver}{aes\+\_\+128\+\_\+driver}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{aes-128_8h_abce60efe6dbf866b21dbedbb0da50de9}{}\#define {\bfseries A\+E\+S\+\_\+128\+\_\+\+B\+L\+O\+C\+K\+\_\+\+S\+I\+Z\+E}~16\label{aes-128_8h_abce60efe6dbf866b21dbedbb0da50de9}
+
+\item 
+\hypertarget{aes-128_8h_aa49f87a8fdf7ee58b6b85b6c75bacbb3}{}\#define {\bfseries A\+E\+S\+\_\+128\+\_\+\+K\+E\+Y\+\_\+\+L\+E\+N\+G\+T\+H}~16\label{aes-128_8h_aa49f87a8fdf7ee58b6b85b6c75bacbb3}
+
+\item 
+\hypertarget{aes-128_8h_a16cea710e84ab48a922d59ae239bf9e8}{}\#define {\bfseries A\+E\+S\+\_\+128}~\hyperlink{structaes__128__driver}{aes\+\_\+128\+\_\+driver}\label{aes-128_8h_a16cea710e84ab48a922d59ae239bf9e8}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{aes-128_8h_aaf06f325766216e2c24ea4ce2d69bc38}{}void \hyperlink{aes-128_8h_aaf06f325766216e2c24ea4ce2d69bc38}{aes\+\_\+128\+\_\+padded\+\_\+encrypt} (uint8\+\_\+t $\ast$plaintext\+\_\+and\+\_\+result, uint8\+\_\+t plaintext\+\_\+len)\label{aes-128_8h_aaf06f325766216e2c24ea4ce2d69bc38}
+
+\begin{DoxyCompactList}\small\item\em Pads the plaintext with zeroes before calling A\+E\+S\+\_\+128.\+encrypt. \end{DoxyCompactList}\item 
+\hypertarget{aes-128_8h_af3d3a1d98476d18eb897330340517233}{}void \hyperlink{aes-128_8h_af3d3a1d98476d18eb897330340517233}{aes\+\_\+128\+\_\+set\+\_\+padded\+\_\+key} (uint8\+\_\+t $\ast$key, uint8\+\_\+t key\+\_\+len)\label{aes-128_8h_af3d3a1d98476d18eb897330340517233}
+
+\begin{DoxyCompactList}\small\item\em Pads the key with zeroes before calling A\+E\+S\+\_\+128.\+set\+\_\+key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{aes-128_8h_ae2362227d4da790ed743d0bab74379bd}{}const struct \hyperlink{structaes__128__driver}{aes\+\_\+128\+\_\+driver} {\bfseries A\+E\+S\+\_\+128}\label{aes-128_8h_ae2362227d4da790ed743d0bab74379bd}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+E\+S-\/128. \begin{DoxyAuthor}{Author}
+Konrad Krentz \href{mailto:konrad.krentz@gmail.com}{\tt konrad.\+krentz@gmail.\+com} 
+\end{DoxyAuthor}

@@ -1,0 +1,1051 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - coverage.info - core/net/rpl/rpl-icmp6.c</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">core/net/rpl</a> - rpl-icmp6.c<span style="font-size: 80%;"> (source / <a href="rpl-icmp6.c.func.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">302</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2014-12-23</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">15</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">142</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">           Branch data     Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>                :            : /*</a>
+<span class="lineNum">       2 </span>                :            :  * Copyright (c) 2010, Swedish Institute of Computer Science.
+<span class="lineNum">       3 </span>                :            :  * All rights reserved.
+<span class="lineNum">       4 </span>                :            :  *
+<span class="lineNum">       5 </span>                :            :  * Redistribution and use in source and binary forms, with or without
+<span class="lineNum">       6 </span>                :            :  * modification, are permitted provided that the following conditions
+<span class="lineNum">       7 </span>                :            :  * are met:
+<span class="lineNum">       8 </span>                :            :  * 1. Redistributions of source code must retain the above copyright
+<span class="lineNum">       9 </span>                :            :  *    notice, this list of conditions and the following disclaimer.
+<span class="lineNum">      10 </span>                :            :  * 2. Redistributions in binary form must reproduce the above copyright
+<span class="lineNum">      11 </span>                :            :  *    notice, this list of conditions and the following disclaimer in the
+<span class="lineNum">      12 </span>                :            :  *    documentation and/or other materials provided with the distribution.
+<span class="lineNum">      13 </span>                :            :  * 3. Neither the name of the Institute nor the names of its contributors
+<span class="lineNum">      14 </span>                :            :  *    may be used to endorse or promote products derived from this software
+<span class="lineNum">      15 </span>                :            :  *    without specific prior written permission.
+<span class="lineNum">      16 </span>                :            :  *
+<span class="lineNum">      17 </span>                :            :  * THIS SOFTWARE IS PROVIDED BY THE INSTITUTE AND CONTRIBUTORS ``AS IS'' AND
+<span class="lineNum">      18 </span>                :            :  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+<span class="lineNum">      19 </span>                :            :  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+<span class="lineNum">      20 </span>                :            :  * ARE DISCLAIMED.  IN NO EVENT SHALL THE INSTITUTE OR CONTRIBUTORS BE LIABLE
+<span class="lineNum">      21 </span>                :            :  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+<span class="lineNum">      22 </span>                :            :  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+<span class="lineNum">      23 </span>                :            :  * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+<span class="lineNum">      24 </span>                :            :  * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+<span class="lineNum">      25 </span>                :            :  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+<span class="lineNum">      26 </span>                :            :  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+<span class="lineNum">      27 </span>                :            :  * SUCH DAMAGE.
+<span class="lineNum">      28 </span>                :            :  *
+<span class="lineNum">      29 </span>                :            :  * This file is part of the Contiki operating system.
+<span class="lineNum">      30 </span>                :            :  *
+<span class="lineNum">      31 </span>                :            :  */
+<span class="lineNum">      32 </span>                :            : 
+<span class="lineNum">      33 </span>                :            : /**
+<span class="lineNum">      34 </span>                :            :  * \file
+<span class="lineNum">      35 </span>                :            :  *         ICMP6 I/O for RPL control messages.
+<span class="lineNum">      36 </span>                :            :  *
+<span class="lineNum">      37 </span>                :            :  * \author Joakim Eriksson &lt;joakime@sics.se&gt;, Nicolas Tsiftes &lt;nvt@sics.se&gt;
+<span class="lineNum">      38 </span>                :            :  * Contributors: Niclas Finne &lt;nfi@sics.se&gt;, Joel Hoglund &lt;joel@sics.se&gt;,
+<span class="lineNum">      39 </span>                :            :  *               Mathieu Pouillot &lt;m.pouillot@watteco.com&gt;
+<span class="lineNum">      40 </span>                :            :  *               George Oikonomou &lt;oikonomou@users.sourceforge.net&gt; (multicast)
+<span class="lineNum">      41 </span>                :            :  */
+<span class="lineNum">      42 </span>                :            : 
+<span class="lineNum">      43 </span>                :            : /**
+<span class="lineNum">      44 </span>                :            :  * \addtogroup uip6
+<span class="lineNum">      45 </span>                :            :  * @{
+<span class="lineNum">      46 </span>                :            :  */
+<span class="lineNum">      47 </span>                :            : 
+<span class="lineNum">      48 </span>                :            : #include &quot;net/ip/tcpip.h&quot;
+<span class="lineNum">      49 </span>                :            : #include &quot;net/ip/uip.h&quot;
+<span class="lineNum">      50 </span>                :            : #include &quot;net/ipv6/uip-ds6.h&quot;
+<span class="lineNum">      51 </span>                :            : #include &quot;net/ipv6/uip-nd6.h&quot;
+<span class="lineNum">      52 </span>                :            : #include &quot;net/ipv6/uip-icmp6.h&quot;
+<span class="lineNum">      53 </span>                :            : #include &quot;net/rpl/rpl-private.h&quot;
+<span class="lineNum">      54 </span>                :            : #include &quot;net/packetbuf.h&quot;
+<span class="lineNum">      55 </span>                :            : #include &quot;net/ipv6/multicast/uip-mcast6.h&quot;
+<span class="lineNum">      56 </span>                :            : 
+<span class="lineNum">      57 </span>                :            : #include &lt;limits.h&gt;
+<span class="lineNum">      58 </span>                :            : #include &lt;string.h&gt;
+<span class="lineNum">      59 </span>                :            : 
+<span class="lineNum">      60 </span>                :            : #define DEBUG DEBUG_NONE
+<span class="lineNum">      61 </span>                :            : 
+<span class="lineNum">      62 </span>                :            : #include &quot;net/ip/uip-debug.h&quot;
+<span class="lineNum">      63 </span>                :            : 
+<span class="lineNum">      64 </span>                :            : /*---------------------------------------------------------------------------*/
+<span class="lineNum">      65 </span>                :            : #define RPL_DIO_GROUNDED                 0x80
+<span class="lineNum">      66 </span>                :            : #define RPL_DIO_MOP_SHIFT                3
+<span class="lineNum">      67 </span>                :            : #define RPL_DIO_MOP_MASK                 0x3c
+<span class="lineNum">      68 </span>                :            : #define RPL_DIO_PREFERENCE_MASK          0x07
+<span class="lineNum">      69 </span>                :            : 
+<span class="lineNum">      70 </span>                :            : #define UIP_IP_BUF       ((struct uip_ip_hdr *)&amp;uip_buf[UIP_LLH_LEN])
+<span class="lineNum">      71 </span>                :            : #define UIP_ICMP_BUF     ((struct uip_icmp_hdr *)&amp;uip_buf[uip_l2_l3_hdr_len])
+<span class="lineNum">      72 </span>                :            : #define UIP_ICMP_PAYLOAD ((unsigned char *)&amp;uip_buf[uip_l2_l3_icmp_hdr_len])
+<span class="lineNum">      73 </span>                :            : /*---------------------------------------------------------------------------*/
+<span class="lineNum">      74 </span>                :            : static void dis_input(void);
+<span class="lineNum">      75 </span>                :            : static void dio_input(void);
+<span class="lineNum">      76 </span>                :            : static void dao_input(void);
+<span class="lineNum">      77 </span>                :            : static void dao_ack_input(void);
+<span class="lineNum">      78 </span>                :            : 
+<span class="lineNum">      79 </span>                :            : /* some debug callbacks useful when debugging RPL networks */
+<span class="lineNum">      80 </span>                :            : #ifdef RPL_DEBUG_DIO_INPUT
+<span class="lineNum">      81 </span>                :            : void RPL_DEBUG_DIO_INPUT(uip_ipaddr_t *, rpl_dio_t *);
+<span class="lineNum">      82 </span>                :            : #endif
+<span class="lineNum">      83 </span>                :            : 
+<span class="lineNum">      84 </span>                :            : #ifdef RPL_DEBUG_DAO_OUTPUT
+<span class="lineNum">      85 </span>                :            : void RPL_DEBUG_DAO_OUTPUT(rpl_parent_t *);
+<span class="lineNum">      86 </span>                :            : #endif
+<span class="lineNum">      87 </span>                :            : 
+<span class="lineNum">      88 </span>                :            : static uint8_t dao_sequence = RPL_LOLLIPOP_INIT;
+<span class="lineNum">      89 </span>                :            : 
+<span class="lineNum">      90 </span>                :            : extern rpl_of_t RPL_OF;
+<span class="lineNum">      91 </span>                :            : 
+<span class="lineNum">      92 </span>                :            : #if RPL_CONF_MULTICAST
+<span class="lineNum">      93 </span>                :            : static uip_mcast6_route_t *mcast_group;
+<span class="lineNum">      94 </span>                :            : #endif
+<span class="lineNum">      95 </span>                :            : /*---------------------------------------------------------------------------*/
+<span class="lineNum">      96 </span>                :            : /* Initialise RPL ICMPv6 message handlers */
+<span class="lineNum">      97 </span>                :            : UIP_ICMP6_HANDLER(dis_handler, ICMP6_RPL, RPL_CODE_DIS, dis_input);
+<span class="lineNum">      98 </span>                :            : UIP_ICMP6_HANDLER(dio_handler, ICMP6_RPL, RPL_CODE_DIO, dio_input);
+<span class="lineNum">      99 </span>                :            : UIP_ICMP6_HANDLER(dao_handler, ICMP6_RPL, RPL_CODE_DAO, dao_input);
+<span class="lineNum">     100 </span>                :            : UIP_ICMP6_HANDLER(dao_ack_handler, ICMP6_RPL, RPL_CODE_DAO_ACK, dao_ack_input);
+<a name="101"><span class="lineNum">     101 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     102 </span>                :            : static int
+<span class="lineNum">     103 </span>                :<span class="lineNoCov">          0 : get_global_addr(uip_ipaddr_t *addr)</span>
+<span class="lineNum">     104 </span>                :            : {
+<span class="lineNum">     105 </span>                :            :   int i;
+<span class="lineNum">     106 </span>                :            :   int state;
+<span class="lineNum">     107 </span>                :            : 
+<span class="lineNum">     108 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   for(i = 0; i &lt; UIP_DS6_ADDR_NB; i++) {</span>
+<span class="lineNum">     109 </span>                :<span class="lineNoCov">          0 :     state = uip_ds6_if.addr_list[i].state;</span>
+<span class="lineNum">     110 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(uip_ds6_if.addr_list[i].isused &amp;&amp;</span>
+<span class="lineNum">     111 </span>                :            :        (state == ADDR_TENTATIVE || state == ADDR_PREFERRED)) {
+<span class="lineNum">     112 </span>[<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>][<span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :       if(!uip_is_addr_link_local(&amp;uip_ds6_if.addr_list[i].ipaddr)) {</span>
+<span class="lineNum">     113 </span>                :<span class="lineNoCov">          0 :         memcpy(addr, &amp;uip_ds6_if.addr_list[i].ipaddr, sizeof(uip_ipaddr_t));</span>
+<span class="lineNum">     114 </span>                :<span class="lineNoCov">          0 :         return 1;</span>
+<span class="lineNum">     115 </span>                :            :       }
+<span class="lineNum">     116 </span>                :            :     }
+<span class="lineNum">     117 </span>                :            :   }
+<span class="lineNum">     118 </span>                :            :   return 0;
+<span class="lineNum">     119 </span>                :            : }
+<a name="120"><span class="lineNum">     120 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     121 </span>                :            : static uint32_t
+<span class="lineNum">     122 </span>                :<span class="lineNoCov">          0 : get32(uint8_t *buffer, int pos)</span>
+<span class="lineNum">     123 </span>                :            : {
+<span class="lineNum">     124 </span>                :<span class="lineNoCov">          0 :   return (uint32_t)buffer[pos] &lt;&lt; 24 | (uint32_t)buffer[pos + 1] &lt;&lt; 16 |</span>
+<span class="lineNum">     125 </span>                :<span class="lineNoCov">          0 :          (uint32_t)buffer[pos + 2] &lt;&lt; 8 | buffer[pos + 3];</span>
+<span class="lineNum">     126 </span>                :            : }
+<a name="127"><span class="lineNum">     127 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     128 </span>                :            : static void
+<span class="lineNum">     129 </span>                :<span class="lineNoCov">          0 : set32(uint8_t *buffer, int pos, uint32_t value)</span>
+<span class="lineNum">     130 </span>                :            : {
+<span class="lineNum">     131 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = value &gt;&gt; 24;</span>
+<span class="lineNum">     132 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = (value &gt;&gt; 16) &amp; 0xff;</span>
+<span class="lineNum">     133 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = (value &gt;&gt; 8) &amp; 0xff;</span>
+<span class="lineNum">     134 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = value &amp; 0xff;</span>
+<span class="lineNum">     135 </span>                :<span class="lineNoCov">          0 : }</span>
+<a name="136"><span class="lineNum">     136 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     137 </span>                :            : static uint16_t
+<span class="lineNum">     138 </span>                :<span class="lineNoCov">          0 : get16(uint8_t *buffer, int pos)</span>
+<span class="lineNum">     139 </span>                :            : {
+<span class="lineNum">     140 </span>                :<span class="lineNoCov">          0 :   return (uint16_t)buffer[pos] &lt;&lt; 8 | buffer[pos + 1];</span>
+<span class="lineNum">     141 </span>                :            : }
+<a name="142"><span class="lineNum">     142 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     143 </span>                :            : static void
+<span class="lineNum">     144 </span>                :<span class="lineNoCov">          0 : set16(uint8_t *buffer, int pos, uint16_t value)</span>
+<span class="lineNum">     145 </span>                :            : {
+<span class="lineNum">     146 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = value &gt;&gt; 8;</span>
+<span class="lineNum">     147 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = value &amp; 0xff;</span>
+<span class="lineNum">     148 </span>                :<span class="lineNoCov">          0 : }</span>
+<a name="149"><span class="lineNum">     149 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     150 </span>                :            : static void
+<span class="lineNum">     151 </span>                :<span class="lineNoCov">          0 : dis_input(void)</span>
+<span class="lineNum">     152 </span>                :            : {
+<span class="lineNum">     153 </span>                :            :   rpl_instance_t *instance;
+<span class="lineNum">     154 </span>                :            :   rpl_instance_t *end;
+<span class="lineNum">     155 </span>                :            : 
+<span class="lineNum">     156 </span>                :            :   /* DAG Information Solicitation */
+<span class="lineNum">     157 </span>                :            :   PRINTF(&quot;RPL: Received a DIS from &quot;);
+<span class="lineNum">     158 </span>                :            :   PRINT6ADDR(&amp;UIP_IP_BUF-&gt;srcipaddr);
+<span class="lineNum">     159 </span>                :            :   PRINTF(&quot;\n&quot;);
+<span class="lineNum">     160 </span>                :            : 
+<span class="lineNum">     161 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   for(instance = &amp;instance_table[0], end = instance + RPL_MAX_INSTANCES;</span>
+<span class="lineNum">     162 </span>                :            :       instance &lt; end; ++instance) {
+<span class="lineNum">     163 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(instance-&gt;used == 1) {</span>
+<span class="lineNum">     164 </span>                :            : #if RPL_LEAF_ONLY
+<span class="lineNum">     165 </span>                :            :       if(!uip_is_addr_mcast(&amp;UIP_IP_BUF-&gt;destipaddr)) {
+<span class="lineNum">     166 </span>                :            :         PRINTF(&quot;RPL: LEAF ONLY Multicast DIS will NOT reset DIO timer\n&quot;);
+<span class="lineNum">     167 </span>                :            : #else /* !RPL_LEAF_ONLY */
+<span class="lineNum">     168 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       if(uip_is_addr_mcast(&amp;UIP_IP_BUF-&gt;destipaddr)) {</span>
+<span class="lineNum">     169 </span>                :            :         PRINTF(&quot;RPL: Multicast DIS =&gt; reset DIO timer\n&quot;);
+<span class="lineNum">     170 </span>                :<span class="lineNoCov">          0 :         rpl_reset_dio_timer(instance);</span>
+<span class="lineNum">     171 </span>                :            :       } else {
+<span class="lineNum">     172 </span>                :            : #endif /* !RPL_LEAF_ONLY */
+<span class="lineNum">     173 </span>                :            :         PRINTF(&quot;RPL: Unicast DIS, reply to sender\n&quot;);
+<span class="lineNum">     174 </span>                :<span class="lineNoCov">          0 :         dio_output(instance, &amp;UIP_IP_BUF-&gt;srcipaddr);</span>
+<span class="lineNum">     175 </span>                :            :       }
+<span class="lineNum">     176 </span>                :            :     }
+<span class="lineNum">     177 </span>                :            :   }
+<span class="lineNum">     178 </span>                :<span class="lineNoCov">          0 :   uip_len = 0;</span>
+<span class="lineNum">     179 </span>                :<span class="lineNoCov">          0 : }</span>
+<a name="180"><span class="lineNum">     180 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     181 </span>                :            : void
+<span class="lineNum">     182 </span>                :<span class="lineNoCov">          0 : dis_output(uip_ipaddr_t *addr)</span>
+<span class="lineNum">     183 </span>                :            : {
+<span class="lineNum">     184 </span>                :            :   unsigned char *buffer;
+<span class="lineNum">     185 </span>                :            :   uip_ipaddr_t tmpaddr;
+<span class="lineNum">     186 </span>                :            : 
+<span class="lineNum">     187 </span>                :            :   /*
+<span class="lineNum">     188 </span>                :            :    * DAG Information Solicitation  - 2 bytes reserved
+<span class="lineNum">     189 </span>                :            :    *      0                   1                   2
+<span class="lineNum">     190 </span>                :            :    *      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3
+<span class="lineNum">     191 </span>                :            :    *     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+<span class="lineNum">     192 </span>                :            :    *     |     Flags     |   Reserved    |   Option(s)...
+<span class="lineNum">     193 </span>                :            :    *     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+<span class="lineNum">     194 </span>                :            :    */
+<span class="lineNum">     195 </span>                :            : 
+<span class="lineNum">     196 </span>                :<span class="lineNoCov">          0 :   buffer = UIP_ICMP_PAYLOAD;</span>
+<span class="lineNum">     197 </span>                :<span class="lineNoCov">          0 :   buffer[0] = buffer[1] = 0;</span>
+<span class="lineNum">     198 </span>                :            : 
+<span class="lineNum">     199 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(addr == NULL) {</span>
+<span class="lineNum">     200 </span>                :<span class="lineNoCov">          0 :     uip_create_linklocal_rplnodes_mcast(&amp;tmpaddr);</span>
+<span class="lineNum">     201 </span>                :<span class="lineNoCov">          0 :     addr = &amp;tmpaddr;</span>
+<span class="lineNum">     202 </span>                :            :   }
+<span class="lineNum">     203 </span>                :            : 
+<span class="lineNum">     204 </span>                :            :   PRINTF(&quot;RPL: Sending a DIS to &quot;);
+<span class="lineNum">     205 </span>                :            :   PRINT6ADDR(addr);
+<span class="lineNum">     206 </span>                :            :   PRINTF(&quot;\n&quot;);
+<span class="lineNum">     207 </span>                :            : 
+<span class="lineNum">     208 </span>                :<span class="lineNoCov">          0 :   uip_icmp6_send(addr, ICMP6_RPL, RPL_CODE_DIS, 2);</span>
+<span class="lineNum">     209 </span>                :<span class="lineNoCov">          0 : }</span>
+<a name="210"><span class="lineNum">     210 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     211 </span>                :            : static void
+<span class="lineNum">     212 </span>                :<span class="lineNoCov">          0 : dio_input(void)</span>
+<span class="lineNum">     213 </span>                :            : {
+<span class="lineNum">     214 </span>                :            :   unsigned char *buffer;
+<span class="lineNum">     215 </span>                :            :   uint8_t buffer_length;
+<span class="lineNum">     216 </span>                :            :   rpl_dio_t dio;
+<span class="lineNum">     217 </span>                :            :   uint8_t subopt_type;
+<span class="lineNum">     218 </span>                :            :   int i;
+<span class="lineNum">     219 </span>                :            :   int len;
+<span class="lineNum">     220 </span>                :            :   uip_ipaddr_t from;
+<span class="lineNum">     221 </span>                :            :   uip_ds6_nbr_t *nbr;
+<span class="lineNum">     222 </span>                :            : 
+<span class="lineNum">     223 </span>                :            :   memset(&amp;dio, 0, sizeof(dio));
+<span class="lineNum">     224 </span>                :            : 
+<span class="lineNum">     225 </span>                :            :   /* Set default values in case the DIO configuration option is missing. */
+<span class="lineNum">     226 </span>                :<span class="lineNoCov">          0 :   dio.dag_intdoubl = RPL_DIO_INTERVAL_DOUBLINGS;</span>
+<span class="lineNum">     227 </span>                :<span class="lineNoCov">          0 :   dio.dag_intmin = RPL_DIO_INTERVAL_MIN;</span>
+<span class="lineNum">     228 </span>                :<span class="lineNoCov">          0 :   dio.dag_redund = RPL_DIO_REDUNDANCY;</span>
+<span class="lineNum">     229 </span>                :<span class="lineNoCov">          0 :   dio.dag_min_hoprankinc = RPL_MIN_HOPRANKINC;</span>
+<span class="lineNum">     230 </span>                :<span class="lineNoCov">          0 :   dio.dag_max_rankinc = RPL_MAX_RANKINC;</span>
+<span class="lineNum">     231 </span>                :<span class="lineNoCov">          0 :   dio.ocp = RPL_OF.ocp;</span>
+<span class="lineNum">     232 </span>                :<span class="lineNoCov">          0 :   dio.default_lifetime = RPL_DEFAULT_LIFETIME;</span>
+<span class="lineNum">     233 </span>                :<span class="lineNoCov">          0 :   dio.lifetime_unit = RPL_DEFAULT_LIFETIME_UNIT;</span>
+<span class="lineNum">     234 </span>                :            : 
+<span class="lineNum">     235 </span>                :<span class="lineNoCov">          0 :   uip_ipaddr_copy(&amp;from, &amp;UIP_IP_BUF-&gt;srcipaddr);</span>
+<span class="lineNum">     236 </span>                :            : 
+<span class="lineNum">     237 </span>                :            :   /* DAG Information Object */
+<span class="lineNum">     238 </span>                :            :   PRINTF(&quot;RPL: Received a DIO from &quot;);
+<span class="lineNum">     239 </span>                :            :   PRINT6ADDR(&amp;from);
+<span class="lineNum">     240 </span>                :            :   PRINTF(&quot;\n&quot;);
+<span class="lineNum">     241 </span>                :            : 
+<span class="lineNum">     242 </span>        [<span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if((nbr = uip_ds6_nbr_lookup(&amp;from)) == NULL) {</span>
+<span class="lineNum">     243 </span>        [<span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if((nbr = uip_ds6_nbr_add(&amp;from, (uip_lladdr_t *)</span>
+<span class="lineNum">     244 </span>                :<span class="lineNoCov">          0 :                               packetbuf_addr(PACKETBUF_ADDR_SENDER),</span>
+<span class="lineNum">     245 </span>                :            :                               0, NBR_REACHABLE)) != NULL) {
+<span class="lineNum">     246 </span>                :            :       /* set reachable timer */
+<span class="lineNum">     247 </span>                :<span class="lineNoCov">          0 :       stimer_set(&amp;nbr-&gt;reachable, UIP_ND6_REACHABLE_TIME / 1000);</span>
+<span class="lineNum">     248 </span>                :            :       PRINTF(&quot;RPL: Neighbor added to neighbor cache &quot;);
+<span class="lineNum">     249 </span>                :            :       PRINT6ADDR(&amp;from);
+<span class="lineNum">     250 </span>                :            :       PRINTF(&quot;, &quot;);
+<span class="lineNum">     251 </span>                :            :       PRINTLLADDR((uip_lladdr_t *)packetbuf_addr(PACKETBUF_ADDR_SENDER));
+<span class="lineNum">     252 </span>                :            :       PRINTF(&quot;\n&quot;);
+<span class="lineNum">     253 </span>                :            :     } else {
+<span class="lineNum">     254 </span>                :            :       PRINTF(&quot;RPL: Out of memory, dropping DIO from &quot;);
+<span class="lineNum">     255 </span>                :            :       PRINT6ADDR(&amp;from);
+<span class="lineNum">     256 </span>                :            :       PRINTF(&quot;, &quot;);
+<span class="lineNum">     257 </span>                :            :       PRINTLLADDR((uip_lladdr_t *)packetbuf_addr(PACKETBUF_ADDR_SENDER));
+<span class="lineNum">     258 </span>                :            :       PRINTF(&quot;\n&quot;);
+<span class="lineNum">     259 </span>                :            :       return;
+<span class="lineNum">     260 </span>                :            :     }
+<span class="lineNum">     261 </span>                :            :   } else {
+<span class="lineNum">     262 </span>                :            :     PRINTF(&quot;RPL: Neighbor already in neighbor cache\n&quot;);
+<span class="lineNum">     263 </span>                :            :   }
+<span class="lineNum">     264 </span>                :            : 
+<span class="lineNum">     265 </span>                :<span class="lineNoCov">          0 :   buffer_length = uip_len - uip_l3_icmp_hdr_len;</span>
+<span class="lineNum">     266 </span>                :            : 
+<span class="lineNum">     267 </span>                :            :   /* Process the DIO base option. */
+<span class="lineNum">     268 </span>                :<span class="lineNoCov">          0 :   i = 0;</span>
+<span class="lineNum">     269 </span>                :<span class="lineNoCov">          0 :   buffer = UIP_ICMP_PAYLOAD;</span>
+<span class="lineNum">     270 </span>                :            : 
+<span class="lineNum">     271 </span>                :<span class="lineNoCov">          0 :   dio.instance_id = buffer[i++];</span>
+<span class="lineNum">     272 </span>                :<span class="lineNoCov">          0 :   dio.version = buffer[i++];</span>
+<span class="lineNum">     273 </span>                :<span class="lineNoCov">          0 :   dio.rank = get16(buffer, i);</span>
+<span class="lineNum">     274 </span>                :<span class="lineNoCov">          0 :   i += 2;</span>
+<span class="lineNum">     275 </span>                :            : 
+<span class="lineNum">     276 </span>                :            :   PRINTF(&quot;RPL: Incoming DIO (id, ver, rank) = (%u,%u,%u)\n&quot;,
+<span class="lineNum">     277 </span>                :            :          (unsigned)dio.instance_id,
+<span class="lineNum">     278 </span>                :            :          (unsigned)dio.version,
+<span class="lineNum">     279 </span>                :            :          (unsigned)dio.rank);
+<span class="lineNum">     280 </span>                :            : 
+<span class="lineNum">     281 </span>                :<span class="lineNoCov">          0 :   dio.grounded = buffer[i] &amp; RPL_DIO_GROUNDED;</span>
+<span class="lineNum">     282 </span>                :<span class="lineNoCov">          0 :   dio.mop = (buffer[i]&amp; RPL_DIO_MOP_MASK) &gt;&gt; RPL_DIO_MOP_SHIFT;</span>
+<span class="lineNum">     283 </span>                :<span class="lineNoCov">          0 :   dio.preference = buffer[i++] &amp; RPL_DIO_PREFERENCE_MASK;</span>
+<span class="lineNum">     284 </span>                :            : 
+<span class="lineNum">     285 </span>                :<span class="lineNoCov">          0 :   dio.dtsn = buffer[i++];</span>
+<span class="lineNum">     286 </span>                :            :   /* two reserved bytes */
+<span class="lineNum">     287 </span>                :<span class="lineNoCov">          0 :   i += 2;</span>
+<span class="lineNum">     288 </span>                :            : 
+<span class="lineNum">     289 </span>                :<span class="lineNoCov">          0 :   memcpy(&amp;dio.dag_id, buffer + i, sizeof(dio.dag_id));</span>
+<span class="lineNum">     290 </span>                :<span class="lineNoCov">          0 :   i += sizeof(dio.dag_id);</span>
+<span class="lineNum">     291 </span>                :            : 
+<span class="lineNum">     292 </span>                :            :   PRINTF(&quot;RPL: Incoming DIO (dag_id, pref) = (&quot;);
+<span class="lineNum">     293 </span>                :            :   PRINT6ADDR(&amp;dio.dag_id);
+<span class="lineNum">     294 </span>                :            :   PRINTF(&quot;, %u)\n&quot;, dio.preference);
+<span class="lineNum">     295 </span>                :            : 
+<span class="lineNum">     296 </span>                :            :   /* Check if there are any DIO suboptions. */
+<span class="lineNum">     297 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   for(; i &lt; buffer_length; i += len) {</span>
+<span class="lineNum">     298 </span>                :<span class="lineNoCov">          0 :     subopt_type = buffer[i];</span>
+<span class="lineNum">     299 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(subopt_type == RPL_OPTION_PAD1) {</span>
+<span class="lineNum">     300 </span>                :            :       len = 1;
+<span class="lineNum">     301 </span>                :            :     } else {
+<span class="lineNum">     302 </span>                :            :       /* Suboption with a two-byte header + payload */
+<span class="lineNum">     303 </span>                :<span class="lineNoCov">          0 :       len = 2 + buffer[i + 1];</span>
+<span class="lineNum">     304 </span>                :            :     }
+<span class="lineNum">     305 </span>                :            : 
+<span class="lineNum">     306 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(len + i &gt; buffer_length) {</span>
+<span class="lineNum">     307 </span>                :            :       PRINTF(&quot;RPL: Invalid DIO packet\n&quot;);
+<span class="lineNum">     308 </span>                :            :       RPL_STAT(rpl_stats.malformed_msgs++);
+<span class="lineNum">     309 </span>                :            :       return;
+<span class="lineNum">     310 </span>                :            :     }
+<span class="lineNum">     311 </span>                :            : 
+<span class="lineNum">     312 </span>                :            :     PRINTF(&quot;RPL: DIO option %u, length: %u\n&quot;, subopt_type, len - 2);
+<span class="lineNum">     313 </span>                :            : 
+<span class="lineNum">     314 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span> :<span class="lineNoCov">          0 :     switch(subopt_type) {</span>
+<span class="lineNum">         </span>            <span class="branchNoExec" title="Branch 4 was not executed"> # </span>]
+<span class="lineNum">     315 </span>                :            :     case RPL_OPTION_DAG_METRIC_CONTAINER:
+<span class="lineNum">     316 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       if(len &lt; 6) {</span>
+<span class="lineNum">     317 </span>                :            :         PRINTF(&quot;RPL: Invalid DAG MC, len = %d\n&quot;, len);
+<span class="lineNum">     318 </span>                :            :         RPL_STAT(rpl_stats.malformed_msgs++);
+<span class="lineNum">     319 </span>                :            :         return;
+<span class="lineNum">     320 </span>                :            :       }
+<span class="lineNum">     321 </span>                :<span class="lineNoCov">          0 :       dio.mc.type = buffer[i + 2];</span>
+<span class="lineNum">     322 </span>                :<span class="lineNoCov">          0 :       dio.mc.flags = buffer[i + 3] &lt;&lt; 1;</span>
+<span class="lineNum">     323 </span>                :<span class="lineNoCov">          0 :       dio.mc.flags |= buffer[i + 4] &gt;&gt; 7;</span>
+<span class="lineNum">     324 </span>                :<span class="lineNoCov">          0 :       dio.mc.aggr = (buffer[i + 4] &gt;&gt; 4) &amp; 0x3;</span>
+<span class="lineNum">     325 </span>                :<span class="lineNoCov">          0 :       dio.mc.prec = buffer[i + 4] &amp; 0xf;</span>
+<span class="lineNum">     326 </span>                :<span class="lineNoCov">          0 :       dio.mc.length = buffer[i + 5];</span>
+<span class="lineNum">     327 </span>                :            : 
+<span class="lineNum">     328 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       if(dio.mc.type == RPL_DAG_MC_NONE) {</span>
+<span class="lineNum">     329 </span>                :            :         /* No metric container: do nothing */
+<span class="lineNum">     330 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       } else if(dio.mc.type == RPL_DAG_MC_ETX) {</span>
+<span class="lineNum">     331 </span>                :<span class="lineNoCov">          0 :         dio.mc.obj.etx = get16(buffer, i + 6);</span>
+<span class="lineNum">     332 </span>                :            : 
+<span class="lineNum">     333 </span>                :            :         PRINTF(&quot;RPL: DAG MC: type %u, flags %u, aggr %u, prec %u, length %u, ETX %u\n&quot;,
+<span class="lineNum">     334 </span>                :            :                (unsigned)dio.mc.type,
+<span class="lineNum">     335 </span>                :            :                (unsigned)dio.mc.flags,
+<span class="lineNum">     336 </span>                :            :                (unsigned)dio.mc.aggr,
+<span class="lineNum">     337 </span>                :            :                (unsigned)dio.mc.prec,
+<span class="lineNum">     338 </span>                :            :                (unsigned)dio.mc.length,
+<span class="lineNum">     339 </span>                :            :                (unsigned)dio.mc.obj.etx);
+<span class="lineNum">     340 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       } else if(dio.mc.type == RPL_DAG_MC_ENERGY) {</span>
+<span class="lineNum">     341 </span>                :<span class="lineNoCov">          0 :         dio.mc.obj.energy.flags = buffer[i + 6];</span>
+<span class="lineNum">     342 </span>                :<span class="lineNoCov">          0 :         dio.mc.obj.energy.energy_est = buffer[i + 7];</span>
+<span class="lineNum">     343 </span>                :            :       } else {
+<span class="lineNum">     344 </span>                :            :        PRINTF(&quot;RPL: Unhandled DAG MC type: %u\n&quot;, (unsigned)dio.mc.type);
+<span class="lineNum">     345 </span>                :            :        return;
+<span class="lineNum">     346 </span>                :            :       }
+<span class="lineNum">     347 </span>                :            :       break;
+<span class="lineNum">     348 </span>                :            :     case RPL_OPTION_ROUTE_INFO:
+<span class="lineNum">     349 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       if(len &lt; 9) {</span>
+<span class="lineNum">     350 </span>                :            :         PRINTF(&quot;RPL: Invalid destination prefix option, len = %d\n&quot;, len);
+<span class="lineNum">     351 </span>                :            :         RPL_STAT(rpl_stats.malformed_msgs++);
+<span class="lineNum">     352 </span>                :            :         return;
+<span class="lineNum">     353 </span>                :            :       }
+<span class="lineNum">     354 </span>                :            : 
+<span class="lineNum">     355 </span>                :            :       /* The flags field includes the preference value. */
+<span class="lineNum">     356 </span>                :<span class="lineNoCov">          0 :       dio.destination_prefix.length = buffer[i + 2];</span>
+<span class="lineNum">     357 </span>                :<span class="lineNoCov">          0 :       dio.destination_prefix.flags = buffer[i + 3];</span>
+<span class="lineNum">     358 </span>                :<span class="lineNoCov">          0 :       dio.destination_prefix.lifetime = get32(buffer, i + 4);</span>
+<span class="lineNum">     359 </span>                :            : 
+<span class="lineNum">     360 </span>[<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>][<span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :       if(((dio.destination_prefix.length + 7) / 8) + 8 &lt;= len &amp;&amp;</span>
+<span class="lineNum">     361 </span>                :            :          dio.destination_prefix.length &lt;= 128) {
+<span class="lineNum">     362 </span>                :            :         PRINTF(&quot;RPL: Copying destination prefix\n&quot;);
+<span class="lineNum">     363 </span>                :<span class="lineNoCov">          0 :         memcpy(&amp;dio.destination_prefix.prefix, &amp;buffer[i + 8],</span>
+<span class="lineNum">     364 </span>                :<span class="lineNoCov">          0 :                (dio.destination_prefix.length + 7) / 8);</span>
+<span class="lineNum">     365 </span>                :            :       } else {
+<span class="lineNum">     366 </span>                :            :         PRINTF(&quot;RPL: Invalid route info option, len = %d\n&quot;, len);
+<span class="lineNum">     367 </span>                :            :         RPL_STAT(rpl_stats.malformed_msgs++);
+<span class="lineNum">     368 </span>                :            :         return;
+<span class="lineNum">     369 </span>                :            :       }
+<span class="lineNum">     370 </span>                :            : 
+<span class="lineNum">     371 </span>                :            :       break;
+<span class="lineNum">     372 </span>                :            :     case RPL_OPTION_DAG_CONF:
+<span class="lineNum">     373 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       if(len != 16) {</span>
+<span class="lineNum">     374 </span>                :            :         PRINTF(&quot;RPL: Invalid DAG configuration option, len = %d\n&quot;, len);
+<span class="lineNum">     375 </span>                :            :         RPL_STAT(rpl_stats.malformed_msgs++);
+<span class="lineNum">     376 </span>                :            :         return;
+<span class="lineNum">     377 </span>                :            :       }
+<span class="lineNum">     378 </span>                :            : 
+<span class="lineNum">     379 </span>                :            :       /* Path control field not yet implemented - at i + 2 */
+<span class="lineNum">     380 </span>                :<span class="lineNoCov">          0 :       dio.dag_intdoubl = buffer[i + 3];</span>
+<span class="lineNum">     381 </span>                :<span class="lineNoCov">          0 :       dio.dag_intmin = buffer[i + 4];</span>
+<span class="lineNum">     382 </span>                :<span class="lineNoCov">          0 :       dio.dag_redund = buffer[i + 5];</span>
+<span class="lineNum">     383 </span>                :<span class="lineNoCov">          0 :       dio.dag_max_rankinc = get16(buffer, i + 6);</span>
+<span class="lineNum">     384 </span>                :<span class="lineNoCov">          0 :       dio.dag_min_hoprankinc = get16(buffer, i + 8);</span>
+<span class="lineNum">     385 </span>                :<span class="lineNoCov">          0 :       dio.ocp = get16(buffer, i + 10);</span>
+<span class="lineNum">     386 </span>                :            :       /* buffer + 12 is reserved */
+<span class="lineNum">     387 </span>                :<span class="lineNoCov">          0 :       dio.default_lifetime = buffer[i + 13];</span>
+<span class="lineNum">     388 </span>                :<span class="lineNoCov">          0 :       dio.lifetime_unit = get16(buffer, i + 14);</span>
+<span class="lineNum">     389 </span>                :            :       PRINTF(&quot;RPL: DAG conf:dbl=%d, min=%d red=%d maxinc=%d mininc=%d ocp=%d d_l=%u l_u=%u\n&quot;,
+<span class="lineNum">     390 </span>                :            :              dio.dag_intdoubl, dio.dag_intmin, dio.dag_redund,
+<span class="lineNum">     391 </span>                :            :              dio.dag_max_rankinc, dio.dag_min_hoprankinc, dio.ocp,
+<span class="lineNum">     392 </span>                :            :              dio.default_lifetime, dio.lifetime_unit);
+<span class="lineNum">     393 </span>                :<span class="lineNoCov">          0 :       break;</span>
+<span class="lineNum">     394 </span>                :            :     case RPL_OPTION_PREFIX_INFO:
+<span class="lineNum">     395 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       if(len != 32) {</span>
+<span class="lineNum">     396 </span>                :            :         PRINTF(&quot;RPL: Invalid DAG prefix info, len != 32\n&quot;);
+<span class="lineNum">     397 </span>                :            :         RPL_STAT(rpl_stats.malformed_msgs++);
+<span class="lineNum">     398 </span>                :            :         return;
+<span class="lineNum">     399 </span>                :            :       }
+<span class="lineNum">     400 </span>                :<span class="lineNoCov">          0 :       dio.prefix_info.length = buffer[i + 2];</span>
+<span class="lineNum">     401 </span>                :<span class="lineNoCov">          0 :       dio.prefix_info.flags = buffer[i + 3];</span>
+<span class="lineNum">     402 </span>                :            :       /* valid lifetime is ingnored for now - at i + 4 */
+<span class="lineNum">     403 </span>                :            :       /* preferred lifetime stored in lifetime */
+<span class="lineNum">     404 </span>                :<span class="lineNoCov">          0 :       dio.prefix_info.lifetime = get32(buffer, i + 8);</span>
+<span class="lineNum">     405 </span>                :            :       /* 32-bit reserved at i + 12 */
+<span class="lineNum">     406 </span>                :            :       PRINTF(&quot;RPL: Copying prefix information\n&quot;);
+<span class="lineNum">     407 </span>                :<span class="lineNoCov">          0 :       memcpy(&amp;dio.prefix_info.prefix, &amp;buffer[i + 16], 16);</span>
+<span class="lineNum">     408 </span>                :            :       break;
+<span class="lineNum">     409 </span>                :            :     default:
+<span class="lineNum">     410 </span>                :            :       PRINTF(&quot;RPL: Unsupported suboption type in DIO: %u\n&quot;,
+<span class="lineNum">     411 </span>                :            :         (unsigned)subopt_type);
+<span class="lineNum">     412 </span>                :            :     }
+<span class="lineNum">     413 </span>                :            :   }
+<span class="lineNum">     414 </span>                :            : 
+<span class="lineNum">     415 </span>                :            : #ifdef RPL_DEBUG_DIO_INPUT
+<span class="lineNum">     416 </span>                :            :   RPL_DEBUG_DIO_INPUT(&amp;from, &amp;dio);
+<span class="lineNum">     417 </span>                :            : #endif
+<span class="lineNum">     418 </span>                :            : 
+<span class="lineNum">     419 </span>                :<span class="lineNoCov">          0 :   rpl_process_dio(&amp;from, &amp;dio);</span>
+<span class="lineNum">     420 </span>                :            : 
+<span class="lineNum">     421 </span>                :<span class="lineNoCov">          0 :   uip_len = 0;</span>
+<span class="lineNum">     422 </span>                :            : }
+<a name="423"><span class="lineNum">     423 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     424 </span>                :            : void
+<span class="lineNum">     425 </span>                :<span class="lineNoCov">          0 : dio_output(rpl_instance_t *instance, uip_ipaddr_t *uc_addr)</span>
+<span class="lineNum">     426 </span>                :            : {
+<span class="lineNum">     427 </span>                :            :   unsigned char *buffer;
+<span class="lineNum">     428 </span>                :            :   int pos;
+<span class="lineNum">     429 </span>                :<span class="lineNoCov">          0 :   rpl_dag_t *dag = instance-&gt;current_dag;</span>
+<span class="lineNum">     430 </span>                :            : #if !RPL_LEAF_ONLY
+<span class="lineNum">     431 </span>                :            :   uip_ipaddr_t addr;
+<span class="lineNum">     432 </span>                :            : #endif /* !RPL_LEAF_ONLY */
+<span class="lineNum">     433 </span>                :            : 
+<span class="lineNum">     434 </span>                :            : #if RPL_LEAF_ONLY
+<span class="lineNum">     435 </span>                :            :   /* In leaf mode, we only send DIO messages as unicasts in response to
+<span class="lineNum">     436 </span>                :            :      unicast DIS messages. */
+<span class="lineNum">     437 </span>                :            :   if(uc_addr == NULL) {
+<span class="lineNum">     438 </span>                :            :     PRINTF(&quot;RPL: LEAF ONLY have multicast addr: skip dio_output\n&quot;);
+<span class="lineNum">     439 </span>                :            :     return;
+<span class="lineNum">     440 </span>                :            :   }
+<span class="lineNum">     441 </span>                :            : #endif /* RPL_LEAF_ONLY */
+<span class="lineNum">     442 </span>                :            : 
+<span class="lineNum">     443 </span>                :            :   /* DAG Information Object */
+<span class="lineNum">     444 </span>                :<span class="lineNoCov">          0 :   pos = 0;</span>
+<span class="lineNum">     445 </span>                :            : 
+<span class="lineNum">     446 </span>                :<span class="lineNoCov">          0 :   buffer = UIP_ICMP_PAYLOAD;</span>
+<span class="lineNum">     447 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = instance-&gt;instance_id;</span>
+<span class="lineNum">     448 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = dag-&gt;version;</span>
+<span class="lineNum">     449 </span>                :            : 
+<span class="lineNum">     450 </span>                :            : #if RPL_LEAF_ONLY
+<span class="lineNum">     451 </span>                :            :   PRINTF(&quot;RPL: LEAF ONLY DIO rank set to INFINITE_RANK\n&quot;);
+<span class="lineNum">     452 </span>                :            :   set16(buffer, pos, INFINITE_RANK);
+<span class="lineNum">     453 </span>                :            : #else /* RPL_LEAF_ONLY */
+<span class="lineNum">     454 </span>                :<span class="lineNoCov">          0 :   set16(buffer, pos, dag-&gt;rank);</span>
+<span class="lineNum">     455 </span>                :            : #endif /* RPL_LEAF_ONLY */
+<span class="lineNum">     456 </span>                :<span class="lineNoCov">          0 :   pos += 2;</span>
+<span class="lineNum">     457 </span>                :            : 
+<span class="lineNum">     458 </span>                :<span class="lineNoCov">          0 :   buffer[pos] = 0;</span>
+<span class="lineNum">     459 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(dag-&gt;grounded) {</span>
+<span class="lineNum">     460 </span>                :<span class="lineNoCov">          0 :     buffer[pos] |= RPL_DIO_GROUNDED;</span>
+<span class="lineNum">     461 </span>                :            :   }
+<span class="lineNum">     462 </span>                :            : 
+<span class="lineNum">     463 </span>                :<span class="lineNoCov">          0 :   buffer[pos] |= instance-&gt;mop &lt;&lt; RPL_DIO_MOP_SHIFT;</span>
+<span class="lineNum">     464 </span>                :<span class="lineNoCov">          0 :   buffer[pos] |= dag-&gt;preference &amp; RPL_DIO_PREFERENCE_MASK;</span>
+<span class="lineNum">     465 </span>                :<span class="lineNoCov">          0 :   pos++;</span>
+<span class="lineNum">     466 </span>                :            : 
+<span class="lineNum">     467 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = instance-&gt;dtsn_out;</span>
+<span class="lineNum">     468 </span>                :            : 
+<span class="lineNum">     469 </span>                :            :   /* always request new DAO to refresh route */
+<span class="lineNum">     470 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   RPL_LOLLIPOP_INCREMENT(instance-&gt;dtsn_out);</span>
+<span class="lineNum">     471 </span>                :            : 
+<span class="lineNum">     472 </span>                :            :   /* reserved 2 bytes */
+<span class="lineNum">     473 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = 0; /* flags */</span>
+<span class="lineNum">     474 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = 0; /* reserved */</span>
+<span class="lineNum">     475 </span>                :            : 
+<span class="lineNum">     476 </span>                :<span class="lineNoCov">          0 :   memcpy(buffer + pos, &amp;dag-&gt;dag_id, sizeof(dag-&gt;dag_id));</span>
+<span class="lineNum">     477 </span>                :<span class="lineNoCov">          0 :   pos += 16;</span>
+<span class="lineNum">     478 </span>                :            : 
+<span class="lineNum">     479 </span>                :            : #if !RPL_LEAF_ONLY
+<span class="lineNum">     480 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(instance-&gt;mc.type != RPL_DAG_MC_NONE) {</span>
+<span class="lineNum">     481 </span>                :<span class="lineNoCov">          0 :     instance-&gt;of-&gt;update_metric_container(instance);</span>
+<span class="lineNum">     482 </span>                :            : 
+<span class="lineNum">     483 </span>                :<span class="lineNoCov">          0 :     buffer[pos++] = RPL_OPTION_DAG_METRIC_CONTAINER;</span>
+<span class="lineNum">     484 </span>                :<span class="lineNoCov">          0 :     buffer[pos++] = 6;</span>
+<span class="lineNum">     485 </span>                :<span class="lineNoCov">          0 :     buffer[pos++] = instance-&gt;mc.type;</span>
+<span class="lineNum">     486 </span>                :<span class="lineNoCov">          0 :     buffer[pos++] = instance-&gt;mc.flags &gt;&gt; 1;</span>
+<span class="lineNum">     487 </span>                :<span class="lineNoCov">          0 :     buffer[pos] = (instance-&gt;mc.flags &amp; 1) &lt;&lt; 7;</span>
+<span class="lineNum">     488 </span>                :<span class="lineNoCov">          0 :     buffer[pos++] |= (instance-&gt;mc.aggr &lt;&lt; 4) | instance-&gt;mc.prec;</span>
+<span class="lineNum">     489 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(instance-&gt;mc.type == RPL_DAG_MC_ETX) {</span>
+<span class="lineNum">     490 </span>                :<span class="lineNoCov">          0 :       buffer[pos++] = 2;</span>
+<span class="lineNum">     491 </span>                :<span class="lineNoCov">          0 :       set16(buffer, pos, instance-&gt;mc.obj.etx);</span>
+<span class="lineNum">     492 </span>                :<span class="lineNoCov">          0 :       pos += 2;</span>
+<span class="lineNum">     493 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     } else if(instance-&gt;mc.type == RPL_DAG_MC_ENERGY) {</span>
+<span class="lineNum">     494 </span>                :<span class="lineNoCov">          0 :       buffer[pos++] = 2;</span>
+<span class="lineNum">     495 </span>                :<span class="lineNoCov">          0 :       buffer[pos++] = instance-&gt;mc.obj.energy.flags;</span>
+<span class="lineNum">     496 </span>                :<span class="lineNoCov">          0 :       buffer[pos++] = instance-&gt;mc.obj.energy.energy_est;</span>
+<span class="lineNum">     497 </span>                :            :     } else {
+<span class="lineNum">     498 </span>                :            :       PRINTF(&quot;RPL: Unable to send DIO because of unhandled DAG MC type %u\n&quot;,
+<span class="lineNum">     499 </span>                :            :         (unsigned)instance-&gt;mc.type);
+<span class="lineNum">     500 </span>                :<span class="lineNoCov">          0 :       return;</span>
+<span class="lineNum">     501 </span>                :            :     }
+<span class="lineNum">     502 </span>                :            :   }
+<span class="lineNum">     503 </span>                :            : #endif /* !RPL_LEAF_ONLY */
+<span class="lineNum">     504 </span>                :            : 
+<span class="lineNum">     505 </span>                :            :   /* Always add a DAG configuration option. */
+<span class="lineNum">     506 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = RPL_OPTION_DAG_CONF;</span>
+<span class="lineNum">     507 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = 14;</span>
+<span class="lineNum">     508 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = 0; /* No Auth, PCS = 0 */</span>
+<span class="lineNum">     509 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = instance-&gt;dio_intdoubl;</span>
+<span class="lineNum">     510 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = instance-&gt;dio_intmin;</span>
+<span class="lineNum">     511 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = instance-&gt;dio_redundancy;</span>
+<span class="lineNum">     512 </span>                :<span class="lineNoCov">          0 :   set16(buffer, pos, instance-&gt;max_rankinc);</span>
+<span class="lineNum">     513 </span>                :<span class="lineNoCov">          0 :   pos += 2;</span>
+<span class="lineNum">     514 </span>                :<span class="lineNoCov">          0 :   set16(buffer, pos, instance-&gt;min_hoprankinc);</span>
+<span class="lineNum">     515 </span>                :<span class="lineNoCov">          0 :   pos += 2;</span>
+<span class="lineNum">     516 </span>                :            :   /* OCP is in the DAG_CONF option */
+<span class="lineNum">     517 </span>                :<span class="lineNoCov">          0 :   set16(buffer, pos, instance-&gt;of-&gt;ocp);</span>
+<span class="lineNum">     518 </span>                :<span class="lineNoCov">          0 :   pos += 2;</span>
+<span class="lineNum">     519 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = 0; /* reserved */</span>
+<span class="lineNum">     520 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = instance-&gt;default_lifetime;</span>
+<span class="lineNum">     521 </span>                :<span class="lineNoCov">          0 :   set16(buffer, pos, instance-&gt;lifetime_unit);</span>
+<span class="lineNum">     522 </span>                :<span class="lineNoCov">          0 :   pos += 2;</span>
+<span class="lineNum">     523 </span>                :            : 
+<span class="lineNum">     524 </span>                :            :   /* Check if we have a prefix to send also. */
+<span class="lineNum">     525 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(dag-&gt;prefix_info.length &gt; 0) {</span>
+<span class="lineNum">     526 </span>                :<span class="lineNoCov">          0 :     buffer[pos++] = RPL_OPTION_PREFIX_INFO;</span>
+<span class="lineNum">     527 </span>                :<span class="lineNoCov">          0 :     buffer[pos++] = 30; /* always 30 bytes + 2 long */</span>
+<span class="lineNum">     528 </span>                :<span class="lineNoCov">          0 :     buffer[pos++] = dag-&gt;prefix_info.length;</span>
+<span class="lineNum">     529 </span>                :<span class="lineNoCov">          0 :     buffer[pos++] = dag-&gt;prefix_info.flags;</span>
+<span class="lineNum">     530 </span>                :<span class="lineNoCov">          0 :     set32(buffer, pos, dag-&gt;prefix_info.lifetime);</span>
+<span class="lineNum">     531 </span>                :<span class="lineNoCov">          0 :     pos += 4;</span>
+<span class="lineNum">     532 </span>                :<span class="lineNoCov">          0 :     set32(buffer, pos, dag-&gt;prefix_info.lifetime);</span>
+<span class="lineNum">     533 </span>                :<span class="lineNoCov">          0 :     pos += 4;</span>
+<span class="lineNum">     534 </span>                :<span class="lineNoCov">          0 :     memset(&amp;buffer[pos], 0, 4);</span>
+<span class="lineNum">     535 </span>                :<span class="lineNoCov">          0 :     pos += 4;</span>
+<span class="lineNum">     536 </span>                :<span class="lineNoCov">          0 :     memcpy(&amp;buffer[pos], &amp;dag-&gt;prefix_info.prefix, 16);</span>
+<span class="lineNum">     537 </span>                :<span class="lineNoCov">          0 :     pos += 16;</span>
+<span class="lineNum">     538 </span>                :            :     PRINTF(&quot;RPL: Sending prefix info in DIO for &quot;);
+<span class="lineNum">     539 </span>                :            :     PRINT6ADDR(&amp;dag-&gt;prefix_info.prefix);
+<span class="lineNum">     540 </span>                :            :     PRINTF(&quot;\n&quot;);
+<span class="lineNum">     541 </span>                :            :   } else {
+<span class="lineNum">     542 </span>                :            :     PRINTF(&quot;RPL: No prefix to announce (len %d)\n&quot;,
+<span class="lineNum">     543 </span>                :            :            dag-&gt;prefix_info.length);
+<span class="lineNum">     544 </span>                :            :   }
+<span class="lineNum">     545 </span>                :            : 
+<span class="lineNum">     546 </span>                :            : #if RPL_LEAF_ONLY
+<span class="lineNum">     547 </span>                :            : #if (DEBUG) &amp; DEBUG_PRINT
+<span class="lineNum">     548 </span>                :            :   if(uc_addr == NULL) {
+<span class="lineNum">     549 </span>                :            :     PRINTF(&quot;RPL: LEAF ONLY sending unicast-DIO from multicast-DIO\n&quot;);
+<span class="lineNum">     550 </span>                :            :   }
+<span class="lineNum">     551 </span>                :            : #endif /* DEBUG_PRINT */
+<span class="lineNum">     552 </span>                :            :   PRINTF(&quot;RPL: Sending unicast-DIO with rank %u to &quot;,
+<span class="lineNum">     553 </span>                :            :       (unsigned)dag-&gt;rank);
+<span class="lineNum">     554 </span>                :            :   PRINT6ADDR(uc_addr);
+<span class="lineNum">     555 </span>                :            :   PRINTF(&quot;\n&quot;);
+<span class="lineNum">     556 </span>                :            :   uip_icmp6_send(uc_addr, ICMP6_RPL, RPL_CODE_DIO, pos);
+<span class="lineNum">     557 </span>                :            : #else /* RPL_LEAF_ONLY */
+<span class="lineNum">     558 </span>                :            :   /* Unicast requests get unicast replies! */
+<span class="lineNum">     559 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(uc_addr == NULL) {</span>
+<span class="lineNum">     560 </span>                :            :     PRINTF(&quot;RPL: Sending a multicast-DIO with rank %u\n&quot;,
+<span class="lineNum">     561 </span>                :            :         (unsigned)instance-&gt;current_dag-&gt;rank);
+<span class="lineNum">     562 </span>                :<span class="lineNoCov">          0 :     uip_create_linklocal_rplnodes_mcast(&amp;addr);</span>
+<span class="lineNum">     563 </span>                :<span class="lineNoCov">          0 :     uip_icmp6_send(&amp;addr, ICMP6_RPL, RPL_CODE_DIO, pos);</span>
+<span class="lineNum">     564 </span>                :            :   } else {
+<span class="lineNum">     565 </span>                :            :     PRINTF(&quot;RPL: Sending unicast-DIO with rank %u to &quot;,
+<span class="lineNum">     566 </span>                :            :         (unsigned)instance-&gt;current_dag-&gt;rank);
+<span class="lineNum">     567 </span>                :            :     PRINT6ADDR(uc_addr);
+<span class="lineNum">     568 </span>                :            :     PRINTF(&quot;\n&quot;);
+<span class="lineNum">     569 </span>                :<span class="lineNoCov">          0 :     uip_icmp6_send(uc_addr, ICMP6_RPL, RPL_CODE_DIO, pos);</span>
+<span class="lineNum">     570 </span>                :            :   }
+<span class="lineNum">     571 </span>                :            : #endif /* RPL_LEAF_ONLY */
+<span class="lineNum">     572 </span>                :            : }
+<a name="573"><span class="lineNum">     573 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     574 </span>                :            : static void
+<span class="lineNum">     575 </span>                :<span class="lineNoCov">          0 : dao_input(void)</span>
+<span class="lineNum">     576 </span>                :            : {
+<span class="lineNum">     577 </span>                :            :   uip_ipaddr_t dao_sender_addr;
+<span class="lineNum">     578 </span>                :            :   rpl_dag_t *dag;
+<span class="lineNum">     579 </span>                :            :   rpl_instance_t *instance;
+<span class="lineNum">     580 </span>                :            :   unsigned char *buffer;
+<span class="lineNum">     581 </span>                :            :   uint16_t sequence;
+<span class="lineNum">     582 </span>                :            :   uint8_t instance_id;
+<span class="lineNum">     583 </span>                :            :   uint8_t lifetime;
+<span class="lineNum">     584 </span>                :            :   uint8_t prefixlen;
+<span class="lineNum">     585 </span>                :            :   uint8_t flags;
+<span class="lineNum">     586 </span>                :            :   uint8_t subopt_type;
+<span class="lineNum">     587 </span>                :            :   /*
+<span class="lineNum">     588 </span>                :            :   uint8_t pathcontrol;
+<span class="lineNum">     589 </span>                :            :   uint8_t pathsequence;
+<span class="lineNum">     590 </span>                :            :   */
+<span class="lineNum">     591 </span>                :            :   uip_ipaddr_t prefix;
+<span class="lineNum">     592 </span>                :            :   uip_ds6_route_t *rep;
+<span class="lineNum">     593 </span>                :            :   uint8_t buffer_length;
+<span class="lineNum">     594 </span>                :            :   int pos;
+<span class="lineNum">     595 </span>                :            :   int len;
+<span class="lineNum">     596 </span>                :            :   int i;
+<span class="lineNum">     597 </span>                :            :   int learned_from;
+<span class="lineNum">     598 </span>                :            :   rpl_parent_t *parent;
+<span class="lineNum">     599 </span>                :            :   uip_ds6_nbr_t *nbr;
+<span class="lineNum">     600 </span>                :            : 
+<span class="lineNum">     601 </span>                :<span class="lineNoCov">          0 :   prefixlen = 0;</span>
+<span class="lineNum">     602 </span>                :<span class="lineNoCov">          0 :   parent = NULL;</span>
+<span class="lineNum">     603 </span>                :            : 
+<span class="lineNum">     604 </span>                :<span class="lineNoCov">          0 :   uip_ipaddr_copy(&amp;dao_sender_addr, &amp;UIP_IP_BUF-&gt;srcipaddr);</span>
+<span class="lineNum">     605 </span>                :            : 
+<span class="lineNum">     606 </span>                :            :   /* Destination Advertisement Object */
+<span class="lineNum">     607 </span>                :            :   PRINTF(&quot;RPL: Received a DAO from &quot;);
+<span class="lineNum">     608 </span>                :            :   PRINT6ADDR(&amp;dao_sender_addr);
+<span class="lineNum">     609 </span>                :            :   PRINTF(&quot;\n&quot;);
+<span class="lineNum">     610 </span>                :            : 
+<span class="lineNum">     611 </span>                :<span class="lineNoCov">          0 :   buffer = UIP_ICMP_PAYLOAD;</span>
+<span class="lineNum">     612 </span>                :<span class="lineNoCov">          0 :   buffer_length = uip_len - uip_l3_icmp_hdr_len;</span>
+<span class="lineNum">     613 </span>                :            : 
+<span class="lineNum">     614 </span>                :<span class="lineNoCov">          0 :   pos = 0;</span>
+<span class="lineNum">     615 </span>                :<span class="lineNoCov">          0 :   instance_id = buffer[pos++];</span>
+<span class="lineNum">     616 </span>                :            : 
+<span class="lineNum">     617 </span>                :<span class="lineNoCov">          0 :   instance = rpl_get_instance(instance_id);</span>
+<span class="lineNum">     618 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(instance == NULL) {</span>
+<span class="lineNum">     619 </span>                :            :     PRINTF(&quot;RPL: Ignoring a DAO for an unknown RPL instance(%u)\n&quot;,
+<span class="lineNum">     620 </span>                :            :            instance_id);
+<span class="lineNum">     621 </span>                :            :     return;
+<span class="lineNum">     622 </span>                :            :   }
+<span class="lineNum">     623 </span>                :            : 
+<span class="lineNum">     624 </span>                :<span class="lineNoCov">          0 :   lifetime = instance-&gt;default_lifetime;</span>
+<span class="lineNum">     625 </span>                :            : 
+<span class="lineNum">     626 </span>                :<span class="lineNoCov">          0 :   flags = buffer[pos++];</span>
+<span class="lineNum">     627 </span>                :            :   /* reserved */
+<span class="lineNum">     628 </span>                :<span class="lineNoCov">          0 :   pos++;</span>
+<span class="lineNum">     629 </span>                :<span class="lineNoCov">          0 :   sequence = buffer[pos++];</span>
+<span class="lineNum">     630 </span>                :            : 
+<span class="lineNum">     631 </span>                :<span class="lineNoCov">          0 :   dag = instance-&gt;current_dag;</span>
+<span class="lineNum">     632 </span>                :            :   /* Is the DAG ID present? */
+<span class="lineNum">     633 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(flags &amp; RPL_DAO_D_FLAG) {</span>
+<span class="lineNum">     634 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(memcmp(&amp;dag-&gt;dag_id, &amp;buffer[pos], sizeof(dag-&gt;dag_id))) {</span>
+<span class="lineNum">     635 </span>                :            :       PRINTF(&quot;RPL: Ignoring a DAO for a DAG different from ours\n&quot;);
+<span class="lineNum">     636 </span>                :            :       return;
+<span class="lineNum">     637 </span>                :            :     }
+<span class="lineNum">     638 </span>                :            :     pos += 16;
+<span class="lineNum">     639 </span>                :            :   }
+<span class="lineNum">     640 </span>                :            : 
+<span class="lineNum">     641 </span>                :<span class="lineNoCov">          0 :   learned_from = uip_is_addr_mcast(&amp;dao_sender_addr) ?</span>
+<span class="lineNum">     642 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :                  RPL_ROUTE_FROM_MULTICAST_DAO : RPL_ROUTE_FROM_UNICAST_DAO;</span>
+<span class="lineNum">     643 </span>                :            : 
+<span class="lineNum">     644 </span>                :            :   PRINTF(&quot;RPL: DAO from %s\n&quot;,
+<span class="lineNum">     645 </span>                :            :          learned_from == RPL_ROUTE_FROM_UNICAST_DAO? &quot;unicast&quot;: &quot;multicast&quot;);
+<span class="lineNum">     646 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(learned_from == RPL_ROUTE_FROM_UNICAST_DAO) {</span>
+<span class="lineNum">     647 </span>                :            :     /* Check whether this is a DAO forwarding loop. */
+<span class="lineNum">     648 </span>                :<span class="lineNoCov">          0 :     parent = rpl_find_parent(dag, &amp;dao_sender_addr);</span>
+<span class="lineNum">     649 </span>                :            :     /* check if this is a new DAO registration with an &quot;illegal&quot; rank */
+<span class="lineNum">     650 </span>                :            :     /* if we already route to this node it is likely */
+<span class="lineNum">     651 </span>[<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>][<span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(parent != NULL &amp;&amp;</span>
+<span class="lineNum">     652 </span>                :            :        DAG_RANK(parent-&gt;rank, instance) &lt; DAG_RANK(dag-&gt;rank, instance)) {
+<span class="lineNum">     653 </span>                :            :       PRINTF(&quot;RPL: Loop detected when receiving a unicast DAO from a node with a lower rank! (%u &lt; %u)\n&quot;,
+<span class="lineNum">     654 </span>                :            :           DAG_RANK(parent-&gt;rank, instance), DAG_RANK(dag-&gt;rank, instance));
+<span class="lineNum">     655 </span>                :<span class="lineNoCov">          0 :       parent-&gt;rank = INFINITE_RANK;</span>
+<span class="lineNum">     656 </span>                :<span class="lineNoCov">          0 :       parent-&gt;flags |= RPL_PARENT_FLAG_UPDATED;</span>
+<span class="lineNum">     657 </span>                :<span class="lineNoCov">          0 :       return;</span>
+<span class="lineNum">     658 </span>                :            :     }
+<span class="lineNum">     659 </span>                :            : 
+<span class="lineNum">     660 </span>                :            :     /* If we get the DAO from our parent, we also have a loop. */
+<span class="lineNum">     661 </span>[<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>][<span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(parent != NULL &amp;&amp; parent == dag-&gt;preferred_parent) {</span>
+<span class="lineNum">     662 </span>                :            :       PRINTF(&quot;RPL: Loop detected when receiving a unicast DAO from our parent\n&quot;);
+<span class="lineNum">     663 </span>                :<span class="lineNoCov">          0 :       parent-&gt;rank = INFINITE_RANK;</span>
+<span class="lineNum">     664 </span>                :<span class="lineNoCov">          0 :       parent-&gt;flags |= RPL_PARENT_FLAG_UPDATED;</span>
+<span class="lineNum">     665 </span>                :<span class="lineNoCov">          0 :       return;</span>
+<span class="lineNum">     666 </span>                :            :     }
+<span class="lineNum">     667 </span>                :            :   }
+<span class="lineNum">     668 </span>                :            : 
+<span class="lineNum">     669 </span>                :            :   /* Check if there are any RPL options present. */
+<span class="lineNum">     670 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   for(i = pos; i &lt; buffer_length; i += len) {</span>
+<span class="lineNum">     671 </span>                :<span class="lineNoCov">          0 :     subopt_type = buffer[i];</span>
+<span class="lineNum">     672 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(subopt_type == RPL_OPTION_PAD1) {</span>
+<span class="lineNum">     673 </span>                :            :       len = 1;
+<span class="lineNum">     674 </span>                :            :     } else {
+<span class="lineNum">     675 </span>                :            :       /* The option consists of a two-byte header and a payload. */
+<span class="lineNum">     676 </span>                :<span class="lineNoCov">          0 :       len = 2 + buffer[i + 1];</span>
+<span class="lineNum">     677 </span>                :            :     }
+<span class="lineNum">     678 </span>                :            : 
+<span class="lineNum">     679 </span>     [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span>]:<span class="lineNoCov">          0 :     switch(subopt_type) {</span>
+<span class="lineNum">     680 </span>                :            :     case RPL_OPTION_TARGET:
+<span class="lineNum">     681 </span>                :            :       /* Handle the target option. */
+<span class="lineNum">     682 </span>                :<span class="lineNoCov">          0 :       prefixlen = buffer[i + 3];</span>
+<span class="lineNum">     683 </span>                :            :       memset(&amp;prefix, 0, sizeof(prefix));
+<span class="lineNum">     684 </span>                :<span class="lineNoCov">          0 :       memcpy(&amp;prefix, buffer + i + 4, (prefixlen + 7) / CHAR_BIT);</span>
+<span class="lineNum">     685 </span>                :            :       break;
+<span class="lineNum">     686 </span>                :            :     case RPL_OPTION_TRANSIT:
+<span class="lineNum">     687 </span>                :            :       /* The path sequence and control are ignored. */
+<span class="lineNum">     688 </span>                :            :       /*      pathcontrol = buffer[i + 3];
+<span class="lineNum">     689 </span>                :            :               pathsequence = buffer[i + 4];*/
+<span class="lineNum">     690 </span>                :<span class="lineNoCov">          0 :       lifetime = buffer[i + 5];</span>
+<span class="lineNum">     691 </span>                :            :       /* The parent address is also ignored. */
+<span class="lineNum">     692 </span>                :<span class="lineNoCov">          0 :       break;</span>
+<span class="lineNum">     693 </span>                :            :     }
+<span class="lineNum">     694 </span>                :            :   }
+<span class="lineNum">     695 </span>                :            : 
+<span class="lineNum">     696 </span>                :            :   PRINTF(&quot;RPL: DAO lifetime: %u, prefix length: %u prefix: &quot;,
+<span class="lineNum">     697 </span>                :            :           (unsigned)lifetime, (unsigned)prefixlen);
+<span class="lineNum">     698 </span>                :            :   PRINT6ADDR(&amp;prefix);
+<span class="lineNum">     699 </span>                :            :   PRINTF(&quot;\n&quot;);
+<span class="lineNum">     700 </span>                :            : 
+<span class="lineNum">     701 </span>                :            : #if RPL_CONF_MULTICAST
+<span class="lineNum">     702 </span>                :            :   if(uip_is_addr_mcast_global(&amp;prefix)) {
+<span class="lineNum">     703 </span>                :            :     mcast_group = uip_mcast6_route_add(&amp;prefix);
+<span class="lineNum">     704 </span>                :            :     if(mcast_group) {
+<span class="lineNum">     705 </span>                :            :       mcast_group-&gt;dag = dag;
+<span class="lineNum">     706 </span>                :            :       mcast_group-&gt;lifetime = RPL_LIFETIME(instance, lifetime);
+<span class="lineNum">     707 </span>                :            :     }
+<span class="lineNum">     708 </span>                :            :     goto fwd_dao;
+<span class="lineNum">     709 </span>                :            :   }
+<span class="lineNum">     710 </span>                :            : #endif
+<span class="lineNum">     711 </span>                :            : 
+<span class="lineNum">     712 </span>                :<span class="lineNoCov">          0 :   rep = uip_ds6_route_lookup(&amp;prefix);</span>
+<span class="lineNum">     713 </span>                :            : 
+<span class="lineNum">     714 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(lifetime == RPL_ZERO_LIFETIME) {</span>
+<span class="lineNum">     715 </span>                :            :     PRINTF(&quot;RPL: No-Path DAO received\n&quot;);
+<span class="lineNum">     716 </span>                :            :     /* No-Path DAO received; invoke the route purging routine. */
+<span class="lineNum">     717 </span>[<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>][<span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(rep != NULL &amp;&amp;</span>
+<span class="lineNum">         </span>  [<span class="branchNoExec" title="Branch 4 was not executed"> # </span><span class="branchNoExec" title="Branch 5 was not executed"> # </span><span class="branchNoExec" title="Branch 6 was not executed"> # </span><span class="branchNoExec" title="Branch 7 was not executed"> # </span> 
+<span class="lineNum">         </span> <span class="branchNoExec" title="Branch 8 was not executed"> # </span><span class="branchNoExec" title="Branch 9 was not executed"> # </span>][<span class="branchNoExec" title="Branch 10 was not executed"> # </span><span class="branchNoExec" title="Branch 11 was not executed"> # </span>]
+<span class="lineNum">     718 </span>                :            :        rep-&gt;state.nopath_received == 0 &amp;&amp;
+<span class="lineNum">     719 </span>                :            :        rep-&gt;length == prefixlen &amp;&amp;
+<span class="lineNum">     720 </span>                :<span class="lineNoCov">          0 :        uip_ds6_route_nexthop(rep) != NULL &amp;&amp;</span>
+<span class="lineNum">     721 </span>                :<span class="lineNoCov">          0 :        uip_ipaddr_cmp(uip_ds6_route_nexthop(rep), &amp;dao_sender_addr)) {</span>
+<span class="lineNum">     722 </span>                :            :       PRINTF(&quot;RPL: Setting expiration timer for prefix &quot;);
+<span class="lineNum">     723 </span>                :            :       PRINT6ADDR(&amp;prefix);
+<span class="lineNum">     724 </span>                :            :       PRINTF(&quot;\n&quot;);
+<span class="lineNum">     725 </span>                :<span class="lineNoCov">          0 :       rep-&gt;state.nopath_received = 1;</span>
+<span class="lineNum">     726 </span>                :<span class="lineNoCov">          0 :       rep-&gt;state.lifetime = DAO_EXPIRATION_TIMEOUT;</span>
+<span class="lineNum">     727 </span>                :            : 
+<span class="lineNum">     728 </span>                :            :       /* We forward the incoming no-path DAO to our parent, if we have
+<span class="lineNum">     729 </span>                :            :          one. */
+<span class="lineNum">     730 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :       if(dag-&gt;preferred_parent != NULL &amp;&amp;</span>
+<span class="lineNum">         </span>        [<span class="branchNoExec" title="Branch 4 was not executed"> # </span><span class="branchNoExec" title="Branch 5 was not executed"> # </span>]
+<span class="lineNum">     731 </span>                :<span class="lineNoCov">          0 :          rpl_get_parent_ipaddr(dag-&gt;preferred_parent) != NULL) {</span>
+<span class="lineNum">     732 </span>                :            :         PRINTF(&quot;RPL: Forwarding no-path DAO to parent &quot;);
+<span class="lineNum">     733 </span>                :            :         PRINT6ADDR(rpl_get_parent_ipaddr(dag-&gt;preferred_parent));
+<span class="lineNum">     734 </span>                :            :         PRINTF(&quot;\n&quot;);
+<span class="lineNum">     735 </span>                :<span class="lineNoCov">          0 :         uip_icmp6_send(rpl_get_parent_ipaddr(dag-&gt;preferred_parent),</span>
+<span class="lineNum">     736 </span>                :<span class="lineNoCov">          0 :                        ICMP6_RPL, RPL_CODE_DAO, buffer_length);</span>
+<span class="lineNum">     737 </span>                :            :       }
+<span class="lineNum">     738 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :       if(flags &amp; RPL_DAO_K_FLAG) {</span>
+<span class="lineNum">     739 </span>                :<span class="lineNoCov">          0 :         dao_ack_output(instance, &amp;dao_sender_addr, sequence);</span>
+<span class="lineNum">     740 </span>                :            :       }
+<span class="lineNum">     741 </span>                :            :     }
+<span class="lineNum">     742 </span>                :            :     return;
+<span class="lineNum">     743 </span>                :            :   }
+<span class="lineNum">     744 </span>                :            : 
+<span class="lineNum">     745 </span>                :            :   PRINTF(&quot;RPL: adding DAO route\n&quot;);
+<span class="lineNum">     746 </span>                :            : 
+<span class="lineNum">     747 </span>        [<span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if((nbr = uip_ds6_nbr_lookup(&amp;dao_sender_addr)) == NULL) {</span>
+<span class="lineNum">     748 </span>        [<span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if((nbr = uip_ds6_nbr_add(&amp;dao_sender_addr,</span>
+<span class="lineNum">     749 </span>                :<span class="lineNoCov">          0 :                               (uip_lladdr_t *)packetbuf_addr(PACKETBUF_ADDR_SENDER),</span>
+<span class="lineNum">     750 </span>                :            :                               0, NBR_REACHABLE)) != NULL) {
+<span class="lineNum">     751 </span>                :            :       /* set reachable timer */
+<span class="lineNum">     752 </span>                :<span class="lineNoCov">          0 :       stimer_set(&amp;nbr-&gt;reachable, UIP_ND6_REACHABLE_TIME / 1000);</span>
+<span class="lineNum">     753 </span>                :            :       PRINTF(&quot;RPL: Neighbor added to neighbor cache &quot;);
+<span class="lineNum">     754 </span>                :            :       PRINT6ADDR(&amp;dao_sender_addr);
+<span class="lineNum">     755 </span>                :            :       PRINTF(&quot;, &quot;);
+<span class="lineNum">     756 </span>                :            :       PRINTLLADDR((uip_lladdr_t *)packetbuf_addr(PACKETBUF_ADDR_SENDER));
+<span class="lineNum">     757 </span>                :            :       PRINTF(&quot;\n&quot;);
+<span class="lineNum">     758 </span>                :            :     } else {
+<span class="lineNum">     759 </span>                :            :       PRINTF(&quot;RPL: Out of Memory, dropping DAO from &quot;);
+<span class="lineNum">     760 </span>                :            :       PRINT6ADDR(&amp;dao_sender_addr);
+<span class="lineNum">     761 </span>                :            :       PRINTF(&quot;, &quot;);
+<span class="lineNum">     762 </span>                :            :       PRINTLLADDR((uip_lladdr_t *)packetbuf_addr(PACKETBUF_ADDR_SENDER));
+<span class="lineNum">     763 </span>                :            :       PRINTF(&quot;\n&quot;);
+<span class="lineNum">     764 </span>                :            :       return;
+<span class="lineNum">     765 </span>                :            :     }
+<span class="lineNum">     766 </span>                :            :   } else {
+<span class="lineNum">     767 </span>                :            :     PRINTF(&quot;RPL: Neighbor already in neighbor cache\n&quot;);
+<span class="lineNum">     768 </span>                :            :   }
+<span class="lineNum">     769 </span>                :            : 
+<span class="lineNum">     770 </span>                :<span class="lineNoCov">          0 :   rpl_lock_parent(parent);</span>
+<span class="lineNum">     771 </span>                :            : 
+<span class="lineNum">     772 </span>                :<span class="lineNoCov">          0 :   rep = rpl_add_route(dag, &amp;prefix, prefixlen, &amp;dao_sender_addr);</span>
+<span class="lineNum">     773 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(rep == NULL) {</span>
+<span class="lineNum">     774 </span>                :            :     RPL_STAT(rpl_stats.mem_overflows++);
+<span class="lineNum">     775 </span>                :            :     PRINTF(&quot;RPL: Could not add a route after receiving a DAO\n&quot;);
+<span class="lineNum">     776 </span>                :            :     return;
+<span class="lineNum">     777 </span>                :            :   }
+<span class="lineNum">     778 </span>                :            : 
+<span class="lineNum">     779 </span>                :<span class="lineNoCov">          0 :   rep-&gt;state.lifetime = RPL_LIFETIME(instance, lifetime);</span>
+<span class="lineNum">     780 </span>                :<span class="lineNoCov">          0 :   rep-&gt;state.learned_from = learned_from;</span>
+<span class="lineNum">     781 </span>                :            : 
+<span class="lineNum">     782 </span>                :            : #if RPL_CONF_MULTICAST
+<span class="lineNum">     783 </span>                :            : fwd_dao:
+<span class="lineNum">     784 </span>                :            : #endif
+<span class="lineNum">     785 </span>                :            : 
+<span class="lineNum">     786 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(learned_from == RPL_ROUTE_FROM_UNICAST_DAO) {</span>
+<span class="lineNum">     787 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(dag-&gt;preferred_parent != NULL &amp;&amp;</span>
+<span class="lineNum">         </span>        [<span class="branchNoExec" title="Branch 4 was not executed"> # </span><span class="branchNoExec" title="Branch 5 was not executed"> # </span>]
+<span class="lineNum">     788 </span>                :<span class="lineNoCov">          0 :        rpl_get_parent_ipaddr(dag-&gt;preferred_parent) != NULL) {</span>
+<span class="lineNum">     789 </span>                :            :       PRINTF(&quot;RPL: Forwarding DAO to parent &quot;);
+<span class="lineNum">     790 </span>                :            :       PRINT6ADDR(rpl_get_parent_ipaddr(dag-&gt;preferred_parent));
+<span class="lineNum">     791 </span>                :            :       PRINTF(&quot;\n&quot;);
+<span class="lineNum">     792 </span>                :<span class="lineNoCov">          0 :       uip_icmp6_send(rpl_get_parent_ipaddr(dag-&gt;preferred_parent),</span>
+<span class="lineNum">     793 </span>                :<span class="lineNoCov">          0 :                      ICMP6_RPL, RPL_CODE_DAO, buffer_length);</span>
+<span class="lineNum">     794 </span>                :            :     }
+<span class="lineNum">     795 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(flags &amp; RPL_DAO_K_FLAG) {</span>
+<span class="lineNum">     796 </span>                :<span class="lineNoCov">          0 :       dao_ack_output(instance, &amp;dao_sender_addr, sequence);</span>
+<span class="lineNum">     797 </span>                :            :     }
+<span class="lineNum">     798 </span>                :            :   }
+<span class="lineNum">     799 </span>                :<span class="lineNoCov">          0 :   uip_len = 0;</span>
+<span class="lineNum">     800 </span>                :            : }
+<a name="801"><span class="lineNum">     801 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     802 </span>                :            : void
+<span class="lineNum">     803 </span>                :<span class="lineNoCov">          0 : dao_output(rpl_parent_t *parent, uint8_t lifetime)</span>
+<span class="lineNum">     804 </span>                :            : {
+<span class="lineNum">     805 </span>                :            :   /* Destination Advertisement Object */
+<span class="lineNum">     806 </span>                :            :   uip_ipaddr_t prefix;
+<span class="lineNum">     807 </span>                :            : 
+<span class="lineNum">     808 </span>        [<span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(get_global_addr(&amp;prefix) == 0) {</span>
+<span class="lineNum">     809 </span>                :            :     PRINTF(&quot;RPL: No global address set for this node - suppressing DAO\n&quot;);
+<span class="lineNum">     810 </span>                :<span class="lineNoCov">          0 :     return;</span>
+<span class="lineNum">     811 </span>                :            :   }
+<span class="lineNum">     812 </span>                :            : 
+<span class="lineNum">     813 </span>                :            :   /* Sending a DAO with own prefix as target */
+<span class="lineNum">     814 </span>                :<span class="lineNoCov">          0 :   dao_output_target(parent, &amp;prefix, lifetime);</span>
+<span class="lineNum">     815 </span>                :            : }
+<a name="816"><span class="lineNum">     816 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     817 </span>                :            : void
+<span class="lineNum">     818 </span>                :<span class="lineNoCov">          0 : dao_output_target(rpl_parent_t *parent, uip_ipaddr_t *prefix, uint8_t lifetime)</span>
+<span class="lineNum">     819 </span>                :            : {
+<span class="lineNum">     820 </span>                :            :   rpl_dag_t *dag;
+<span class="lineNum">     821 </span>                :            :   rpl_instance_t *instance;
+<span class="lineNum">     822 </span>                :            :   unsigned char *buffer;
+<span class="lineNum">     823 </span>                :            :   uint8_t prefixlen;
+<span class="lineNum">     824 </span>                :            :   int pos;
+<span class="lineNum">     825 </span>                :            : 
+<span class="lineNum">     826 </span>                :            :   /* Destination Advertisement Object */
+<span class="lineNum">     827 </span>                :            : 
+<span class="lineNum">     828 </span>                :            :   /* If we are in feather mode, we should not send any DAOs */
+<span class="lineNum">     829 </span>        [<span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(rpl_get_mode() == RPL_MODE_FEATHER) {</span>
+<span class="lineNum">     830 </span>                :            :     return;
+<span class="lineNum">     831 </span>                :            :   }
+<span class="lineNum">     832 </span>                :            : 
+<span class="lineNum">     833 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(parent == NULL) {</span>
+<span class="lineNum">     834 </span>                :            :     PRINTF(&quot;RPL dao_output_target error parent NULL\n&quot;);
+<span class="lineNum">     835 </span>                :            :     return;
+<span class="lineNum">     836 </span>                :            :   }
+<span class="lineNum">     837 </span>                :            : 
+<span class="lineNum">     838 </span>                :<span class="lineNoCov">          0 :   dag = parent-&gt;dag;</span>
+<span class="lineNum">     839 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(dag == NULL) {</span>
+<span class="lineNum">     840 </span>                :            :     PRINTF(&quot;RPL dao_output_target error dag NULL\n&quot;);
+<span class="lineNum">     841 </span>                :            :     return;
+<span class="lineNum">     842 </span>                :            :   }
+<span class="lineNum">     843 </span>                :            : 
+<span class="lineNum">     844 </span>                :<span class="lineNoCov">          0 :   instance = dag-&gt;instance;</span>
+<span class="lineNum">     845 </span>                :            : 
+<span class="lineNum">     846 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(instance == NULL) {</span>
+<span class="lineNum">     847 </span>                :            :     PRINTF(&quot;RPL dao_output_target error instance NULL\n&quot;);
+<span class="lineNum">     848 </span>                :            :     return;
+<span class="lineNum">     849 </span>                :            :   }
+<span class="lineNum">     850 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(prefix == NULL) {</span>
+<span class="lineNum">     851 </span>                :            :     PRINTF(&quot;RPL dao_output_target error prefix NULL\n&quot;);
+<span class="lineNum">     852 </span>                :            :     return;
+<span class="lineNum">     853 </span>                :            :   }
+<span class="lineNum">     854 </span>                :            : #ifdef RPL_DEBUG_DAO_OUTPUT
+<span class="lineNum">     855 </span>                :            :   RPL_DEBUG_DAO_OUTPUT(parent);
+<span class="lineNum">     856 </span>                :            : #endif
+<span class="lineNum">     857 </span>                :            : 
+<span class="lineNum">     858 </span>                :<span class="lineNoCov">          0 :   buffer = UIP_ICMP_PAYLOAD;</span>
+<span class="lineNum">     859 </span>                :            : 
+<span class="lineNum">     860 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   RPL_LOLLIPOP_INCREMENT(dao_sequence);</span>
+<span class="lineNum">     861 </span>                :<span class="lineNoCov">          0 :   pos = 0;</span>
+<span class="lineNum">     862 </span>                :            : 
+<span class="lineNum">     863 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = instance-&gt;instance_id;</span>
+<span class="lineNum">     864 </span>                :<span class="lineNoCov">          0 :   buffer[pos] = 0;</span>
+<span class="lineNum">     865 </span>                :            : #if RPL_DAO_SPECIFY_DAG
+<span class="lineNum">     866 </span>                :<span class="lineNoCov">          0 :   buffer[pos] |= RPL_DAO_D_FLAG;</span>
+<span class="lineNum">     867 </span>                :            : #endif /* RPL_DAO_SPECIFY_DAG */
+<span class="lineNum">     868 </span>                :            : #if RPL_CONF_DAO_ACK
+<span class="lineNum">     869 </span>                :            :   buffer[pos] |= RPL_DAO_K_FLAG;
+<span class="lineNum">     870 </span>                :            : #endif /* RPL_CONF_DAO_ACK */
+<span class="lineNum">     871 </span>                :<span class="lineNoCov">          0 :   ++pos;</span>
+<span class="lineNum">     872 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = 0; /* reserved */</span>
+<span class="lineNum">     873 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = dao_sequence;</span>
+<span class="lineNum">     874 </span>                :            : #if RPL_DAO_SPECIFY_DAG
+<span class="lineNum">     875 </span>                :<span class="lineNoCov">          0 :   memcpy(buffer + pos, &amp;dag-&gt;dag_id, sizeof(dag-&gt;dag_id));</span>
+<span class="lineNum">     876 </span>                :<span class="lineNoCov">          0 :   pos+=sizeof(dag-&gt;dag_id);</span>
+<span class="lineNum">     877 </span>                :            : #endif /* RPL_DAO_SPECIFY_DAG */
+<span class="lineNum">     878 </span>                :            : 
+<span class="lineNum">     879 </span>                :            :   /* create target subopt */
+<span class="lineNum">     880 </span>                :<span class="lineNoCov">          0 :   prefixlen = sizeof(*prefix) * CHAR_BIT;</span>
+<span class="lineNum">     881 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = RPL_OPTION_TARGET;</span>
+<span class="lineNum">     882 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = 2 + ((prefixlen + 7) / CHAR_BIT);</span>
+<span class="lineNum">     883 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = 0; /* reserved */</span>
+<span class="lineNum">     884 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = prefixlen;</span>
+<span class="lineNum">     885 </span>                :<span class="lineNoCov">          0 :   memcpy(buffer + pos, prefix, (prefixlen + 7) / CHAR_BIT);</span>
+<span class="lineNum">     886 </span>                :<span class="lineNoCov">          0 :   pos += ((prefixlen + 7) / CHAR_BIT);</span>
+<span class="lineNum">     887 </span>                :            : 
+<span class="lineNum">     888 </span>                :            :   /* Create a transit information sub-option. */
+<span class="lineNum">     889 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = RPL_OPTION_TRANSIT;</span>
+<span class="lineNum">     890 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = 4;</span>
+<span class="lineNum">     891 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = 0; /* flags - ignored */</span>
+<span class="lineNum">     892 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = 0; /* path control - ignored */</span>
+<span class="lineNum">     893 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = 0; /* path seq - ignored */</span>
+<span class="lineNum">     894 </span>                :<span class="lineNoCov">          0 :   buffer[pos++] = lifetime;</span>
+<span class="lineNum">     895 </span>                :            : 
+<span class="lineNum">     896 </span>                :            :   PRINTF(&quot;RPL: Sending DAO with prefix &quot;);
+<span class="lineNum">     897 </span>                :            :   PRINT6ADDR(prefix);
+<span class="lineNum">     898 </span>                :            :   PRINTF(&quot; to &quot;);
+<span class="lineNum">     899 </span>                :            :   PRINT6ADDR(rpl_get_parent_ipaddr(parent));
+<span class="lineNum">     900 </span>                :            :   PRINTF(&quot;\n&quot;);
+<span class="lineNum">     901 </span>                :            : 
+<span class="lineNum">     902 </span>        [<span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(rpl_get_parent_ipaddr(parent) != NULL) {</span>
+<span class="lineNum">     903 </span>                :<span class="lineNoCov">          0 :     uip_icmp6_send(rpl_get_parent_ipaddr(parent), ICMP6_RPL, RPL_CODE_DAO, pos);</span>
+<span class="lineNum">     904 </span>                :            :   }
+<span class="lineNum">     905 </span>                :            : }
+<a name="906"><span class="lineNum">     906 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     907 </span>                :            : static void
+<span class="lineNum">     908 </span>                :<span class="lineNoCov">          0 : dao_ack_input(void)</span>
+<span class="lineNum">     909 </span>                :            : {
+<span class="lineNum">     910 </span>                :            : #if DEBUG
+<span class="lineNum">     911 </span>                :            :   unsigned char *buffer;
+<span class="lineNum">     912 </span>                :            :   uint8_t buffer_length;
+<span class="lineNum">     913 </span>                :            :   uint8_t instance_id;
+<span class="lineNum">     914 </span>                :            :   uint8_t sequence;
+<span class="lineNum">     915 </span>                :            :   uint8_t status;
+<span class="lineNum">     916 </span>                :            : 
+<span class="lineNum">     917 </span>                :            :   buffer = UIP_ICMP_PAYLOAD;
+<span class="lineNum">     918 </span>                :            :   buffer_length = uip_len - uip_l3_icmp_hdr_len;
+<span class="lineNum">     919 </span>                :            : 
+<span class="lineNum">     920 </span>                :            :   instance_id = buffer[0];
+<span class="lineNum">     921 </span>                :            :   sequence = buffer[2];
+<span class="lineNum">     922 </span>                :            :   status = buffer[3];
+<span class="lineNum">     923 </span>                :            : 
+<span class="lineNum">     924 </span>                :            :   PRINTF(&quot;RPL: Received a DAO ACK with sequence number %d and status %d from &quot;,
+<span class="lineNum">     925 </span>                :            :     sequence, status);
+<span class="lineNum">     926 </span>                :            :   PRINT6ADDR(&amp;UIP_IP_BUF-&gt;srcipaddr);
+<span class="lineNum">     927 </span>                :            :   PRINTF(&quot;\n&quot;);
+<span class="lineNum">     928 </span>                :            : #endif /* DEBUG */
+<span class="lineNum">     929 </span>                :<span class="lineNoCov">          0 :   uip_len = 0;</span>
+<span class="lineNum">     930 </span>                :<span class="lineNoCov">          0 : }</span>
+<a name="931"><span class="lineNum">     931 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     932 </span>                :            : void
+<span class="lineNum">     933 </span>                :<span class="lineNoCov">          0 : dao_ack_output(rpl_instance_t *instance, uip_ipaddr_t *dest, uint8_t sequence)</span>
+<span class="lineNum">     934 </span>                :            : {
+<span class="lineNum">     935 </span>                :            :   unsigned char *buffer;
+<span class="lineNum">     936 </span>                :            : 
+<span class="lineNum">     937 </span>                :            :   PRINTF(&quot;RPL: Sending a DAO ACK with sequence number %d to &quot;, sequence);
+<span class="lineNum">     938 </span>                :            :   PRINT6ADDR(dest);
+<span class="lineNum">     939 </span>                :            :   PRINTF(&quot;\n&quot;);
+<span class="lineNum">     940 </span>                :            : 
+<span class="lineNum">     941 </span>                :<span class="lineNoCov">          0 :   buffer = UIP_ICMP_PAYLOAD;</span>
+<span class="lineNum">     942 </span>                :            : 
+<span class="lineNum">     943 </span>                :<span class="lineNoCov">          0 :   buffer[0] = instance-&gt;instance_id;</span>
+<span class="lineNum">     944 </span>                :<span class="lineNoCov">          0 :   buffer[1] = 0;</span>
+<span class="lineNum">     945 </span>                :<span class="lineNoCov">          0 :   buffer[2] = sequence;</span>
+<span class="lineNum">     946 </span>                :<span class="lineNoCov">          0 :   buffer[3] = 0;</span>
+<span class="lineNum">     947 </span>                :            : 
+<span class="lineNum">     948 </span>                :<span class="lineNoCov">          0 :   uip_icmp6_send(dest, ICMP6_RPL, RPL_CODE_DAO_ACK, 4);</span>
+<span class="lineNum">     949 </span>                :<span class="lineNoCov">          0 : }</span>
+<a name="950"><span class="lineNum">     950 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     951 </span>                :            : void
+<span class="lineNum">     952 </span>                :<span class="lineNoCov">          0 : rpl_icmp6_register_handlers()</span>
+<span class="lineNum">     953 </span>                :            : {
+<span class="lineNum">     954 </span>                :<span class="lineNoCov">          0 :   uip_icmp6_register_input_handler(&amp;dis_handler);</span>
+<span class="lineNum">     955 </span>                :<span class="lineNoCov">          0 :   uip_icmp6_register_input_handler(&amp;dio_handler);</span>
+<span class="lineNum">     956 </span>                :<span class="lineNoCov">          0 :   uip_icmp6_register_input_handler(&amp;dao_handler);</span>
+<span class="lineNum">     957 </span>                :<span class="lineNoCov">          0 :   uip_icmp6_register_input_handler(&amp;dao_ack_handler);</span>
+<span class="lineNum">     958 </span>                :<span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     959 </span>                :            : /*---------------------------------------------------------------------------*/
+<span class="lineNum">     960 </span>                :            : 
+<span class="lineNum">     961 </span>                :            : /** @}*/
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.9</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

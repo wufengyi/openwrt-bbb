@@ -1,0 +1,49 @@
+\hypertarget{list_8c}{}\section{/home/user/contiki\+U\+T/contiki/core/lib/list.c File Reference}
+\label{list_8c}\index{/home/user/contiki\+U\+T/contiki/core/lib/list.\+c@{/home/user/contiki\+U\+T/contiki/core/lib/list.\+c}}
+{\ttfamily \#include \char`\"{}lib/list.\+h\char`\"{}}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structlist}{list}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__list_ga070d2ce7b6bb7e5c05602aa8c308d0c4}{}\#define {\bfseries N\+U\+L\+L}~0\label{group__list_ga070d2ce7b6bb7e5c05602aa8c308d0c4}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__list_ga10fe9694aceedc8308cc543b9b95d9c9}{list\+\_\+init} (\hyperlink{group__list_ga9c248916bae1f0b13732686786be7108}{list\+\_\+t} \hyperlink{structlist}{list})
+\item 
+void $\ast$ \hyperlink{group__list_gacc0723982dcfcc54cfa6ba932ee63051}{list\+\_\+head} (\hyperlink{group__list_ga9c248916bae1f0b13732686786be7108}{list\+\_\+t} \hyperlink{structlist}{list})
+\item 
+void \hyperlink{group__list_ga89eaee4d473383726c7899f70d244cfe}{list\+\_\+copy} (\hyperlink{group__list_ga9c248916bae1f0b13732686786be7108}{list\+\_\+t} dest, \hyperlink{group__list_ga9c248916bae1f0b13732686786be7108}{list\+\_\+t} src)
+\item 
+void $\ast$ \hyperlink{group__list_ga4e96242bd922c2c7116b2e5a5ca7011b}{list\+\_\+tail} (\hyperlink{group__list_ga9c248916bae1f0b13732686786be7108}{list\+\_\+t} \hyperlink{structlist}{list})
+\item 
+void \hyperlink{group__list_ga775c0dfc08dca991297df7b419b7be43}{list\+\_\+add} (\hyperlink{group__list_ga9c248916bae1f0b13732686786be7108}{list\+\_\+t} \hyperlink{structlist}{list}, void $\ast$item)
+\item 
+void \hyperlink{group__list_gaaa39517a2e9ec81c34e4740d43ea7150}{list\+\_\+push} (\hyperlink{group__list_ga9c248916bae1f0b13732686786be7108}{list\+\_\+t} \hyperlink{structlist}{list}, void $\ast$item)
+\item 
+void $\ast$ \hyperlink{group__list_ga34e6b487c378343356299f048f8011ad}{list\+\_\+chop} (\hyperlink{group__list_ga9c248916bae1f0b13732686786be7108}{list\+\_\+t} \hyperlink{structlist}{list})
+\item 
+void $\ast$ \hyperlink{group__list_ga846aef3d9db78d0755e6bb39e7da485e}{list\+\_\+pop} (\hyperlink{group__list_ga9c248916bae1f0b13732686786be7108}{list\+\_\+t} \hyperlink{structlist}{list})
+\item 
+void \hyperlink{group__list_ga3eb717d9997a980e937e2ea8b0c07677}{list\+\_\+remove} (\hyperlink{group__list_ga9c248916bae1f0b13732686786be7108}{list\+\_\+t} \hyperlink{structlist}{list}, void $\ast$item)
+\item 
+int \hyperlink{group__list_ga96f2c18e2a603b297e3c1cae6198dcca}{list\+\_\+length} (\hyperlink{group__list_ga9c248916bae1f0b13732686786be7108}{list\+\_\+t} \hyperlink{structlist}{list})
+\item 
+void \hyperlink{group__list_gad7302f5e5b808b595535c034f2a41474}{list\+\_\+insert} (\hyperlink{group__list_ga9c248916bae1f0b13732686786be7108}{list\+\_\+t} \hyperlink{structlist}{list}, void $\ast$previtem, void $\ast$newitem)
+\begin{DoxyCompactList}\small\item\em Insert an item after a specified item on the list. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group__list_gae9c13698f6fd8620561f0d1124ec8cdf}{list\+\_\+item\+\_\+next} (void $\ast$item)
+\begin{DoxyCompactList}\small\item\em Get the next item following this item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Linked list library implementation.
+
+\begin{DoxyAuthor}{Author}
+Adam Dunkels \href{mailto:adam@sics.se}{\tt adam@sics.\+se} 
+\end{DoxyAuthor}

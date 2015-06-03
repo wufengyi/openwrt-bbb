@@ -1,0 +1,70 @@
+\hypertarget{netstack_8h}{}\section{/home/user/contiki\+U\+T/contiki/core/net/netstack.h File Reference}
+\label{netstack_8h}\index{/home/user/contiki\+U\+T/contiki/core/net/netstack.\+h@{/home/user/contiki\+U\+T/contiki/core/net/netstack.\+h}}
+{\ttfamily \#include \char`\"{}contiki-\/conf.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}net/llsec/llsec.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}net/mac/mac.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}net/mac/rdc.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}net/mac/framer.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}dev/radio.\+h\char`\"{}}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structnetwork__driver}{network\+\_\+driver}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{netstack_8h_ad021dbfd1bd8a80be2bc330097cc794d}{}\#define {\bfseries N\+E\+T\+S\+T\+A\+C\+K\+\_\+\+N\+E\+T\+W\+O\+R\+K}~rime\+\_\+driver\label{netstack_8h_ad021dbfd1bd8a80be2bc330097cc794d}
+
+\item 
+\hypertarget{netstack_8h_a2ad6f910e5dd2c5f0195d0f0682c8342}{}\#define {\bfseries N\+E\+T\+S\+T\+A\+C\+K\+\_\+\+L\+L\+S\+E\+C}~nullsec\+\_\+driver\label{netstack_8h_a2ad6f910e5dd2c5f0195d0f0682c8342}
+
+\item 
+\hypertarget{netstack_8h_aeaa0a04b05b447d8ceb0f9ba3414f92a}{}\#define {\bfseries N\+E\+T\+S\+T\+A\+C\+K\+\_\+\+M\+A\+C}~nullmac\+\_\+driver\label{netstack_8h_aeaa0a04b05b447d8ceb0f9ba3414f92a}
+
+\item 
+\hypertarget{netstack_8h_a1ddf8549f142997e5d2b61c6e56944cb}{}\#define {\bfseries N\+E\+T\+S\+T\+A\+C\+K\+\_\+\+R\+D\+C}~nullrdc\+\_\+driver\label{netstack_8h_a1ddf8549f142997e5d2b61c6e56944cb}
+
+\item 
+\hypertarget{netstack_8h_aff432b3f19c3a471176586ed864663d1}{}\#define {\bfseries N\+E\+T\+S\+T\+A\+C\+K\+\_\+\+R\+D\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+\+C\+H\+E\+C\+K\+\_\+\+R\+A\+T\+E}~8\label{netstack_8h_aff432b3f19c3a471176586ed864663d1}
+
+\item 
+\hypertarget{netstack_8h_a73d955998b9045a2cad19740ae861c3f}{}\#define {\bfseries N\+E\+T\+S\+T\+A\+C\+K\+\_\+\+R\+A\+D\+I\+O}~nullradio\+\_\+driver\label{netstack_8h_a73d955998b9045a2cad19740ae861c3f}
+
+\item 
+\hypertarget{netstack_8h_ac988e932397687e0af6f9eb067a1cfb8}{}\#define {\bfseries N\+E\+T\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+R}~framer\+\_\+nullmac\label{netstack_8h_ac988e932397687e0af6f9eb067a1cfb8}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{netstack_8h_a9cae8e1f01b33321f8ffc3291a6c9e83}{}void {\bfseries netstack\+\_\+init} (void)\label{netstack_8h_a9cae8e1f01b33321f8ffc3291a6c9e83}
+
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{netstack_8h_a0973ae9906420c6acf7154a32914d0c8}{}const struct \hyperlink{structnetwork__driver}{network\+\_\+driver} {\bfseries N\+E\+T\+S\+T\+A\+C\+K\+\_\+\+N\+E\+T\+W\+O\+R\+K}\label{netstack_8h_a0973ae9906420c6acf7154a32914d0c8}
+
+\item 
+\hypertarget{netstack_8h_a499aec86fc04e8a7fbd9c067e3669dec}{}const struct llsec\+\_\+driver {\bfseries N\+E\+T\+S\+T\+A\+C\+K\+\_\+\+L\+L\+S\+E\+C}\label{netstack_8h_a499aec86fc04e8a7fbd9c067e3669dec}
+
+\item 
+\hypertarget{netstack_8h_a7c058776d4cb2a346edbfd6944784f83}{}const struct rdc\+\_\+driver {\bfseries N\+E\+T\+S\+T\+A\+C\+K\+\_\+\+R\+D\+C}\label{netstack_8h_a7c058776d4cb2a346edbfd6944784f83}
+
+\item 
+\hypertarget{netstack_8h_ac442af14c437740016ec3f9622c79e5f}{}const struct mac\+\_\+driver {\bfseries N\+E\+T\+S\+T\+A\+C\+K\+\_\+\+M\+A\+C}\label{netstack_8h_ac442af14c437740016ec3f9622c79e5f}
+
+\item 
+\hypertarget{netstack_8h_ad54c215b0497ea5106ae689375a5f639}{}const struct \hyperlink{structradio__driver}{radio\+\_\+driver} {\bfseries N\+E\+T\+S\+T\+A\+C\+K\+\_\+\+R\+A\+D\+I\+O}\label{netstack_8h_ad54c215b0497ea5106ae689375a5f639}
+
+\item 
+\hypertarget{netstack_8h_aa6d67e0b2473ab25038efbb3ae84feb2}{}const struct framer {\bfseries N\+E\+T\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+R}\label{netstack_8h_aa6d67e0b2473ab25038efbb3ae84feb2}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Include file for the Contiki low-\/layer network stack (N\+E\+T\+S\+T\+A\+C\+K) \begin{DoxyAuthor}{Author}
+Adam Dunkels \href{mailto:adam@sics.se}{\tt adam@sics.\+se} 
+\end{DoxyAuthor}

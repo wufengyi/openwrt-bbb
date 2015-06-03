@@ -1,0 +1,414 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - coverage.info - core/net/rpl/rpl-timers.c</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">core/net/rpl</a> - rpl-timers.c<span style="font-size: 80%;"> (source / <a href="rpl-timers.c.func.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">80</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2014-12-23</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">11</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">40</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">           Branch data     Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>                :            : /*</a>
+<span class="lineNum">       2 </span>                :            :  * Copyright (c) 2010, Swedish Institute of Computer Science.
+<span class="lineNum">       3 </span>                :            :  * All rights reserved.
+<span class="lineNum">       4 </span>                :            :  *
+<span class="lineNum">       5 </span>                :            :  * Redistribution and use in source and binary forms, with or without
+<span class="lineNum">       6 </span>                :            :  * modification, are permitted provided that the following conditions
+<span class="lineNum">       7 </span>                :            :  * are met:
+<span class="lineNum">       8 </span>                :            :  * 1. Redistributions of source code must retain the above copyright
+<span class="lineNum">       9 </span>                :            :  *    notice, this list of conditions and the following disclaimer.
+<span class="lineNum">      10 </span>                :            :  * 2. Redistributions in binary form must reproduce the above copyright
+<span class="lineNum">      11 </span>                :            :  *    notice, this list of conditions and the following disclaimer in the
+<span class="lineNum">      12 </span>                :            :  *    documentation and/or other materials provided with the distribution.
+<span class="lineNum">      13 </span>                :            :  * 3. Neither the name of the Institute nor the names of its contributors
+<span class="lineNum">      14 </span>                :            :  *    may be used to endorse or promote products derived from this software
+<span class="lineNum">      15 </span>                :            :  *    without specific prior written permission.
+<span class="lineNum">      16 </span>                :            :  *
+<span class="lineNum">      17 </span>                :            :  * THIS SOFTWARE IS PROVIDED BY THE INSTITUTE AND CONTRIBUTORS ``AS IS'' AND
+<span class="lineNum">      18 </span>                :            :  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+<span class="lineNum">      19 </span>                :            :  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+<span class="lineNum">      20 </span>                :            :  * ARE DISCLAIMED.  IN NO EVENT SHALL THE INSTITUTE OR CONTRIBUTORS BE LIABLE
+<span class="lineNum">      21 </span>                :            :  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+<span class="lineNum">      22 </span>                :            :  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+<span class="lineNum">      23 </span>                :            :  * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+<span class="lineNum">      24 </span>                :            :  * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+<span class="lineNum">      25 </span>                :            :  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+<span class="lineNum">      26 </span>                :            :  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+<span class="lineNum">      27 </span>                :            :  * SUCH DAMAGE.
+<span class="lineNum">      28 </span>                :            :  *
+<span class="lineNum">      29 </span>                :            :  * This file is part of the Contiki operating system.
+<span class="lineNum">      30 </span>                :            :  */
+<span class="lineNum">      31 </span>                :            : 
+<span class="lineNum">      32 </span>                :            : /**
+<span class="lineNum">      33 </span>                :            :  * \file
+<span class="lineNum">      34 </span>                :            :  *         RPL timer management.
+<span class="lineNum">      35 </span>                :            :  *
+<span class="lineNum">      36 </span>                :            :  * \author Joakim Eriksson &lt;joakime@sics.se&gt;, Nicolas Tsiftes &lt;nvt@sics.se&gt;
+<span class="lineNum">      37 </span>                :            :  */
+<span class="lineNum">      38 </span>                :            : 
+<span class="lineNum">      39 </span>                :            : /**
+<span class="lineNum">      40 </span>                :            :  * \addtogroup uip6
+<span class="lineNum">      41 </span>                :            :  * @{
+<span class="lineNum">      42 </span>                :            :  */
+<span class="lineNum">      43 </span>                :            : 
+<span class="lineNum">      44 </span>                :            : #include &quot;contiki-conf.h&quot;
+<span class="lineNum">      45 </span>                :            : #include &quot;net/rpl/rpl-private.h&quot;
+<span class="lineNum">      46 </span>                :            : #include &quot;net/ipv6/multicast/uip-mcast6.h&quot;
+<span class="lineNum">      47 </span>                :            : #include &quot;lib/random.h&quot;
+<span class="lineNum">      48 </span>                :            : #include &quot;sys/ctimer.h&quot;
+<span class="lineNum">      49 </span>                :            : 
+<span class="lineNum">      50 </span>                :            : #define DEBUG DEBUG_NONE
+<span class="lineNum">      51 </span>                :            : #include &quot;net/ip/uip-debug.h&quot;
+<span class="lineNum">      52 </span>                :            : 
+<span class="lineNum">      53 </span>                :            : /*---------------------------------------------------------------------------*/
+<span class="lineNum">      54 </span>                :            : static struct ctimer periodic_timer;
+<span class="lineNum">      55 </span>                :            : 
+<span class="lineNum">      56 </span>                :            : static void handle_periodic_timer(void *ptr);
+<span class="lineNum">      57 </span>                :            : static void new_dio_interval(rpl_instance_t *instance);
+<span class="lineNum">      58 </span>                :            : static void handle_dio_timer(void *ptr);
+<span class="lineNum">      59 </span>                :            : 
+<span class="lineNum">      60 </span>                :            : static uint16_t next_dis;
+<span class="lineNum">      61 </span>                :            : 
+<span class="lineNum">      62 </span>                :            : /* dio_send_ok is true if the node is ready to send DIOs */
+<span class="lineNum">      63 </span>                :            : static uint8_t dio_send_ok;
+<span class="lineNum">      64 </span>                :            : 
+<a name="65"><span class="lineNum">      65 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">      66 </span>                :            : static void
+<span class="lineNum">      67 </span>                :<span class="lineNoCov">          0 : handle_periodic_timer(void *ptr)</span>
+<span class="lineNum">      68 </span>                :            : {
+<span class="lineNum">      69 </span>                :<span class="lineNoCov">          0 :   rpl_purge_routes();</span>
+<span class="lineNum">      70 </span>                :<span class="lineNoCov">          0 :   rpl_recalculate_ranks();</span>
+<span class="lineNum">      71 </span>                :            : 
+<span class="lineNum">      72 </span>                :            :   /* handle DIS */
+<span class="lineNum">      73 </span>                :            : #if RPL_DIS_SEND
+<span class="lineNum">      74 </span>                :<span class="lineNoCov">          0 :   next_dis++;</span>
+<span class="lineNum">      75 </span>[<span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span>][<span class="branchNoExec" title="Branch 3 was not executed"> # </span><span class="branchNoExec" title="Branch 4 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(rpl_get_any_dag() == NULL &amp;&amp; next_dis &gt;= RPL_DIS_INTERVAL) {</span>
+<span class="lineNum">         </span>        [<span class="branchNoExec" title="Branch 5 was not executed"> # </span><span class="branchNoExec" title="Branch 6 was not executed"> # </span>]
+<span class="lineNum">      76 </span>                :<span class="lineNoCov">          0 :     next_dis = 0;</span>
+<span class="lineNum">      77 </span>                :<span class="lineNoCov">          0 :     dis_output(NULL);</span>
+<span class="lineNum">      78 </span>                :            :   }
+<span class="lineNum">      79 </span>                :            : #endif
+<span class="lineNum">      80 </span>                :<span class="lineNoCov">          0 :   ctimer_reset(&amp;periodic_timer);</span>
+<span class="lineNum">      81 </span>                :<span class="lineNoCov">          0 : }</span>
+<a name="82"><span class="lineNum">      82 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">      83 </span>                :            : static void
+<span class="lineNum">      84 </span>                :<span class="lineNoCov">          0 : new_dio_interval(rpl_instance_t *instance)</span>
+<span class="lineNum">      85 </span>                :            : {
+<span class="lineNum">      86 </span>                :            :   uint32_t time;
+<span class="lineNum">      87 </span>                :            :   clock_time_t ticks;
+<span class="lineNum">      88 </span>                :            : 
+<span class="lineNum">      89 </span>                :            :   /* TODO: too small timer intervals for many cases */
+<span class="lineNum">      90 </span>                :<span class="lineNoCov">          0 :   time = 1UL &lt;&lt; instance-&gt;dio_intcurrent;</span>
+<span class="lineNum">      91 </span>                :            : 
+<span class="lineNum">      92 </span>                :            :   /* Convert from milliseconds to CLOCK_TICKS. */
+<span class="lineNum">      93 </span>                :<span class="lineNoCov">          0 :   ticks = (time * CLOCK_SECOND) / 1000;</span>
+<span class="lineNum">      94 </span>                :<span class="lineNoCov">          0 :   instance-&gt;dio_next_delay = ticks;</span>
+<span class="lineNum">      95 </span>                :            : 
+<span class="lineNum">      96 </span>                :            :   /* random number between I/2 and I */
+<span class="lineNum">      97 </span>                :<span class="lineNoCov">          0 :   ticks = ticks / 2 + (ticks / 2 * (uint32_t)random_rand()) / RANDOM_RAND_MAX;</span>
+<span class="lineNum">      98 </span>                :            : 
+<span class="lineNum">      99 </span>                :            :   /*
+<span class="lineNum">     100 </span>                :            :    * The intervals must be equally long among the nodes for Trickle to
+<span class="lineNum">     101 </span>                :            :    * operate efficiently. Therefore we need to calculate the delay between
+<span class="lineNum">     102 </span>                :            :    * the randomized time and the start time of the next interval.
+<span class="lineNum">     103 </span>                :            :    */
+<span class="lineNum">     104 </span>                :<span class="lineNoCov">          0 :   instance-&gt;dio_next_delay -= ticks;</span>
+<span class="lineNum">     105 </span>                :<span class="lineNoCov">          0 :   instance-&gt;dio_send = 1;</span>
+<span class="lineNum">     106 </span>                :            : 
+<span class="lineNum">     107 </span>                :            : #if RPL_CONF_STATS
+<span class="lineNum">     108 </span>                :            :   /* keep some stats */
+<span class="lineNum">     109 </span>                :            :   instance-&gt;dio_totint++;
+<span class="lineNum">     110 </span>                :            :   instance-&gt;dio_totrecv += instance-&gt;dio_counter;
+<span class="lineNum">     111 </span>                :            :   ANNOTATE(&quot;#A rank=%u.%u(%u),stats=%d %d %d %d,color=%s\n&quot;,
+<span class="lineNum">     112 </span>                :            :            DAG_RANK(instance-&gt;current_dag-&gt;rank, instance),
+<span class="lineNum">     113 </span>                :            :            (10 * (instance-&gt;current_dag-&gt;rank % instance-&gt;min_hoprankinc)) / instance-&gt;min_hoprankinc,
+<span class="lineNum">     114 </span>                :            :            instance-&gt;current_dag-&gt;version,
+<span class="lineNum">     115 </span>                :            :            instance-&gt;dio_totint, instance-&gt;dio_totsend,
+<span class="lineNum">     116 </span>                :            :            instance-&gt;dio_totrecv,instance-&gt;dio_intcurrent,
+<span class="lineNum">     117 </span>                :            :            instance-&gt;current_dag-&gt;rank == ROOT_RANK(instance) ? &quot;BLUE&quot; : &quot;ORANGE&quot;);
+<span class="lineNum">     118 </span>                :            : #endif /* RPL_CONF_STATS */
+<span class="lineNum">     119 </span>                :            : 
+<span class="lineNum">     120 </span>                :            :   /* reset the redundancy counter */
+<span class="lineNum">     121 </span>                :<span class="lineNoCov">          0 :   instance-&gt;dio_counter = 0;</span>
+<span class="lineNum">     122 </span>                :            : 
+<span class="lineNum">     123 </span>                :            :   /* schedule the timer */
+<span class="lineNum">     124 </span>                :            :   PRINTF(&quot;RPL: Scheduling DIO timer %lu ticks in future (Interval)\n&quot;, ticks);
+<span class="lineNum">     125 </span>                :<span class="lineNoCov">          0 :   ctimer_set(&amp;instance-&gt;dio_timer, ticks, &amp;handle_dio_timer, instance);</span>
+<span class="lineNum">     126 </span>                :<span class="lineNoCov">          0 : }</span>
+<a name="127"><span class="lineNum">     127 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     128 </span>                :            : static void
+<span class="lineNum">     129 </span>                :<span class="lineNoCov">          0 : handle_dio_timer(void *ptr)</span>
+<span class="lineNum">     130 </span>                :            : {
+<span class="lineNum">     131 </span>                :            :   rpl_instance_t *instance;
+<span class="lineNum">     132 </span>                :            : 
+<span class="lineNum">     133 </span>                :<span class="lineNoCov">          0 :   instance = (rpl_instance_t *)ptr;</span>
+<span class="lineNum">     134 </span>                :            : 
+<span class="lineNum">     135 </span>                :            :   PRINTF(&quot;RPL: DIO Timer triggered\n&quot;);
+<span class="lineNum">     136 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(!dio_send_ok) {</span>
+<span class="lineNum">     137 </span>        [<span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(uip_ds6_get_link_local(ADDR_PREFERRED) != NULL) {</span>
+<span class="lineNum">     138 </span>                :<span class="lineNoCov">          0 :       dio_send_ok = 1;</span>
+<span class="lineNum">     139 </span>                :            :     } else {
+<span class="lineNum">     140 </span>                :            :       PRINTF(&quot;RPL: Postponing DIO transmission since link local address is not ok\n&quot;);
+<span class="lineNum">     141 </span>                :<span class="lineNoCov">          0 :       ctimer_set(&amp;instance-&gt;dio_timer, CLOCK_SECOND, &amp;handle_dio_timer, instance);</span>
+<span class="lineNum">     142 </span>                :<span class="lineNoCov">          0 :       return;</span>
+<span class="lineNum">     143 </span>                :            :     }
+<span class="lineNum">     144 </span>                :            :   }
+<span class="lineNum">     145 </span>                :            : 
+<span class="lineNum">     146 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(instance-&gt;dio_send) {</span>
+<span class="lineNum">     147 </span>                :            :     /* send DIO if counter is less than desired redundancy */
+<span class="lineNum">     148 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(instance-&gt;dio_counter &lt; instance-&gt;dio_redundancy) {</span>
+<span class="lineNum">     149 </span>                :            : #if RPL_CONF_STATS
+<span class="lineNum">     150 </span>                :            :       instance-&gt;dio_totsend++;
+<span class="lineNum">     151 </span>                :            : #endif /* RPL_CONF_STATS */
+<span class="lineNum">     152 </span>                :<span class="lineNoCov">          0 :       dio_output(instance, NULL);</span>
+<span class="lineNum">     153 </span>                :            :     } else {
+<span class="lineNum">     154 </span>                :            :       PRINTF(&quot;RPL: Supressing DIO transmission (%d &gt;= %d)\n&quot;,
+<span class="lineNum">     155 </span>                :            :              instance-&gt;dio_counter, instance-&gt;dio_redundancy);
+<span class="lineNum">     156 </span>                :            :     }
+<span class="lineNum">     157 </span>                :<span class="lineNoCov">          0 :     instance-&gt;dio_send = 0;</span>
+<span class="lineNum">     158 </span>                :            :     PRINTF(&quot;RPL: Scheduling DIO timer %lu ticks in future (sent)\n&quot;,
+<span class="lineNum">     159 </span>                :            :            instance-&gt;dio_next_delay);
+<span class="lineNum">     160 </span>                :<span class="lineNoCov">          0 :     ctimer_set(&amp;instance-&gt;dio_timer, instance-&gt;dio_next_delay, handle_dio_timer, instance);</span>
+<span class="lineNum">     161 </span>                :            :   } else {
+<span class="lineNum">     162 </span>                :            :     /* check if we need to double interval */
+<span class="lineNum">     163 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(instance-&gt;dio_intcurrent &lt; instance-&gt;dio_intmin + instance-&gt;dio_intdoubl) {</span>
+<span class="lineNum">     164 </span>                :<span class="lineNoCov">          0 :       instance-&gt;dio_intcurrent++;</span>
+<span class="lineNum">     165 </span>                :            :       PRINTF(&quot;RPL: DIO Timer interval doubled %d\n&quot;, instance-&gt;dio_intcurrent);
+<span class="lineNum">     166 </span>                :            :     }
+<span class="lineNum">     167 </span>                :<span class="lineNoCov">          0 :     new_dio_interval(instance);</span>
+<span class="lineNum">     168 </span>                :            :   }
+<span class="lineNum">     169 </span>                :            : }
+<a name="170"><span class="lineNum">     170 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     171 </span>                :            : void
+<span class="lineNum">     172 </span>                :<span class="lineNoCov">          0 : rpl_reset_periodic_timer(void)</span>
+<span class="lineNum">     173 </span>                :            : {
+<span class="lineNum">     174 </span>                :            :   next_dis = RPL_DIS_INTERVAL / 2 +
+<span class="lineNum">     175 </span>                :<span class="lineNoCov">          0 :     ((uint32_t)RPL_DIS_INTERVAL * (uint32_t)random_rand()) / RANDOM_RAND_MAX -</span>
+<span class="lineNum">     176 </span>                :<span class="lineNoCov">          0 :     RPL_DIS_START_DELAY;</span>
+<span class="lineNum">     177 </span>                :<span class="lineNoCov">          0 :   ctimer_set(&amp;periodic_timer, CLOCK_SECOND, handle_periodic_timer, NULL);</span>
+<span class="lineNum">     178 </span>                :<span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     179 </span>                :            : /*---------------------------------------------------------------------------*/
+<a name="180"><span class="lineNum">     180 </span>                :            : /* Resets the DIO timer in the instance to its minimal interval. */</a>
+<span class="lineNum">     181 </span>                :            : void
+<span class="lineNum">     182 </span>                :<span class="lineNoCov">          0 : rpl_reset_dio_timer(rpl_instance_t *instance)</span>
+<span class="lineNum">     183 </span>                :            : {
+<span class="lineNum">     184 </span>                :            : #if !RPL_LEAF_ONLY
+<span class="lineNum">     185 </span>                :            :   /* Do not reset if we are already on the minimum interval,
+<span class="lineNum">     186 </span>                :            :      unless forced to do so. */
+<span class="lineNum">     187 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(instance-&gt;dio_intcurrent &gt; instance-&gt;dio_intmin) {</span>
+<span class="lineNum">     188 </span>                :<span class="lineNoCov">          0 :     instance-&gt;dio_counter = 0;</span>
+<span class="lineNum">     189 </span>                :<span class="lineNoCov">          0 :     instance-&gt;dio_intcurrent = instance-&gt;dio_intmin;</span>
+<span class="lineNum">     190 </span>                :<span class="lineNoCov">          0 :     new_dio_interval(instance);</span>
+<span class="lineNum">     191 </span>                :            :   }
+<span class="lineNum">     192 </span>                :            : #if RPL_CONF_STATS
+<span class="lineNum">     193 </span>                :            :   rpl_stats.resets++;
+<span class="lineNum">     194 </span>                :            : #endif /* RPL_CONF_STATS */
+<span class="lineNum">     195 </span>                :            : #endif /* RPL_LEAF_ONLY */
+<span class="lineNum">     196 </span>                :<span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     197 </span>                :            : /*---------------------------------------------------------------------------*/
+<a name="198"><span class="lineNum">     198 </span>                :            : static void handle_dao_timer(void *ptr);</a>
+<span class="lineNum">     199 </span>                :            : static void
+<span class="lineNum">     200 </span>                :<span class="lineNoCov">          0 : set_dao_lifetime_timer(rpl_instance_t *instance)</span>
+<span class="lineNum">     201 </span>                :            : {
+<span class="lineNum">     202 </span>        [<span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(rpl_get_mode() == RPL_MODE_FEATHER) {</span>
+<span class="lineNum">     203 </span>                :<span class="lineNoCov">          0 :     return;</span>
+<span class="lineNum">     204 </span>                :            :   }
+<span class="lineNum">     205 </span>                :            : 
+<span class="lineNum">     206 </span>                :            :   /* Set up another DAO within half the expiration time, if such a
+<span class="lineNum">     207 </span>                :            :      time has been configured */
+<span class="lineNum">     208 </span>[<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>][<span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(instance-&gt;lifetime_unit != 0xffff &amp;&amp; instance-&gt;default_lifetime != 0xff) {</span>
+<span class="lineNum">     209 </span>                :            :     clock_time_t expiration_time;
+<span class="lineNum">     210 </span>                :            :     expiration_time = (clock_time_t)instance-&gt;default_lifetime *
+<span class="lineNum">     211 </span>                :            :       (clock_time_t)instance-&gt;lifetime_unit *
+<span class="lineNum">     212 </span>                :<span class="lineNoCov">          0 :       CLOCK_SECOND / 2;</span>
+<span class="lineNum">     213 </span>                :            :     PRINTF(&quot;RPL: Scheduling DAO lifetime timer %u ticks in the future\n&quot;,
+<span class="lineNum">     214 </span>                :            :            (unsigned)expiration_time);
+<span class="lineNum">     215 </span>                :            :     ctimer_set(&amp;instance-&gt;dao_lifetime_timer, expiration_time,
+<span class="lineNum">     216 </span>                :<span class="lineNoCov">          0 :                handle_dao_timer, instance);</span>
+<span class="lineNum">     217 </span>                :            :   }
+<span class="lineNum">     218 </span>                :            : }
+<a name="219"><span class="lineNum">     219 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     220 </span>                :            : static void
+<span class="lineNum">     221 </span>                :<span class="lineNoCov">          0 : handle_dao_timer(void *ptr)</span>
+<span class="lineNum">     222 </span>                :            : {
+<span class="lineNum">     223 </span>                :            :   rpl_instance_t *instance;
+<span class="lineNum">     224 </span>                :            : #if RPL_CONF_MULTICAST
+<span class="lineNum">     225 </span>                :            :   uip_mcast6_route_t *mcast_route;
+<span class="lineNum">     226 </span>                :            :   uint8_t i;
+<span class="lineNum">     227 </span>                :            : #endif
+<span class="lineNum">     228 </span>                :            : 
+<span class="lineNum">     229 </span>                :<span class="lineNoCov">          0 :   instance = (rpl_instance_t *)ptr;</span>
+<span class="lineNum">     230 </span>                :            : 
+<span class="lineNum">     231 </span>[<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>][<span class="branchNoExec" title="Branch 3 was not executed"> # </span><span class="branchNoExec" title="Branch 4 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(!dio_send_ok &amp;&amp; uip_ds6_get_link_local(ADDR_PREFERRED) == NULL) {</span>
+<span class="lineNum">         </span>        [<span class="branchNoExec" title="Branch 5 was not executed"> # </span><span class="branchNoExec" title="Branch 6 was not executed"> # </span>]
+<span class="lineNum">     232 </span>                :            :     PRINTF(&quot;RPL: Postpone DAO transmission\n&quot;);
+<span class="lineNum">     233 </span>                :<span class="lineNoCov">          0 :     ctimer_set(&amp;instance-&gt;dao_timer, CLOCK_SECOND, handle_dao_timer, instance);</span>
+<span class="lineNum">     234 </span>                :<span class="lineNoCov">          0 :     return;</span>
+<span class="lineNum">     235 </span>                :            :   }
+<span class="lineNum">     236 </span>                :            : 
+<span class="lineNum">     237 </span>                :            :   /* Send the DAO to the DAO parent set -- the preferred parent in our case. */
+<span class="lineNum">     238 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(instance-&gt;current_dag-&gt;preferred_parent != NULL) {</span>
+<span class="lineNum">     239 </span>                :            :     PRINTF(&quot;RPL: handle_dao_timer - sending DAO\n&quot;);
+<span class="lineNum">     240 </span>                :            :     /* Set the route lifetime to the default value. */
+<span class="lineNum">     241 </span>                :<span class="lineNoCov">          0 :     dao_output(instance-&gt;current_dag-&gt;preferred_parent, instance-&gt;default_lifetime);</span>
+<span class="lineNum">     242 </span>                :            : 
+<span class="lineNum">     243 </span>                :            : #if RPL_CONF_MULTICAST
+<span class="lineNum">     244 </span>                :            :     /* Send DAOs for multicast prefixes only if the instance is in MOP 3 */
+<span class="lineNum">     245 </span>                :            :     if(instance-&gt;mop == RPL_MOP_STORING_MULTICAST) {
+<span class="lineNum">     246 </span>                :            :       /* Send a DAO for own multicast addresses */
+<span class="lineNum">     247 </span>                :            :       for(i = 0; i &lt; UIP_DS6_MADDR_NB; i++) {
+<span class="lineNum">     248 </span>                :            :         if(uip_ds6_if.maddr_list[i].isused
+<span class="lineNum">     249 </span>                :            :             &amp;&amp; uip_is_addr_mcast_global(&amp;uip_ds6_if.maddr_list[i].ipaddr)) {
+<span class="lineNum">     250 </span>                :            :           dao_output_target(instance-&gt;current_dag-&gt;preferred_parent,
+<span class="lineNum">     251 </span>                :            :               &amp;uip_ds6_if.maddr_list[i].ipaddr, RPL_MCAST_LIFETIME);
+<span class="lineNum">     252 </span>                :            :         }
+<span class="lineNum">     253 </span>                :            :       }
+<span class="lineNum">     254 </span>                :            : 
+<span class="lineNum">     255 </span>                :            :       /* Iterate over multicast routes and send DAOs */
+<span class="lineNum">     256 </span>                :            :       mcast_route = uip_mcast6_route_list_head();
+<span class="lineNum">     257 </span>                :            :       while(mcast_route != NULL) {
+<span class="lineNum">     258 </span>                :            :         /* Don't send if it's also our own address, done that already */
+<span class="lineNum">     259 </span>                :            :         if(uip_ds6_maddr_lookup(&amp;mcast_route-&gt;group) == NULL) {
+<span class="lineNum">     260 </span>                :            :           dao_output_target(instance-&gt;current_dag-&gt;preferred_parent,
+<span class="lineNum">     261 </span>                :            :                      &amp;mcast_route-&gt;group, RPL_MCAST_LIFETIME);
+<span class="lineNum">     262 </span>                :            :         }
+<span class="lineNum">     263 </span>                :            :         mcast_route = list_item_next(mcast_route);
+<span class="lineNum">     264 </span>                :            :       }
+<span class="lineNum">     265 </span>                :            :     }
+<span class="lineNum">     266 </span>                :            : #endif
+<span class="lineNum">     267 </span>                :            :   } else {
+<span class="lineNum">     268 </span>                :            :     PRINTF(&quot;RPL: No suitable DAO parent\n&quot;);
+<span class="lineNum">     269 </span>                :            :   }
+<span class="lineNum">     270 </span>                :            : 
+<span class="lineNum">     271 </span>                :<span class="lineNoCov">          0 :   ctimer_stop(&amp;instance-&gt;dao_timer);</span>
+<span class="lineNum">     272 </span>                :            : 
+<span class="lineNum">     273 </span>        [<span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(etimer_expired(&amp;instance-&gt;dao_lifetime_timer.etimer)) {</span>
+<span class="lineNum">     274 </span>                :<span class="lineNoCov">          0 :     set_dao_lifetime_timer(instance);</span>
+<span class="lineNum">     275 </span>                :            :   }
+<span class="lineNum">     276 </span>                :            : }
+<a name="277"><span class="lineNum">     277 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     278 </span>                :            : static void
+<span class="lineNum">     279 </span>                :<span class="lineNoCov">          0 : schedule_dao(rpl_instance_t *instance, clock_time_t latency)</span>
+<span class="lineNum">     280 </span>                :            : {
+<span class="lineNum">     281 </span>                :            :   clock_time_t expiration_time;
+<span class="lineNum">     282 </span>                :            : 
+<span class="lineNum">     283 </span>        [<span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(rpl_get_mode() == RPL_MODE_FEATHER) {</span>
+<span class="lineNum">     284 </span>                :<span class="lineNoCov">          0 :     return;</span>
+<span class="lineNum">     285 </span>                :            :   }
+<span class="lineNum">     286 </span>                :            : 
+<span class="lineNum">     287 </span>                :<span class="lineNoCov">          0 :   expiration_time = etimer_expiration_time(&amp;instance-&gt;dao_timer.etimer);</span>
+<span class="lineNum">     288 </span>                :            : 
+<span class="lineNum">     289 </span>        [<span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span>]:<span class="lineNoCov">          0 :   if(!etimer_expired(&amp;instance-&gt;dao_timer.etimer)) {</span>
+<span class="lineNum">     290 </span>                :            :     PRINTF(&quot;RPL: DAO timer already scheduled\n&quot;);
+<span class="lineNum">     291 </span>                :            :   } else {
+<span class="lineNum">     292 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if(latency != 0) {</span>
+<span class="lineNum">     293 </span>                :            :       expiration_time = latency / 2 +
+<span class="lineNum">     294 </span>                :<span class="lineNoCov">          0 :         (random_rand() % (latency));</span>
+<span class="lineNum">     295 </span>                :            :     } else {
+<span class="lineNum">     296 </span>                :            :       expiration_time = 0;
+<span class="lineNum">     297 </span>                :            :     }
+<span class="lineNum">     298 </span>                :            :     PRINTF(&quot;RPL: Scheduling DAO timer %u ticks in the future\n&quot;,
+<span class="lineNum">     299 </span>                :            :            (unsigned)expiration_time);
+<span class="lineNum">     300 </span>                :            :     ctimer_set(&amp;instance-&gt;dao_timer, expiration_time,
+<span class="lineNum">     301 </span>                :<span class="lineNoCov">          0 :                handle_dao_timer, instance);</span>
+<span class="lineNum">     302 </span>                :            : 
+<span class="lineNum">     303 </span>                :<span class="lineNoCov">          0 :     set_dao_lifetime_timer(instance);</span>
+<span class="lineNum">     304 </span>                :            :   }
+<span class="lineNum">     305 </span>                :            : }
+<a name="306"><span class="lineNum">     306 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     307 </span>                :            : void
+<span class="lineNum">     308 </span>                :<span class="lineNoCov">          0 : rpl_schedule_dao(rpl_instance_t *instance)</span>
+<span class="lineNum">     309 </span>                :            : {
+<span class="lineNum">     310 </span>                :<span class="lineNoCov">          0 :   schedule_dao(instance, RPL_DAO_LATENCY);</span>
+<span class="lineNum">     311 </span>                :<span class="lineNoCov">          0 : }</span>
+<a name="312"><span class="lineNum">     312 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     313 </span>                :            : void
+<span class="lineNum">     314 </span>                :<span class="lineNoCov">          0 : rpl_schedule_dao_immediately(rpl_instance_t *instance)</span>
+<span class="lineNum">     315 </span>                :            : {
+<span class="lineNum">     316 </span>                :<span class="lineNoCov">          0 :   schedule_dao(instance, 0);</span>
+<span class="lineNum">     317 </span>                :<span class="lineNoCov">          0 : }</span>
+<a name="318"><span class="lineNum">     318 </span>                :            : /*---------------------------------------------------------------------------*/</a>
+<span class="lineNum">     319 </span>                :            : void
+<span class="lineNum">     320 </span>                :<span class="lineNoCov">          0 : rpl_cancel_dao(rpl_instance_t *instance)</span>
+<span class="lineNum">     321 </span>                :            : {
+<span class="lineNum">     322 </span>                :<span class="lineNoCov">          0 :   ctimer_stop(&amp;instance-&gt;dao_timer);</span>
+<span class="lineNum">     323 </span>                :<span class="lineNoCov">          0 :   ctimer_stop(&amp;instance-&gt;dao_lifetime_timer);</span>
+<span class="lineNum">     324 </span>                :<span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     325 </span>                :            : /*---------------------------------------------------------------------------*/
+<span class="lineNum">     326 </span>                :            : 
+<span class="lineNum">     327 </span>                :            : /** @}*/
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.9</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+\hypertarget{packetbuf_8c}{}\section{/home/user/contiki\+U\+T/contiki/core/net/packetbuf.c File Reference}
+\label{packetbuf_8c}\index{/home/user/contiki\+U\+T/contiki/core/net/packetbuf.\+c@{/home/user/contiki\+U\+T/contiki/core/net/packetbuf.\+c}}
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}contiki-\/net.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}net/packetbuf.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}net/rime/rime.\+h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__packetbuf_gad72dbcf6d0153db1b8d8a58001feed83}{}\#define {\bfseries D\+E\+B\+U\+G}~0\label{group__packetbuf_gad72dbcf6d0153db1b8d8a58001feed83}
+
+\item 
+\hypertarget{group__packetbuf_ga1f464e950a4fa11e8821b5c725921a15}{}\#define {\bfseries P\+R\+I\+N\+T\+F}(...)\label{group__packetbuf_ga1f464e950a4fa11e8821b5c725921a15}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__packetbuf_gaa540c9abf0db13d27881b616f7794824}{packetbuf\+\_\+clear} (void)
+\begin{DoxyCompactList}\small\item\em Clear and reset the packetbuf. \end{DoxyCompactList}\item 
+void \hyperlink{group__packetbuf_ga9ed85aa3405fa87ed8b1e523dd374dcd}{packetbuf\+\_\+clear\+\_\+hdr} (void)
+\begin{DoxyCompactList}\small\item\em Clear and reset the header of the packetbuf. \end{DoxyCompactList}\item 
+int \hyperlink{group__packetbuf_ga5fd9cb98f800733b6d9381bce81cd224}{packetbuf\+\_\+copyfrom} (const void $\ast$from, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Copy from external data into the packetbuf. \end{DoxyCompactList}\item 
+void \hyperlink{group__packetbuf_ga39a862c119717560e224923801c1fa2a}{packetbuf\+\_\+compact} (void)
+\begin{DoxyCompactList}\small\item\em Compact the packetbuf. \end{DoxyCompactList}\item 
+int \hyperlink{group__packetbuf_gac4b6f4ff134a21b6c2f726ca9342bb2f}{packetbuf\+\_\+copyto\+\_\+hdr} (uint8\+\_\+t $\ast$to)
+\begin{DoxyCompactList}\small\item\em Copy the header portion of the packetbuf to an external buffer. \end{DoxyCompactList}\item 
+int \hyperlink{group__packetbuf_gacad3b92ca8f9ce7845b6c490ba9f05bf}{packetbuf\+\_\+copyto} (void $\ast$to)
+\begin{DoxyCompactList}\small\item\em Copy the entire packetbuf to an external buffer. \end{DoxyCompactList}\item 
+int \hyperlink{group__packetbuf_gacffe7341cbfe90034e829ea70111203a}{packetbuf\+\_\+hdralloc} (int size)
+\begin{DoxyCompactList}\small\item\em Extend the header of the packetbuf, for outbound packets. \end{DoxyCompactList}\item 
+\hypertarget{group__packetbuf_ga4b2940aecccd22785e0160684c3a8327}{}void {\bfseries packetbuf\+\_\+hdr\+\_\+remove} (int size)\label{group__packetbuf_ga4b2940aecccd22785e0160684c3a8327}
+
+\item 
+int \hyperlink{group__packetbuf_gad7d9d402f591a560b5502bc6c8bcbd20}{packetbuf\+\_\+hdrreduce} (int size)
+\begin{DoxyCompactList}\small\item\em Reduce the header in the packetbuf, for incoming packets. \end{DoxyCompactList}\item 
+void \hyperlink{group__packetbuf_ga236b0d557fe119c39796432484c94b26}{packetbuf\+\_\+set\+\_\+datalen} (uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Set the length of the data in the packetbuf. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group__packetbuf_ga29a6f3f230b55e6bc2f017879c27113a}{packetbuf\+\_\+dataptr} (void)
+\begin{DoxyCompactList}\small\item\em Get a pointer to the data in the packetbuf. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group__packetbuf_ga67c213a97ab9bdadddd90db1df0a3058}{packetbuf\+\_\+hdrptr} (void)
+\begin{DoxyCompactList}\small\item\em Get a pointer to the header in the packetbuf, for outbound packets. \end{DoxyCompactList}\item 
+void \hyperlink{group__packetbuf_ga3f5025b223cc3cf94a7645dd4a3e1819}{packetbuf\+\_\+reference} (void $\ast$ptr, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Point the packetbuf to external data. \end{DoxyCompactList}\item 
+int \hyperlink{group__packetbuf_gac861e157b35ff95f7fd2c7fa925edd58}{packetbuf\+\_\+is\+\_\+reference} (void)
+\begin{DoxyCompactList}\small\item\em Check if the packetbuf references external data. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group__packetbuf_gadb970d1a23b7bc7c8e18d45a9c9dd579}{packetbuf\+\_\+reference\+\_\+ptr} (void)
+\begin{DoxyCompactList}\small\item\em Get a pointer to external data referenced by the packetbuf. \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{group__packetbuf_ga4a1157b882c15f5ea05d64f81d37115d}{packetbuf\+\_\+datalen} (void)
+\begin{DoxyCompactList}\small\item\em Get the length of the data in the packetbuf. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{group__packetbuf_ga591ff8749c8a62c45f4a32e38303ce5f}{packetbuf\+\_\+hdrlen} (void)
+\begin{DoxyCompactList}\small\item\em Get the length of the header in the packetbuf. \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{group__packetbuf_ga3cc486f4d4f837db11c6376bee07ebcb}{packetbuf\+\_\+totlen} (void)
+\begin{DoxyCompactList}\small\item\em Get the total length of the header and data in the packetbuf. \end{DoxyCompactList}\item 
+\hypertarget{group__packetbuf_ga4fc3165c0161cb961492e6c9d83e5085}{}void {\bfseries packetbuf\+\_\+attr\+\_\+clear} (void)\label{group__packetbuf_ga4fc3165c0161cb961492e6c9d83e5085}
+
+\item 
+\hypertarget{group__packetbuf_ga510215a521924e7c7d343fc6e93887d5}{}void {\bfseries packetbuf\+\_\+attr\+\_\+copyto} (struct \hyperlink{structpacketbuf__attr}{packetbuf\+\_\+attr} $\ast$attrs, struct \hyperlink{structpacketbuf__addr}{packetbuf\+\_\+addr} $\ast$addrs)\label{group__packetbuf_ga510215a521924e7c7d343fc6e93887d5}
+
+\item 
+\hypertarget{group__packetbuf_gad32a9c0c337161884c9bf73481ef41c0}{}void {\bfseries packetbuf\+\_\+attr\+\_\+copyfrom} (struct \hyperlink{structpacketbuf__attr}{packetbuf\+\_\+attr} $\ast$attrs, struct \hyperlink{structpacketbuf__addr}{packetbuf\+\_\+addr} $\ast$addrs)\label{group__packetbuf_gad32a9c0c337161884c9bf73481ef41c0}
+
+\item 
+\hypertarget{group__packetbuf_ga98c48d863f9321f7da017af6542249e3}{}int {\bfseries packetbuf\+\_\+set\+\_\+attr} (uint8\+\_\+t type, const packetbuf\+\_\+attr\+\_\+t val)\label{group__packetbuf_ga98c48d863f9321f7da017af6542249e3}
+
+\item 
+\hypertarget{group__packetbuf_ga705d728750d2675cd3ca6354d1175040}{}packetbuf\+\_\+attr\+\_\+t {\bfseries packetbuf\+\_\+attr} (uint8\+\_\+t type)\label{group__packetbuf_ga705d728750d2675cd3ca6354d1175040}
+
+\item 
+\hypertarget{group__packetbuf_ga56d82959356e056070affda88365c3cb}{}int {\bfseries packetbuf\+\_\+set\+\_\+addr} (uint8\+\_\+t type, const \hyperlink{unionlinkaddr__t}{linkaddr\+\_\+t} $\ast$addr)\label{group__packetbuf_ga56d82959356e056070affda88365c3cb}
+
+\item 
+\hypertarget{group__packetbuf_ga4f1ab76f775cfd566822fdfa69431646}{}const \hyperlink{unionlinkaddr__t}{linkaddr\+\_\+t} $\ast$ {\bfseries packetbuf\+\_\+addr} (uint8\+\_\+t type)\label{group__packetbuf_ga4f1ab76f775cfd566822fdfa69431646}
+
+\item 
+int \hyperlink{group__packetbuf_gaace1fdbc02444a06c58aa379b44111aa}{packetbuf\+\_\+holds\+\_\+broadcast} (void)
+\begin{DoxyCompactList}\small\item\em Checks whether the current packet is a broadcast. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__packetbuf_gabb318b0452c06e571fa0c4bc553684a7}{}struct \hyperlink{structpacketbuf__attr}{packetbuf\+\_\+attr} {\bfseries packetbuf\+\_\+attrs} \mbox{[}P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+N\+U\+M\+\_\+\+A\+T\+T\+R\+S\mbox{]}\label{group__packetbuf_gabb318b0452c06e571fa0c4bc553684a7}
+
+\item 
+\hypertarget{group__packetbuf_gacd204773e0cf2d1fbfe6b8e0d4d25c2e}{}struct \hyperlink{structpacketbuf__addr}{packetbuf\+\_\+addr} {\bfseries packetbuf\+\_\+addrs} \mbox{[}P\+A\+C\+K\+E\+T\+B\+U\+F\+\_\+\+N\+U\+M\+\_\+\+A\+D\+D\+R\+S\mbox{]}\label{group__packetbuf_gacd204773e0cf2d1fbfe6b8e0d4d25c2e}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Rime buffer (packetbuf) management \begin{DoxyAuthor}{Author}
+Adam Dunkels \href{mailto:adam@sics.se}{\tt adam@sics.\+se} 
+\end{DoxyAuthor}

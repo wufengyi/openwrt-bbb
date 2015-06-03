@@ -1,0 +1,31 @@
+\hypertarget{cfs-coffee_8h}{}\section{/home/user/contiki\+U\+T/contiki/core/cfs/cfs-\/coffee.h File Reference}
+\label{cfs-coffee_8h}\index{/home/user/contiki\+U\+T/contiki/core/cfs/cfs-\/coffee.\+h@{/home/user/contiki\+U\+T/contiki/core/cfs/cfs-\/coffee.\+h}}
+{\ttfamily \#include \char`\"{}cfs.\+h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__cfs_ga3ba46c00491d80f860a9e531403a0a63}{C\+F\+S\+\_\+\+C\+O\+F\+F\+E\+E\+\_\+\+I\+O\+\_\+\+F\+L\+A\+S\+H\+\_\+\+A\+W\+A\+R\+E}~0x1
+\item 
+\#define \hyperlink{group__cfs_ga6f4139866092ae209517c8b9e8c740c1}{C\+F\+S\+\_\+\+C\+O\+F\+F\+E\+E\+\_\+\+I\+O\+\_\+\+F\+I\+R\+M\+\_\+\+S\+I\+Z\+E}~0x2
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{Indent}{\bf Functions called from application programs}\par
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{group__cfs_ga2586fe834b8b6e943c5e116919edb357}{cfs\+\_\+coffee\+\_\+reserve} (const char $\ast$name, cfs\+\_\+offset\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Reserve space for a file. \end{DoxyCompactList}\item 
+int \hyperlink{group__cfs_ga00f5e8bad702aa74e5c14fc6f60064c8}{cfs\+\_\+coffee\+\_\+configure\+\_\+log} (const char $\ast$\hyperlink{structfile}{file}, unsigned log\+\_\+size, unsigned log\+\_\+entry\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Configure the on-\/demand log file. \end{DoxyCompactList}\item 
+int \hyperlink{group__cfs_gacc3d4dd048dae3848693c7b175539110}{cfs\+\_\+coffee\+\_\+set\+\_\+io\+\_\+semantics} (int fd, unsigned flags)
+\begin{DoxyCompactList}\small\item\em Set the I/\+O semantics for accessing a file. \end{DoxyCompactList}\item 
+int \hyperlink{group__cfs_ga20f73caab6f11eebc05378fe9d4606b3}{cfs\+\_\+coffee\+\_\+format} (void)
+\begin{DoxyCompactList}\small\item\em Format the storage area assigned to Coffee. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group__cfs_gae4e97787746c7040c54f5adf60d4709b}{cfs\+\_\+coffee\+\_\+get\+\_\+protected\+\_\+mem} (unsigned $\ast$size)
+\begin{DoxyCompactList}\small\item\em Points out a memory region that may not be altered during checkpointing operations that use the file system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+Header for the Coffee file system. \begin{DoxyAuthor}{Author}
+Nicolas Tsiftes \href{mailto:nvt@sics.se}{\tt nvt@sics.\+se} 
+\end{DoxyAuthor}

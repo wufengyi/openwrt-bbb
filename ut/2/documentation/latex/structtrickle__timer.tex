@@ -1,0 +1,74 @@
+\hypertarget{structtrickle__timer}{}\section{trickle\+\_\+timer Struct Reference}
+\label{structtrickle__timer}\index{trickle\+\_\+timer@{trickle\+\_\+timer}}
+
+
+{\ttfamily \#include $<$trickle-\/timer.\+h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+clock\+\_\+time\+\_\+t \hyperlink{structtrickle__timer_ad47176bf75ac13d688865dec639db430}{i\+\_\+min}
+\item 
+clock\+\_\+time\+\_\+t \hyperlink{structtrickle__timer_a2e49b516f2674d3c8e0fecdd72db0c8e}{i\+\_\+cur}
+\item 
+clock\+\_\+time\+\_\+t \hyperlink{structtrickle__timer_aeabbbddcf3e3b015e9a8fd9f211bb21d}{i\+\_\+start}
+\item 
+clock\+\_\+time\+\_\+t \hyperlink{structtrickle__timer_a4d0201ed9a65814148348f80d907f1a5}{i\+\_\+max\+\_\+abs}
+\item 
+struct ctimer \hyperlink{structtrickle__timer_abba9590b99980735bac34f144b151e0d}{ct}
+\item 
+\hyperlink{group__trickle-timer_ga243193848d28e6373682b8bd2e25850a}{trickle\+\_\+timer\+\_\+cb\+\_\+t} \hyperlink{structtrickle__timer_a7cf2370dcfcb2984770ad4f37a1524e9}{cb}
+\item 
+void $\ast$ \hyperlink{structtrickle__timer_a1b10a45b744a240c4c6a4eaeffc8d82c}{cb\+\_\+arg}
+\item 
+uint8\+\_\+t \hyperlink{structtrickle__timer_a3985822217cd5698c656bad071e7ce97}{i\+\_\+max}
+\item 
+uint8\+\_\+t \hyperlink{structtrickle__timer_a4d6ff0dd8bbb0c95250d78e452dabacf}{k}
+\item 
+uint8\+\_\+t \hyperlink{structtrickle__timer_a0a68c3dfc466cbdbfbc8e1cc1fd910fe}{c}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A trickle timer.
+
+This structure is used for declaring a trickle timer. In order for the timer to start running, the protocol must first populate the structure\textquotesingle{}s fields by calling \hyperlink{group__trickle-timer_ga57b03043f109c0b2adb1dc92637ee8b4}{trickle\+\_\+timer\+\_\+set()}. Protocol implementations must N\+O\+T modify the contents of this structure directly.
+
+Protocol developers must also be careful to specify the values of Imin and Imax in such a way that the maximum interval size does not exceed the boundaries of clock\+\_\+time\+\_\+t 
+
+\subsection{Member Data Documentation}
+\hypertarget{structtrickle__timer_a0a68c3dfc466cbdbfbc8e1cc1fd910fe}{}\index{trickle\+\_\+timer@{trickle\+\_\+timer}!c@{c}}
+\index{c@{c}!trickle\+\_\+timer@{trickle\+\_\+timer}}
+\subsubsection[{c}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t trickle\+\_\+timer\+::c}\label{structtrickle__timer_a0a68c3dfc466cbdbfbc8e1cc1fd910fe}
+c\+: Consistency Counter \hypertarget{structtrickle__timer_a7cf2370dcfcb2984770ad4f37a1524e9}{}\index{trickle\+\_\+timer@{trickle\+\_\+timer}!cb@{cb}}
+\index{cb@{cb}!trickle\+\_\+timer@{trickle\+\_\+timer}}
+\subsubsection[{cb}]{\setlength{\rightskip}{0pt plus 5cm}{\bf trickle\+\_\+timer\+\_\+cb\+\_\+t} trickle\+\_\+timer\+::cb}\label{structtrickle__timer_a7cf2370dcfcb2984770ad4f37a1524e9}
+Protocol\textquotesingle{}s own callback, invoked at time t within the current interval \hypertarget{structtrickle__timer_a1b10a45b744a240c4c6a4eaeffc8d82c}{}\index{trickle\+\_\+timer@{trickle\+\_\+timer}!cb\+\_\+arg@{cb\+\_\+arg}}
+\index{cb\+\_\+arg@{cb\+\_\+arg}!trickle\+\_\+timer@{trickle\+\_\+timer}}
+\subsubsection[{cb\+\_\+arg}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ trickle\+\_\+timer\+::cb\+\_\+arg}\label{structtrickle__timer_a1b10a45b744a240c4c6a4eaeffc8d82c}
+Opaque pointer to be used as the argument of the protocol\textquotesingle{}s callback \hypertarget{structtrickle__timer_abba9590b99980735bac34f144b151e0d}{}\index{trickle\+\_\+timer@{trickle\+\_\+timer}!ct@{ct}}
+\index{ct@{ct}!trickle\+\_\+timer@{trickle\+\_\+timer}}
+\subsubsection[{ct}]{\setlength{\rightskip}{0pt plus 5cm}struct ctimer trickle\+\_\+timer\+::ct}\label{structtrickle__timer_abba9590b99980735bac34f144b151e0d}
+A ctimer used internally \hypertarget{structtrickle__timer_a2e49b516f2674d3c8e0fecdd72db0c8e}{}\index{trickle\+\_\+timer@{trickle\+\_\+timer}!i\+\_\+cur@{i\+\_\+cur}}
+\index{i\+\_\+cur@{i\+\_\+cur}!trickle\+\_\+timer@{trickle\+\_\+timer}}
+\subsubsection[{i\+\_\+cur}]{\setlength{\rightskip}{0pt plus 5cm}clock\+\_\+time\+\_\+t trickle\+\_\+timer\+::i\+\_\+cur}\label{structtrickle__timer_a2e49b516f2674d3c8e0fecdd72db0c8e}
+I\+: Current interval in clock\+\_\+ticks \hypertarget{structtrickle__timer_a3985822217cd5698c656bad071e7ce97}{}\index{trickle\+\_\+timer@{trickle\+\_\+timer}!i\+\_\+max@{i\+\_\+max}}
+\index{i\+\_\+max@{i\+\_\+max}!trickle\+\_\+timer@{trickle\+\_\+timer}}
+\subsubsection[{i\+\_\+max}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t trickle\+\_\+timer\+::i\+\_\+max}\label{structtrickle__timer_a3985822217cd5698c656bad071e7ce97}
+Imax\+: Max number of doublings \hypertarget{structtrickle__timer_a4d0201ed9a65814148348f80d907f1a5}{}\index{trickle\+\_\+timer@{trickle\+\_\+timer}!i\+\_\+max\+\_\+abs@{i\+\_\+max\+\_\+abs}}
+\index{i\+\_\+max\+\_\+abs@{i\+\_\+max\+\_\+abs}!trickle\+\_\+timer@{trickle\+\_\+timer}}
+\subsubsection[{i\+\_\+max\+\_\+abs}]{\setlength{\rightskip}{0pt plus 5cm}clock\+\_\+time\+\_\+t trickle\+\_\+timer\+::i\+\_\+max\+\_\+abs}\label{structtrickle__timer_a4d0201ed9a65814148348f80d907f1a5}
+Maximum interval size in clock ticks (and not in number of doublings). This is a cached value of Imin $<$$<$ Imax used internally, so that we can have direct access to the maximum interval size without having to calculate it all the time \hypertarget{structtrickle__timer_ad47176bf75ac13d688865dec639db430}{}\index{trickle\+\_\+timer@{trickle\+\_\+timer}!i\+\_\+min@{i\+\_\+min}}
+\index{i\+\_\+min@{i\+\_\+min}!trickle\+\_\+timer@{trickle\+\_\+timer}}
+\subsubsection[{i\+\_\+min}]{\setlength{\rightskip}{0pt plus 5cm}clock\+\_\+time\+\_\+t trickle\+\_\+timer\+::i\+\_\+min}\label{structtrickle__timer_ad47176bf75ac13d688865dec639db430}
+Imin\+: Clock ticks \hypertarget{structtrickle__timer_aeabbbddcf3e3b015e9a8fd9f211bb21d}{}\index{trickle\+\_\+timer@{trickle\+\_\+timer}!i\+\_\+start@{i\+\_\+start}}
+\index{i\+\_\+start@{i\+\_\+start}!trickle\+\_\+timer@{trickle\+\_\+timer}}
+\subsubsection[{i\+\_\+start}]{\setlength{\rightskip}{0pt plus 5cm}clock\+\_\+time\+\_\+t trickle\+\_\+timer\+::i\+\_\+start}\label{structtrickle__timer_aeabbbddcf3e3b015e9a8fd9f211bb21d}
+Start of this interval (absolute clock\+\_\+time) \hypertarget{structtrickle__timer_a4d6ff0dd8bbb0c95250d78e452dabacf}{}\index{trickle\+\_\+timer@{trickle\+\_\+timer}!k@{k}}
+\index{k@{k}!trickle\+\_\+timer@{trickle\+\_\+timer}}
+\subsubsection[{k}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t trickle\+\_\+timer\+::k}\label{structtrickle__timer_a4d6ff0dd8bbb0c95250d78e452dabacf}
+k\+: Redundancy Constant 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/contiki\+U\+T/contiki/core/lib/\hyperlink{trickle-timer_8h}{trickle-\/timer.\+h}\end{DoxyCompactItemize}

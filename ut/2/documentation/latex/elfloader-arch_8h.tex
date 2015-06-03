@@ -1,0 +1,22 @@
+\hypertarget{elfloader-arch_8h}{}\section{/home/user/contiki\+U\+T/contiki/core/loader/elfloader-\/arch.h File Reference}
+\label{elfloader-arch_8h}\index{/home/user/contiki\+U\+T/contiki/core/loader/elfloader-\/arch.\+h@{/home/user/contiki\+U\+T/contiki/core/loader/elfloader-\/arch.\+h}}
+{\ttfamily \#include \char`\"{}loader/elfloader.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \hyperlink{group__elfloaderarch_ga1583b48c655f508d845d1a22bd54d2a3}{elfloader\+\_\+arch\+\_\+allocate\+\_\+ram} (int size)
+\begin{DoxyCompactList}\small\item\em Allocate R\+A\+M for a new module. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group__elfloaderarch_gabf03ff0788cfecc08e82ec0fc3bff6f7}{elfloader\+\_\+arch\+\_\+allocate\+\_\+rom} (int size)
+\begin{DoxyCompactList}\small\item\em Allocate program memory for a new module. \end{DoxyCompactList}\item 
+void \hyperlink{group__elfloaderarch_gab20475a2c29caa2906b860368895944b}{elfloader\+\_\+arch\+\_\+relocate} (int fd, unsigned int sectionoffset, char $\ast$sectionaddr, struct \hyperlink{structelf32__rela}{elf32\+\_\+rela} $\ast$rela, char $\ast$addr)
+\begin{DoxyCompactList}\small\item\em Perform a relocation. \end{DoxyCompactList}\item 
+void \hyperlink{group__elfloaderarch_ga83a40c77924d5791d8ec67f3465a99de}{elfloader\+\_\+arch\+\_\+write\+\_\+rom} (int fd, unsigned short textoff, unsigned int size, char $\ast$mem)
+\begin{DoxyCompactList}\small\item\em Write to read-\/only memory (for example the text segment). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Header file for the architecture specific parts of the Contiki E\+L\+F loader.
+
+\begin{DoxyAuthor}{Author}
+Adam Dunkels \href{mailto:adam@sics.se}{\tt adam@sics.\+se} 
+\end{DoxyAuthor}
